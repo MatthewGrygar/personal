@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ── Deep Navy · Steel · Amber ──────────────────────────
+     IT Risk / Resilience palette:
+     Navy = stabilita, důvěra, hloubka
+     Ocel = profesionalita, struktura
+     Jantar = akcent — preciznost, alert, rozhodnost
+     Platina = čistý, elegantní text
+  ──────────────────────────────────────────────────────── */
+
+  --bg:          #0D1B2A;   /* hluboká námořní černomodrá */
+  --bg-2:        #112236;   /* sekundární — o chlup světlejší navy */
+  --bg-card:     #162D44;   /* karty a panely */
+  --bg-card-2:   #1A3350;   /* hover stav karet */
+
+  --steel:       #1E3A5F;   /* ocelová modrá — bordery, dekorace */
+  --steel-light: #2A5080;   /* světlejší ocel */
+
+  --amber:       #C8913A;   /* jantar — primární akcent */
+  --amber-light: #DBA94E;   /* světlejší pro hover */
+  --amber-pale:  rgba(200,145,58,0.15); /* velmi jemný tint */
+  --amber-glow:  rgba(200,145,58,0.08);
+
+  /* Text — platina + béžová */
+  --ink:         #E8EEF4;   /* platinová bílá — hlavní text, výrazný a čistý */
+  --ink-soft:    #A8BDD0;   /* tlumená ocelová — sekundární text */
+  --ink-muted:   #5C7A96;   /* velmi tlumená — labely, metadata */
+  --ink-warm:    #D4C5B0;   /* béžová — citáty, dekorativní text */
+
+  /* Aliases — zachová kompatibilitu se všemi komponentami */
+  --surface:     var(--bg);
+  --surface-2:   var(--bg-2);
+  --blue:        var(--amber);
+  --blue-light:  var(--amber-light);
+  --blue-pale:   var(--amber-pale);
+  --gold:        var(--amber);
+  --gold-light:  var(--amber-light);
+
+  --border:      rgba(200,145,58,0.2);
+  --border-cool: rgba(30,58,95,0.6);
+  --glow:        rgba(200,145,58,0.1);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+}
+
+section[data-slide] {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+}
+
+.font-display { font-family: 'Cormorant Garamond', serif; }
+.font-mono-custom { font-family: 'DM Mono', monospace; }
+
+/* Subtle grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-2); }
+::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 99px; }
+::selection { background: var(--amber); color: var(--bg); }
+
+/* Glass panels — dark navy version */
+.glass-card {
+  background: rgba(16,38,62,0.97);
+  backdrop-filter: blur(30px) saturate(1.4);
+  -webkit-backdrop-filter: blur(30px) saturate(1.4);
+  border: 1px solid rgba(200,145,58,0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(200,145,58,0.18),
+    inset 0 -1px 0 rgba(0,0,0,0.2),
+    0 16px 56px rgba(0,0,0,0.5),
+    0 2px 8px rgba(0,0,0,0.3);
+}
+.glass-blue {
+  background: rgba(200,145,58,0.07);
+  backdrop-filter: blur(22px) saturate(1.2);
+  -webkit-backdrop-filter: blur(22px) saturate(1.2);
+  border: 1px solid rgba(200,145,58,0.26);
+  box-shadow:
+    inset 0 1px 0 rgba(200,145,58,0.16),
+    0 10px 36px rgba(0,0,0,0.35);
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.7rem;
+  border-radius: 99px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(200,145,58,0.1);
+  color: var(--amber);
+  border: 1px solid rgba(200,145,58,0.22);
+}
+
+.card-hover {
+  transition: transform 0.28s cubic-bezier(0.4,0,0.2,1), box-shadow 0.28s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 50px rgba(200,145,58,0.08);
+}
+
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.line-draw {
+  display: block;
+  height: 1px;
+  background: linear-gradient(to right, var(--amber), transparent);
+  transform-origin: left center;
+  animation: lineGrow 0.7s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--amber) 0%, var(--amber-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-dot-wrap:hover .nav-dot { transform: scale(1.5); }
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.88) translateY(6px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
