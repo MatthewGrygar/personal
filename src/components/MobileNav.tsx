@@ -18,7 +18,12 @@ export function MobileNav({
   const [open, setOpen] = useState(false);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById(id);
+    if (el) {
+      // Scroll section itself to top, then snap to section
+      el.scrollTop = 0;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
     setOpen(false);
   };
 

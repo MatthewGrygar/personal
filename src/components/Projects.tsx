@@ -47,7 +47,7 @@ export function Projects({ lang }: { lang: Lang }) {
         </motion.h2>
 
         {/* 3×2 grid */}
-        <div className="min-h-0 flex-1 grid gap-3 m-3col m-projects-grid"
+        <div className="grid gap-3 m-3col m-projects-grid"
           style={{ gridTemplateColumns:"repeat(3,1fr)", gridTemplateRows:"repeat(2,1fr)" }}>
           {proj.items.map((item: any, i: number) => (
             <motion.div key={i}
@@ -76,7 +76,7 @@ export function Projects({ lang }: { lang: Lang }) {
               )}
 
               {/* Card body */}
-              <div className="flex flex-col flex-1 p-3.5">
+              <div className="flex flex-col p-3.5">
 
                 {/* Tags + link row */}
                 <div className="flex items-start justify-between gap-1 mb-1.5">
@@ -111,7 +111,7 @@ export function Projects({ lang }: { lang: Lang }) {
                 </h3>
 
                 {/* Description */}
-                <p className="flex-1 leading-relaxed mb-2"
+                <p className="leading-relaxed mb-2"
                   style={{ color:"var(--ink)", fontWeight:300, opacity:0.88, fontSize:"0.8rem" }}>
                   {t(item.description, lang)}
                 </p>

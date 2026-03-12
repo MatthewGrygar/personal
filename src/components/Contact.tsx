@@ -121,7 +121,7 @@ export function Contact({ lang }: { lang: Lang }) {
         </motion.p>
 
         {/* 2-col: form LEFT | info RIGHT */}
-        <div className="min-h-0 flex-1 grid gap-5 m-2col" style={{ gridTemplateColumns:"1.1fr 0.9fr" }}>
+        <div className="grid gap-5 m-2col" style={{ gridTemplateColumns:"1.1fr 0.9fr" }}>
 
           {/* ── LEFT: Form ── */}
           <motion.div {...fi(0.18,"x",-16)}
@@ -134,7 +134,7 @@ export function Contact({ lang }: { lang: Lang }) {
               style={{ display:"block", width:12, height:12, borderBottom:"1.5px solid rgba(200,145,58,0.22)", borderRight:"1.5px solid rgba(200,145,58,0.22)" }} />
 
             {sent ? (
-              <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
+              <div className="flex flex-col items-center justify-center gap-3 text-center py-8">
                 <motion.span initial={{ scale:0 }} animate={{ scale:1 }} transition={{ type:"spring", stiffness:200 }}
                   style={{ fontSize:"2.5rem" }}>✦</motion.span>
                 <p className="font-display text-xl" style={{ color:"var(--ink)" }}>
@@ -145,7 +145,7 @@ export function Contact({ lang }: { lang: Lang }) {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex h-full flex-col gap-2.5">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
                 {/* Name + Email row */}
                 <div className="grid gap-2.5 m-contact-name-email" style={{ gridTemplateColumns:"1fr 1fr" }}>
                   <div>
@@ -168,7 +168,7 @@ export function Contact({ lang }: { lang: Lang }) {
                 </div>
 
                 {/* Message */}
-                <div className="flex flex-1 flex-col">
+                <div className="flex flex-col">
                   <label style={labelCss}>{t(contact.form.message, lang)}</label>
                   <textarea name="message" required
                     style={{ ...inputCss, resize:"none", flex:1, minHeight:"80px" }}

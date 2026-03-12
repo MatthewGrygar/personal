@@ -156,14 +156,12 @@ export function Hero({ lang }: { lang: Lang }) {
   return (
     <div className="relative flex h-dvh w-full overflow-hidden" style={{ background:"var(--bg)" }}>
 
-      {/* Network canvas — fills entire hero */}
       <NetworkCanvas />
 
-      {/* Subtle radial vignette so text side is darker */}
       <div className="pointer-events-none absolute inset-0" style={{ zIndex:3,
         background:"radial-gradient(ellipse 60% 80% at 25% 50%, transparent 30%, rgba(13,27,42,0.55) 100%)" }} />
 
-      {/* Vertical edge label */}
+      {/* Vertical edge label — desktop only */}
       <motion.div {...fo(3.0)}
         className="pointer-events-none absolute right-5 top-1/2 hidden lg:flex flex-col items-center gap-4"
         style={{ zIndex:10, writingMode:"vertical-rl", transform:"translateY(-50%) rotate(180deg)",
@@ -174,21 +172,19 @@ export function Hero({ lang }: { lang: Lang }) {
         <span>Portfolio</span>
       </motion.div>
 
-      {/* ── TEXT ── */}
-      <div className="relative flex h-full flex-col justify-center hero-content m-hero-wrap"
+      {/* ── DESKTOP layout ── */}
+      <div className="m-hero-desktop relative flex h-full flex-col justify-center"
         style={{ width:"56%", zIndex:20, paddingLeft:"clamp(5rem,8vw,9rem)", paddingRight:"2.5rem" }}>
 
-        {/* Kicker */}
         <motion.p {...fu(2.2)}
           style={{ color:"var(--amber)", fontFamily:"DM Mono,monospace", fontSize:"0.65rem",
             letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:"1.6rem", fontWeight:400 }}>
           {t(hero.kicker, lang)}
         </motion.p>
 
-        {/* Name + signature */}
         <motion.div style={{ marginBottom:"2.2rem" }}>
           <div style={{ display:"flex", alignItems:"flex-end", gap:"0.6rem" }}>
-            <h1 className="font-display m-hero-name"
+            <h1 className="font-display"
               style={{ fontSize:"clamp(4.5rem,8vw,10rem)", fontWeight:600, color:"var(--ink)",
                 letterSpacing:"-0.025em", lineHeight:0.88, flexShrink:0 }}>
               <motion.span initial={{ opacity:0, y:36 }} animate={{ opacity:1, y:0 }}
@@ -199,7 +195,6 @@ export function Hero({ lang }: { lang: Lang }) {
                 style={{ display:"block" }}>Grygar</motion.span>
             </h1>
             <motion.div
-              className="m-hero-stats-hide"
               style={{ paddingBottom:"0.4rem", flexShrink:0, overflow:"hidden" }}
               initial={{ width:0, opacity:0 }}
               animate={{ width:"clamp(130px,12vw,190px)", opacity:1 }}
@@ -209,61 +204,46 @@ export function Hero({ lang }: { lang: Lang }) {
                   opacity:0.45, display:"block", transform:"rotate(-2deg)", transformOrigin:"left bottom" }} />
             </motion.div>
           </div>
-          {/* Mobile-only subtitle */}
-          <p className="m-hero-subtitle">IT Risk · Systems · Resilience</p>
         </motion.div>
 
-        {/* Divider */}
-        <motion.div
-          initial={{ scaleX:0 }} animate={{ scaleX:1 }}
+        <motion.div initial={{ scaleX:0 }} animate={{ scaleX:1 }}
           transition={{ duration:0.6, delay:2.05, ease:[0.22,1,0.36,1] as any }}
           style={{ height:"1px", background:"linear-gradient(to right,var(--amber),transparent)",
-            transformOrigin:"left center", marginBottom:"1.2rem",
-            width:"clamp(160px,24vw,280px)" }} />
+            transformOrigin:"left center", marginBottom:"1.2rem", width:"clamp(160px,24vw,280px)" }} />
 
-        {/* Role */}
         <motion.div {...fo(2.25)} className="mb-4">
           <span className="font-display italic"
             style={{ fontSize:"clamp(1.2rem,2vw,1.75rem)", color:"var(--amber-light)", fontWeight:400,
               whiteSpace:"nowrap", transition:"opacity 0.28s ease,transform 0.28s ease",
-              opacity: roleOut ? 0 : 1,
-              transform: roleOut ? "translateY(-7px)" : "translateY(0)",
+              opacity: roleOut ? 0 : 1, transform: roleOut ? "translateY(-7px)" : "translateY(0)",
               display:"inline-block" }}>
             {ROLES[roleIdx]}
           </span>
         </motion.div>
 
-        {/* Quote + Drucker — tight block */}
         <motion.div {...fu(2.4)} style={{ marginBottom:"2rem", maxWidth:"480px" }}>
           <p className="font-display italic"
             style={{ fontSize:"clamp(0.9rem,1.3vw,1.05rem)", color:"var(--ink-warm)",
-              fontWeight:300, lineHeight:1.5, marginBottom:"0.35rem",
-              whiteSpace:"nowrap" }}>
+              fontWeight:300, lineHeight:1.5, marginBottom:"0.35rem", whiteSpace:"nowrap" }}>
             {q.text}
           </p>
-          {/* Drucker — immediately below quote, right-aligned to quote width */}
           <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.58rem",
-            letterSpacing:"0.14em", textTransform:"uppercase",
-            color:"var(--amber)", opacity:0.75 }}>
+            letterSpacing:"0.14em", textTransform:"uppercase", color:"var(--amber)", opacity:0.75 }}>
             {q.author}
           </p>
         </motion.div>
 
-        {/* CTAs */}
-        {/* CTAs — hidden on mobile, replaced by photo+stats block */}
-        <motion.div {...fu(2.6)} className="flex flex-wrap items-center gap-3 mb-10 m-hero-stats-hide">
+        <motion.div {...fu(2.6)} className="flex flex-wrap items-center gap-3 mb-10">
           <a href="#contact"
             onClick={e => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }); }}
             className="flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium transition-all hover:brightness-110"
             style={{ background:"var(--amber)", color:"#0D1B2A", fontWeight:600,
-              boxShadow:"0 4px 20px rgba(200,145,58,0.35)", letterSpacing:"0.03em",
-              minWidth:"148px" }}>
+              boxShadow:"0 4px 20px rgba(200,145,58,0.35)", letterSpacing:"0.03em", minWidth:"148px" }}>
             <Mail size={13} />{t(hero.primaryCta, lang)}
           </a>
           <a href={profile.cvUrl} download
             className="flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium transition-all"
-            style={{ borderColor:"rgba(200,145,58,0.35)", color:"var(--ink)",
-              border:"1px solid rgba(200,145,58,0.35)",
+            style={{ border:"1px solid rgba(200,145,58,0.35)", color:"var(--ink)",
               background:"rgba(30,62,95,0.6)", backdropFilter:"blur(10px)",
               minWidth:"148px", letterSpacing:"0.03em" }}
             onMouseEnter={e => { e.currentTarget.style.borderColor="var(--amber)"; e.currentTarget.style.color="var(--amber)"; }}
@@ -272,29 +252,16 @@ export function Hero({ lang }: { lang: Lang }) {
           </a>
         </motion.div>
 
-        {/* Desktop Stats — hidden on mobile */}
-        <motion.div {...fo(2.75)} className="m-hero-stats-hide">
+        <motion.div {...fo(2.75)}>
           <div style={{ display:"flex", alignItems:"center", gap:0 }}>
             {STATS.map((s, i) => {
               const unit = lang === "en" ? s.unit_en : s.unit_cs;
               return (
                 <React.Fragment key={i}>
-                  {i > 0 && (
-                    <div style={{ width:1, height:44, background:"rgba(200,145,58,0.2)",
-                      margin:"0 1.6rem", alignSelf:"center", flexShrink:0 }} />
-                  )}
+                  {i > 0 && <div style={{ width:1, height:44, background:"rgba(200,145,58,0.2)", margin:"0 1.6rem", alignSelf:"center", flexShrink:0 }} />}
                   <div style={{ width:"88px", flexShrink:0, display:"flex", alignItems:"center", gap:"0.22rem" }}>
-                    <span className="font-display"
-                      style={{ fontSize: "clamp(2.4rem,3.6vw,4rem)",
-                        fontWeight:400, color:"var(--ink)", letterSpacing:"-0.03em", lineHeight:1 }}>
-                      {s.num}
-                    </span>
-                    <span style={{ fontFamily:"DM Mono,monospace",
-                      fontSize: s.isArrow ? "clamp(1rem,1.4vw,1.25rem)" : "clamp(0.65rem,0.88vw,0.8rem)",
-                      color:"var(--amber)",
-                      fontWeight:700, textTransform:"uppercase", letterSpacing:"0.1em", lineHeight:1 }}>
-                      {unit}
-                    </span>
+                    <span className="font-display" style={{ fontSize:"clamp(2.4rem,3.6vw,4rem)", fontWeight:400, color:"var(--ink)", letterSpacing:"-0.03em", lineHeight:1 }}>{s.num}</span>
+                    <span style={{ fontFamily:"DM Mono,monospace", fontSize: s.isArrow ? "clamp(1rem,1.4vw,1.25rem)" : "clamp(0.65rem,0.88vw,0.8rem)", color:"var(--amber)", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.1em", lineHeight:1 }}>{unit}</span>
                   </div>
                 </React.Fragment>
               );
@@ -306,70 +273,119 @@ export function Hero({ lang }: { lang: Lang }) {
               return (
                 <React.Fragment key={i}>
                   {i > 0 && <div style={{ width:1, margin:"0 1.6rem", flexShrink:0 }} />}
-                  <p style={{ width:"88px", flexShrink:0, fontFamily:"DM Mono,monospace",
-                    fontSize:"0.58rem", letterSpacing:"0.13em", textTransform:"uppercase",
-                    color:"var(--ink-soft)", lineHeight:1.6, whiteSpace:"pre-line" }}>
-                    {label}
-                  </p>
+                  <p style={{ width:"88px", flexShrink:0, fontFamily:"DM Mono,monospace", fontSize:"0.58rem", letterSpacing:"0.13em", textTransform:"uppercase", color:"var(--ink-soft)", lineHeight:1.6, whiteSpace:"pre-line" }}>{label}</p>
                 </React.Fragment>
               );
             })}
           </div>
         </motion.div>
-
-        {/* ── MOBILE ONLY: foto + stats + CTAs ── */}
-        <div className="m-hero-bottom">
-          {/* Malá foto */}
-          <div className="m-hero-photo">
-            <img src="/profile.png" alt="Matthew Grygar" />
-          </div>
-          {/* Stats + CTA buttons vedle foto */}
-          <div className="m-hero-stats">
-            {STATS.map((s, i) => {
-              const unit  = lang === "en" ? s.unit_en  : s.unit_cs;
-              const label = lang === "en" ? s.label_en : s.label_cs;
-              return (
-                <div key={i} className="m-hero-stat-row">
-                  <span className="font-display" style={{ fontSize:"1.5rem", fontWeight:400, color:"var(--ink)", lineHeight:1 }}>{s.num}</span>
-                  <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.58rem", color:"var(--amber)", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.08em" }}>{unit}</span>
-                  <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.55rem", color:"var(--ink-soft)", textTransform:"uppercase", letterSpacing:"0.1em", whiteSpace:"pre-line", lineHeight:1.3 }}>{label.replace("\n"," ")}</span>
-                </div>
-              );
-            })}
-            {/* Mobile CTA buttons */}
-            <div style={{ display:"flex", gap:"0.5rem", marginTop:"0.4rem", flexWrap:"wrap" }}>
-              <a href="#contact"
-                onClick={e => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }); }}
-                style={{ display:"inline-flex", alignItems:"center", gap:"0.3rem",
-                  background:"var(--amber)", color:"#0D1B2A", fontWeight:600,
-                  fontSize:"0.7rem", padding:"0.4rem 0.9rem", borderRadius:"99px",
-                  letterSpacing:"0.03em", whiteSpace:"nowrap" }}>
-                <Mail size={11} />{t(hero.primaryCta, lang)}
-              </a>
-              <a href={profile.cvUrl} download
-                style={{ display:"inline-flex", alignItems:"center", gap:"0.3rem",
-                  border:"1px solid rgba(200,145,58,0.4)", color:"var(--ink)",
-                  background:"rgba(30,62,95,0.7)", fontSize:"0.7rem",
-                  padding:"0.4rem 0.9rem", borderRadius:"99px",
-                  letterSpacing:"0.03em", whiteSpace:"nowrap" }}>
-                <Download size={11} />{t(hero.secondaryCta, lang)}
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
 
-      {/* Scroll hint */}
+      {/* Scroll hint — desktop only */}
       <motion.button {...fo(3.1)}
         onClick={() => document.getElementById("about")?.scrollIntoView({ behavior:"smooth" })}
-        className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-1.5 m-hero-stats-hide"
+        className="m-hero-desktop absolute bottom-6 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-1.5"
         style={{ color:"var(--ink-muted)" }}>
-        <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.54rem",
-          letterSpacing:"0.2em", textTransform:"uppercase" }}>scroll</span>
+        <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.54rem", letterSpacing:"0.2em", textTransform:"uppercase" }}>scroll</span>
         <motion.div animate={{ y:[0,4,0] }} transition={{ repeat:Infinity, duration:2, ease:"easeInOut" }}>
           <ArrowDown size={11} />
         </motion.div>
       </motion.button>
+
+      {/* ── MOBILE ONLY: kompletní hero layout ── */}
+      <div className="m-hero-wrap" style={{ zIndex: 20 }}>
+
+        {/* Řádek 1: Prague · Hybrid */}
+        <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.6rem", letterSpacing:"0.18em",
+          textTransform:"uppercase", color:"var(--amber)", opacity:0.9, marginBottom:"0.2rem" }}>
+          Prague · Hybrid
+        </p>
+        {/* Řádek 2: Open to conversations */}
+        <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.6rem", letterSpacing:"0.18em",
+          textTransform:"uppercase", color:"rgba(168,189,208,0.6)", marginBottom:"1.2rem" }}>
+          Open to conversations
+        </p>
+
+        {/* Jméno */}
+        <h1 className="font-display" style={{ fontSize:"clamp(3rem,11vw,4.2rem)", fontWeight:600,
+          color:"var(--ink)", letterSpacing:"-0.02em", lineHeight:0.9, marginBottom:"0.5rem" }}>
+          <span style={{ display:"block" }}>Matthew</span>
+          <span style={{ display:"block" }}>Grygar</span>
+        </h1>
+
+        {/* Role pod jménem */}
+        <p className="font-display" style={{ fontSize:"1rem", fontStyle:"italic",
+          color:"var(--amber-light)", marginBottom:"0.8rem", fontWeight:400 }}>
+          {ROLES[roleIdx]}
+        </p>
+
+        {/* Citát */}
+        <div style={{ marginBottom:"1rem", paddingLeft:"0.75rem",
+          borderLeft:"2px solid rgba(200,145,58,0.35)" }}>
+          <p className="font-display" style={{ fontSize:"0.82rem", fontStyle:"italic",
+            color:"var(--ink-warm)", fontWeight:300, lineHeight:1.5, marginBottom:"0.2rem" }}>
+            {q.text}
+          </p>
+          <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.55rem", letterSpacing:"0.12em",
+            textTransform:"uppercase", color:"var(--amber)", opacity:0.75 }}>
+            {q.author}
+          </p>
+        </div>
+
+        {/* Foto + stats vedle sebe */}
+        <div style={{ display:"flex", gap:"1rem", alignItems:"flex-start", marginBottom:"1rem" }}>
+
+          {/* Foto */}
+          <div style={{ flexShrink:0, width:80, height:105, borderRadius:"0.75rem",
+            overflow:"hidden", border:"1px solid rgba(200,145,58,0.35)" }}>
+            <img src="/profile.png" alt="Matthew Grygar"
+              style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center top" }} />
+          </div>
+
+          {/* Stats — každý na dva řádky */}
+          <div style={{ flex:1, display:"flex", flexDirection:"column", gap:"0.55rem" }}>
+            {STATS.map((s, i) => {
+              const unit  = lang === "en" ? s.unit_en  : s.unit_cs;
+              const label = lang === "en" ? s.label_en : s.label_cs;
+              return (
+                <div key={i} style={{ display:"flex", flexDirection:"column", lineHeight:1 }}>
+                  <div style={{ display:"flex", alignItems:"baseline", gap:"0.25rem" }}>
+                    <span className="font-display" style={{ fontSize:"1.6rem", fontWeight:400,
+                      color:"var(--ink)", letterSpacing:"-0.02em" }}>{s.num}</span>
+                    <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.58rem",
+                      color:"var(--amber)", fontWeight:700, textTransform:"uppercase",
+                      letterSpacing:"0.1em" }}>{unit}</span>
+                  </div>
+                  <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.52rem",
+                    color:"var(--ink-soft)", textTransform:"uppercase", letterSpacing:"0.1em" }}>
+                    {label.replace("\n", " ")}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* CTA tlačítka */}
+        <div style={{ display:"flex", gap:"0.6rem", flexWrap:"wrap" }}>
+          <a href="#contact"
+            onClick={e => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }); }}
+            style={{ display:"inline-flex", alignItems:"center", gap:"0.3rem",
+              background:"var(--amber)", color:"#0D1B2A", fontWeight:600,
+              fontSize:"0.72rem", padding:"0.55rem 1.1rem", borderRadius:"99px",
+              letterSpacing:"0.03em" }}>
+            <Mail size={12} />{t(hero.primaryCta, lang)}
+          </a>
+          <a href={profile.cvUrl} download
+            style={{ display:"inline-flex", alignItems:"center", gap:"0.3rem",
+              border:"1px solid rgba(200,145,58,0.4)", color:"var(--ink)",
+              background:"rgba(30,62,95,0.7)", fontSize:"0.72rem",
+              padding:"0.55rem 1.1rem", borderRadius:"99px", letterSpacing:"0.03em" }}>
+            <Download size={12} />{t(hero.secondaryCta, lang)}
+          </a>
+        </div>
+      </div>
+
     </div>
   );
 }
