@@ -322,25 +322,29 @@ export function Hero({ lang }: { lang: Lang }) {
           </p>
         </div>
 
-        {/* Foto — velká, bez rámečku, přes celou šířku jako obrázek */}
+        {/* Foto — menší, vpravo */}
         <div style={{
-          margin:"0.9rem -1.4rem 0",   /* přesahuje padding sekce */
+          display:"flex", justifyContent:"flex-end",
+          margin:"0.7rem -1.4rem 0 0",
           position:"relative",
-          height:"42dvh",
-          overflow:"hidden",
         }}>
-          <img src="/profile.png" alt="Matthew Grygar"
-            style={{
-              width:"100%", height:"100%",
-              objectFit:"cover", objectPosition:"center top",
-              display:"block",
-            }} />
-          {/* Gradient nahoře — přechod z bg */}
-          <div style={{ position:"absolute", top:0, left:0, right:0, height:"35%",
-            background:"linear-gradient(to bottom, var(--bg), transparent)" }} />
-          {/* Gradient dole — přechod do stats */}
-          <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"55%",
-            background:"linear-gradient(to top, var(--bg) 30%, transparent)" }} />
+          <div style={{ position:"relative", width:"65%", height:"38dvh", overflow:"hidden" }}>
+            <img src="/profile.png" alt="Matthew Grygar"
+              style={{
+                width:"100%", height:"100%",
+                objectFit:"cover", objectPosition:"center 15%",
+                display:"block",
+              }} />
+            {/* Gradient vlevo — foto bledne do bg */}
+            <div style={{ position:"absolute", top:0, left:0, bottom:0, width:"35%",
+              background:"linear-gradient(to right, var(--bg), transparent)" }} />
+            {/* Gradient nahoře */}
+            <div style={{ position:"absolute", top:0, left:0, right:0, height:"25%",
+              background:"linear-gradient(to bottom, var(--bg), transparent)" }} />
+            {/* Gradient dole */}
+            <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"45%",
+              background:"linear-gradient(to top, var(--bg) 20%, transparent)" }} />
+          </div>
         </div>
 
         {/* Čára oddělující foto od stats */}
