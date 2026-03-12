@@ -15,9 +15,13 @@ const G = {
   } as React.CSSProperties,
 };
 
-const TAG_COLORS: Record<string,string> = {
-  "Osobní": "rgba(134,239,172,0.15)",
+// Tag color overrides
+const TAG_COLORS: Record<string, { bg: string; border: string; color: string }> = {
+  "Personal": { bg:"rgba(134,239,172,0.12)", border:"rgba(52,211,153,0.3)", color:"rgba(134,239,172,0.9)" },
+  "Osobní":   { bg:"rgba(134,239,172,0.12)", border:"rgba(52,211,153,0.3)", color:"rgba(134,239,172,0.9)" },
 };
+
+const defaultTag = { bg:"rgba(200,145,58,0.09)", border:"rgba(200,145,58,0.25)", color:"var(--amber)" };
 
 export function Projects({ lang }: { lang: Lang }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -42,7 +46,7 @@ export function Projects({ lang }: { lang: Lang }) {
           {t(proj.headline, lang)}
         </motion.h2>
 
-        {/* 3×2 grid — fills remaining space */}
+        {/* 3×2 grid */}
         <div className="min-h-0 flex-1 grid gap-3"
           style={{ gridTemplateColumns:"repeat(3,1fr)", gridTemplateRows:"repeat(2,1fr)" }}>
           {proj.items.map((item: any, i: number) => (
@@ -50,53 +54,76 @@ export function Projects({ lang }: { lang: Lang }) {
               initial={{ opacity:0, y:16, scale:0.98 }}
               animate={inView ? { opacity:1, y:0, scale:1 } : {}}
               transition={{ duration:0.45, delay:0.1 + i*0.07, ease:[0.22,1,0.36,1] }}
-              className="rounded-2xl p-4 flex flex-col group hover:brightness-110 transition-all duration-200"
+              className="rounded-2xl flex flex-col overflow-hidden group hover:brightness-110 transition-all duration-200"
               style={G.card}>
 
-              {/* Tags row */}
-              <div className="flex flex-wrap gap-1 mb-2">
-                {item.tags.map((tag: string) => (
-                  <span key={tag}
+              {/* Banner image — thin strip, center-cropped */}
+              {item.banner && (
+                <div style={{ height:"52px", overflow:"hidden", flexShrink:0, position:"relative" }}>
+                  <img src={item.banner} alt=""
                     style={{
-                      fontSize:"0.58rem", fontFamily:"DM Mono,monospace",
-                      letterSpacing:"0.1em", textTransform:"uppercase",
-                      padding:"0.15rem 0.5rem", borderRadius:"99px",
-                      background: TAG_COLORS[tag] ?? "rgba(200,145,58,0.1)",
-                      border: `1px solid ${TAG_COLORS[tag] ? "rgba(134,239,172,0.3)" : "rgba(200,145,58,0.25)"}`,
-                      color: TAG_COLORS[tag] ? "rgba(134,239,172,0.9)" : "var(--amber)",
-                    }}>{tag}</span>
-                ))}
-              </div>
+                      width:"100%", height:"100%",
+                      objectFit:"cover", objectPosition:"center 40%",
+                      display:"block",
+                      filter:"brightness(0.55) saturate(0.8)",
+                    }} />
+                  {/* Amber gradient overlay at bottom */}
+                  <div style={{
+                    position:"absolute", inset:0,
+                    background:"linear-gradient(to bottom, transparent 30%, rgba(16,38,62,0.85) 100%)",
+                  }} />
+                </div>
+              )}
 
-              {/* Title + optional link */}
-              <div className="flex items-start justify-between gap-2 mb-1.5">
-                <h3 className="font-display"
-                  style={{ fontSize:"clamp(0.95rem,1.2vw,1.1rem)", fontWeight:500, color:"var(--ink)", lineHeight:1.25 }}>
+              {/* Card body */}
+              <div className="flex flex-col flex-1 p-3.5">
+
+                {/* Tags + link row */}
+                <div className="flex items-start justify-between gap-1 mb-1.5">
+                  <div className="flex flex-wrap gap-1">
+                    {item.tags.map((tag: string) => {
+                      const tc = TAG_COLORS[tag] ?? defaultTag;
+                      return (
+                        <span key={tag} style={{
+                          fontSize:"0.57rem", fontFamily:"DM Mono,monospace",
+                          letterSpacing:"0.1em", textTransform:"uppercase",
+                          padding:"0.12rem 0.45rem", borderRadius:"99px",
+                          background: tc.bg, border:`1px solid ${tc.border}`,
+                          color: tc.color,
+                        }}>{tag}</span>
+                      );
+                    })}
+                  </div>
+                  {item.url && (
+                    <a href={item.url} target="_blank" rel="noopener noreferrer"
+                      className="flex-shrink-0 transition-colors hover:text-amber-400"
+                      style={{ color:"rgba(200,145,58,0.55)" }}
+                      onClick={e => e.stopPropagation()}>
+                      <ExternalLink size={12} />
+                    </a>
+                  )}
+                </div>
+
+                {/* Title */}
+                <h3 className="font-display mb-1.5"
+                  style={{ fontSize:"clamp(0.88rem,1.1vw,1rem)", fontWeight:500, color:"var(--ink)", lineHeight:1.25 }}>
                   {item.title}
                 </h3>
-                {item.url && (
-                  <a href={item.url} target="_blank" rel="noopener noreferrer"
-                    className="flex-shrink-0 mt-0.5 transition-colors hover:text-amber-400"
-                    style={{ color:"rgba(200,145,58,0.6)" }}
-                    onClick={e => e.stopPropagation()}>
-                    <ExternalLink size={13} />
-                  </a>
-                )}
-              </div>
 
-              {/* Description */}
-              <p className="flex-1 leading-relaxed mb-2.5"
-                style={{ color:"var(--ink)", fontWeight:300, opacity:0.88, fontSize:"0.85rem" }}>
-                {t(item.description, lang)}
-              </p>
-
-              {/* Highlight */}
-              <div className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 mt-auto"
-                style={{ background:"rgba(200,145,58,0.07)", border:"1px solid rgba(200,145,58,0.2)" }}>
-                <span style={{ color:"var(--amber)", fontSize:"0.5rem", flexShrink:0 }}>✦</span>
-                <p className="text-sm italic" style={{ color:"var(--amber)", fontWeight:400 }}>
-                  {t(item.highlight, lang)}
+                {/* Description */}
+                <p className="flex-1 leading-relaxed mb-2"
+                  style={{ color:"var(--ink)", fontWeight:300, opacity:0.88, fontSize:"0.8rem" }}>
+                  {t(item.description, lang)}
                 </p>
+
+                {/* Highlight */}
+                <div className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 mt-auto"
+                  style={{ background:"rgba(200,145,58,0.07)", border:"1px solid rgba(200,145,58,0.18)" }}>
+                  <span style={{ color:"var(--amber)", fontSize:"0.48rem", flexShrink:0 }}>✦</span>
+                  <p className="text-sm italic" style={{ color:"var(--amber)", fontWeight:400 }}>
+                    {t(item.highlight, lang)}
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}

@@ -303,6 +303,7 @@ export const i18n = {
     items: [
       {
         title: "JIRA Service Workflow Design",
+        banner: "/projects/jira.jpg",
         tags: ["JIRA", "Support", "Operations"],
         description: {
           en: "Complete design and setup of a JIRA project for operational support — ticket types, SLA rules, severity model, automations, roles and user groups, including a clear request interface.",
@@ -313,6 +314,7 @@ export const i18n = {
       },
       {
         title: "SLA & Incident Management Model",
+        banner: "/projects/sla.jpg",
         tags: ["Support", "Risk", "Operations"],
         description: {
           en: "Internal design of an operational support model including responsibility division across support levels, SLA parameters, severity levels and escalation rules.",
@@ -323,6 +325,7 @@ export const i18n = {
       },
       {
         title: "OX Infrastructure Migration",
+        banner: "/projects/oxpoint.webp",
         tags: ["Operations", "Support", "Infrastructure"],
         description: {
           en: "Migration of part of the delivery box infrastructure including device reinstallation and data migration. Field technician coordination, operational issue resolution and minimising impact on live operations.",
@@ -333,7 +336,8 @@ export const i18n = {
       },
       {
         title: "Grail Series Tournament Circuit",
-        tags: ["Leadership", "Community", "Events", "Osobní"],
+        banner: "/projects/grail.jpg",
+        tags: ["Leadership", "Community", "Events", "Personal"],
         description: {
           en: "Organisation of a Magic: The Gathering tournament series including community building and event coordination — tournament planning, player communication and developing the competitive scene.",
           cs: "Organizace série turnajů Magic: The Gathering včetně budování komunity a koordinace akcí. Projekt zahrnuje plánování turnajů, komunikaci s hráči a rozvoj herní scény."
@@ -343,7 +347,8 @@ export const i18n = {
       },
       {
         title: "MtG DC ELO Ranking System",
-        tags: ["Data", "Community", "Project", "Osobní"],
+        banner: "/projects/elo.png",
+        tags: ["Data", "Community", "Project", "Personal"],
         description: {
           en: "Data ranking system for the Czech Duel Commander Magic: The Gathering community. Uses ELO rating to track long-term performance of 430+ active players.",
           cs: "Datový ranking systém pro českou komunitu hráčů formátu Duel Commander v Magic: The Gathering. Systém využívá ELO rating k dlouhodobému sledování výkonu více jak 430 aktivních hráčů."
@@ -353,6 +358,7 @@ export const i18n = {
       },
       {
         title: "Structured Network Infrastructure Deployment",
+        banner: "/projects/network.jpg",
         tags: ["Infrastructure", "Network", "Operations"],
         description: {
           en: "Design and implementation of network infrastructure across an entire floor of a large office building — planning, structured cabling, racks, patch panels and physical installation.",
