@@ -190,7 +190,8 @@ body::before {
   .m-hero-desktop { display: none !important; }
   .m-exp-desktop  { display: none !important; }
 
-  .m-hero-mobile {
+  .m-hero-vignette { display: none !important; }
+  .hero-root { background: transparent !important; }
     display: flex !important;
     flex-direction: column;
     position: absolute;

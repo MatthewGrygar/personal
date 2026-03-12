@@ -154,11 +154,11 @@ export function Hero({ lang }: { lang: Lang }) {
   const q = lang === "cs" ? QUOTE.cs : QUOTE.en;
 
   return (
-    <div className="relative flex h-dvh w-full overflow-hidden" style={{ background:"var(--bg)" }}>
+    <div className="relative flex h-dvh w-full overflow-hidden hero-root" style={{ background:"var(--bg)" }}>
 
       <NetworkCanvas />
 
-      <div className="pointer-events-none absolute inset-0" style={{ zIndex:3,
+      <div className="pointer-events-none absolute inset-0 m-hero-vignette" style={{ zIndex:3,
         background:"radial-gradient(ellipse 60% 80% at 25% 50%, transparent 30%, rgba(13,27,42,0.55) 100%)" }} />
 
       {/* Vertical edge label — desktop only */}
