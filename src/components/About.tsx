@@ -43,7 +43,7 @@ export function About({ lang }: { lang: Lang }) {
       style={{ background:"transparent" }}>
 
       {/* Content — left 56% */}
-      <div className="relative z-10 flex h-full flex-col"
+      <div className="relative z-10 flex h-full flex-col about-content mobile-section"
         style={{
           width:"56%",
           paddingLeft:"clamp(4.5rem,7vw,8rem)",
@@ -59,13 +59,13 @@ export function About({ lang }: { lang: Lang }) {
         </motion.p>
 
         {/* Headline */}
-        <motion.h2 {...fi(0.1)} className="font-display mb-4"
+        <motion.h2 {...fi(0.1)} className="font-display mb-4 mobile-h2"
           style={{ fontSize:"clamp(1.5rem,2.4vw,2.4rem)", fontWeight:300, lineHeight:1.2, color:"var(--ink)" }}>
           {t(about.headline, lang)}
         </motion.h2>
 
         {/* 2-col grid */}
-        <div className="flex-1 min-h-0 grid gap-x-5 gap-y-3"
+        <div className="flex-1 min-h-0 grid gap-x-5 gap-y-3 mobile-1col"
           style={{ gridTemplateColumns:"1fr 1fr", alignContent:"start" }}>
 
           {/* ── LEFT ── */}

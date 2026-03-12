@@ -31,8 +31,8 @@ export const i18n = {
 
   about: {
     headline: {
-      en: "Stability under pressure.",
-      cs: "Stabilita pod tlakem."
+      en: "Stability under pressure",
+      cs: "Stabilita pod tlakem"
     },
     body: {
       en: "Experience in senior support and operations management has taught me to stay calm, structured and decisive when incident impact rises and response time shrinks.\n\nMy professional trajectory leads from resolving operational incidents and stabilising production systems to a deeper focus on IT risk management, service availability and systematic operational improvement.\n\nI operate at the intersection of technical depth and business impact. I understand infrastructure, operations and access models — and am currently also working with Identity & Access Management solutions.",
@@ -77,7 +77,7 @@ export const i18n = {
   },
 
   experience: {
-    headline: { en: "Experience forged in the hardest moments.", cs: "Zkušenosti vykované v nejtěžších chvílích." },
+    headline: { en: "Experience forged in the hardest moments", cs: "Zkušenosti vykované v nejtěžších chvílích" },
     items: [
       {
         role:    { en: "System Engineer – Identity & Access Management", cs: "System Engineer – Identity & Access Management" },
@@ -372,8 +372,8 @@ export const i18n = {
 
   skills: {
     headline: {
-      en: "Skills that keep systems and teams running under pressure.",
-      cs: "Dovednosti, díky kterým systémy a týmy fungují i pod tlakem."
+      en: "Skills that keep systems and teams running under pressure",
+      cs: "Dovednosti, díky kterým systémy a týmy fungují i pod tlakem"
     },
     subheadline: {
       en: "My experience is grounded in operating systems in real environments — resolving incidents, stabilising production, and identifying weaknesses before they cause problems. I combine technical background with a process-driven approach to operations and risk management.",
@@ -434,7 +434,7 @@ export const i18n = {
   },
 
   contact: {
-    headline: { en: "Let's build resilient systems together.", cs: "Pojďme budovat resilientní systémy společně." },
+    headline: { en: "Let's build resilient systems together", cs: "Pojďme budovat resilientní systémy společně" },
     body: {
       en: "If you're looking for someone with experience in system operations, incident management and identity management who wants to grow further in IT Risk Management and operational resilience — I'd be happy to connect.",
       cs: "Pokud hledáte člověka se zkušeností z provozu systémů, incident managementu a identity managementu, který se chce dále rozvíjet v oblasti IT Risk Managementu a provozní odolnosti systémů, rád se s vámi spojím."

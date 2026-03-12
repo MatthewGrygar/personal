@@ -40,7 +40,7 @@ export function Experience({ lang }: { lang: Lang }) {
   const direction = activeIdx > prev ? 1 : -1;
 
   return (
-    <div ref={ref} className="relative flex h-dvh w-full overflow-hidden pl-20"
+    <div ref={ref} className="relative flex h-dvh w-full overflow-hidden pl-20 mobile-section"
       style={{ background: "transparent" }}>
 
       <div className="relative z-10 flex h-full flex-col px-6 py-6 md:px-10" style={{ width:"100%" }}>
@@ -52,15 +52,15 @@ export function Experience({ lang }: { lang: Lang }) {
           {t(i18n.nav.experience, lang)}
         </motion.p>
         <motion.h2 initial={{ opacity:0, y:14 }} animate={inView?{opacity:1,y:0}:{}} transition={{ delay:0.08 }}
-          className="font-display mb-4"
+          className="font-display mb-4 mobile-h2"
           style={{ fontSize:"clamp(1.6rem,2.8vw,2.8rem)", fontWeight:300, color:"var(--ink)", lineHeight:1.1 }}>
           {t(exp.headline, lang)}
         </motion.h2>
 
-        <div className="flex min-h-0 flex-1 gap-4">
+        <div className="flex min-h-0 flex-1 gap-4 exp-layout">
 
           {/* ── Sidebar ── */}
-          <div className="flex flex-shrink-0 flex-col gap-1" style={{ width:"170px" }}>
+          <div className="flex flex-shrink-0 flex-col gap-1 exp-sidebar" style={{ width:"170px" }}>
             {exp.items.map((item: any, i: number) => {
               const isActive = activeIdx === i;
               return (
@@ -87,7 +87,7 @@ export function Experience({ lang }: { lang: Lang }) {
           </div>
 
           {/* ── Detail panel ── */}
-          <div className="min-h-0 flex-1 overflow-hidden">
+          <div className="min-h-0 flex-1 overflow-hidden exp-detail">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div key={activeIdx}
                 initial={{ opacity:0, y: direction * 16 }}
@@ -125,7 +125,7 @@ export function Experience({ lang }: { lang: Lang }) {
                   </div>
 
                   {/* ── 2-column body ── */}
-                  <div className="flex-1 min-h-0 grid gap-3" style={{ gridTemplateColumns:"1fr 1fr" }}>
+                  <div className="flex-1 min-h-0 grid gap-3 mobile-1col" style={{ gridTemplateColumns:"1fr 1fr" }}>
 
                     {/* LEFT: bullets */}
                     <div className="flex flex-col gap-1.5 overflow-hidden">

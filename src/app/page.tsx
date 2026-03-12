@@ -120,6 +120,7 @@ function ScrollPhoto() {
       initial={{ opacity:0 }}
       animate={{ opacity:1 }}
       transition={{ duration:1.1, ease:"easeOut", delay:0.2 }}
+      className="scroll-photo-wrap"
       style={{
         position:"fixed", right:0, top:0,
         width:"44%", height:"100dvh",

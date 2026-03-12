@@ -31,7 +31,7 @@ export function Skills({ lang }: { lang: Lang }) {
   });
 
   return (
-    <div ref={ref} className="relative flex h-dvh w-full overflow-hidden pl-20"
+    <div ref={ref} className="relative flex h-dvh w-full overflow-hidden pl-20 mobile-section"
       style={{ background: "transparent" }}>
 
       <div className="relative z-10 flex h-full flex-col px-6 py-6 md:px-12" style={{ width:"100%" }}>
@@ -41,7 +41,7 @@ export function Skills({ lang }: { lang: Lang }) {
           {t(i18n.nav.skills, lang)}
         </motion.p>
 
-        <motion.h2 {...fi(0.08)} className="font-display mb-1"
+        <motion.h2 {...fi(0.08)} className="font-display mb-1 mobile-h2"
           style={{ fontSize:"clamp(1.3rem,2.2vw,2.2rem)", fontWeight:300, color:"var(--ink)", lineHeight:1.15 }}>
           {t(skills.headline, lang)}
         </motion.h2>
@@ -52,7 +52,7 @@ export function Skills({ lang }: { lang: Lang }) {
         </motion.p>
 
         {/* 2-column layout */}
-        <div className="min-h-0 flex-1 grid gap-3" style={{ gridTemplateColumns:"1fr 1fr" }}>
+        <div className="min-h-0 flex-1 grid gap-3 mobile-1col" style={{ gridTemplateColumns:"1fr 1fr" }}>
 
           {/* ── LEFT COLUMN ── */}
           <div className="flex flex-col gap-2.5">
@@ -80,7 +80,7 @@ export function Skills({ lang }: { lang: Lang }) {
                 style={{ color:"#A8BDD0", fontFamily:"DM Mono, monospace" }}>
                 {t(skills.strengthsTitle, lang)}
               </p>
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1.5 skills-strengths-grid">
                 {skills.strengths.map((s: any, i: number) => (
                   <div key={i} className="flex items-start gap-2">
                     <span style={{ color:"var(--amber)", fontSize:"0.5rem", flexShrink:0, marginTop:"4px" }}>✦</span>

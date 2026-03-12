@@ -175,7 +175,7 @@ export function Hero({ lang }: { lang: Lang }) {
       </motion.div>
 
       {/* ── TEXT ── */}
-      <div className="relative flex h-full flex-col justify-center"
+      <div className="relative flex h-full flex-col justify-center hero-content"
         style={{ width:"56%", zIndex:20, paddingLeft:"clamp(5rem,8vw,9rem)", paddingRight:"2.5rem" }}>
 
         {/* Kicker */}
@@ -247,7 +247,7 @@ export function Hero({ lang }: { lang: Lang }) {
         </motion.div>
 
         {/* CTAs */}
-        <motion.div {...fu(2.6)} className="flex flex-wrap items-center gap-3 mb-10">
+        <motion.div {...fu(2.6)} className="flex flex-wrap items-center gap-3 mb-10 hero-stats-row">
           <a href="#contact"
             onClick={e => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }); }}
             className="flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium transition-all hover:brightness-110"
