@@ -345,7 +345,7 @@ export function Hero({ lang }: { lang: Lang }) {
 
         {/* Čára oddělující foto od stats */}
         <div style={{ height:1, background:"linear-gradient(to right, transparent, rgba(200,145,58,0.4), transparent)",
-          margin:"0 0 0.9rem" }} />
+          margin:"auto 0 0.9rem" }} />
 
         {/* Stats — 3 vedle sebe */}
         <div style={{ display:"flex", gap:0, marginBottom:"1rem" }}>
