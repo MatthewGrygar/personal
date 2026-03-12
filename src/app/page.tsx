@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { SideRail }   from "@/components/SideRail";
+import { MobileNav }  from "@/components/MobileNav";
 import { Hero }       from "@/components/Hero";
 import { About }      from "@/components/About";
 import { Pillars }    from "@/components/Pillars";
@@ -192,6 +193,7 @@ export default function Page() {
 
       <ScrollPhoto />
       <SideRail sections={sections} activeId={activeId} lang={lang} setLang={setLang} />
+      <MobileNav sections={sections} activeId={activeId} lang={lang} setLang={setLang} />
 
       {/* Sections — transparent bg, content scrolls over fixed canvas */}
       <main className="relative" style={{ zIndex:10 }}>

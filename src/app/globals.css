@@ -165,125 +165,94 @@ body::before {
   to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* ═══════════════════════════════════════════════
-   MOBILE RESPONSIVE — max-width: 768px
-   Desktop layout unchanged, mobile gets full-width
-   single-column scrollable sections
-═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE  ≤ 768px
+   • Scroll-snap zachován — každá sekce = jeden slide 100dvh
+   • SideRail skryt, foto skryta
+   • MobileNav trigger viditelný jen na mobilu
+   • Vše full-width, bez pl-20 offsetu pro SideRail
+═══════════════════════════════════════════════════════════════ */
+
+/* MobileNav trigger — skrytý na desktopu */
+.mobile-nav-trigger { display: none !important; }
 
 @media (max-width: 768px) {
 
-  /* Kill scroll-snap on mobile — natural scroll */
-  html {
-    scroll-snap-type: none;
-  }
+  /* Scroll-snap zůstává — slides fungují na mobilu */
+  html { scroll-snap-type: y mandatory; }
 
   section[data-slide] {
-    scroll-snap-align: none;
-    scroll-snap-stop: unset;
-    height: auto;
-    min-height: 100dvh;
-    overflow: visible;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    height: 100dvh;
+    overflow: hidden;
+    position: relative;
   }
 
-  /* Hide photo on mobile entirely */
-  .scroll-photo-wrap {
-    display: none !important;
-  }
+  /* Foto + desktop SideRail skryté */
+  .scroll-photo-wrap { display: none !important; }
+  .side-rail-wrap    { display: none !important; }
 
-  /* SideRail hidden on mobile */
-  .side-rail-wrap {
-    display: none !important;
-  }
+  /* Hamburger tlačítko viditelné */
+  .mobile-nav-trigger { display: flex !important; }
 
-  /* All sections full width, no left padding from SideRail */
-  .mobile-section {
-    width: 100% !important;
+  /* ── Globální reset paddingů pro všechny sekce ── */
+  /* Odstraní pl-20 (SideRail offset) a nastaví mobilní padding */
+  section[data-slide] > * {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
-    padding-top: 3rem !important;
-    padding-bottom: 2.5rem !important;
-    height: auto !important;
-    min-height: 100dvh !important;
-    overflow: visible !important;
-  }
-
-  /* 2-column grids → 1 column */
-  .mobile-1col {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: unset !important;
-  }
-
-  /* Headings scale down */
-  .mobile-h2 {
-    font-size: clamp(1.6rem, 6vw, 2.2rem) !important;
-  }
-
-  /* About — left panel full width */
-  .about-content {
     width: 100% !important;
+    max-width: 100% !important;
   }
 
-  /* Pillars — full width */
-  .pillars-content {
-    width: 100% !important;
-  }
+  /* Inline style override — pl-20 z Tailwindu */
+  [class*="pl-20"] { padding-left: 1.25rem !important; }
 
-  /* Projects grid — 1 col on phone, 2 col on tablet */
-  .projects-grid {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: unset !important;
-  }
+  /* Flex/grid layouty → single column */
+  .exp-layout      { flex-direction: column !important; }
+  .exp-sidebar     { width: 100% !important; flex-direction: row !important; flex-wrap: wrap !important; gap: 0.4rem !important; margin-bottom: 0.5rem !important; }
+  .exp-sidebar button { flex: 1 1 auto !important; min-width: 100px !important; }
+  .exp-detail      { flex: 1 !important; min-height: 0 !important; }
+  .mobile-1col     { grid-template-columns: 1fr !important; grid-template-rows: unset !important; }
+  .projects-grid   { grid-template-columns: 1fr 1fr !important; grid-template-rows: unset !important; }
+  .about-content   { width: 100% !important; }
+  .pillars-content { width: 100% !important; }
+  .hero-content    { width: 100% !important; padding-top: 4.5rem !important; justify-content: flex-start !important; }
+  .contact-name-email { grid-template-columns: 1fr !important; }
+
+  /* Headings */
+  .mobile-h2 { font-size: clamp(1.5rem, 6vw, 2rem) !important; }
+  .hero-name { font-size: clamp(3.2rem, 12vw, 5rem) !important; }
+
+  /* Nadměrné statistiky schovej */
+  .hero-stats-row { display: none !important; }
+
+  /* Skills — strengths 1 sloupec */
+  .skills-strengths-grid { grid-template-columns: 1fr !important; }
+
+  /* Zajisti, že textové prvky nepřetečou */
+  h1, h2, h3, p, span, li { max-width: 100%; word-break: break-word; }
+
+  /* Scroll hint na Hero schovej */
+  .hero-scroll-hint { display: none !important; }
+
+  /* Experience 2-col inner body → 1 col */
+  .exp-detail .mobile-1col { grid-template-columns: 1fr !important; }
+
+  /* Tag pills na mobilu trochu menší */
+  .tag-pill { font-size: 0.6rem !important; padding: 0.18rem 0.5rem !important; }
+
+  /* Projects — trochu menší banner výška */
+  .projects-grid > div > div:first-child { height: 40px !important; }
 }
 
+/* Tablet — 481–768px: projekty 2 sloupce */
 @media (min-width: 481px) and (max-width: 768px) {
-  .projects-grid {
-    grid-template-columns: 1fr 1fr !important;
-  }
+  .projects-grid { grid-template-columns: 1fr 1fr !important; }
 }
 
-/* ── HERO mobile ── */
-@media (max-width: 768px) {
-  .hero-content {
-    width: 100% !important;
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
-    padding-top: 5rem !important;
-    justify-content: flex-start !important;
-  }
-  .hero-name {
-    font-size: clamp(3.5rem, 14vw, 5rem) !important;
-  }
-  .hero-stats {
-    display: none !important;
-  }
-  .hero-scroll-hint {
-    display: none !important;
-  }
-  /* Experience — sidebar stacks above panel */
-  .exp-layout {
-    flex-direction: column !important;
-  }
-  .exp-sidebar {
-    width: 100% !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    gap: 0.5rem !important;
-  }
-  .exp-sidebar button {
-    flex: 1 1 auto !important;
-    min-width: 120px !important;
-  }
-  .exp-detail {
-    flex: 1 !important;
-    min-height: 0 !important;
-  }
-  /* Skills — strengths back to 1 col (already mobile-1col handles grid) */
-  .skills-strengths-grid {
-    grid-template-columns: 1fr !important;
-  }
-  /* Contact form grid — 2 fields side by side stays, fine on mobile */
-  .contact-name-email {
-    grid-template-columns: 1fr !important;
-  }
+/* Velmi malé telefony ≤ 380px */
+@media (max-width: 380px) {
+  .projects-grid { grid-template-columns: 1fr !important; }
+  .exp-sidebar button { min-width: 80px !important; font-size: 0.7rem !important; }
 }
