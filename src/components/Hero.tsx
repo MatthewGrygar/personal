@@ -175,7 +175,7 @@ export function Hero({ lang }: { lang: Lang }) {
       </motion.div>
 
       {/* ── TEXT ── */}
-      <div className="relative flex h-full flex-col justify-center hero-content"
+      <div className="relative flex h-full flex-col justify-center hero-content m-hero-wrap"
         style={{ width:"56%", zIndex:20, paddingLeft:"clamp(5rem,8vw,9rem)", paddingRight:"2.5rem" }}>
 
         {/* Kicker */}
@@ -188,7 +188,7 @@ export function Hero({ lang }: { lang: Lang }) {
         {/* Name + signature */}
         <motion.div style={{ marginBottom:"2.2rem" }}>
           <div style={{ display:"flex", alignItems:"flex-end", gap:"0.6rem" }}>
-            <h1 className="font-display"
+            <h1 className="font-display m-hero-name"
               style={{ fontSize:"clamp(4.5rem,8vw,10rem)", fontWeight:600, color:"var(--ink)",
                 letterSpacing:"-0.025em", lineHeight:0.88, flexShrink:0 }}>
               <motion.span initial={{ opacity:0, y:36 }} animate={{ opacity:1, y:0 }}
@@ -199,6 +199,7 @@ export function Hero({ lang }: { lang: Lang }) {
                 style={{ display:"block" }}>Grygar</motion.span>
             </h1>
             <motion.div
+              className="m-hero-stats-hide"
               style={{ paddingBottom:"0.4rem", flexShrink:0, overflow:"hidden" }}
               initial={{ width:0, opacity:0 }}
               animate={{ width:"clamp(130px,12vw,190px)", opacity:1 }}
@@ -208,6 +209,8 @@ export function Hero({ lang }: { lang: Lang }) {
                   opacity:0.45, display:"block", transform:"rotate(-2deg)", transformOrigin:"left bottom" }} />
             </motion.div>
           </div>
+          {/* Mobile-only subtitle */}
+          <p className="m-hero-subtitle">IT Risk · Systems · Resilience</p>
         </motion.div>
 
         {/* Divider */}
@@ -247,7 +250,8 @@ export function Hero({ lang }: { lang: Lang }) {
         </motion.div>
 
         {/* CTAs */}
-        <motion.div {...fu(2.6)} className="flex flex-wrap items-center gap-3 mb-10 hero-stats-row">
+        {/* CTAs — hidden on mobile, replaced by photo+stats block */}
+        <motion.div {...fu(2.6)} className="flex flex-wrap items-center gap-3 mb-10 m-hero-stats-hide">
           <a href="#contact"
             onClick={e => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }); }}
             className="flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium transition-all hover:brightness-110"
@@ -268,8 +272,8 @@ export function Hero({ lang }: { lang: Lang }) {
           </a>
         </motion.div>
 
-        {/* Stats — two rows, baseline-aligned numbers */}
-        <motion.div {...fo(2.75)}>
+        {/* Desktop Stats — hidden on mobile */}
+        <motion.div {...fo(2.75)} className="m-hero-stats-hide">
           <div style={{ display:"flex", alignItems:"center", gap:0 }}>
             {STATS.map((s, i) => {
               const unit = lang === "en" ? s.unit_en : s.unit_cs;
@@ -312,12 +316,53 @@ export function Hero({ lang }: { lang: Lang }) {
             })}
           </div>
         </motion.div>
+
+        {/* ── MOBILE ONLY: foto + stats + CTAs ── */}
+        <div className="m-hero-bottom">
+          {/* Malá foto */}
+          <div className="m-hero-photo">
+            <img src="/profile.png" alt="Matthew Grygar" />
+          </div>
+          {/* Stats + CTA buttons vedle foto */}
+          <div className="m-hero-stats">
+            {STATS.map((s, i) => {
+              const unit  = lang === "en" ? s.unit_en  : s.unit_cs;
+              const label = lang === "en" ? s.label_en : s.label_cs;
+              return (
+                <div key={i} className="m-hero-stat-row">
+                  <span className="font-display" style={{ fontSize:"1.5rem", fontWeight:400, color:"var(--ink)", lineHeight:1 }}>{s.num}</span>
+                  <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.58rem", color:"var(--amber)", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.08em" }}>{unit}</span>
+                  <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.55rem", color:"var(--ink-soft)", textTransform:"uppercase", letterSpacing:"0.1em", whiteSpace:"pre-line", lineHeight:1.3 }}>{label.replace("\n"," ")}</span>
+                </div>
+              );
+            })}
+            {/* Mobile CTA buttons */}
+            <div style={{ display:"flex", gap:"0.5rem", marginTop:"0.4rem", flexWrap:"wrap" }}>
+              <a href="#contact"
+                onClick={e => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }); }}
+                style={{ display:"inline-flex", alignItems:"center", gap:"0.3rem",
+                  background:"var(--amber)", color:"#0D1B2A", fontWeight:600,
+                  fontSize:"0.7rem", padding:"0.4rem 0.9rem", borderRadius:"99px",
+                  letterSpacing:"0.03em", whiteSpace:"nowrap" }}>
+                <Mail size={11} />{t(hero.primaryCta, lang)}
+              </a>
+              <a href={profile.cvUrl} download
+                style={{ display:"inline-flex", alignItems:"center", gap:"0.3rem",
+                  border:"1px solid rgba(200,145,58,0.4)", color:"var(--ink)",
+                  background:"rgba(30,62,95,0.7)", fontSize:"0.7rem",
+                  padding:"0.4rem 0.9rem", borderRadius:"99px",
+                  letterSpacing:"0.03em", whiteSpace:"nowrap" }}>
+                <Download size={11} />{t(hero.secondaryCta, lang)}
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Scroll hint */}
       <motion.button {...fo(3.1)}
         onClick={() => document.getElementById("about")?.scrollIntoView({ behavior:"smooth" })}
-        className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-1.5"
+        className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-1.5 m-hero-stats-hide"
         style={{ color:"var(--ink-muted)" }}>
         <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.54rem",
           letterSpacing:"0.2em", textTransform:"uppercase" }}>scroll</span>

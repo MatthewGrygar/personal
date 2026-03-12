@@ -44,7 +44,7 @@ export function Pillars({ lang }: { lang: Lang }) {
       </div>
 
       {/* Content — left 56% beside photo */}
-      <div className="relative z-10 flex h-full flex-col pillars-content mobile-section"
+      <div className="relative z-10 flex h-full flex-col m-section"
         style={{
           width:"56%",
           paddingLeft:"clamp(4.5rem,7vw,8rem)",
@@ -66,14 +66,14 @@ export function Pillars({ lang }: { lang: Lang }) {
         <motion.h2
           initial={{ opacity:0, y:10 }} animate={ inView ? { opacity:1, y:0 } : {} }
           transition={{ duration:0.5, delay:0.1 }}
-          className="font-display mb-4 mobile-h2"
+          className="font-display mb-3 m-h2"
           style={{ fontSize:"clamp(1.6rem,2.6vw,2.8rem)", fontWeight:300,
             lineHeight:1.1, color:"var(--ink)" }}>
           {t(about.pillarsTitle, lang)}
         </motion.h2>
 
         {/* 5 cards — natural height, no stretch */}
-        <div className="flex-1 min-h-0 flex flex-col gap-2" style={{ overflow:"hidden", justifyContent:"flex-start" }}>
+        <div className="flex-1 min-h-0 flex flex-col gap-2 m-pillars-cards" style={{ overflow:"hidden", justifyContent:"flex-start" }}>
           {about.pillars.map((pillar, i) => {
             const { num, title, body } = parsePillar(t(pillar, lang));
             return (

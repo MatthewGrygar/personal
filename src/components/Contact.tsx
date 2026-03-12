@@ -99,10 +99,10 @@ export function Contact({ lang }: { lang: Lang }) {
   });
 
   return (
-    <div ref={ref} className="relative flex h-dvh w-full overflow-hidden pl-20 mobile-section"
+    <div ref={ref} className="relative flex h-dvh w-full overflow-hidden"
       style={{ background: "transparent" }}>
 
-      <div className="relative z-10 flex h-full flex-col px-6 py-6 md:px-12" style={{ width:"100%" }}>
+      <div className="relative z-10 flex h-full flex-col px-6 py-6 md:px-12 m-section" style={{ width:"100%" }}>
 
         {/* Header */}
         <motion.p {...fi(0)} className="mb-0.5 text-xs uppercase tracking-widest"
@@ -110,7 +110,7 @@ export function Contact({ lang }: { lang: Lang }) {
           {t(i18n.nav.contact, lang)}
         </motion.p>
 
-        <motion.h2 {...fi(0.07)} className="font-display mb-1 mobile-h2"
+        <motion.h2 {...fi(0.07)} className="font-display mb-2 m-h2"
           style={{ fontSize:"clamp(1.6rem,3vw,3rem)", fontWeight:300, lineHeight:1.1, color:"var(--ink)" }}>
           {t(contact.headline, lang)}
         </motion.h2>
@@ -121,7 +121,7 @@ export function Contact({ lang }: { lang: Lang }) {
         </motion.p>
 
         {/* 2-col: form LEFT | info RIGHT */}
-        <div className="min-h-0 flex-1 grid gap-5 mobile-1col" style={{ gridTemplateColumns:"1.1fr 0.9fr" }}>
+        <div className="min-h-0 flex-1 grid gap-5 m-2col" style={{ gridTemplateColumns:"1.1fr 0.9fr" }}>
 
           {/* ── LEFT: Form ── */}
           <motion.div {...fi(0.18,"x",-16)}
@@ -147,7 +147,7 @@ export function Contact({ lang }: { lang: Lang }) {
             ) : (
               <form onSubmit={handleSubmit} className="flex h-full flex-col gap-2.5">
                 {/* Name + Email row */}
-                <div className="grid gap-2.5 contact-name-email" style={{ gridTemplateColumns:"1fr 1fr" }}>
+                <div className="grid gap-2.5 m-contact-name-email" style={{ gridTemplateColumns:"1fr 1fr" }}>
                   <div>
                     <label style={labelCss}>{t(contact.form.name, lang)}</label>
                     <input name="name" type="text" required style={inputCss} onFocus={onFocus} onBlur={onBlur} />

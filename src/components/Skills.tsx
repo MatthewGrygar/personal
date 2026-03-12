@@ -31,17 +31,17 @@ export function Skills({ lang }: { lang: Lang }) {
   });
 
   return (
-    <div ref={ref} className="relative flex h-dvh w-full overflow-hidden pl-20 mobile-section"
+    <div ref={ref} className="relative flex h-dvh w-full overflow-hidden"
       style={{ background: "transparent" }}>
 
-      <div className="relative z-10 flex h-full flex-col px-6 py-6 md:px-12" style={{ width:"100%" }}>
+      <div className="relative z-10 flex h-full flex-col px-6 py-6 md:px-12 m-section" style={{ width:"100%" }}>
 
         <motion.p {...fi(0)} className="mb-0.5 text-xs uppercase tracking-widest"
           style={{ color:"var(--amber)", fontFamily:"DM Mono, monospace" }}>
           {t(i18n.nav.skills, lang)}
         </motion.p>
 
-        <motion.h2 {...fi(0.08)} className="font-display mb-1 mobile-h2"
+        <motion.h2 {...fi(0.08)} className="font-display mb-2 m-h2"
           style={{ fontSize:"clamp(1.3rem,2.2vw,2.2rem)", fontWeight:300, color:"var(--ink)", lineHeight:1.15 }}>
           {t(skills.headline, lang)}
         </motion.h2>
@@ -52,7 +52,7 @@ export function Skills({ lang }: { lang: Lang }) {
         </motion.p>
 
         {/* 2-column layout */}
-        <div className="min-h-0 flex-1 grid gap-3 mobile-1col" style={{ gridTemplateColumns:"1fr 1fr" }}>
+        <div className="min-h-0 flex-1 grid gap-3 m-2col m-skills-cols" style={{ gridTemplateColumns:"1fr 1fr" }}>
 
           {/* ── LEFT COLUMN ── */}
           <div className="flex flex-col gap-2.5">

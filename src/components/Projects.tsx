@@ -29,10 +29,10 @@ export function Projects({ lang }: { lang: Lang }) {
   const proj = i18n.projects as any;
 
   return (
-    <div ref={ref} className="relative flex h-dvh w-full overflow-hidden pl-20 mobile-section"
+    <div ref={ref} className="relative flex h-dvh w-full overflow-hidden"
       style={{ background: "transparent" }}>
 
-      <div className="relative z-10 flex h-full flex-col px-6 py-6 md:px-12" style={{ width:"100%" }}>
+      <div className="relative z-10 flex h-full flex-col px-6 py-6 md:px-12 m-section" style={{ width:"100%" }}>
 
         <motion.p initial={{ opacity:0 }} animate={inView?{opacity:1}:{}}
           className="mb-0.5 text-xs uppercase tracking-widest"
@@ -41,13 +41,13 @@ export function Projects({ lang }: { lang: Lang }) {
         </motion.p>
 
         <motion.h2 initial={{ opacity:0, y:14 }} animate={inView?{opacity:1,y:0}:{}} transition={{ delay:0.08 }}
-          className="font-display mb-4 mobile-h2"
+          className="font-display mb-3 m-h2"
           style={{ fontSize:"clamp(1.8rem,3vw,3rem)", fontWeight:300, color:"var(--ink)", lineHeight:1.1 }}>
           {t(proj.headline, lang)}
         </motion.h2>
 
         {/* 3×2 grid */}
-        <div className="min-h-0 flex-1 grid gap-3 projects-grid"
+        <div className="min-h-0 flex-1 grid gap-3 m-3col m-projects-grid"
           style={{ gridTemplateColumns:"repeat(3,1fr)", gridTemplateRows:"repeat(2,1fr)" }}>
           {proj.items.map((item: any, i: number) => (
             <motion.div key={i}
