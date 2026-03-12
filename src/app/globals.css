@@ -196,7 +196,7 @@ body::before {
     position: absolute;
     inset: 0;
     z-index: 20;
-    padding: 3.2rem 1.4rem 1.8rem;
+    padding: 3.0rem 1.4rem 1.6rem;
     box-sizing: border-box;
     overflow: hidden;
     justify-content: flex-start;

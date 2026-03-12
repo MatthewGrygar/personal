@@ -295,74 +295,69 @@ export function Hero({ lang }: { lang: Lang }) {
       {/* ── MOBILE ONLY ── */}
       <div className="m-hero-mobile" style={{ zIndex: 20 }}>
 
-        {/* Foto — v pravo nahoře, absolutně */}
-        <div style={{
-          position:"absolute", top:"3.5rem", right:"1.2rem",
-          width:"110px", height:"148px", borderRadius:"1rem",
-          overflow:"hidden",
-          border:"1px solid rgba(200,145,58,0.4)",
-          boxShadow:"0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(200,145,58,0.08)",
-          zIndex:2,
-        }}>
-          <img src="/profile.png" alt="Matthew Grygar"
-            style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center top" }} />
-          {/* Amber gradient na spodku foky */}
-          <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"40%",
-            background:"linear-gradient(to top, rgba(13,27,42,0.7), transparent)" }} />
+        {/* Horní část: kicker + jméno + role */}
+        <div style={{ position:"relative", zIndex:3 }}>
+
+          {/* Kicker */}
+          <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.56rem", letterSpacing:"0.2em",
+            textTransform:"uppercase", color:"var(--amber)", opacity:0.85, marginBottom:"0.5rem" }}>
+            Prague · Hybrid · Open to conversations
+          </p>
+
+          {/* Jméno — větší */}
+          <h1 className="font-display" style={{
+            fontSize:"clamp(3.8rem,14vw,5.5rem)", fontWeight:600, color:"var(--ink)",
+            letterSpacing:"-0.025em", lineHeight:0.88, marginBottom:"0.5rem",
+          }}>
+            <span style={{ display:"block" }}>Matthew</span>
+            <span style={{ display:"block" }}>Grygar</span>
+          </h1>
+
+          {/* Role */}
+          <p className="font-display" style={{ fontSize:"1.1rem", fontStyle:"italic",
+            color:"var(--amber-light)", fontWeight:400,
+            transition:"opacity 0.28s ease", opacity: roleOut ? 0 : 1,
+          }}>
+            {ROLES[roleIdx]}
+          </p>
         </div>
 
-        {/* Kicker */}
-        <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.58rem", letterSpacing:"0.2em",
-          textTransform:"uppercase", color:"var(--amber)", opacity:0.85, marginBottom:"0.55rem" }}>
-          Prague · Hybrid · Open to conversations
-        </p>
-
-        {/* Jméno — velké, vlevo, vedle foky */}
-        <h1 className="font-display" style={{
-          fontSize:"clamp(3.2rem,12vw,4.5rem)", fontWeight:600, color:"var(--ink)",
-          letterSpacing:"-0.025em", lineHeight:0.88, marginBottom:"0.6rem",
-          paddingRight:"130px", /* prostor pro foto */
+        {/* Foto — velká, bez rámečku, přes celou šířku jako obrázek */}
+        <div style={{
+          margin:"0.9rem -1.4rem 0",   /* přesahuje padding sekce */
+          position:"relative",
+          height:"42dvh",
+          overflow:"hidden",
         }}>
-          <span style={{ display:"block" }}>Matthew</span>
-          <span style={{ display:"block" }}>Grygar</span>
-        </h1>
+          <img src="/profile.png" alt="Matthew Grygar"
+            style={{
+              width:"100%", height:"100%",
+              objectFit:"cover", objectPosition:"center top",
+              display:"block",
+            }} />
+          {/* Gradient nahoře — přechod z bg */}
+          <div style={{ position:"absolute", top:0, left:0, right:0, height:"35%",
+            background:"linear-gradient(to bottom, var(--bg), transparent)" }} />
+          {/* Gradient dole — přechod do stats */}
+          <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"55%",
+            background:"linear-gradient(to top, var(--bg) 30%, transparent)" }} />
+        </div>
 
-        {/* Role animovaná */}
-        <p className="font-display" style={{ fontSize:"1.05rem", fontStyle:"italic",
-          color:"var(--amber-light)", marginBottom:"0.4rem", fontWeight:400,
-          transition:"opacity 0.28s ease", opacity: roleOut ? 0 : 1,
-          paddingRight:"130px",
-        }}>
-          {ROLES[roleIdx]}
-        </p>
-
-        {/* Amber linka */}
-        <div style={{ height:1, width:"60%", background:"linear-gradient(to right,var(--amber),transparent)",
-          marginBottom:"0.9rem", marginTop:"0.3rem" }} />
-
-        {/* Citát */}
-        <p className="font-display" style={{ fontSize:"0.82rem", fontStyle:"italic",
-          color:"var(--ink-warm)", fontWeight:300, lineHeight:1.5, marginBottom:"0.15rem" }}>
-          {q.text}
-        </p>
-        <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.54rem",
-          letterSpacing:"0.14em", textTransform:"uppercase", color:"var(--amber)",
-          opacity:0.75, marginBottom:"1.2rem" }}>
-          {q.author}
-        </p>
+        {/* Čára oddělující foto od stats */}
+        <div style={{ height:1, background:"linear-gradient(to right, transparent, rgba(200,145,58,0.4), transparent)",
+          margin:"0 0 0.9rem" }} />
 
         {/* Stats — 3 vedle sebe */}
-        <div style={{ display:"flex", gap:0, marginBottom:"1.2rem",
-          borderTop:"1px solid rgba(200,145,58,0.15)", paddingTop:"0.9rem" }}>
+        <div style={{ display:"flex", gap:0, marginBottom:"1rem" }}>
           {STATS.map((s, i) => {
             const unit  = lang === "en" ? s.unit_en  : s.unit_cs;
             const label = lang === "en" ? s.label_en : s.label_cs;
             return (
               <React.Fragment key={i}>
-                {i > 0 && <div style={{ width:1, background:"rgba(200,145,58,0.2)", margin:"0 0.8rem", flexShrink:0 }} />}
-                <div style={{ flex:1, display:"flex", flexDirection:"column", gap:"0.18rem" }}>
+                {i > 0 && <div style={{ width:1, background:"rgba(200,145,58,0.2)", margin:"0 0.75rem", flexShrink:0 }} />}
+                <div style={{ flex:1, display:"flex", flexDirection:"column", gap:"0.15rem" }}>
                   <div style={{ display:"flex", alignItems:"baseline", gap:"0.2rem" }}>
-                    <span className="font-display" style={{ fontSize:"1.8rem", fontWeight:400,
+                    <span className="font-display" style={{ fontSize:"1.9rem", fontWeight:400,
                       color:"var(--ink)", letterSpacing:"-0.03em", lineHeight:1 }}>{s.num}</span>
                     <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.6rem",
                       color:"var(--amber)", fontWeight:700, textTransform:"uppercase",
