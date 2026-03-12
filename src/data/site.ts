@@ -6,7 +6,7 @@ export const profile = {
   location: { en: "Prague (Hybrid)", cs: "Praha (Hybrid)" },
   email: "matthew.grygar@seznam.cz",
   linkedin: "https://www.linkedin.com/in/matthew-grygar-214b94232/",
-  cvUrl: "/cv.pdf"
+  cvUrl: "/cv-matthew-grygar.pdf"
 } as const;
 
 export const i18n = {

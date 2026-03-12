@@ -105,13 +105,16 @@ function ScrollPhoto() {
   const sp = { stiffness:75, damping:18 };
   const rawScale   = useTransform(scrollY, [0, vh*0.5, vh*0.92], [1, 1, 1]);
   const rawRadius  = useTransform(scrollY, [vh*0.4, vh*0.92],    [0, 0]);
-  const rawOpacity = useTransform(scrollY, [0, vh*2.75, vh*2.92], [1, 1, 0]);
+  // Fade out: fully visible until slide 3 (vh*2), gone by vh*2.15
+  const rawOpacity = useTransform(scrollY, [0, vh*2.0, vh*2.18], [1, 1, 0]);
   const shadowOp   = useTransform(scrollY, [vh*0.5, vh*0.92],    [0, 1]);
-  const rawPhotoY   = useTransform(scrollY, [vh*2.65, vh*2.95],   [0, -320]);
-  const photoY      = useSpring(rawPhotoY, { stiffness:180, damping:28 });
+  // Photo slides DOWN with the Pillars slide as user scrolls to Experience
+  // From vh*2.0 (start of slide 3→4 transition) it moves down by full vh
+  const rawPhotoY  = useTransform(scrollY, [vh*2.0, vh*2.18],    [0, vh * 0.6]);
+  const photoY     = useSpring(rawPhotoY, { stiffness:160, damping:30 });
   const scale        = useSpring(rawScale,   sp);
   const borderRadius = useSpring(rawRadius,  sp);
-  const opacity      = useSpring(rawOpacity, { stiffness:70, damping:20 });
+  const opacity      = useSpring(rawOpacity, { stiffness:90, damping:22 });
 
   return (
     <motion.div
