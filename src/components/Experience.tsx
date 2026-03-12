@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { i18n, t } from "@/data/site";
 import type { Lang } from "@/data/site";
 
@@ -34,8 +35,9 @@ export function Experience({ lang }: { lang: Lang }) {
   const exp = i18n.experience;
   const [activeIdx, setActiveIdx] = useState(0);
   const [prev, setPrev] = useState(0);
+  const [dropOpen, setDropOpen] = useState(false);
 
-  const handleSelect = (i: number) => { setPrev(activeIdx); setActiveIdx(i); };
+  const handleSelect = (i: number) => { setPrev(activeIdx); setActiveIdx(i); setDropOpen(false); };
   const active = exp.items[activeIdx] as any;
   const direction = activeIdx > prev ? 1 : -1;
 
@@ -43,23 +45,23 @@ export function Experience({ lang }: { lang: Lang }) {
     <div ref={ref} className="relative flex h-dvh w-full overflow-hidden"
       style={{ background: "transparent" }}>
 
-      <div className="relative z-10 flex h-full flex-col pl-20 pr-6 py-6 md:pr-10 m-section" style={{ width:"100%" }}>
+      {/* ── DESKTOP ── */}
+      <div className="m-exp-desktop relative z-10 flex h-full flex-col pl-20 pr-6 py-6 md:pr-10">
 
-        {/* Header */}
         <motion.p initial={{ opacity:0 }} animate={inView?{opacity:1}:{}}
           className="mb-0.5 text-xs uppercase tracking-widest"
           style={{ color:"var(--amber)", fontFamily:"DM Mono, monospace" }}>
           {t(i18n.nav.experience, lang)}
         </motion.p>
         <motion.h2 initial={{ opacity:0, y:14 }} animate={inView?{opacity:1,y:0}:{}} transition={{ delay:0.08 }}
-          className="font-display mb-3 m-h2"
+          className="font-display mb-4 m-h2"
           style={{ fontSize:"clamp(1.6rem,2.8vw,2.8rem)", fontWeight:300, color:"var(--ink)", lineHeight:1.1 }}>
           {t(exp.headline, lang)}
         </motion.h2>
 
         <div className="flex min-h-0 flex-1 gap-4 m-exp-layout">
 
-          {/* ── Sidebar ── */}
+          {/* Sidebar */}
           <div className="flex flex-shrink-0 flex-col gap-1 m-exp-sidebar" style={{ width:"170px" }}>
             {exp.items.map((item: any, i: number) => {
               const isActive = activeIdx === i;
@@ -86,7 +88,7 @@ export function Experience({ lang }: { lang: Lang }) {
             })}
           </div>
 
-          {/* ── Detail panel ── */}
+          {/* Detail panel */}
           <div className="min-h-0 flex-1 overflow-hidden m-exp-detail">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div key={activeIdx}
@@ -97,16 +99,13 @@ export function Experience({ lang }: { lang: Lang }) {
                 className="relative h-full rounded-2xl overflow-hidden flex flex-col"
                 style={G.panel}>
 
-                {/* Corner accents */}
                 <span className="absolute top-3 left-3 pointer-events-none z-10"
                   style={{ display:"block", width:12, height:12, borderTop:"1.5px solid rgba(200,145,58,0.3)", borderLeft:"1.5px solid rgba(200,145,58,0.3)" }} />
                 <span className="absolute bottom-3 right-3 pointer-events-none z-10"
                   style={{ display:"block", width:12, height:12, borderBottom:"1.5px solid rgba(200,145,58,0.3)", borderRight:"1.5px solid rgba(200,145,58,0.3)" }} />
 
-                {/* Inner scrollable content */}
                 <div className="flex flex-col flex-1 min-h-0 p-5 overflow-hidden">
-
-                  {/* Header row: role + tags */}
+                  {/* Header */}
                   <div className="flex flex-wrap items-start justify-between gap-2 mb-3 flex-shrink-0">
                     <div>
                       <h3 className="font-display mb-0.5"
@@ -124,10 +123,8 @@ export function Experience({ lang }: { lang: Lang }) {
                     </div>
                   </div>
 
-                  {/* ── 2-column body ── */}
+                  {/* 2-col body */}
                   <div className="flex-1 min-h-0 grid gap-3 m-2col" style={{ gridTemplateColumns:"1fr 1fr" }}>
-
-                    {/* LEFT: bullets */}
                     <div className="flex flex-col gap-1.5 overflow-hidden">
                       {t(active.bullets, lang).map((b: string, i: number) => (
                         <div key={i} className="flex items-start gap-2">
@@ -137,27 +134,17 @@ export function Experience({ lang }: { lang: Lang }) {
                         </div>
                       ))}
                     </div>
-
-                    {/* RIGHT: security badge (NAKIT only) + key impacts + logo space */}
                     <div className="flex flex-col gap-2.5 relative">
-
-                      {/* NAKIT security badge — always at top if present */}
                       {active.security && (
-                        <motion.div
-                          initial={{ opacity:0, y:6 }} animate={{ opacity:1, y:0 }}
-                          transition={{ delay:0.12 }}
-                          className="flex items-start gap-2.5 px-3.5 py-2.5 flex-shrink-0"
-                          style={G.security}>
+                        <div className="flex items-start gap-2.5 px-3.5 py-2.5 flex-shrink-0" style={G.security}>
                           <span style={{ fontSize:"0.95rem", flexShrink:0, marginTop:"1px" }}>🛡️</span>
                           <p style={{ color:"rgba(167,243,208,0.95)", fontWeight:300, fontSize:"0.82rem", lineHeight:1.5 }}>
                             {lang === "en"
                               ? "Work took place in an environment with elevated security requirements and regulation, placing emphasis on process discipline and risk management."
                               : "Práce probíhala v prostředí s vyššími bezpečnostními požadavky a regulací, což kladlo důraz na procesní disciplínu a řízení rizik."}
                           </p>
-                        </motion.div>
+                        </div>
                       )}
-
-                      {/* Key impacts */}
                       <div className="p-3 flex-shrink-0" style={G.impacts}>
                         <p className="mb-1.5 text-xs uppercase tracking-widest"
                           style={{ color:"var(--amber)", fontFamily:"DM Mono, monospace" }}>
@@ -172,17 +159,11 @@ export function Experience({ lang }: { lang: Lang }) {
                           ))}
                         </div>
                       </div>
-
-                      {/* Logo — bottom right, transparent, with natural space */}
                       {active.logo && (
-                        <div className="flex-1 flex items-end justify-end pointer-events-none select-none pr-2 pb-1"
-                          style={{ minHeight:"60px" }}>
+                        <div className="flex-1 flex items-end justify-end pointer-events-none select-none pr-2 pb-1" style={{ minHeight:"60px" }}>
                           <img src={active.logo} alt=""
-                            style={{
-                              height:"80px", width:"auto", maxWidth:"180px",
-                              objectFit:"contain", display:"block",
-                              opacity:0.12, filter:"grayscale(1) brightness(4)",
-                            }} />
+                            style={{ height:"80px", width:"auto", maxWidth:"180px", objectFit:"contain",
+                              opacity:0.12, filter:"grayscale(1) brightness(4)" }} />
                         </div>
                       )}
                     </div>
@@ -192,6 +173,157 @@ export function Experience({ lang }: { lang: Lang }) {
             </AnimatePresence>
           </div>
         </div>
+      </div>
+
+      {/* ── MOBILE ── */}
+      <div className="m-exp-mobile m-section" style={{ zIndex:10, position:"relative" }}>
+
+        {/* Header */}
+        <p className="mb-0.5 text-xs uppercase tracking-widest"
+          style={{ color:"var(--amber)", fontFamily:"DM Mono, monospace" }}>
+          {t(i18n.nav.experience, lang)}
+        </p>
+        <h2 className="font-display mb-3 m-h2"
+          style={{ fontSize:"clamp(1.4rem,5vw,1.9rem)", fontWeight:300, color:"var(--ink)", lineHeight:1.1 }}>
+          {t(exp.headline, lang)}
+        </h2>
+
+        {/* Dropdown selector */}
+        <div style={{ position:"relative", marginBottom:"1rem" }}>
+          <button
+            onClick={() => setDropOpen(v => !v)}
+            style={{
+              width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between",
+              padding:"0.75rem 1rem", borderRadius:"0.85rem",
+              background:"rgba(16,38,62,0.98)",
+              border:"1px solid rgba(200,145,58,0.45)",
+              boxShadow:"inset 0 1px 0 rgba(200,145,58,0.1)",
+              cursor:"pointer",
+            }}>
+            <div style={{ textAlign:"left" }}>
+              <p style={{ fontSize:"0.9rem", fontWeight:600, color:"var(--amber)", marginBottom:"0.1rem" }}>
+                {exp.items[activeIdx].company}
+              </p>
+              <p style={{ fontSize:"0.72rem", color:"var(--ink-soft)", fontFamily:"DM Mono,monospace" }}>
+                {t((exp.items[activeIdx] as any).role, lang)}
+              </p>
+            </div>
+            <motion.div animate={{ rotate: dropOpen ? 180 : 0 }} transition={{ duration:0.2 }}>
+              <ChevronDown size={18} style={{ color:"var(--amber)", flexShrink:0 }} />
+            </motion.div>
+          </button>
+
+          <AnimatePresence>
+            {dropOpen && (
+              <motion.div
+                initial={{ opacity:0, y:-8, scaleY:0.92 }}
+                animate={{ opacity:1, y:0, scaleY:1 }}
+                exit={{ opacity:0, y:-8, scaleY:0.92 }}
+                transition={{ duration:0.18 }}
+                style={{
+                  position:"absolute", top:"calc(100% + 0.4rem)", left:0, right:0,
+                  zIndex:50, borderRadius:"0.85rem", overflow:"hidden",
+                  background:"rgba(14,32,54,0.99)",
+                  border:"1px solid rgba(200,145,58,0.38)",
+                  boxShadow:"0 12px 40px rgba(0,0,0,0.6)",
+                  transformOrigin:"top",
+                }}>
+                {exp.items.map((item: any, i: number) => (
+                  <button key={i} onClick={() => handleSelect(i)}
+                    style={{
+                      width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between",
+                      padding:"0.7rem 1rem", textAlign:"left", cursor:"pointer",
+                      background: activeIdx===i ? "rgba(200,145,58,0.12)" : "transparent",
+                      borderBottom: i < exp.items.length-1 ? "1px solid rgba(200,145,58,0.1)" : "none",
+                    }}>
+                    <div>
+                      <p style={{ fontSize:"0.88rem", fontWeight:600,
+                        color: activeIdx===i ? "var(--amber)" : "var(--ink)", marginBottom:"0.1rem" }}>
+                        {item.company}
+                      </p>
+                      <p style={{ fontSize:"0.68rem", color:"var(--ink-muted)", fontFamily:"DM Mono,monospace" }}>
+                        {t(item.period, lang)}
+                      </p>
+                    </div>
+                    {activeIdx===i && (
+                      <span style={{ width:6, height:6, borderRadius:"50%", background:"var(--amber)", flexShrink:0 }} />
+                    )}
+                  </button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Detail card */}
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div key={activeIdx}
+            initial={{ opacity:0, y:12 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-8 }}
+            transition={{ duration:0.25 }}
+            style={{ ...G.panel, borderRadius:"1rem", padding:"1rem", marginBottom:"0.75rem" }}>
+
+            {/* Role + period */}
+            <h3 className="font-display mb-0.5"
+              style={{ fontSize:"1.05rem", fontWeight:400, color:"var(--ink)" }}>
+              {t(active.role, lang)}
+            </h3>
+            <p style={{ fontSize:"0.78rem", color:"var(--amber)", marginBottom:"0.9rem",
+              fontFamily:"DM Mono,monospace" }}>
+              {active.company} · {t(active.period, lang)}
+            </p>
+
+            {/* Bullets */}
+            <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem", marginBottom:"0.9rem" }}>
+              {t(active.bullets, lang).map((b: string, i: number) => (
+                <div key={i} style={{ display:"flex", alignItems:"flex-start", gap:"0.6rem" }}>
+                  <span style={{ marginTop:"7px", flexShrink:0, width:3, height:3, borderRadius:"50%",
+                    background:"var(--amber)", opacity:0.7, display:"block" }} />
+                  <p style={{ color:"var(--ink)", fontSize:"0.83rem", lineHeight:1.5 }}>{b}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Security badge */}
+            {active.security && (
+              <div style={{ ...G.security, display:"flex", gap:"0.6rem", padding:"0.7rem 0.85rem", marginBottom:"0.75rem" }}>
+                <span style={{ fontSize:"0.9rem", flexShrink:0 }}>🛡️</span>
+                <p style={{ color:"rgba(167,243,208,0.95)", fontWeight:300, fontSize:"0.78rem", lineHeight:1.5 }}>
+                  {lang === "en"
+                    ? "Elevated security environment — process discipline and risk management."
+                    : "Prostředí s vyššími bezpečnostními požadavky — procesní disciplína a řízení rizik."}
+                </p>
+              </div>
+            )}
+
+            {/* Key impacts */}
+            <div style={{ ...G.impacts, padding:"0.75rem", marginBottom:"0.75rem" }}>
+              <p style={{ fontSize:"0.6rem", textTransform:"uppercase", letterSpacing:"0.12em",
+                color:"var(--amber)", fontFamily:"DM Mono,monospace", marginBottom:"0.5rem" }}>
+                {lang==="en" ? "Key Impacts" : "Klíčové dopady"}
+              </p>
+              {t(active.impacts, lang).map((imp: string, i: number) => (
+                <div key={i} style={{ display:"flex", gap:"0.5rem", marginBottom:"0.3rem" }}>
+                  <span style={{ color:"var(--amber)", fontSize:"0.48rem", flexShrink:0, marginTop:"5px" }}>✦</span>
+                  <p style={{ color:"var(--ink)", fontSize:"0.8rem", lineHeight:1.4 }}>{imp}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Tags — full width, wrap */}
+            <div style={{ display:"flex", flexWrap:"wrap", gap:"0.4rem" }}>
+              {active.tags.map((tag: string) => (
+                <span key={tag} style={{
+                  padding:"0.25rem 0.65rem", borderRadius:"99px",
+                  fontSize:"0.62rem", fontWeight:500, letterSpacing:"0.06em",
+                  textTransform:"uppercase",
+                  background:"rgba(200,145,58,0.1)",
+                  border:"1px solid rgba(200,145,58,0.22)",
+                  color:"var(--amber)",
+                }}>{tag}</span>
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );

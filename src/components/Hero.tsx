@@ -292,99 +292,114 @@ export function Hero({ lang }: { lang: Lang }) {
         </motion.div>
       </motion.button>
 
-      {/* ── MOBILE ONLY: kompletní hero layout ── */}
-      <div className="m-hero-wrap" style={{ zIndex: 20 }}>
+      {/* ── MOBILE ONLY ── */}
+      <div className="m-hero-mobile" style={{ zIndex: 20 }}>
 
-        {/* Řádek 1: Prague · Hybrid */}
-        <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.6rem", letterSpacing:"0.18em",
-          textTransform:"uppercase", color:"var(--amber)", opacity:0.9, marginBottom:"0.2rem" }}>
-          Prague · Hybrid
-        </p>
-        {/* Řádek 2: Open to conversations */}
-        <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.6rem", letterSpacing:"0.18em",
-          textTransform:"uppercase", color:"rgba(168,189,208,0.6)", marginBottom:"1.2rem" }}>
-          Open to conversations
+        {/* Foto — v pravo nahoře, absolutně */}
+        <div style={{
+          position:"absolute", top:"3.5rem", right:"1.2rem",
+          width:"110px", height:"148px", borderRadius:"1rem",
+          overflow:"hidden",
+          border:"1px solid rgba(200,145,58,0.4)",
+          boxShadow:"0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(200,145,58,0.08)",
+          zIndex:2,
+        }}>
+          <img src="/profile.png" alt="Matthew Grygar"
+            style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center top" }} />
+          {/* Amber gradient na spodku foky */}
+          <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"40%",
+            background:"linear-gradient(to top, rgba(13,27,42,0.7), transparent)" }} />
+        </div>
+
+        {/* Kicker */}
+        <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.58rem", letterSpacing:"0.2em",
+          textTransform:"uppercase", color:"var(--amber)", opacity:0.85, marginBottom:"0.55rem" }}>
+          Prague · Hybrid · Open to conversations
         </p>
 
-        {/* Jméno */}
-        <h1 className="font-display" style={{ fontSize:"clamp(3rem,11vw,4.2rem)", fontWeight:600,
-          color:"var(--ink)", letterSpacing:"-0.02em", lineHeight:0.9, marginBottom:"0.5rem" }}>
+        {/* Jméno — velké, vlevo, vedle foky */}
+        <h1 className="font-display" style={{
+          fontSize:"clamp(3.2rem,12vw,4.5rem)", fontWeight:600, color:"var(--ink)",
+          letterSpacing:"-0.025em", lineHeight:0.88, marginBottom:"0.6rem",
+          paddingRight:"130px", /* prostor pro foto */
+        }}>
           <span style={{ display:"block" }}>Matthew</span>
           <span style={{ display:"block" }}>Grygar</span>
         </h1>
 
-        {/* Role pod jménem */}
-        <p className="font-display" style={{ fontSize:"1rem", fontStyle:"italic",
-          color:"var(--amber-light)", marginBottom:"0.8rem", fontWeight:400 }}>
+        {/* Role animovaná */}
+        <p className="font-display" style={{ fontSize:"1.05rem", fontStyle:"italic",
+          color:"var(--amber-light)", marginBottom:"0.4rem", fontWeight:400,
+          transition:"opacity 0.28s ease", opacity: roleOut ? 0 : 1,
+          paddingRight:"130px",
+        }}>
           {ROLES[roleIdx]}
         </p>
 
+        {/* Amber linka */}
+        <div style={{ height:1, width:"60%", background:"linear-gradient(to right,var(--amber),transparent)",
+          marginBottom:"0.9rem", marginTop:"0.3rem" }} />
+
         {/* Citát */}
-        <div style={{ marginBottom:"1rem", paddingLeft:"0.75rem",
-          borderLeft:"2px solid rgba(200,145,58,0.35)" }}>
-          <p className="font-display" style={{ fontSize:"0.82rem", fontStyle:"italic",
-            color:"var(--ink-warm)", fontWeight:300, lineHeight:1.5, marginBottom:"0.2rem" }}>
-            {q.text}
-          </p>
-          <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.55rem", letterSpacing:"0.12em",
-            textTransform:"uppercase", color:"var(--amber)", opacity:0.75 }}>
-            {q.author}
-          </p>
-        </div>
+        <p className="font-display" style={{ fontSize:"0.82rem", fontStyle:"italic",
+          color:"var(--ink-warm)", fontWeight:300, lineHeight:1.5, marginBottom:"0.15rem" }}>
+          {q.text}
+        </p>
+        <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.54rem",
+          letterSpacing:"0.14em", textTransform:"uppercase", color:"var(--amber)",
+          opacity:0.75, marginBottom:"1.2rem" }}>
+          {q.author}
+        </p>
 
-        {/* Foto + stats vedle sebe */}
-        <div style={{ display:"flex", gap:"1rem", alignItems:"flex-start", marginBottom:"1rem" }}>
-
-          {/* Foto */}
-          <div style={{ flexShrink:0, width:80, height:105, borderRadius:"0.75rem",
-            overflow:"hidden", border:"1px solid rgba(200,145,58,0.35)" }}>
-            <img src="/profile.png" alt="Matthew Grygar"
-              style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center top" }} />
-          </div>
-
-          {/* Stats — každý na dva řádky */}
-          <div style={{ flex:1, display:"flex", flexDirection:"column", gap:"0.55rem" }}>
-            {STATS.map((s, i) => {
-              const unit  = lang === "en" ? s.unit_en  : s.unit_cs;
-              const label = lang === "en" ? s.label_en : s.label_cs;
-              return (
-                <div key={i} style={{ display:"flex", flexDirection:"column", lineHeight:1 }}>
-                  <div style={{ display:"flex", alignItems:"baseline", gap:"0.25rem" }}>
-                    <span className="font-display" style={{ fontSize:"1.6rem", fontWeight:400,
-                      color:"var(--ink)", letterSpacing:"-0.02em" }}>{s.num}</span>
-                    <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.58rem",
+        {/* Stats — 3 vedle sebe */}
+        <div style={{ display:"flex", gap:0, marginBottom:"1.2rem",
+          borderTop:"1px solid rgba(200,145,58,0.15)", paddingTop:"0.9rem" }}>
+          {STATS.map((s, i) => {
+            const unit  = lang === "en" ? s.unit_en  : s.unit_cs;
+            const label = lang === "en" ? s.label_en : s.label_cs;
+            return (
+              <React.Fragment key={i}>
+                {i > 0 && <div style={{ width:1, background:"rgba(200,145,58,0.2)", margin:"0 0.8rem", flexShrink:0 }} />}
+                <div style={{ flex:1, display:"flex", flexDirection:"column", gap:"0.18rem" }}>
+                  <div style={{ display:"flex", alignItems:"baseline", gap:"0.2rem" }}>
+                    <span className="font-display" style={{ fontSize:"1.8rem", fontWeight:400,
+                      color:"var(--ink)", letterSpacing:"-0.03em", lineHeight:1 }}>{s.num}</span>
+                    <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.6rem",
                       color:"var(--amber)", fontWeight:700, textTransform:"uppercase",
-                      letterSpacing:"0.1em" }}>{unit}</span>
+                      letterSpacing:"0.08em" }}>{unit}</span>
                   </div>
-                  <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.52rem",
-                    color:"var(--ink-soft)", textTransform:"uppercase", letterSpacing:"0.1em" }}>
-                    {label.replace("\n", " ")}
+                  <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.5rem",
+                    color:"var(--ink-soft)", textTransform:"uppercase", letterSpacing:"0.1em",
+                    lineHeight:1.3, whiteSpace:"pre-line" }}>
+                    {label}
                   </span>
                 </div>
-              );
-            })}
-          </div>
+              </React.Fragment>
+            );
+          })}
         </div>
 
         {/* CTA tlačítka */}
-        <div style={{ display:"flex", gap:"0.6rem", flexWrap:"wrap" }}>
+        <div style={{ display:"flex", gap:"0.6rem" }}>
           <a href="#contact"
             onClick={e => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }); }}
-            style={{ display:"inline-flex", alignItems:"center", gap:"0.3rem",
-              background:"var(--amber)", color:"#0D1B2A", fontWeight:600,
-              fontSize:"0.72rem", padding:"0.55rem 1.1rem", borderRadius:"99px",
-              letterSpacing:"0.03em" }}>
-            <Mail size={12} />{t(hero.primaryCta, lang)}
+            style={{ flex:1, display:"inline-flex", alignItems:"center", justifyContent:"center",
+              gap:"0.35rem", background:"var(--amber)", color:"#0D1B2A", fontWeight:600,
+              fontSize:"0.75rem", padding:"0.65rem 1rem", borderRadius:"99px",
+              letterSpacing:"0.03em", boxShadow:"0 4px 18px rgba(200,145,58,0.35)" }}>
+            <Mail size={13} />{t(hero.primaryCta, lang)}
           </a>
           <a href={profile.cvUrl} download
-            style={{ display:"inline-flex", alignItems:"center", gap:"0.3rem",
-              border:"1px solid rgba(200,145,58,0.4)", color:"var(--ink)",
-              background:"rgba(30,62,95,0.7)", fontSize:"0.72rem",
-              padding:"0.55rem 1.1rem", borderRadius:"99px", letterSpacing:"0.03em" }}>
-            <Download size={12} />{t(hero.secondaryCta, lang)}
+            style={{ flex:1, display:"inline-flex", alignItems:"center", justifyContent:"center",
+              gap:"0.35rem", border:"1px solid rgba(200,145,58,0.38)", color:"var(--ink)",
+              background:"rgba(22,44,70,0.8)", fontSize:"0.75rem",
+              padding:"0.65rem 1rem", borderRadius:"99px", letterSpacing:"0.03em" }}>
+            <Download size={13} />{t(hero.secondaryCta, lang)}
           </a>
         </div>
+
       </div>
+
 
     </div>
   );
