@@ -43,7 +43,7 @@ export function About({ lang }: { lang: Lang }) {
       style={{ background:"transparent" }}>
 
       {/* Content — left 56% */}
-      <div className="relative z-10 flex h-full flex-col m-section"
+      <div className="relative z-10 flex h-full flex-col m-full-width"
         style={{
           width:"56%",
           paddingLeft:"clamp(4.5rem,7vw,8rem)",

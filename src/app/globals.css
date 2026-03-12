@@ -166,18 +166,27 @@ body::before {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   MOBILE  ≤ 768px  —  kompletní přepis
-   Desktop (> 768px) BEZE ZMĚNY.
+   MOBILE ≤ 768px
+   Desktop (> 768px): BEZE ZMĚNY
 ═══════════════════════════════════════════════════════════════ */
 
+/* MobileNav tlačítko — skryté na desktopu */
 .mobile-nav-trigger { display: none !important; }
+
+/* Hero mobile helpers — skryté na desktopu */
+.m-hero-subtitle { display: none; }
+.m-hero-bottom   { display: none; }
 
 @media (max-width: 768px) {
 
-  /* Scroll-snap na mobilu — každá sekce = slide */
+  /* ── Hamburger visible, SideRail hidden ── */
+  .mobile-nav-trigger { display: flex !important; }
+  .side-rail-wrap     { display: none !important; }
+  .scroll-photo-wrap  { display: none !important; }
+
+  /* ── Scroll-snap: každá sekce = slide, výška podle obsahu ── */
   html { scroll-snap-type: y mandatory; }
 
-  /* Sekce = slide, ale výška auto = obsah se nezořízne */
   section[data-slide] {
     scroll-snap-align: start;
     scroll-snap-stop: always;
@@ -186,185 +195,92 @@ body::before {
     overflow: visible;
   }
 
-  /* Foto + desktop SideRail skryté */
-  .scroll-photo-wrap { display: none !important; }
-  .side-rail-wrap    { display: none !important; }
-  .mobile-nav-trigger { display: flex !important; }
-
-  /* ── Všechny vnitřní wrappery sekcí ── */
-  /* Odstraní pl-20 (Tailwind padding-left: 5rem pro SideRail) */
+  /* ── .m-section: vnitřní content div každé sekce ── */
   .m-section {
     width: 100% !important;
     max-width: 100% !important;
     height: auto !important;
     min-height: 100dvh !important;
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
-    padding-top: 1.5rem !important;
-    padding-bottom: 2rem !important;
+    padding: 4.5rem 1.25rem 2.5rem !important;
     overflow: visible !important;
     box-sizing: border-box !important;
   }
 
-  /* Flex/grid → single column */
-  .m-2col { grid-template-columns: 1fr !important; grid-template-rows: unset !important; }
-  .m-3col { grid-template-columns: 1fr 1fr !important; grid-template-rows: unset !important; }
-  .m-flex-col { flex-direction: column !important; width: 100% !important; }
-
-  /* Headings */
-  h2.m-h2 { font-size: clamp(1.5rem, 6vw, 2rem) !important; margin-bottom: 0.75rem !important; }
-
-  /* Cards — více prostoru */
-  .m-card { padding: 1rem !important; }
-
-  /* Flex children — odstraní pevnou šířku */
-  .m-full { width: 100% !important; flex: unset !important; }
-
-  /* ── HERO specifika ── */
-  .m-hero-wrap {
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    padding-top: 5rem !important;
-    padding-left: 1.4rem !important;
-    padding-right: 1.4rem !important;
-    width: 100% !important;
+  /* Všechny height:100% / h-dvh uvnitř sekcí → auto */
+  .m-section,
+  .m-section > *,
+  .m-section .flex-1,
+  .m-section .min-h-0,
+  .m-section .h-full {
     height: auto !important;
-    min-height: 100dvh !important;
+    min-height: 0 !important;
     overflow: visible !important;
   }
-  .m-hero-name { font-size: clamp(3rem, 11vw, 4.5rem) !important; }
-  .m-hero-quote { white-space: normal !important; }
-  .m-hero-stats-hide { display: none !important; }
 
-  /* ── Hero bottom row: foto + stats ── */
-  .m-hero-bottom {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-end !important;
-    gap: 1rem !important;
-    margin-top: 1.25rem !important;
-    flex-wrap: nowrap !important;
-  }
-  .m-hero-photo {
-    display: block !important;
-    flex-shrink: 0 !important;
-    width: 90px !important;
-    height: 120px !important;
-    border-radius: 0.85rem !important;
-    overflow: hidden !important;
-    border: 1px solid rgba(200,145,58,0.35) !important;
-  }
-  .m-hero-photo img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center top !important;
-  }
-  .m-hero-stats {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0.4rem !important;
-    flex: 1 !important;
-  }
-  .m-hero-stat-row {
-    display: flex !important;
-    align-items: baseline !important;
-    gap: 0.3rem !important;
-  }
+  /* ── Gridy ── */
+  .m-2col  { grid-template-columns: 1fr !important; grid-template-rows: unset !important; }
+  .m-3col  { grid-template-columns: 1fr 1fr !important; grid-template-rows: unset !important; }
+  .m-projects-grid > div { height: auto !important; min-height: 200px !important; }
 
-  /* ── Experience sidebar ── */
-  .m-exp-layout { flex-direction: column !important; }
+  /* ── Experience ── */
+  .m-exp-layout  { flex-direction: column !important; }
   .m-exp-sidebar {
     width: 100% !important;
     flex-direction: row !important;
     flex-wrap: wrap !important;
     gap: 0.4rem !important;
     margin-bottom: 0.6rem !important;
-    flex-shrink: 0 !important;
   }
-  .m-exp-sidebar button {
-    flex: 1 1 auto !important;
-    min-width: 90px !important;
-    padding: 0.4rem 0.5rem !important;
-  }
-  .m-exp-detail { flex: 1 !important; overflow: visible !important; height: auto !important; min-height: 0 !important; }
-  .m-exp-detail > div { height: auto !important; overflow: visible !important; }
-  .m-exp-detail .mobile-1col { grid-template-columns: 1fr !important; }
+  .m-exp-sidebar button { flex: 1 1 auto !important; min-width: 90px !important; }
+  .m-exp-detail  { height: auto !important; overflow: visible !important; }
 
-  /* ── Projects grid ── */
-  .m-projects-grid {
-    grid-template-columns: 1fr 1fr !important;
-    grid-template-rows: unset !important;
-    height: auto !important;
-  }
-  /* Každá karta má auto výšku a popis viditelný */
-  .m-projects-grid > div { height: auto !important; min-height: 220px !important; }
+  /* Experience inner panel */
+  .m-exp-detail .rounded-2xl { height: auto !important; overflow: visible !important; }
 
   /* ── Contact ── */
   .m-contact-name-email { grid-template-columns: 1fr !important; }
 
-  /* Pilíře — výška auto */
-  .m-pillars-cards { height: auto !important; overflow: visible !important; }
+  /* ── Headings ── */
+  h2.m-h2 { font-size: clamp(1.4rem, 5.5vw, 1.9rem) !important; margin-bottom: 0.6rem !important; }
 
-  /* Skills — 2 sloupce inner → 1 col */
-  .m-skills-cols { grid-template-columns: 1fr !important; }
-
-  /* Obecně: žádný overflow:hidden který by ořezával obsah */
-  .m-section * { max-width: 100%; }
-}
-
-/* Malé telefony ≤ 380px */
-@media (max-width: 380px) {
-  .m-projects-grid { grid-template-columns: 1fr !important; }
-}
-
-/* ── Hero mobile helpers (desktop = hidden/normal) ── */
-.m-hero-subtitle { display: none; }
-.m-hero-bottom   { display: none; }
-
-@media (max-width: 768px) {
-  .m-hero-subtitle {
-    display: block !important;
-    font-family: "DM Mono", monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--amber);
-    opacity: 0.8;
-    margin-top: 0.4rem;
-  }
-  .m-hero-stats-hide { display: none !important; }
-  .m-hero-bottom     { display: flex !important; }
-
-  /* About/Pillars — outer wrapper must also be full width */
-  .relative.flex.w-full.h-dvh.overflow-hidden > .m-full {
+  /* ── Hero specifika ── */
+  .m-hero-wrap {
     width: 100% !important;
     height: auto !important;
     min-height: 100dvh !important;
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
-  }
-  /* Experience — inner panel height auto */
-  .m-exp-detail > div.rounded-2xl {
-    height: auto !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding: 5rem 1.4rem 2rem !important;
     overflow: visible !important;
   }
-  .m-exp-detail .rounded-2xl > div {
+  .m-hero-name    { font-size: clamp(3rem, 11vw, 4.5rem) !important; }
+  .m-hero-stats-hide { display: none !important; }
+  .m-hero-subtitle   { display: block !important; }
+  .m-hero-bottom     { display: flex !important; }
+  .m-hero-quote   { white-space: normal !important; }
+
+  /* ── About/Pillars inner (width 56% → 100%) ── */
+  .m-full-width {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100dvh !important;
+    padding: 4rem 1.25rem 2.5rem !important;
     overflow: visible !important;
-    height: auto !important;
+    box-sizing: border-box !important;
   }
-  /* Projects cards — show description */
-  .m-projects-grid > div {
+  .m-full-width > *,
+  .m-full-width .flex-1,
+  .m-full-width .min-h-0 {
     height: auto !important;
-    min-height: 200px !important;
+    min-height: 0 !important;
+    overflow: visible !important;
   }
-  /* Skills section — panels full height auto */
-  .m-skills-cols > div { height: auto !important; overflow: visible !important; }
-  /* Contact — main content div */
-  .m-section > div { height: auto !important; overflow: visible !important; }
-  /* General: any flex-1 min-h-0 should be height auto on mobile */
-  .m-section .flex-1.min-h-0 { min-height: unset !important; height: auto !important; overflow: visible !important; }
-  .m-section .min-h-0 { min-height: unset !important; overflow: visible !important; }
+
+  /* Pillars cards */
+  .m-pillars-cards { overflow: visible !important; height: auto !important; }
+}
+
+/* Extra malé telefony ≤ 380px */
+@media (max-width: 380px) {
+  .m-3col { grid-template-columns: 1fr !important; }
 }

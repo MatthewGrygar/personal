@@ -15,7 +15,7 @@ export function SideRail({
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <aside className="fixed left-4 top-1/2 z-[100] -translate-y-1/2">
+    <aside className="side-rail-wrap fixed left-4 top-1/2 z-[100] -translate-y-1/2">
       {/* ── Entrance: slide in from left, delayed after hero intro ── */}
       <motion.div
         initial={{ x: -64, opacity: 0 }}
