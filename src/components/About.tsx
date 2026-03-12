@@ -46,7 +46,7 @@ export function About({ lang }: { lang: Lang }) {
       <div className="relative z-10 flex h-full flex-col m-full-width"
         style={{
           width:"56%",
-          paddingLeft:"clamp(4.5rem,7vw,8rem)",
+          paddingLeft:"clamp(5.5rem,7vw,8rem)",
           paddingRight:"2rem",
           paddingTop:"clamp(2rem,4vh,3.5rem)",
           paddingBottom:"clamp(1.5rem,3vh,2.5rem)",

@@ -102,7 +102,7 @@ export function Contact({ lang }: { lang: Lang }) {
     <div ref={ref} className="relative flex h-dvh w-full overflow-hidden"
       style={{ background: "transparent" }}>
 
-      <div className="relative z-10 flex h-full flex-col px-6 py-6 md:px-12 m-section" style={{ width:"100%" }}>
+      <div className="relative z-10 flex h-full flex-col pl-20 pr-6 py-6 md:pr-12 m-section" style={{ width:"100%" }}>
 
         {/* Header */}
         <motion.p {...fi(0)} className="mb-0.5 text-xs uppercase tracking-widest"

@@ -166,84 +166,92 @@ body::before {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   MOBILE ≤ 768px
-   Desktop (> 768px): BEZE ZMĚNY
+   MOBILE ≤ 768px  —  každý slide = samostatná stránka
+   Desktop > 768px: BEZE ZMĚNY
 ═══════════════════════════════════════════════════════════════ */
 
-/* MobileNav tlačítko — skryté na desktopu */
+/* Desktop only: SideRail + foto visible, hamburger hidden */
 .mobile-nav-trigger { display: none !important; }
-
-/* Hero mobile helpers — skryté na desktopu */
-.m-hero-subtitle { display: none; }
-.m-hero-bottom   { display: none; }
+.m-hero-subtitle    { display: none; }
+.m-hero-bottom      { display: none; }
 
 @media (max-width: 768px) {
 
-  /* ── Hamburger visible, SideRail hidden ── */
+  /* ── Hamburger visible, SideRail + foto hidden ── */
   .mobile-nav-trigger { display: flex !important; }
   .side-rail-wrap     { display: none !important; }
   .scroll-photo-wrap  { display: none !important; }
 
-  /* ── Scroll-snap: každá sekce = slide, výška podle obsahu ── */
+  /* ── Každá sekce = celá obrazovka, scroll-snap ── */
   html { scroll-snap-type: y mandatory; }
 
   section[data-slide] {
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    height: auto;
-    min-height: 100dvh;
-    overflow: visible;
+    /* Výška = přesně viewport, obsah se scrolluje uvnitř */
+    height: 100dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Skryj scrollbar ale umožni scroll */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+  section[data-slide]::-webkit-scrollbar { display: none; }
 
-  /* ── .m-section: vnitřní content div každé sekce ── */
+  /* ── Vnitřní content divs: plná šířka, padding ── */
   .m-section {
     width: 100% !important;
     max-width: 100% !important;
     height: auto !important;
     min-height: 100dvh !important;
-    padding: 4.5rem 1.25rem 2.5rem !important;
+    padding: 4.5rem 1.25rem 3rem !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    /* Odstraň pl-20 z Tailwindu */
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  /* About + Pillars mají jiný wrapper */
+  .m-full-width {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 100% !important;
+    padding: 4rem 1.25rem 2.5rem !important;
     overflow: visible !important;
     box-sizing: border-box !important;
   }
 
-  /* Všechny height:100% / h-dvh uvnitř sekcí → auto */
-  .m-section,
-  .m-section > *,
-  .m-section .flex-1,
-  .m-section .min-h-0,
-  .m-section .h-full {
-    height: auto !important;
-    min-height: 0 !important;
-    overflow: visible !important;
-  }
+  /* Uvolni pevné výšky uvnitř sekcí */
+  .m-section .flex-1    { flex: unset !important; height: auto !important; }
+  .m-section .min-h-0   { min-height: 0 !important; height: auto !important; overflow: visible !important; }
+  .m-full-width .flex-1  { flex: unset !important; height: auto !important; }
+  .m-full-width .min-h-0 { min-height: 0 !important; height: auto !important; overflow: visible !important; }
 
   /* ── Gridy ── */
-  .m-2col  { grid-template-columns: 1fr !important; grid-template-rows: unset !important; }
-  .m-3col  { grid-template-columns: 1fr 1fr !important; grid-template-rows: unset !important; }
-  .m-projects-grid > div { height: auto !important; min-height: 200px !important; }
+  .m-2col { grid-template-columns: 1fr !important; grid-template-rows: unset !important; }
+  .m-3col { grid-template-columns: 1fr 1fr !important; grid-template-rows: unset !important; }
+  .m-projects-grid > div { height: auto !important; }
 
   /* ── Experience ── */
   .m-exp-layout  { flex-direction: column !important; }
   .m-exp-sidebar {
-    width: 100% !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    gap: 0.4rem !important;
-    margin-bottom: 0.6rem !important;
+    width: 100% !important; flex-direction: row !important;
+    flex-wrap: wrap !important; gap: 0.4rem !important; margin-bottom: 0.5rem !important;
   }
   .m-exp-sidebar button { flex: 1 1 auto !important; min-width: 90px !important; }
   .m-exp-detail  { height: auto !important; overflow: visible !important; }
+  .m-exp-detail .rounded-2xl      { height: auto !important; overflow: visible !important; }
+  .m-exp-detail .rounded-2xl > div { height: auto !important; overflow: visible !important; }
 
-  /* Experience inner panel */
-  .m-exp-detail .rounded-2xl { height: auto !important; overflow: visible !important; }
-
-  /* ── Contact ── */
+  /* ── Contact form ── */
   .m-contact-name-email { grid-template-columns: 1fr !important; }
 
   /* ── Headings ── */
   h2.m-h2 { font-size: clamp(1.4rem, 5.5vw, 1.9rem) !important; margin-bottom: 0.6rem !important; }
 
-  /* ── Hero specifika ── */
+  /* ── Hero ── */
   .m-hero-wrap {
     width: 100% !important;
     height: auto !important;
@@ -253,34 +261,18 @@ body::before {
     padding: 5rem 1.4rem 2rem !important;
     overflow: visible !important;
   }
-  .m-hero-name    { font-size: clamp(3rem, 11vw, 4.5rem) !important; }
+  .m-hero-name       { font-size: clamp(3rem, 11vw, 4.5rem) !important; }
   .m-hero-stats-hide { display: none !important; }
   .m-hero-subtitle   { display: block !important; }
   .m-hero-bottom     { display: flex !important; }
-  .m-hero-quote   { white-space: normal !important; }
-
-  /* ── About/Pillars inner (width 56% → 100%) ── */
-  .m-full-width {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 100dvh !important;
-    padding: 4rem 1.25rem 2.5rem !important;
-    overflow: visible !important;
-    box-sizing: border-box !important;
-  }
-  .m-full-width > *,
-  .m-full-width .flex-1,
-  .m-full-width .min-h-0 {
-    height: auto !important;
-    min-height: 0 !important;
-    overflow: visible !important;
-  }
 
   /* Pillars cards */
   .m-pillars-cards { overflow: visible !important; height: auto !important; }
+
+  /* Overflow visible na About/Pillars outer wrapper */
+  section[data-slide] > div.relative.flex.w-full { overflow: visible !important; }
 }
 
-/* Extra malé telefony ≤ 380px */
 @media (max-width: 380px) {
   .m-3col { grid-template-columns: 1fr !important; }
 }

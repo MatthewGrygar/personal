@@ -47,7 +47,7 @@ export function Pillars({ lang }: { lang: Lang }) {
       <div className="relative z-10 flex h-full flex-col m-full-width"
         style={{
           width:"56%",
-          paddingLeft:"clamp(4.5rem,7vw,8rem)",
+          paddingLeft:"clamp(5.5rem,7vw,8rem)",
           paddingRight:"2.5rem",
           paddingTop:"clamp(1.4rem,2.5vh,2.5rem)",
           paddingBottom:"clamp(1rem,2vh,1.8rem)",

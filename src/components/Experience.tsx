@@ -43,7 +43,7 @@ export function Experience({ lang }: { lang: Lang }) {
     <div ref={ref} className="relative flex h-dvh w-full overflow-hidden"
       style={{ background: "transparent" }}>
 
-      <div className="relative z-10 flex h-full flex-col px-6 py-6 md:px-10 m-section" style={{ width:"100%" }}>
+      <div className="relative z-10 flex h-full flex-col pl-20 pr-6 py-6 md:pr-10 m-section" style={{ width:"100%" }}>
 
         {/* Header */}
         <motion.p initial={{ opacity:0 }} animate={inView?{opacity:1}:{}}
