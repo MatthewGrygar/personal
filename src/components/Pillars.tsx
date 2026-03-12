@@ -72,8 +72,8 @@ export function Pillars({ lang }: { lang: Lang }) {
           {t(about.pillarsTitle, lang)}
         </motion.h2>
 
-        {/* 5 cards — stacked vertically, slide in from left alternating */}
-        <div className="flex-1 min-h-0 flex flex-col gap-2" style={{ overflow:"hidden" }}>
+        {/* 5 cards — natural height, no stretch */}
+        <div className="flex-1 min-h-0 flex flex-col gap-2" style={{ overflow:"hidden", justifyContent:"flex-start" }}>
           {about.pillars.map((pillar, i) => {
             const { num, title, body } = parsePillar(t(pillar, lang));
             return (
@@ -86,10 +86,10 @@ export function Pillars({ lang }: { lang: Lang }) {
                   delay: 0.12 + i * 0.09,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="rounded-xl flex items-start gap-2.5 group"
-                style={{ ...G.panel, padding:"0.6rem 0.9rem", flex:"1 1 0", minHeight:0 }}
+                className="rounded-xl flex items-center gap-2.5 group flex-shrink-0"
+                style={{ ...G.panel, padding:"0.55rem 0.9rem" }}
               >
-                {/* Number badge — fixed size, centered */}
+                {/* Number badge */}
                 <div style={{
                   width:40, minWidth:40, height:40,
                   display:"flex", alignItems:"center", justifyContent:"center",
@@ -97,7 +97,6 @@ export function Pillars({ lang }: { lang: Lang }) {
                   border:"1px solid rgba(200,145,58,0.28)",
                   borderRadius:"10px",
                   flexShrink:0,
-                  alignSelf:"center",
                 }}>
                   <span style={{
                     fontFamily:"DM Mono,monospace",
@@ -109,11 +108,11 @@ export function Pillars({ lang }: { lang: Lang }) {
 
                 <div style={{ flex:1, minWidth:0 }}>
                   <p style={{ fontSize:"0.97rem", fontWeight:600, color:"var(--ink)",
-                    lineHeight:1.25, marginBottom:"0.2rem" }}>
+                    lineHeight:1.25, marginBottom:"0.18rem" }}>
                     {title}
                   </p>
                   <p style={{ fontSize:"0.875rem", color:"var(--ink)", fontWeight:300,
-                    lineHeight:1.5, opacity:0.9 }}>
+                    lineHeight:1.45, opacity:0.9 }}>
                     {body}
                   </p>
                 </div>
