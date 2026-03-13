@@ -42,70 +42,67 @@ export function About({ lang }: { lang: Lang }) {
     <div ref={ref} className="relative flex w-full h-dvh overflow-hidden"
       style={{ background:"transparent" }}>
 
-      {/* Content — left 56% */}
       <div className="relative z-10 flex h-full flex-col m-full-width"
         style={{
           width:"56%",
           paddingLeft:"clamp(5.5rem,7vw,8rem)",
           paddingRight:"2rem",
-          paddingTop:"clamp(2rem,4vh,3.5rem)",
-          paddingBottom:"clamp(1.5rem,3vh,2.5rem)",
+          paddingTop:"clamp(1rem,3vh,3rem)",
+          paddingBottom:"clamp(0.8rem,2vh,2rem)",
         }}>
 
-        {/* Label */}
-        <motion.p {...fi(0.05)} className="mb-1 text-xs uppercase tracking-widest"
-          style={{ color:"var(--amber)", fontFamily:"DM Mono,monospace" }}>
+        <motion.p {...fi(0.05)} className="text-xs uppercase tracking-widest"
+          style={{ color:"var(--amber)", fontFamily:"DM Mono,monospace",
+            marginBottom:"clamp(0.1rem,0.4vh,0.35rem)" }}>
           {t(i18n.nav.about, lang)}
         </motion.p>
 
-        {/* Headline */}
-        <motion.h2 {...fi(0.1)} className="font-display mb-3 m-h2"
-          style={{ fontSize:"clamp(1.5rem,2.4vw,2.4rem)", fontWeight:300, lineHeight:1.2, color:"var(--ink)" }}>
+        <motion.h2 {...fi(0.1)} className="font-display m-h2"
+          style={{ fontSize:"clamp(1.4rem,2.2vw,2.4rem)", fontWeight:300,
+            lineHeight:1.2, color:"var(--ink)",
+            marginBottom:"clamp(0.4rem,1.2vh,1rem)" }}>
           {t(about.headline, lang)}
         </motion.h2>
 
-        {/* 2-col grid — scrollable on small screens */}
-        <div className="flex-1 min-h-0 grid gap-x-5 gap-y-4 m-2col"
-          style={{ gridTemplateColumns:"1fr 1fr", alignContent:"start", overflowY:"auto", overflowX:"hidden", scrollbarWidth:"none" }}>
+        {/* 2-col grid — flex-1 fills remaining height */}
+        <div className="flex-1 min-h-0 grid m-2col"
+          style={{ gridTemplateColumns:"1fr 1fr",
+            gap:"clamp(0.5rem,1.2vh,1rem) clamp(0.8rem,1.5vw,1.5rem)",
+            alignContent:"stretch" }}>
 
           {/* ── LEFT ── */}
-          <div className="flex flex-col gap-3">
+          <div style={{ display:"flex", flexDirection:"column",
+            gap:"clamp(0.4rem,1vh,0.75rem)", minHeight:0 }}>
 
-            {/* Body */}
-            <motion.div {...fi(0.16)} className="rounded-2xl p-4" style={G.panel}>
+            <motion.div {...fi(0.16)} className="rounded-2xl flex-1 min-h-0"
+              style={{ ...G.panel, padding:"clamp(0.6rem,1.5vh,1rem)" }}>
               {t(about.body, lang).split("\n\n").map((p:string, i:number) => (
-                <p key={i} className={`leading-relaxed${i>0?" mt-2.5":""}`}
-                  style={{ color:"var(--ink)", fontWeight:300, fontSize:"0.95rem" }}>{p}</p>
+                <p key={i} style={{ color:"var(--ink)", fontWeight:300,
+                  fontSize:"clamp(0.75rem,1.15vh,0.95rem)",
+                  lineHeight:1.55, marginTop: i>0 ? "clamp(0.3rem,0.8vh,0.6rem)" : 0 }}>{p}</p>
               ))}
             </motion.div>
 
-            {/* Currently — pulsing green-amber badge */}
             <motion.div {...fi(0.22)}
-              className="flex items-center gap-3 rounded-2xl px-4 py-3 relative overflow-hidden"
+              className="flex items-center gap-3 rounded-2xl relative overflow-hidden flex-shrink-0"
               style={{
                 background: "rgba(12,32,52,0.95)",
                 border: "1px solid rgba(52,211,153,0.35)",
                 boxShadow: "inset 0 1px 0 rgba(52,211,153,0.1), 0 4px 20px rgba(0,0,0,0.3)",
+                padding:"clamp(0.4rem,1vh,0.75rem) clamp(0.7rem,1.2vw,1rem)",
               }}>
-              {/* Pulsing glow behind dot */}
               <div className="relative flex-shrink-0">
                 <motion.span
-                  animate={{ scale:[1, 2.2, 1], opacity:[0.5, 0, 0.5] }}
+                  animate={{ scale:[1,2.2,1], opacity:[0.5,0,0.5] }}
                   transition={{ duration:2.2, repeat:Infinity, ease:"easeInOut" }}
-                  style={{
-                    position:"absolute", inset:"-4px",
-                    borderRadius:"50%",
-                    background:"rgba(52,211,153,0.25)",
-                  }} />
-                <span style={{
-                  display:"block", width:8, height:8, borderRadius:"50%",
-                  background:"#34D399",
-                  boxShadow:"0 0 8px rgba(52,211,153,0.7)",
-                  position:"relative", zIndex:1,
-                }} />
+                  style={{ position:"absolute", inset:"-4px", borderRadius:"50%",
+                    background:"rgba(52,211,153,0.25)" }} />
+                <span style={{ display:"block", width:8, height:8, borderRadius:"50%",
+                  background:"#34D399", boxShadow:"0 0 8px rgba(52,211,153,0.7)",
+                  position:"relative", zIndex:1 }} />
               </div>
-              <span className="leading-snug" style={{ color:"var(--ink)", fontSize:"0.93rem" }}>
-                <span style={{ fontWeight:600, color:"#34D399", fontSize:"0.78rem",
+              <span style={{ color:"var(--ink)", fontSize:"clamp(0.72rem,1.1vh,0.93rem)", lineHeight:1.4 }}>
+                <span style={{ fontWeight:600, color:"#34D399", fontSize:"clamp(0.65rem,0.9vh,0.78rem)",
                   letterSpacing:"0.04em" }}>
                   {t(about.currently.label, lang)}:
                 </span>{" "}
@@ -115,55 +112,47 @@ export function About({ lang }: { lang: Lang }) {
           </div>
 
           {/* ── RIGHT ── */}
-          <div className="flex flex-col gap-3">
+          <div style={{ display:"flex", flexDirection:"column",
+            gap:"clamp(0.4rem,1vh,0.75rem)", minHeight:0 }}>
 
-            {/* Toolbox */}
-            <motion.div {...fi(0.2)} className="rounded-2xl p-4" style={G.panel}>
-              <p className="mb-2.5 text-xs uppercase tracking-widest"
-                style={{ color:"#A8BDD0", fontFamily:"DM Mono,monospace" }}>
+            <motion.div {...fi(0.2)} className="rounded-2xl flex-shrink-0"
+              style={{ ...G.panel, padding:"clamp(0.6rem,1.5vh,1rem)" }}>
+              <p style={{ marginBottom:"clamp(0.3rem,0.7vh,0.6rem)", fontSize:"clamp(0.6rem,0.85vh,0.75rem)",
+                textTransform:"uppercase", letterSpacing:"0.1em", color:"#A8BDD0",
+                fontFamily:"DM Mono,monospace" }}>
                 {t(about.toolboxTitle, lang)}
               </p>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap" style={{ gap:"clamp(0.2rem,0.5vh,0.375rem)" }}>
                 {about.toolbox.map(tool => (
-                  <span key={tool} className="rounded-xl px-2.5 py-1 text-xs font-medium" style={G.pill}>
+                  <span key={tool} className="rounded-xl font-medium" style={{
+                    ...G.pill,
+                    padding:"clamp(0.15rem,0.4vh,0.25rem) clamp(0.4rem,0.6vw,0.625rem)",
+                    fontSize:"clamp(0.62rem,0.85vh,0.75rem)",
+                  }}>
                     {tool}
                   </span>
                 ))}
               </div>
             </motion.div>
 
-            {/* Direction — with large transparent arrow */}
-            <motion.div {...fi(0.28)} className="rounded-2xl p-4 relative overflow-hidden" style={G.badge}>
-              {/* Big transparent arrow watermark */}
+            <motion.div {...fi(0.28)} className="rounded-2xl relative overflow-hidden flex-1 min-h-0"
+              style={{ ...G.badge, padding:"clamp(0.6rem,1.5vh,1rem)" }}>
               <div className="pointer-events-none select-none absolute"
-                style={{
-                  right:"-8px", bottom:"-14px",
-                  fontSize:"7rem", lineHeight:1,
-                  color:"transparent",
-                  WebkitTextStroke:"1.5px rgba(200,145,58,0.18)",
-                  fontFamily:"DM Sans,sans-serif",
-                  fontWeight:700,
-                  zIndex:0,
-                }}>→</div>
-
-              <p className="mb-1.5 text-xs uppercase tracking-widest relative z-10"
-                style={{ color:"var(--amber)", fontFamily:"DM Mono,monospace" }}>
+                style={{ right:"-8px", bottom:"-14px", fontSize:"7rem", lineHeight:1,
+                  color:"transparent", WebkitTextStroke:"1.5px rgba(200,145,58,0.18)",
+                  fontFamily:"DM Sans,sans-serif", fontWeight:700, zIndex:0 }}>→</div>
+              <p style={{ marginBottom:"clamp(0.2rem,0.5vh,0.375rem)",
+                fontSize:"clamp(0.6rem,0.85vh,0.75rem)", textTransform:"uppercase",
+                letterSpacing:"0.1em", color:"var(--amber)", fontFamily:"DM Mono,monospace",
+                position:"relative", zIndex:1 }}>
                 {lang==="en" ? "Long-term direction" : "Moje směřování"}
               </p>
-              <p className="leading-relaxed relative z-10" style={{ fontSize:"0.93rem", color:"var(--ink)", fontWeight:300 }}>
+              <p style={{ fontSize:"clamp(0.72rem,1.1vh,0.93rem)", color:"var(--ink)",
+                fontWeight:300, lineHeight:1.5, position:"relative", zIndex:1 }}>
                 {lang==="en"
                   ? "Going forward, I want to focus more on IT Risk Management and operational resilience. It makes sense for me to work at the intersection of technology, risk and business — finding solutions that help organisations stay stable even in demanding situations."
                   : "Do budoucna se chci více zaměřit na IT Risk Management a provozní odolnost systémů. Dává mi smysl pracovat na pomezí technologie, rizika a businessu a hledat řešení, která pomáhají organizaci fungovat stabilně i v náročných situacích."}
               </p>
-            </motion.div>
-
-            {/* Scroll hint */}
-            <motion.div {...fi(0.38)}
-              className="flex items-center gap-2 mt-auto"
-              style={{ color:"#A8BDD0", fontFamily:"DM Mono,monospace",
-                fontSize:"0.54rem", letterSpacing:"0.16em", textTransform:"uppercase" }}>
-              <motion.span animate={{ y:[0,3,0] }} transition={{ repeat:Infinity, duration:2, ease:"easeInOut" }}>↓</motion.span>
-              <span>{lang==="en" ? "scroll for more" : "skroluj dál"}</span>
             </motion.div>
           </div>
         </div>

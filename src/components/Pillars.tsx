@@ -31,88 +31,77 @@ export function Pillars({ lang }: { lang: Lang }) {
       className="relative flex w-full h-dvh overflow-hidden"
       style={{ background:"transparent" }}>
 
-      {/* Blobs */}
       <div className="pointer-events-none absolute inset-0" style={{ zIndex:0 }}>
         <motion.div animate={{ x:[0,16,-6,0], y:[0,-12,10,0] }}
           transition={{ duration:24, repeat:Infinity, ease:"easeInOut" }}
           style={{ position:"absolute", top:"-8%", left:"-4%", width:"36vw", height:"36vw",
             borderRadius:"50%", background:"radial-gradient(circle,rgba(30,58,95,0.22) 0%,transparent 70%)" }} />
-        <motion.div animate={{ x:[0,-10,5,0], y:[0,10,-8,0] }}
-          transition={{ duration:20, repeat:Infinity, ease:"easeInOut", delay:3 }}
-          style={{ position:"absolute", bottom:"-10%", left:"30%", width:"24vw", height:"24vw",
-            borderRadius:"50%", background:"radial-gradient(circle,rgba(30,58,95,0.3) 0%,transparent 70%)" }} />
       </div>
 
-      {/* Content — left 56% beside photo */}
       <div className="relative z-10 flex h-full flex-col m-full-width"
         style={{
           width:"56%",
           paddingLeft:"clamp(5.5rem,7vw,8rem)",
           paddingRight:"2.5rem",
-          paddingTop:"clamp(1.4rem,2.5vh,2.5rem)",
-          paddingBottom:"clamp(1rem,2vh,1.8rem)",
+          paddingTop:"clamp(0.8rem,2vh,2rem)",
+          paddingBottom:"clamp(0.6rem,1.5vh,1.5rem)",
         }}>
 
-        {/* Label */}
         <motion.p
-          initial={{ opacity:0, y:-6 }} animate={ inView ? { opacity:1, y:0 } : {} }
+          initial={{ opacity:0 }} animate={ inView ? { opacity:1 } : {} }
           transition={{ duration:0.4, delay:0.05 }}
-          className="mb-1 text-xs uppercase tracking-widest"
-          style={{ color:"var(--amber)", fontFamily:"DM Mono,monospace" }}>
+          className="text-xs uppercase tracking-widest"
+          style={{ color:"var(--amber)", fontFamily:"DM Mono,monospace",
+            marginBottom:"clamp(0.1rem,0.4vh,0.35rem)" }}>
           {t(i18n.nav.about, lang)}
         </motion.p>
 
-        {/* Title */}
         <motion.h2
           initial={{ opacity:0, y:10 }} animate={ inView ? { opacity:1, y:0 } : {} }
           transition={{ duration:0.5, delay:0.1 }}
-          className="font-display mb-3 m-h2"
-          style={{ fontSize:"clamp(1.6rem,2.6vw,2.8rem)", fontWeight:300,
-            lineHeight:1.1, color:"var(--ink)" }}>
+          className="font-display m-h2"
+          style={{ fontSize:"clamp(1.4rem,2.4vw,2.8rem)", fontWeight:300,
+            lineHeight:1.1, color:"var(--ink)",
+            marginBottom:"clamp(0.4rem,1.2vh,1rem)" }}>
           {t(about.pillarsTitle, lang)}
         </motion.h2>
 
-        {/* 5 cards — scroll on small screens */}
-        <div className="flex-1 min-h-0 flex flex-col gap-2 m-pillars-cards" style={{ overflowY:"auto", overflowX:"hidden", justifyContent:"flex-start", scrollbarWidth:"none" }}>
+        {/* 5 cards — každá flex:1 aby rovnoměrně vyplnily výšku */}
+        <div className="flex-1 min-h-0 flex flex-col m-pillars-cards"
+          style={{ gap:"clamp(0.2rem,0.7vh,0.5rem)" }}>
           {about.pillars.map((pillar, i) => {
             const { num, title, body } = parsePillar(t(pillar, lang));
             return (
               <motion.div
                 key={i}
-                initial={{ opacity:0, y:28, scale:0.97 }}
+                initial={{ opacity:0, y:20, scale:0.97 }}
                 animate={ inView ? { opacity:1, y:0, scale:1 } : {} }
-                transition={{
-                  duration: 0.6,
-                  delay: 0.12 + i * 0.09,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="rounded-xl flex items-center gap-2.5 group flex-shrink-0"
-                style={{ ...G.panel, padding:"0.55rem 0.9rem" }}
+                transition={{ duration:0.5, delay:0.1 + i*0.08, ease:[0.22,1,0.36,1] }}
+                className="rounded-xl flex items-center gap-2.5 flex-1 min-h-0"
+                style={{ ...G.panel,
+                  padding:"clamp(0.3rem,0.9vh,0.65rem) clamp(0.5rem,0.8vw,0.9rem)" }}
               >
-                {/* Number badge */}
                 <div style={{
-                  width:40, minWidth:40, height:40,
+                  width:"clamp(28px,3vh,38px)", minWidth:"clamp(28px,3vh,38px)",
+                  height:"clamp(28px,3vh,38px)",
                   display:"flex", alignItems:"center", justifyContent:"center",
                   background:"rgba(200,145,58,0.1)",
                   border:"1px solid rgba(200,145,58,0.28)",
-                  borderRadius:"10px",
-                  flexShrink:0,
+                  borderRadius:"8px", flexShrink:0,
                 }}>
-                  <span style={{
-                    fontFamily:"DM Mono,monospace",
-                    fontSize:"1rem", fontWeight:700,
-                    color:"var(--amber)", letterSpacing:"0.04em",
-                    lineHeight:1,
-                  }}>{num}</span>
+                  <span style={{ fontFamily:"DM Mono,monospace",
+                    fontSize:"clamp(0.7rem,1.1vh,0.95rem)", fontWeight:700,
+                    color:"var(--amber)", lineHeight:1 }}>{num}</span>
                 </div>
 
                 <div style={{ flex:1, minWidth:0 }}>
-                  <p style={{ fontSize:"0.97rem", fontWeight:600, color:"var(--ink)",
-                    lineHeight:1.25, marginBottom:"0.18rem" }}>
+                  <p style={{ fontSize:"clamp(0.75rem,1.25vh,0.95rem)", fontWeight:600,
+                    color:"var(--ink)", lineHeight:1.2,
+                    marginBottom:"clamp(0.05rem,0.25vh,0.15rem)" }}>
                     {title}
                   </p>
-                  <p style={{ fontSize:"0.875rem", color:"var(--ink)", fontWeight:300,
-                    lineHeight:1.45, opacity:0.9 }}>
+                  <p style={{ fontSize:"clamp(0.68rem,1.05vh,0.85rem)", color:"var(--ink)",
+                    fontWeight:300, lineHeight:1.38, opacity:0.9 }}>
                     {body}
                   </p>
                 </div>
