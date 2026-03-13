@@ -144,10 +144,7 @@ export function Experience({ lang }: { lang: Lang }) {
                         <div className="flex items-start gap-2.5 px-3.5 py-2.5 flex-shrink-0" style={G.security}>
                           <span style={{ fontSize:"0.95rem", flexShrink:0, marginTop:"1px" }}>🛡️</span>
                           <p style={{ color:"rgba(167,243,208,0.95)", fontWeight:300, fontSize:"0.82rem", lineHeight:1.5 }}>
-                            {lang === "en"
-                              active.securityText ? t(active.securityText, lang) : (lang === "en"
-                              ? "Work in an environment with elevated security requirements."
-                              : "Práce v prostředí s vyššími bezpečnostními požadavky.")}
+                            {active.securityText ? t(active.securityText, lang) : (lang === "en" ? "Work in an environment with elevated security requirements." : "Práce v prostředí s vyššími bezpečnostními požadavky.")}
                           </p>
                         </div>
                       )}
@@ -294,10 +291,7 @@ export function Experience({ lang }: { lang: Lang }) {
               <div style={{ ...G.security, display:"flex", gap:"0.6rem", padding:"0.7rem 0.85rem", marginBottom:"0.75rem" }}>
                 <span style={{ fontSize:"0.9rem", flexShrink:0 }}>🛡️</span>
                 <p style={{ color:"rgba(167,243,208,0.95)", fontWeight:300, fontSize:"0.78rem", lineHeight:1.5 }}>
-                  {lang === "en"
-                    active.securityText ? t(active.securityText, lang) : (lang === "en"
-                      ? "Elevated security environment."
-                      : "Prostředí s vyššími bezpečnostními požadavky.")}
+                  {active.securityText ? t(active.securityText, lang) : (lang === "en" ? "Elevated security environment." : "Prostředí s vyššími bezpečnostními požadavky.")}
                 </p>
               </div>
             )}
