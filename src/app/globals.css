@@ -166,32 +166,30 @@ body::before {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   MOBILE ≤ 768px  —  každá sekce = vlastní stránka
-   Desktop > 768px: BEZE ZMĚNY
+   MOBILE ≤ 768px
 ═══════════════════════════════════════════════════════════════ */
 
-/* Desktop defaults — mobile elements hidden */
+/* Desktop defaults */
 .mobile-nav-trigger { display: none !important; }
 .m-hero-mobile      { display: none !important; }
 .m-exp-mobile       { display: none !important; }
-
-/* Desktop elements visible */
-.m-hero-desktop { display: flex; }
-.m-exp-desktop  { display: flex; width: 100%; }
+.m-hero-desktop     { display: flex; }
+.m-exp-desktop      { display: flex; width: 100%; }
 
 @media (max-width: 768px) {
 
-  /* ── Nav ── */
+  /* Nav */
   .mobile-nav-trigger { display: flex !important; }
   .side-rail-wrap     { display: none !important; }
   .scroll-photo-wrap  { display: none !important; }
 
-  /* ── Layout swap ── */
-  .m-hero-desktop { display: none !important; }
-  .m-exp-desktop  { display: none !important; }
-
+  /* Layout swap */
+  .m-hero-desktop  { display: none !important; }
+  .m-exp-desktop   { display: none !important; }
   .m-hero-vignette { display: none !important; }
-  .hero-root { background: transparent !important; }
+  .hero-root       { background: transparent !important; }
+
+  .m-hero-mobile {
     display: flex !important;
     flex-direction: column;
     position: absolute;
@@ -207,7 +205,7 @@ body::before {
     display: block !important;
   }
 
-  /* ── Stránky: každá sekce = 100dvh, obsah scrolluje uvnitř ── */
+  /* Stránky: každá sekce = 100dvh */
   html { scroll-snap-type: y mandatory; }
 
   section[data-slide] {
@@ -221,7 +219,7 @@ body::before {
   }
   section[data-slide]::-webkit-scrollbar { display: none; }
 
-  /* ── .m-section: vnitřní content div ── */
+  /* Vnitřní content div */
   .m-section {
     width: 100% !important;
     height: auto !important;
@@ -246,26 +244,28 @@ body::before {
   /* Uvolni fixed výšky */
   .m-section .flex-1, .m-section .min-h-0,
   .m-full-width .flex-1, .m-full-width .min-h-0 {
-    height: auto !important; min-height: 0 !important;
-    flex: unset !important; overflow: visible !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex: unset !important;
+    overflow: visible !important;
   }
 
-  /* ── Gridy ── */
+  /* Gridy */
   .m-2col { grid-template-columns: 1fr !important; grid-template-rows: unset !important; }
   .m-3col { grid-template-columns: 1fr 1fr !important; grid-template-rows: unset !important; }
 
-  /* ── Contact ── */
+  /* Contact */
   .m-contact-name-email { grid-template-columns: 1fr !important; }
   .m-section form { height: auto !important; }
   .m-section .flex.h-full { height: auto !important; }
 
-  /* ── Headings ── */
+  /* Headings */
   h2.m-h2 { font-size: clamp(1.35rem, 5vw, 1.8rem) !important; margin-bottom: 0.6rem !important; }
 
-  /* ── Pillars ── */
+  /* Pillars */
   .m-pillars-cards { overflow: visible !important; height: auto !important; }
 
-  /* ── Projects ── */
+  /* Projects */
   .m-projects-grid > div { height: auto !important; }
 
   /* About/Pillars outer */
@@ -276,20 +276,6 @@ body::before {
   .m-3col { grid-template-columns: 1fr !important; }
 }
 
-/* ── Desktop: scrollable inner areas on small viewport heights ── */
-.flex-1.min-h-0[style*="overflowY"] { scrollbar-width: none; }
-.flex-1.min-h-0[style*="overflowY"]::-webkit-scrollbar { display: none; }
-
-/* Fade bottom edge on About/Pillars content when overflowing */
-.about-scroll-fade, .pillars-scroll-fade {
-  position: relative;
-}
-.about-scroll-fade::after, .pillars-scroll-fade::after {
-  content: "";
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3rem;
-  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 5;
-}
+/* Desktop: scrollable inner areas on small viewport heights */
+.flex-1.min-h-0 { scrollbar-width: none; }
+.flex-1.min-h-0::-webkit-scrollbar { display: none; }
