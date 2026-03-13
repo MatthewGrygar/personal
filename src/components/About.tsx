@@ -64,21 +64,21 @@ export function About({ lang }: { lang: Lang }) {
           {t(about.headline, lang)}
         </motion.h2>
 
-        {/* 2-col grid — flex-1 fills remaining height */}
+        {/* 2-col grid */}
         <div className="flex-1 min-h-0 grid m-2col"
           style={{ gridTemplateColumns:"1fr 1fr",
             gap:"clamp(0.5rem,1.2vh,1rem) clamp(0.8rem,1.5vw,1.5rem)",
-            alignContent:"stretch" }}>
+            alignContent:"start" }}>
 
           {/* ── LEFT ── */}
           <div style={{ display:"flex", flexDirection:"column",
             gap:"clamp(0.4rem,1vh,0.75rem)", minHeight:0 }}>
 
-            <motion.div {...fi(0.16)} className="rounded-2xl flex-1 min-h-0"
+            <motion.div {...fi(0.16)} className="rounded-2xl"
               style={{ ...G.panel, padding:"clamp(0.6rem,1.5vh,1rem)" }}>
               {t(about.body, lang).split("\n\n").map((p:string, i:number) => (
                 <p key={i} style={{ color:"var(--ink)", fontWeight:300,
-                  fontSize:"clamp(0.75rem,1.15vh,0.95rem)",
+                  fontSize:"clamp(0.82rem,1.2vh,0.95rem)",
                   lineHeight:1.55, marginTop: i>0 ? "clamp(0.3rem,0.8vh,0.6rem)" : 0 }}>{p}</p>
               ))}
             </motion.div>
@@ -135,7 +135,7 @@ export function About({ lang }: { lang: Lang }) {
               </div>
             </motion.div>
 
-            <motion.div {...fi(0.28)} className="rounded-2xl relative overflow-hidden flex-1 min-h-0"
+            <motion.div {...fi(0.28)} className="rounded-2xl relative overflow-hidden"
               style={{ ...G.badge, padding:"clamp(0.6rem,1.5vh,1rem)" }}>
               <div className="pointer-events-none select-none absolute"
                 style={{ right:"-8px", bottom:"-14px", fontSize:"7rem", lineHeight:1,

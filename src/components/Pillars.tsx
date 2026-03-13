@@ -66,9 +66,9 @@ export function Pillars({ lang }: { lang: Lang }) {
           {t(about.pillarsTitle, lang)}
         </motion.h2>
 
-        {/* 5 cards — každá flex:1 aby rovnoměrně vyplnily výšku */}
+        {/* 5 cards — přirozená výška, rovnoměrné mezery */}
         <div className="flex-1 min-h-0 flex flex-col m-pillars-cards"
-          style={{ gap:"clamp(0.2rem,0.7vh,0.5rem)" }}>
+          style={{ gap:"clamp(0.25rem,0.9vh,0.65rem)", justifyContent:"flex-start" }}>
           {about.pillars.map((pillar, i) => {
             const { num, title, body } = parsePillar(t(pillar, lang));
             return (
@@ -77,31 +77,31 @@ export function Pillars({ lang }: { lang: Lang }) {
                 initial={{ opacity:0, y:20, scale:0.97 }}
                 animate={ inView ? { opacity:1, y:0, scale:1 } : {} }
                 transition={{ duration:0.5, delay:0.1 + i*0.08, ease:[0.22,1,0.36,1] }}
-                className="rounded-xl flex items-center gap-2.5 flex-1 min-h-0"
+                className="rounded-xl flex items-center gap-2.5 flex-shrink-0"
                 style={{ ...G.panel,
-                  padding:"clamp(0.3rem,0.9vh,0.65rem) clamp(0.5rem,0.8vw,0.9rem)" }}
+                  padding:"clamp(0.4rem,1vh,0.7rem) clamp(0.5rem,0.8vw,0.9rem)" }}
               >
                 <div style={{
-                  width:"clamp(28px,3vh,38px)", minWidth:"clamp(28px,3vh,38px)",
-                  height:"clamp(28px,3vh,38px)",
+                  width:"clamp(30px,3.2vh,40px)", minWidth:"clamp(30px,3.2vh,40px)",
+                  height:"clamp(30px,3.2vh,40px)",
                   display:"flex", alignItems:"center", justifyContent:"center",
                   background:"rgba(200,145,58,0.1)",
                   border:"1px solid rgba(200,145,58,0.28)",
                   borderRadius:"8px", flexShrink:0,
                 }}>
                   <span style={{ fontFamily:"DM Mono,monospace",
-                    fontSize:"clamp(0.7rem,1.1vh,0.95rem)", fontWeight:700,
+                    fontSize:"clamp(0.72rem,1.1vh,0.95rem)", fontWeight:700,
                     color:"var(--amber)", lineHeight:1 }}>{num}</span>
                 </div>
 
                 <div style={{ flex:1, minWidth:0 }}>
-                  <p style={{ fontSize:"clamp(0.75rem,1.25vh,0.95rem)", fontWeight:600,
+                  <p style={{ fontSize:"clamp(0.82rem,1.2vh,0.95rem)", fontWeight:600,
                     color:"var(--ink)", lineHeight:1.2,
-                    marginBottom:"clamp(0.05rem,0.25vh,0.15rem)" }}>
+                    marginBottom:"clamp(0.1rem,0.3vh,0.18rem)" }}>
                     {title}
                   </p>
-                  <p style={{ fontSize:"clamp(0.68rem,1.05vh,0.85rem)", color:"var(--ink)",
-                    fontWeight:300, lineHeight:1.38, opacity:0.9 }}>
+                  <p style={{ fontSize:"clamp(0.78rem,1.1vh,0.88rem)", color:"var(--ink)",
+                    fontWeight:300, lineHeight:1.45, opacity:0.9 }}>
                     {body}
                   </p>
                 </div>
