@@ -106,9 +106,9 @@ export function Experience({ lang }: { lang: Lang }) {
 
                 <div className="flex flex-col flex-1 min-h-0 p-5 overflow-hidden">
 
-                  {/* Header: název + firma/datum vlevo, tagy celou šířkou nahoře */}
+                  {/* Header: název + firma/datum */}
                   <div className="flex-shrink-0 mb-2">
-                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 mb-1.5">
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
                       <h3 className="font-display"
                         style={{ fontSize:"clamp(1rem,1.6vw,1.35rem)", fontWeight:400, color:"var(--ink)" }}>
                         {t(active.role, lang)}
@@ -117,26 +117,21 @@ export function Experience({ lang }: { lang: Lang }) {
                         {active.company} · {t(active.period, lang)}
                       </span>
                     </div>
-                    {/* Tagy — celá šířka, všechny */}
-                    <div className="flex flex-wrap gap-1.5 mb-2">
-                      {active.tags.map((tag: string) => (
-                        <span key={tag} className="tag-pill">{tag}</span>
-                      ))}
-                    </div>
-                    {/* Popis pozice — výrazný text */}
-                    {active.description && (
-                      <p style={{ color:"var(--ink)", fontSize:"0.9rem", fontWeight:500,
-                        lineHeight:1.5, fontStyle:"italic",
-                        borderLeft:"2px solid rgba(200,145,58,0.4)",
-                        paddingLeft:"0.7rem" }}>
-                        {t(active.description, lang)}
-                      </p>
-                    )}
                   </div>
 
                   {/* 2-col body */}
                   <div className="flex-1 min-h-0 grid gap-3 m-2col" style={{ gridTemplateColumns:"1fr 1fr" }}>
+                    {/* LEVÝ sloupec: popis + bullets */}
                     <div className="flex flex-col gap-1.5 overflow-hidden">
+                      {/* Popis pozice nahoře — výrazný */}
+                      {active.description && (
+                        <p style={{ color:"var(--ink)", fontSize:"0.88rem", fontWeight:500,
+                          lineHeight:1.5, fontStyle:"italic",
+                          borderLeft:"2px solid rgba(200,145,58,0.4)",
+                          paddingLeft:"0.7rem", marginBottom:"0.5rem", flexShrink:0 }}>
+                          {t(active.description, lang)}
+                        </p>
+                      )}
                       {t(active.bullets, lang).map((b: string, i: number) => (
                         <div key={i} className="flex items-start gap-2">
                           <span className="mt-[7px] flex-shrink-0 rounded-full"
@@ -145,7 +140,14 @@ export function Experience({ lang }: { lang: Lang }) {
                         </div>
                       ))}
                     </div>
+                    {/* PRAVÝ sloupec: tagy nahoře, pak security, pak impacts */}
                     <div className="flex flex-col gap-2.5 relative">
+                      {/* Tagy — celá šířka pravého sloupce */}
+                      <div className="flex flex-wrap gap-1.5 flex-shrink-0">
+                        {active.tags.map((tag: string) => (
+                          <span key={tag} className="tag-pill">{tag}</span>
+                        ))}
+                      </div>
                       {active.security && (
                         <div className="flex items-start gap-2.5 px-3.5 py-2.5 flex-shrink-0" style={G.security}>
                           <span style={{ fontSize:"0.95rem", flexShrink:0, marginTop:"1px" }}>🛡️</span>

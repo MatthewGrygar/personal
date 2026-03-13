@@ -21,8 +21,8 @@ export function Pillars({ lang }: { lang: Lang }) {
   const about  = i18n.about;
 
   const parsePillar = (text: string) => {
-    const m = text.match(/^(\d+)\s*—\s*([^:]+):\s*(.+)$/s);
-    if (m) return { num: m[1], title: m[2].trim(), body: m[3].trim() };
+    const parts = text.split("|");
+    if (parts.length === 3) return { num: parts[0].trim(), title: parts[1].trim(), body: parts[2].trim() };
     return { num:"", title:"", body: text };
   };
 

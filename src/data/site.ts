@@ -41,24 +41,24 @@ export const i18n = {
     pillarsTitle: { en: "What I bring", cs: "Co přináším" },
     pillars: [
       {
-        en: "01 — Incident resolution under pressure: I have led Major incidents with full production impact — coordinating teams of specialists across organisations, managing escalation towards management and maintaining oversight of recovery priorities. The goal was always to bring the system back to a stable state quickly and without unnecessary side effects.",
-        cs: "01 — Řešení incidentů pod tlakem: Vedl jsem Major incidenty s dopadem na celou produkci – koordinoval jsem týmy specialistů napříč organizacemi, zajišťoval eskalaci směrem k managementu a udržoval přehled nad prioritami obnovy. Cílem bylo vždy dovést systém zpět do stabilního stavu rychle a bez zbytečných vedlejších dopadů."
+        en: "01|Incident resolution under pressure|I have led Major incidents with full production impact — coordinating teams of specialists across organisations, managing escalation towards management and maintaining oversight of recovery priorities. The goal was always to bring the system back to a stable state quickly and without unnecessary side effects.",
+        cs: "01|Řešení incidentů pod tlakem|Vedl jsem Major incidenty s dopadem na celou produkci – koordinoval jsem týmy specialistů napříč organizacemi, zajišťoval eskalaci směrem k managementu a udržoval přehled nad prioritami obnovy. Cílem bylo vždy dovést systém zpět do stabilního stavu rychle a bez zbytečných vedlejších dopadů."
       },
       {
-        en: "02 — Identifying and managing operational risks: From practice I know where weaknesses most often appear in IT operations — poorly configured access roles, unclear escalation paths, insufficient segmentation or missing capacity. I try to name these risks before they cause a problem and set up processes so they don't recur.",
-        cs: "02 – Identifikace a řízení provozních rizik: Z praxe vím, kde se v IT provozu nejčastěji objevují slabá místa – špatně nastavené přístupové role, nejasné eskalační cesty, nedostatečná segmentace nebo chybějící kapacity. Snažím se tato rizika pojmenovat dřív, než způsobí problém, a nastavit procesy tak, aby se neopakovala."
+        en: "02|Identifying and managing operational risks|From practice I know where weaknesses most often appear in IT operations — poorly configured access roles, unclear escalation paths, insufficient segmentation or missing capacity. I try to name these risks before they cause a problem and set up processes so they don't recur.",
+        cs: "02|Identifikace a řízení provozních rizik|Z praxe vím, kde se v IT provozu nejčastěji objevují slabá místa – špatně nastavené přístupové role, nejasné eskalační cesty, nedostatečná segmentace nebo chybějící kapacity. Snažím se tato rizika pojmenovat dřív, než způsobí problém, a nastavit procesy tak, aby se neopakovala."
       },
       {
-        en: "03 — Decision-making in critical operations: I have worked on systems with high availability requirements — from a government eGovernment system to infrastructure of hundreds of devices in operation. In such environments you need to decide quickly, systematically and with awareness of the impact of every step on service stability.",
-        cs: "03 – Rozhodování v kritickém provozu: Pracoval jsem na systémech s vysokými nároky na dostupnost – od státního eGovernment systému po infrastrukturu stovek zařízení v provozu. V takovém prostředí je potřeba rozhodovat rychle, systematicky a s vědomím dopadu každého kroku na stabilitu služby."
+        en: "03|Decision-making in critical operations|I have worked on systems with high availability requirements — from a government eGovernment system to infrastructure of hundreds of devices in operation. In such environments you need to decide quickly, systematically and with awareness of the impact of every step on service stability.",
+        cs: "03|Rozhodování v kritickém provozu|Pracoval jsem na systémech s vysokými nároky na dostupnost – od státního eGovernment systému po infrastrukturu stovek zařízení v provozu. V takovém prostředí je potřeba rozhodovat rychle, systematicky a s vědomím dopadu každého kroku na stabilitu služby."
       },
       {
-        en: "04 — Communication across technology and business: I have experience communicating with both technical teams and management and customers. I can translate technical problems into a business context — clearly, factually and without unnecessary distortion.",
-        cs: "04 – Komunikace napříč technologií a businessem: Mám zkušenost s komunikací jak s technickými týmy, tak s managementem a zákazníky. Technické problémy dokážu přeložit do business kontextu – srozumitelně, věcně a bez zbytečného zkreslení."
+        en: "04|Communication across technology and business|I have experience communicating with both technical teams and management and customers. I can translate technical problems into a business context — clearly, factually and without unnecessary distortion.",
+        cs: "04|Komunikace napříč technologií a businessem|Mám zkušenost s komunikací jak s technickými týmy, tak s managementem a zákazníky. Technické problémy dokážu přeložit do business kontextu – srozumitelně, věcně a bez zbytečného zkreslení."
       },
       {
-        en: "05 — Process as the foundation of stability: I don't believe in one-off heroic fixes. Long-term system stability rests on well-designed processes, clearly defined responsibilities and the ability to learn from every incident — that is the foundation on which IT Risk Management works.",
-        cs: "05 – Proces jako základ stability: Nevěřím na jednorázová hrdinská řešení. Dlouhodobá stabilita systémů stojí na dobře nastavených procesech, jasně definovaných odpovědnostech a schopnosti poučit se z každého incidentu – to je základ, na kterém IT Risk Management funguje."
+        en: "05|Process as the foundation of stability|I don't believe in one-off heroic fixes. Long-term system stability rests on well-designed processes, clearly defined responsibilities and the ability to learn from every incident — that is the foundation on which IT Risk Management works.",
+        cs: "05|Proces jako základ stability|Nevěřím na jednorázová hrdinská řešení. Dlouhodobá stabilita systémů stojí na dobře nastavených procesech, jasně definovaných odpovědnostech a schopnosti poučit se z každého incidentu – to je základ, na kterém IT Risk Management funguje."
       }
     ],
     toolboxTitle: { en: "Toolbox", cs: "Toolbox" },
