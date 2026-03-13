@@ -35,30 +35,30 @@ export const i18n = {
       cs: "Stabilita pod tlakem"
     },
     body: {
-      en: "Experience in senior support and operations management has taught me to stay calm, structured and decisive when incident impact rises and response time shrinks.\n\nMy professional trajectory leads from resolving operational incidents and stabilising production systems to a deeper focus on IT risk management, service availability and systematic operational improvement.\n\nI operate at the intersection of technical depth and business impact. I understand infrastructure, operations and access models — and am currently also working with Identity & Access Management solutions.",
-      cs: "Zkušenosti ze seniorního supportu a provozního řízení mě naučily zůstat klidný, strukturovaný a rozhodný ve chvílích, kdy roste dopad incidentu a čas na reakci se zkracuje.\n\nMoje profesní trajektorie vede od řešení provozních incidentů a stabilizace produkčních systémů k hlubšímu zaměření na řízení IT rizik, dostupnost služeb a systematické zlepšování provozu.\n\nPohybuji se na průsečíku technické hloubky a business dopadu. Rozumím infrastruktuře, provozu i přístupovým modelům a v současnosti se věnuji také Identity & Access Management řešení."
+      en: "I help organisations stabilise critical systems when incidents escalate and time pressure rises — and then set up processes so it doesn't happen again.\n\nMy experience leads from direct work in production operations and coordination of Major/P1 incidents through identification of operational risks to operation and management of Identity & Access Management solutions in regulated sectors.\n\nI bring a combination of technical depth and operational overview — I understand processes, systems and what breaks at 3am. Long-term I am heading towards IT Risk Management and operational risk management.",
+      cs: "Pomáhám organizacím stabilizovat kritické systémy v době, kdy se incidenty stupňují a zvyšuje se časový tlak – a pak nastavit procesy, aby se to neopakovalo.\n\nMoje zkušenosti vedou od přímé práce v produkčních operacích a koordinace Major/P1 incidentů přes identifikaci provozních rizik až po provoz a správu Identity & Access Management řešení v regulovaných sektorech.\n\nPřináším kombinaci technické hloubky a provozního přehledu – rozumím procesům, systémům i tomu, co se pokazí ve tři ráno. Dlouhodobě směřuji k IT Risk Managementu a řízení provozních rizik"
     },
     pillarsTitle: { en: "What I bring", cs: "Co přináším" },
     pillars: [
       {
-        en: "01 — Incident resolution under pressure: I have led incidents with full production impact, coordinated smaller teams of specialists across organisations and communicated progress to management. My role was mainly to maintain oversight, prioritise next steps and bring the system back to a stable state.",
-        cs: "01 — Řešení incidentů pod tlakem: Vedl jsem řešení incidentů s dopadem na celou produkci, koordinoval menší týmy specialistů napříč organizacemi a komunikoval průběh řešení směrem k managementu. Mou rolí bylo hlavně držet přehled, prioritizovat další kroky a dovést systém zpět do stabilního stavu."
+        en: "01 — Incident resolution under pressure: I have led Major incidents with full production impact — coordinating teams of specialists across organisations, managing escalation towards management and maintaining oversight of recovery priorities. The goal was always to bring the system back to a stable state quickly and without unnecessary side effects.",
+        cs: "01 — Řešení incidentů pod tlakem: Vedl jsem Major incidenty s dopadem na celou produkci – koordinoval jsem týmy specialistů napříč organizacemi, zajišťoval eskalaci směrem k managementu a udržoval přehled nad prioritami obnovy. Cílem bylo vždy dovést systém zpět do stabilního stavu rychle a bez zbytečných vedlejších dopadů."
       },
       {
-        en: "02 — Identifying operational risks: From my experience I know where weaknesses most often appear in IT operations — poorly configured roles, unclear escalation paths, insufficient segmentation or missing capacity. I try to name these problems and set up processes so they don't recur.",
-        cs: "02 — Identifikace provozních rizik: Z mojí praxe vím, kde se v IT provozu nejčastěji objevují slabá místa, ať už jsou to špatně nastavené role, nejasné eskalační cesty, nedostatečná segmentace nebo chybějící kapacity. Snažím se tyto problémy pojmenovat a nastavit procesy tak, aby se neopakovaly."
+        en: "02 — Identifying and managing operational risks: From practice I know where weaknesses most often appear in IT operations — poorly configured access roles, unclear escalation paths, insufficient segmentation or missing capacity. I try to name these risks before they cause a problem and set up processes so they don't recur.",
+        cs: "02 – Identifikace a řízení provozních rizik: Z praxe vím, kde se v IT provozu nejčastěji objevují slabá místa – špatně nastavené přístupové role, nejasné eskalační cesty, nedostatečná segmentace nebo chybějící kapacity. Snažím se tato rizika pojmenovat dřív, než způsobí problém, a nastavit procesy tak, aby se neopakovala."
       },
       {
-        en: "03 — Decision-making in production: I have worked on systems with large numbers of users and devices — from a government eGovernment system to infrastructure of hundreds of devices in operation. In such environments you need to decide quickly, but also systematically.",
-        cs: "03 — Rozhodování v produkčním provozu: Pracoval jsem na systémech s velkým počtem uživatelů i zařízení — od státního eGovernment systému až po infrastrukturu stovek zařízení v provozu. V takovém prostředí je potřeba rozhodovat rychle, ale zároveň systematicky."
+        en: "03 — Decision-making in critical operations: I have worked on systems with high availability requirements — from a government eGovernment system to infrastructure of hundreds of devices in operation. In such environments you need to decide quickly, systematically and with awareness of the impact of every step on service stability.",
+        cs: "03 – Rozhodování v kritickém provozu: Pracoval jsem na systémech s vysokými nároky na dostupnost – od státního eGovernment systému po infrastrukturu stovek zařízení v provozu. V takovém prostředí je potřeba rozhodovat rychle, systematicky a s vědomím dopadu každého kroku na stabilitu služby."
       },
       {
-        en: "04 — Communication between technology and business: I have experience communicating with both technical teams and management or customers. I try to explain technical problems clearly while keeping communication factual and transparent.",
-        cs: "04 — Komunikace mezi technologií a business: Mám zkušenost s komunikací jak s technickými týmy, tak s managementem nebo zákazníky. Snažím se vysvětlovat technické problémy srozumitelně a zároveň držet komunikaci věcnou a transparentní."
+        en: "04 — Communication across technology and business: I have experience communicating with both technical teams and management and customers. I can translate technical problems into a business context — clearly, factually and without unnecessary distortion.",
+        cs: "04 – Komunikace napříč technologií a businessem: Mám zkušenost s komunikací jak s technickými týmy, tak s managementem a zákazníky. Technické problémy dokážu přeložit do business kontextu – srozumitelně, věcně a bez zbytečného zkreslení."
       },
       {
-        en: "05 — Focus on process and stability: I don't believe in one-off heroic fixes. Long-term system stability, in my view, rests on well-designed processes, clear responsibilities and the ability to learn from incidents.",
-        cs: "05 — Důraz na proces a stabilitu: Nevěřím na jednorázová hrdinská řešení. Dlouhodobá stabilita systémů podle mě stojí na dobře nastavených procesech, jasných odpovědnostech a schopnosti poučit se z incidentů."
+        en: "05 — Process as the foundation of stability: I don't believe in one-off heroic fixes. Long-term system stability rests on well-designed processes, clearly defined responsibilities and the ability to learn from every incident — that is the foundation on which IT Risk Management works.",
+        cs: "05 – Proces jako základ stability: Nevěřím na jednorázová hrdinská řešení. Dlouhodobá stabilita systémů stojí na dobře nastavených procesech, jasně definovaných odpovědnostech a schopnosti poučit se z každého incidentu – to je základ, na kterém IT Risk Management funguje."
       }
     ],
     toolboxTitle: { en: "Toolbox", cs: "Toolbox" },
@@ -73,52 +73,62 @@ export const i18n = {
         en: "System Engineer – Identity & Access Management (Trask, 2025–present)",
         cs: "System Engineer – Identity & Access Management (Trask, 2025–současnost)"
       }
+    },
+    direction: {
+      en: "Going forward, I want to focus on IT Risk Management — identification and management of operational risks, IT service governance and building processes that protect organisations from outages even in demanding situations.\nIt makes sense for me to work at the intersection of technology, risk and business — where a technical decision has a direct impact on operational stability and security.",
+      cs: "Do budoucna se chci zaměřit na IT Risk Management – identifikaci a řízení provozních rizik, governance IT služeb a budování procesů, které organizaci chrání před výpadky i v náročných situacích.\nDává mi smysl pracovat na pomezí technologie, rizika a businessu – kde technické rozhodnutí má přímý dopad na stabilitu a bezpečnost provozu."
     }
   },
 
   experience: {
-    headline: { en: "Experience forged in the hardest moments", cs: "Zkušenosti vykované v nejtěžších chvílích" },
+    headline: {
+      en: "Experience from live operations where failure is not an option",
+      cs: "Zkušenosti z ostrého provozu, kde selhání není možnost"
+    },
     items: [
       {
         role:    { en: "System Engineer – Identity & Access Management", cs: "System Engineer – Identity & Access Management" },
         company: "Trask",
         logo:    "/logo-trask.png",
+        security: true,
+        securityText: {
+          en: "Work on projects within environments of regulated financial institutions. Emphasis was placed on process accuracy, audit trail of every change and zero tolerance for security deviations.",
+          cs: "Práce na projektech v rámci prostředí regulovaných finančních institucí. Byl kladen důraz na přesnost v procesech, audit trail každé změny a nulovou toleranci k bezpečnostním odchylkám."
+        },
         period:  { en: "Jan 2025 – present", cs: "01/2025 – současnost" },
         tags:    ["IAM", "IBM ITIM", "ISVG", "LDAP", "DB2", "WebSphere (WAS)", "Access Management", "Windows Server", "Linux"],
+        description: {
+          en: "Operation and management of IAM solutions for enterprise clients in regulated sectors (finance, energy).",
+          cs: "Provoz a správa IAM řešení u enterprise klientů v regulovaných sektorech (finance, energetika)."
+        },
         bullets: {
           en: [
-            "Implementation and operational stability of IAM solutions for enterprise clients in regulated sectors (finance, energy).",
             "Installation and configuration of IBM IAM stack: ITIM, ISVG, DB2, LDAP, WebSphere (WAS) on Windows Server.",
             "Upgrade of existing IAM environments, configuration of instances and integration links.",
-            "Access governance: configuration of roles, access permissions, notifications (password changes, role assignments).",
+            "Access governance: configuration of roles, access permissions and notifications (password changes, role assignments).",
             "Technical analysis in ISVG (Java component integrator) — error analysis, use-case scenario simulation.",
             "Collaboration with development team on GUI modifications; support for IAM-related incidents.",
             "Creation of reports from LDAP, testing of access scenarios, co-authoring implementation specifications."
           ],
           cs: [
-            "Implementace a provozní stabilita IAM řešení u enterprise klientů v regulovaných sektorech (finance, energetika).",
             "Instalace a konfigurace IBM IAM stacku: ITIM, ISVG, DB2, LDAP, WebSphere (WAS) na Windows Serveru.",
             "Upgrade existujících IAM prostředí, konfigurace instancí a integračních vazeb.",
-            "Access governance: konfigurace rolí, přístupových oprávnění, notifikací (změny hesel, role).",
-            "Technická analýza v ISVG (integrátor Java komponent) — analýza chyb, simulace use-case scénářů.",
+            "Access governance: konfigurace rolí, přístupových oprávnění a notifikací (změny hesel, přiřazení rolí).",
+            "Technická analýza v ISVG (integrátor Java komponent) – analýza chyb, simulace use-case scénářů.",
             "Spolupráce s vývojovým týmem při úpravách GUI; podpora incidentů souvisejících s IAM.",
             "Tvorba reportů z LDAP, testování přístupových scénářů, spolupráce na implementačních specifikacích."
           ]
         },
         impacts: {
           en: [
-            "Implementation and stabilisation of IAM environments for enterprise clients",
-            "Successful upgrades of complex IAM stacks",
-            "Design and adjustment of access models",
-            "Improved automation of implementation",
-            "Support for secure identity and access management"
+            "Complete installation and commissioning of IBM IAM stack in production environment",
+            "Successful upgrades of complex IAM environments for enterprise clients",
+            "Support for secure identity and access management in regulated sectors"
           ],
           cs: [
-            "Implementace a stabilizace IAM prostředí u enterprise klientů",
-            "Úspěšné upgrade komplexních IAM stacků",
-            "Návrh a úprava přístupových modelů",
-            "Zlepšení automatizace implementace",
-            "Podpora bezpečné správy identit a přístupů"
+            "Kompletní instalace a zprovoznění IBM IAM stacku v produkčním prostředí",
+            "Úspěšné upgrady komplexních IAM prostředí u enterprise klientů",
+            "Podpora bezpečné správy identit a přístupů v regulovaných sektorech"
           ]
         }
       },
@@ -128,42 +138,44 @@ export const i18n = {
         logo:    "/logo-oxpoint.png",
         period:  { en: "Feb 2024 – Sep 2025", cs: "02/2024 – 09/2025" },
         tags:    ["Incident Management", "Production Operations", "JIRA", "SLA Management", "Linux", "Grafana", "SQL", "Log Analysis", "Cross-team Coordination"],
+        description: {
+          en: "Primary technical link between operations and development — responsible for production stability, escalation management and incident coordination with impact on critical operations.",
+          cs: "Primární technický článek mezi provozní a vývojovou částí - odpovědný za stabilitu produkce, řízení eskalací a koordinaci incidentů s dopadem na kritický provoz."
+        },
         bullets: {
           en: [
-            "Primary technical link between operations and development — responsible for production stability, escalation management and incident coordination.",
-            "L1/L2 support for 300+ devices in production; P1 incident management in cooperation with operations manager.",
-            "Coordination of 5–10 specialists (DevOps, development, technicians) during critical outages; 24/7 on-call regime.",
-            "Design of internal guidelines for L1/L2/L3 role division and capacity estimates for operational stability.",
-            "Built JIRA project from scratch: severity model, SLA parameters, workflow automation, internal and external notifications.",
-            "Linux (SSH), Grafana monitoring, SQL queries against production database, error pattern analysis.",
-            "Support for migrations (OX Municipality, storage services); transparent management reporting."
+            "Management of P1/Major incidents in an environment of 300+ devices in production; escalation coordination in cooperation with operations manager.",
+            "Coordination of specialist team (DevOps, development, technicians) during critical outages in 24/7 on-call mode.",
+            "Design of internal guidelines for L1/L2/L3 responsibility division, escalation paths and capacity planning to ensure service availability.",
+            "Built JIRA project from scratch: severity model, SLA parameters, workflow automation and notifications — as the basis for measurable operations management.",
+            "Monitoring and analysis of error patterns (Grafana, SQL, Linux/SSH) for early identification of operational risks.",
+            "Support for critical infrastructure migrations; management reporting on incident progress and operational status."
           ],
           cs: [
-            "Primární technický článek mezi provozní a vývojovou částí — odpovědný za stabilitu produkce, řízení eskalací a koordinaci incidentů.",
-            "L1/L2 podpora více než 300 zařízení v produkci; řízení P1 incidentů ve spolupráci s provozním manažerem.",
-            "Koordinace 5–10 specialistů (DevOps, vývoj, technici) při kritických výpadcích; 24/7 pohotovostní režim.",
-            "Návrh interní směrnice pro rozdělení rolí L1/L2/L3 a odhad kapacitních potřeb pro zajištění stability provozu.",
-            "Vybudování JIRA projektu od základů: severity model, SLA parametry, automatizace workflow, notifikace.",
-            "Linux (SSH), Grafana monitoring, SQL dotazy v produkční databázi, analýza chybových vzorců.",
-            "Podpora migrací (OX Municipality, úschovny); transparentní management reporting."
+            "Řízení P1/Major incidentů v prostředí 300+ zařízení v produkci; koordinace eskalací ve spolupráci s provozním manažerem.",
+            "Koordinace týmu specialistů (DevOps, vývoj, technici) při kritických výpadcích v režimu 24/7 on-call.",
+            "Návrh interní směrnice pro rozdělení odpovědností L1/L2/L3, eskalační cesty a kapacitní plánování pro zajištění dostupnosti služeb.",
+            "Vybudování JIRA projektu od základů: severity model, SLA parametry, automatizace workflow a notifikace - jako základ pro měřitelné řízení provozu.",
+            "Monitoring a analýza chybových vzorců (Grafana, SQL, Linux/SSH) za účelem včasné identifikace provozních rizik.",
+            "Podpora migrací kritické infrastruktury; management reporting o průběhu incidentů a stavu provozu."
           ]
         },
         impacts: {
           en: [
-            "Stabilisation of operations for 300+ devices",
-            "Successful management of critical P1 incident",
+            "Stabilisation of operations for 300+ devices in production",
+            "Successful management of critical P1 incidents",
             "Introduction of structured SLA and severity model",
-            "Creation of internal L1–L3 operational model proposal",
-            "Improved clarity of escalations and responsibilities",
-            "Strengthened reporting transparency"
+            "Design of operational model L1–L3 including escalation paths and responsibilities",
+            "Improved clarity of escalations and operational governance",
+            "Strengthened reporting transparency towards management"
           ],
           cs: [
-            "Stabilizace provozu 300+ zařízení",
-            "Úspěšné zvládnutí kritického P1 incidentu",
+            "Stabilizace provozu 300+ zařízení v produkci",
+            "Úspěšné zvládnutí kritických P1 incidentů",
             "Zavedení strukturovaného SLA a severity modelu",
-            "Vytvoření interního návrhu provozního modelu L1–L3",
-            "Zlepšení přehlednosti eskalací a odpovědností",
-            "Posílení reportingové transparentnosti"
+            "Návrh provozního modelu L1–L3 včetně eskalačních cest a odpovědností",
+            "Zlepšení přehlednosti eskalací a provozní governance",
+            "Posílení reportingové transparentnosti směrem k managementu"
           ]
         }
       },
@@ -172,42 +184,48 @@ export const i18n = {
         company: "NAKIT",
         logo:    "/logo-nakit.png",
         security: true,
+        securityText: {
+          en: "Work in an environment with strict security requirements and state regulation. Emphasis was placed on process discipline, access management and awareness of operational risks.",
+          cs: "Práce v prostředí s přísnými bezpečnostními požadavky a státní regulací. Byl kladen důraz na procesní disciplínu, správu přístupů a vědomí provozních rizik."
+        },
         period:  { en: "May 2023 – Mar 2024", cs: "05/2023 – 03/2024" },
         tags:    ["Application Operations", "eGovernment", "Incident Coordination", "SLA Monitoring", "Log Analysis", "Linux", "Windows Server", "PowerShell"],
+        description: {
+          en: "Operation and availability management of the Identita občana system — critical state infrastructure enabling online authentication of millions of citizens in communication with public administration.",
+          cs: "Provoz a řízení dostupnosti systému Identita občana – kritické státní infrastruktury umožňující online autentizaci milionů občanů při komunikaci se státní správou."
+        },
         bullets: {
           en: [
-            "Operation and outage management of the Identita občana system — key service enabling online authentication of citizens with public administration (millions of users).",
-            "Management of P1 incidents with high operational impact; chairing crisis calls during outages.",
-            "Coordination of 5–10 technical specialists across organisations; ensuring rapid service recovery within SLA.",
-            "Monitoring of application availability, incident recording, SLA parameter compliance control.",
-            "Management of planned shutdowns; preparation of materials for management reporting.",
-            "Application log analysis, data inconsistency investigation, collaboration with DB and infrastructure teams.",
-            "Basic PowerShell scripting; work in Linux (Red Hat) and Windows environments."
+            "Management of P1/Major incidents with high impact on end users; chairing crisis calls and coordinating service recovery in minute-level SLA mode.",
+            "Coordination of several teams of technical specialists across organisations during critical outages — with emphasis on rapid recovery and minimising impact on service availability.",
+            "Monitoring of application availability, incident recording and analysis, SLA parameter compliance control and identification of recurring operational risks.",
+            "Management of planned shutdowns including preparation of materials for management reporting and communication of impacts to stakeholders.",
+            "Analysis of application logs and data inconsistencies in cooperation with DB and infrastructure teams.",
+            "Basic PowerShell scripting; work in Linux (Red Hat) and Windows Server environments."
           ],
           cs: [
-            "Provoz a řízení výpadků systému Identita občana — klíčová služba umožňující online autentizaci občanů při komunikaci se státní správou (miliony uživatelů).",
-            "Řízení P1 incidentů s vysokým provozním dopadem; vedení krizových callů při výpadcích.",
-            "Koordinace 5–10 technických specialistů napříč organizacemi; zajištění rychlé obnovy provozu v souladu se SLA.",
-            "Monitorování dostupnosti aplikací, evidence výpadků, kontrola plnění SLA parametrů.",
-            "Řízení plánovaných odstávek; příprava podkladů pro management reporting.",
-            "Analýza aplikačních logů, dohledávání nekonzistencí v datech, spolupráce s DB a infrastrukturními týmy.",
-            "Základní skriptování v PowerShell; práce v Linux (Red Hat) a Windows prostředí."
+            "Řízení P1/Major incidentů s vysokým dopadem na koncové uživatele; vedení krizových callů a koordinace obnovy provozu v režimu minutových SLA.",
+            "Koordinace několika týmů technických specialistů napříč organizacemi při kritických výpadcích – s důrazem na rychlou obnovu a minimalizaci dopadu na dostupnost služby.",
+            "Monitoring dostupnosti aplikací, evidence a analýza výpadků, kontrola plnění SLA parametrů a identifikace opakujících se provozních rizik.",
+            "Řízení plánovaných odstávek včetně přípravy podkladů pro management reporting a komunikace dopadů směrem k stakeholderům.",
+            "Analýza aplikačních logů a datových nekonzistencí ve spolupráci s DB a infrastrukturními týmy.",
+            "Základní skriptování v PowerShell; práce v Linux (Red Hat) a Windows server prostředí."
           ]
         },
         impacts: {
           en: [
-            "Management of high-impact incidents affecting end users",
-            "Service recovery within minute-level SLA",
-            "Stabilisation of communication processes during outages",
-            "Improved coordination between technical partners",
-            "Transparent incident reporting to management"
+            "Management of incidents with high impact on millions of end users",
+            "Recovery of critical state infrastructure in minute-level SLA mode",
+            "Stabilisation of escalation and communication processes during outages",
+            "Improved coordination between technical partners across organisations",
+            "Transparent incident reporting towards management"
           ],
           cs: [
-            "Řízení incidentů s vysokým dopadem na koncové uživatele",
-            "Obnova provozu v režimu minutových SLA",
-            "Stabilizace komunikačních procesů během výpadků",
-            "Zlepšení koordinace mezi technickými partnery",
-            "Transparentní reporting incidentů managementu"
+            "Řízení incidentů s vysokým dopadem na miliony koncových uživatelů",
+            "Obnova provozu kritické státní infrastruktury v režimu minutových SLA",
+            "Stabilizace eskalačních a komunikačních procesů během výpadků",
+            "Zlepšení koordinace mezi technickými partnery napříč organizacemi",
+            "Transparentní incident reporting směrem k managementu"
           ]
         }
       },
@@ -217,36 +235,36 @@ export const i18n = {
         logo:    "/logo-mycom.webp",
         period:  { en: "2021 – 2023", cs: "2021 – 2023" },
         tags:    ["IT Infrastructure", "Network Configuration", "VLAN", "Ubiquiti", "Fortinet", "Structured Cabling", "RDP Environments", "Hardware Support"],
+        description: {
+          en: "Design and implementation of network solutions for commercial clients — from initial requirements analysis to physical realisation and environment security.",
+          cs: "Návrh a implementace síťových řešení u komerčních zákazníků – od počáteční analýzy požadavků po fyzickou realizaci a zabezpečení prostředí."
+        },
         bullets: {
           en: [
-            "Design and implementation of network solutions for commercial clients (offices, medical practices) — from VLAN segmentation to rack installation.",
-            "Configuration of Ubiquiti (AP, switches) and basic Fortinet firewall; RDP access and endpoint device management.",
-            "Incident management: on-site resolution of HW/SW incidents, thin client and RDP environment management, ticketing system.",
-            "Complete structured cabling implementation — over 5 km of cable, patch panels, keystone modules.",
-            "Internal projects: redesign of warehouse layout, preparation of internal security lab (Windows/Linux) for configuration testing and network scenario simulation."
+            "Design and implementation of network infrastructure including VLAN segmentation, configuration of Ubiquiti (AP, switches) and Fortinet firewall — with emphasis on security and access separation.",
+            "Management of RDP access and endpoint devices; incident management including on-site resolution of HW/SW incidents and ticketing.",
+            "Complete implementation of structured cabling over 5 km — patch panels, keystone modules, rack installation.",
+            "Preparation of internal security lab (Windows/Linux) for testing network configurations and security scenarios."
           ],
           cs: [
-            "Návrh a implementace síťových řešení u komerčních zákazníků (kanceláře, ordinace) — od VLAN segmentace po instalaci racků.",
-            "Konfigurace Ubiquiti (AP, switche) a základní Fortinet firewall; správa RDP přístupů a koncových zařízení.",
-            "Incident management: on-site řešení HW/SW incidentů, správa thin clients a RDP prostředí, ticketing systém.",
-            "Kompletní realizace strukturované kabeláže — více než 5 km, patch panely, keystone moduly.",
-            "Interní projekty: návrh nového rozložení skladu, příprava interního bezpečnostního lab (Windows/Linux) pro testování konfigurací a síťové scénáře."
+            "Návrh a implementace síťové infrastruktury včetně VLAN segmentace, konfigurace Ubiquiti (AP, switche) a Fortinet firewall – s důrazem na bezpečnost a oddělení přístupů.",
+            "Správa RDP přístupů a koncových zařízení; incident management zahrnující on-site řešení HW/SW incidentů a ticketing.",
+            "Kompletní realizace strukturované kabeláže přes 5 km – patch panely, keystone moduly, instalace racků.",
+            "Příprava interního bezpečnostního labu (Windows/Linux) pro testování síťových konfigurací a bezpečnostních scénářů."
           ]
         },
         impacts: {
           en: [
-            "Network infrastructure implementation for multiple clients",
-            "Over 5 km of structured cabling delivered",
-            "Improved internal logistics efficiency (warehouse reorganisation)",
-            "Stabilisation of client environments through rapid incident resolution",
-            "Practical foundation in network segmentation and physical infrastructure"
+            "Implementation of complete network infrastructure for several clients including security segmentation",
+            "Delivery of more than 5 km of structured cabling",
+            "Practical foundation in network segmentation, access management and physical infrastructure",
+            "Stabilisation of client operating environments through rapid incident resolution"
           ],
           cs: [
-            "Implementace kompletní síťové infrastruktury u několika zákazníků",
+            "Implementace kompletní síťové infrastruktury u několika zákazníků včetně bezpečnostní segmentace",
             "Realizace více než 5 km strukturované kabeláže",
-            "Zvýšení efektivity interní logistiky (reorganizace skladu)",
-            "Stabilizace provozního prostředí zákazníků prostřednictvím rychlého řešení incidentů",
-            "Získání praktického základu v oblasti síťové segmentace a fyzické infrastruktury"
+            "Praktický základ v oblasti síťové segmentace, správy přístupů a fyzické infrastruktury",
+            "Stabilizace provozního prostředí zákazníků prostřednictvím rychlého řešení incidentů"
           ]
         }
       },
@@ -254,44 +272,49 @@ export const i18n = {
         role:    { en: "IT Operations & Incident Coordination", cs: "IT Operations & Incident Coordination" },
         company: "Národní očkovací centrum ÚVN",
         logo:    "/logo-uvn.png",
+        security: true,
+        securityText: {
+          en: "Highly exposed environment with continuous operations, processing of personal health data and cooperation with the Czech Army in restricted access mode.",
+          cs: "Vysoce exponované prostředí s nepřetržitým provozem, zpracováním osobních zdravotních dat a spoluprací s Armádou ČR v režimu omezeného přístupu."
+        },
         period:  { en: "2021", cs: "2021" },
         tags:    ["IT Operations", "Incident Support", "Database Administration", "Team Coordination", "Hardware Management", "Service Continuity", "High-load Operations"],
+        description: {
+          en: "Operation of IT infrastructure of the National Vaccination Centre at O2 Universum.",
+          cs: "Provoz IT infrastruktury Národního očkovacího centra v O2 Universum."
+        },
         bullets: {
           en: [
-            "National Vaccination Centre at O2 Universum — highly exposed environment with 24/7 operations, extreme reputational and organisational sensitivity and extreme daily load.",
-            "Daily preparation and distribution of dozens of mobile devices and workstations; ensuring network and endpoint infrastructure operability.",
-            "Active monitoring and operational interventions during technical issues; management of MS SQL database system under high transactional load.",
-            "Real-time resolution of database outages and related systems; analysis and correction of inconsistent or erroneous records.",
-            "Leadership of a 5–7 person IT team: shift planning, responsibility allocation, establishment of operational standards and escalation procedures.",
-            "Collaboration with external mobile application development team; UAT testing of new versions before production deployment.",
-            "Identification of weaknesses in the vaccination process; proposals for optimising registration and administration workflow."
+            "Ensuring continuous availability of IT infrastructure — daily preparation and operation of dozens of devices and workstations in an environment with zero tolerance for outages.",
+            "Monitoring and operational resolution of incidents in real time; management of MS SQL database with high transactional load including analysis and correction of data inconsistencies.",
+            "Leadership of a small IT team: shift planning, responsibility allocation, setting up escalation procedures and operational standards.",
+            "Processing and protection of sensitive personal health data in accordance with operational requirements of a restricted access environment (cooperation with Czech Army).",
+            "Cooperation with external development team; UAT testing of new versions before production deployment.",
+            "Identification of weaknesses in operational processes and proposals for workflow optimisation."
           ],
           cs: [
-            "Národní očkovací centrum v O2 Universum — vysoce exponované prostředí s nepřetržitým provozem, extrémní reputační i organizační citlivostí a extrémní denní zátěží.",
-            "Každodenní příprava a distribuce desítek mobilních zařízení a pracovních stanic; zajištění provozuschopnosti síťové a koncové infrastruktury.",
-            "Aktivní monitoring a operativní zásahy při technických problémech; správa databázového systému MS SQL s vysokou transakční zátěží.",
-            "Řešení výpadků databáze a souvisejících systémů v reálném čase; analýza a oprava nekonzistentních nebo chybových záznamů.",
-            "Vedení 5–7 členného IT týmu: plánování směn, rozdělování odpovědností, nastavení provozních standardů a eskalačních postupů.",
-            "Spolupráce s externím vývojovým týmem mobilní aplikace; UAT testování nových verzí před produkčním nasazením.",
-            "Identifikace slabých míst v procesu očkování; návrhy zefektivnění workflow registrace a administrace."
+            "Zajištění nepřetržité dostupnosti IT infrastruktury - každodenní příprava a provoz desítek zařízení a pracovních stanic v prostředí s nulovou tolerancí výpadků.",
+            "Monitoring a operativní řešení incidentů v reálném čase; správa MS SQL databáze s vysokou transakční zátěží včetně analýzy a opravy datových nekonzistencí.",
+            "Vedení malého IT týmu: plánování směn, rozdělení odpovědností, nastavení eskalačních postupů a provozních standardů.",
+            "Zpracování a ochrana citlivých osobních zdravotních dat v souladu s provozními požadavky prostředí s omezeným přístupem (spolupráce s AČR).",
+            "Spolupráce s externím vývojovým týmem; UAT testování nových verzí před produkčním nasazením.",
+            "Identifikace slabých míst v provozních procesech a návrhy optimalizace workflow."
           ]
         },
         impacts: {
           en: [
-            "Support for uninterrupted operations over 131 days of crisis mode",
-            "IT support for over 550,000 processed clients",
-            "Database environment stabilisation under high load",
-            "Reduction in operational downtime caused by technical incidents",
-            "Streamlining of morning IT infrastructure preparation",
-            "Contribution to optimisation of the vaccination and administration process"
+            "Uninterrupted operations during 131 days of crisis mode",
+            "IT support for more than 550,000 processed clients",
+            "Stabilisation of database environment under high transactional load",
+            "Operations in restricted access environment with processing of sensitive health data",
+            "Reduction of operational downtime and optimisation of morning infrastructure preparation"
           ],
           cs: [
-            "Podpora nepřerušeného provozu během 131 dní krizového režimu",
-            "Zajištění IT podpory pro více než 550 000 odbavených klientů",
-            "Stabilizace databázového prostředí při vysoké zátěži",
-            "Snížení provozních prostojů způsobených technickými incidenty",
-            "Zefektivnění ranní přípravy IT infrastruktury",
-            "Podíl na optimalizaci procesu očkování a administrace"
+            "Nepřerušený provoz během 131 dní krizového režimu",
+            "IT podpora pro více než 550 000 odbavených klientů",
+            "Stabilizace databázového prostředí při vysoké transakční zátěži",
+            "Provoz v prostředí s omezeným přístupem a zpracováním citlivých zdravotních dat",
+            "Snížení provozních prostojů a optimalizace ranní přípravy infrastruktury"
           ]
         }
       }
@@ -410,26 +433,6 @@ export const i18n = {
       { en: "IT Risk Manager", cs: "IT Risk Manager" },
       { en: "Operational Resilience / Incident Governance", cs: "Operational Resilience / Incident Governance" },
       { en: "Turnaround / Crisis Operations", cs: "Turnaround / Crisis Operations" }
-    ]
-  },
-
-  testimonials: {
-    headline: { en: "Trusted by those who've seen the pressure.", cs: "Důvěra těch, kdo zažili tlak." },
-    items: [
-      {
-        quote: {
-          en: "Matthew is the person you want in the room when things get noisy — structured, calm, and always moving toward resolution.",
-          cs: "Matthew je člověk, kterého chcete mít u incidentu — strukturovaný, klidný a vždy směřuje k řešení."
-        },
-        name: "Team Lead, Enterprise Ops"
-      },
-      {
-        quote: {
-          en: "He turns recurring pain into clean automation and documentation. The impact shows up in fewer tickets and better sleep.",
-          cs: "Opakované bolesti převádí do automatizace a dokumentace. Dopad je vidět na menším počtu ticketů a lepším spánku."
-        },
-        name: "Product Owner, Platform"
-      }
     ]
   },
 

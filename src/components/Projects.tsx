@@ -32,7 +32,7 @@ export function Projects({ lang }: { lang: Lang }) {
     <div ref={ref} className="relative flex h-dvh w-full overflow-hidden"
       style={{ background: "transparent" }}>
 
-      <div className="relative z-10 flex h-full flex-col pl-20 pr-6 py-6 md:pr-12 m-section" style={{ width:"100%" }}>
+      <div className="relative z-10 flex h-full flex-col pl-20 pr-6 md:pr-12 m-section" style={{ width:"100%", paddingTop:"clamp(0.8rem,2vh,1.5rem)", paddingBottom:"clamp(0.6rem,1.5vh,1.2rem)" }}>
 
         <motion.p initial={{ opacity:0 }} animate={inView?{opacity:1}:{}}
           className="mb-0.5 text-xs uppercase tracking-widest"
@@ -42,13 +42,13 @@ export function Projects({ lang }: { lang: Lang }) {
 
         <motion.h2 initial={{ opacity:0, y:14 }} animate={inView?{opacity:1,y:0}:{}} transition={{ delay:0.08 }}
           className="font-display mb-3 m-h2"
-          style={{ fontSize:"clamp(1.8rem,3vw,3rem)", fontWeight:300, color:"var(--ink)", lineHeight:1.1 }}>
+          style={{ fontSize:"clamp(1.5rem,2.4vw,2.6rem)", fontWeight:300, color:"var(--ink)", lineHeight:1.1 }}>
           {t(proj.headline, lang)}
         </motion.h2>
 
         {/* 3×2 grid */}
         <div className="grid gap-3 m-3col m-projects-grid"
-          style={{ gridTemplateColumns:"repeat(3,1fr)", gridTemplateRows:"repeat(2,1fr)" }}>
+          style={{ gridTemplateColumns:"repeat(3,1fr)", gridAutoRows:"1fr", alignContent:"start" }}>
           {proj.items.map((item: any, i: number) => (
             <motion.div key={i}
               initial={{ opacity:0, y:16, scale:0.98 }}

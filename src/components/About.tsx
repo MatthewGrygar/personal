@@ -148,10 +148,9 @@ export function About({ lang }: { lang: Lang }) {
                 {lang==="en" ? "Long-term direction" : "Moje směřování"}
               </p>
               <p style={{ fontSize:"clamp(0.72rem,1.1vh,0.93rem)", color:"var(--ink)",
-                fontWeight:300, lineHeight:1.5, position:"relative", zIndex:1 }}>
-                {lang==="en"
-                  ? "Going forward, I want to focus more on IT Risk Management and operational resilience. It makes sense for me to work at the intersection of technology, risk and business — finding solutions that help organisations stay stable even in demanding situations."
-                  : "Do budoucna se chci více zaměřit na IT Risk Management a provozní odolnost systémů. Dává mi smysl pracovat na pomezí technologie, rizika a businessu a hledat řešení, která pomáhají organizaci fungovat stabilně i v náročných situacích."}
+                fontWeight:300, lineHeight:1.5, position:"relative", zIndex:1,
+                whiteSpace:"pre-line" }}>
+                {t(about.direction, lang)}
               </p>
             </motion.div>
           </div>

@@ -114,6 +114,11 @@ export function Experience({ lang }: { lang: Lang }) {
                       </h3>
                       <p className="text-sm" style={{ color:"var(--amber)" }}>
                         {active.company} · {t(active.period, lang)}
+                      {active.description && (
+                        <p className="mt-1 text-xs" style={{ color:"var(--ink-soft)", fontWeight:300, lineHeight:1.4 }}>
+                          {t(active.description, lang)}
+                        </p>
+                      )}
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-1.5 justify-end" style={{ maxWidth:"52%" }}>
@@ -140,8 +145,9 @@ export function Experience({ lang }: { lang: Lang }) {
                           <span style={{ fontSize:"0.95rem", flexShrink:0, marginTop:"1px" }}>🛡️</span>
                           <p style={{ color:"rgba(167,243,208,0.95)", fontWeight:300, fontSize:"0.82rem", lineHeight:1.5 }}>
                             {lang === "en"
-                              ? "Work took place in an environment with elevated security requirements and regulation, placing emphasis on process discipline and risk management."
-                              : "Práce probíhala v prostředí s vyššími bezpečnostními požadavky a regulací, což kladlo důraz na procesní disciplínu a řízení rizik."}
+                              active.securityText ? t(active.securityText, lang) : (lang === "en"
+                              ? "Work in an environment with elevated security requirements."
+                              : "Práce v prostředí s vyššími bezpečnostními požadavky.")}
                           </p>
                         </div>
                       )}
@@ -289,8 +295,9 @@ export function Experience({ lang }: { lang: Lang }) {
                 <span style={{ fontSize:"0.9rem", flexShrink:0 }}>🛡️</span>
                 <p style={{ color:"rgba(167,243,208,0.95)", fontWeight:300, fontSize:"0.78rem", lineHeight:1.5 }}>
                   {lang === "en"
-                    ? "Elevated security environment — process discipline and risk management."
-                    : "Prostředí s vyššími bezpečnostními požadavky — procesní disciplína a řízení rizik."}
+                    active.securityText ? t(active.securityText, lang) : (lang === "en"
+                      ? "Elevated security environment."
+                      : "Prostředí s vyššími bezpečnostními požadavky.")}
                 </p>
               </div>
             )}
