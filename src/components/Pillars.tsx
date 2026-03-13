@@ -72,8 +72,8 @@ export function Pillars({ lang }: { lang: Lang }) {
           {t(about.pillarsTitle, lang)}
         </motion.h2>
 
-        {/* 5 cards — natural height, no stretch */}
-        <div className="flex-1 min-h-0 flex flex-col gap-2 m-pillars-cards" style={{ overflow:"hidden", justifyContent:"flex-start" }}>
+        {/* 5 cards — scroll on small screens */}
+        <div className="flex-1 min-h-0 flex flex-col gap-2 m-pillars-cards" style={{ overflowY:"auto", overflowX:"hidden", justifyContent:"flex-start", scrollbarWidth:"none" }}>
           {about.pillars.map((pillar, i) => {
             const { num, title, body } = parsePillar(t(pillar, lang));
             return (

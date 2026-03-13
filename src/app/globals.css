@@ -275,3 +275,21 @@ body::before {
 @media (max-width: 380px) {
   .m-3col { grid-template-columns: 1fr !important; }
 }
+
+/* ── Desktop: scrollable inner areas on small viewport heights ── */
+.flex-1.min-h-0[style*="overflowY"] { scrollbar-width: none; }
+.flex-1.min-h-0[style*="overflowY"]::-webkit-scrollbar { display: none; }
+
+/* Fade bottom edge on About/Pillars content when overflowing */
+.about-scroll-fade, .pillars-scroll-fade {
+  position: relative;
+}
+.about-scroll-fade::after, .pillars-scroll-fade::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3rem;
+  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 5;
+}

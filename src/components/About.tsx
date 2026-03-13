@@ -64,9 +64,9 @@ export function About({ lang }: { lang: Lang }) {
           {t(about.headline, lang)}
         </motion.h2>
 
-        {/* 2-col grid */}
+        {/* 2-col grid — scrollable on small screens */}
         <div className="flex-1 min-h-0 grid gap-x-5 gap-y-4 m-2col"
-          style={{ gridTemplateColumns:"1fr 1fr", alignContent:"start" }}>
+          style={{ gridTemplateColumns:"1fr 1fr", alignContent:"start", overflowY:"auto", overflowX:"hidden", scrollbarWidth:"none" }}>
 
           {/* ── LEFT ── */}
           <div className="flex flex-col gap-3">
