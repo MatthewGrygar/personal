@@ -81,6 +81,7 @@ export function Pillars({ lang }: { lang: Lang }) {
                 style={{ ...G.panel,
                   padding:"clamp(0.4rem,1vh,0.7rem) clamp(0.5rem,0.8vw,0.9rem)" }}
               >
+                {/* Číslo v malém boxíku vlevo */}
                 <div style={{
                   width:"clamp(30px,3.2vh,40px)", minWidth:"clamp(30px,3.2vh,40px)",
                   height:"clamp(30px,3.2vh,40px)",
@@ -94,8 +95,9 @@ export function Pillars({ lang }: { lang: Lang }) {
                     color:"var(--amber)", lineHeight:1 }}>{num}</span>
                 </div>
 
+                {/* Nadpis tučně, pak tělo */}
                 <div style={{ flex:1, minWidth:0 }}>
-                  <p style={{ fontSize:"clamp(0.82rem,1.2vh,0.95rem)", fontWeight:600,
+                  <p style={{ fontSize:"clamp(0.82rem,1.2vh,0.95rem)", fontWeight:700,
                     color:"var(--ink)", lineHeight:1.2,
                     marginBottom:"clamp(0.1rem,0.3vh,0.18rem)" }}>
                     {title}

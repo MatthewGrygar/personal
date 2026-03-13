@@ -105,27 +105,33 @@ export function Experience({ lang }: { lang: Lang }) {
                   style={{ display:"block", width:12, height:12, borderBottom:"1.5px solid rgba(200,145,58,0.3)", borderRight:"1.5px solid rgba(200,145,58,0.3)" }} />
 
                 <div className="flex flex-col flex-1 min-h-0 p-5 overflow-hidden">
-                  {/* Header */}
-                  <div className="flex flex-wrap items-start justify-between gap-2 mb-3 flex-shrink-0">
-                    <div>
-                      <h3 className="font-display mb-0.5"
+
+                  {/* Header: název + firma/datum vlevo, tagy celou šířkou nahoře */}
+                  <div className="flex-shrink-0 mb-2">
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 mb-1.5">
+                      <h3 className="font-display"
                         style={{ fontSize:"clamp(1rem,1.6vw,1.35rem)", fontWeight:400, color:"var(--ink)" }}>
                         {t(active.role, lang)}
                       </h3>
-                      <p className="text-sm" style={{ color:"var(--amber)" }}>
+                      <span style={{ color:"var(--amber)", fontSize:"0.82rem" }}>
                         {active.company} · {t(active.period, lang)}
-                      {active.description && (
-                        <p className="mt-1 text-xs" style={{ color:"var(--ink-soft)", fontWeight:300, lineHeight:1.4 }}>
-                          {t(active.description, lang)}
-                        </p>
-                      )}
-                      </p>
+                      </span>
                     </div>
-                    <div className="flex flex-wrap gap-1.5 justify-end" style={{ maxWidth:"52%" }}>
-                      {active.tags.slice(0,6).map((tag: string) => (
+                    {/* Tagy — celá šířka, všechny */}
+                    <div className="flex flex-wrap gap-1.5 mb-2">
+                      {active.tags.map((tag: string) => (
                         <span key={tag} className="tag-pill">{tag}</span>
                       ))}
                     </div>
+                    {/* Popis pozice — výrazný text */}
+                    {active.description && (
+                      <p style={{ color:"var(--ink)", fontSize:"0.9rem", fontWeight:500,
+                        lineHeight:1.5, fontStyle:"italic",
+                        borderLeft:"2px solid rgba(200,145,58,0.4)",
+                        paddingLeft:"0.7rem" }}>
+                        {t(active.description, lang)}
+                      </p>
+                    )}
                   </div>
 
                   {/* 2-col body */}
