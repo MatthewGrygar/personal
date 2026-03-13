@@ -251,7 +251,28 @@ body::before {
   }
 
   /* Gridy */
-  .m-2col { grid-template-columns: 1fr !important; grid-template-rows: unset !important; }
+  .m-2col {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: unset !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    align-content: start !important;
+  }
+
+  /* Sloupce a panely uvnitř gridu — přirozená výška, bez flex-1 */
+  .m-2col > div {
+    height: auto !important;
+    min-height: 0 !important;
+    flex: none !important;
+    overflow: visible !important;
+  }
+  .m-2col .rounded-2xl {
+    height: auto !important;
+    min-height: 0 !important;
+    flex: none !important;
+    overflow: visible !important;
+  }
   .m-3col { grid-template-columns: 1fr 1fr !important; grid-template-rows: unset !important; }
 
   /* Contact */
