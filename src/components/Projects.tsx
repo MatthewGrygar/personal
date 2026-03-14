@@ -17,8 +17,17 @@ const G = {
 
 // Tag color overrides
 const TAG_COLORS: Record<string, { bg: string; border: string; color: string }> = {
-  "Personal": { bg:"rgba(134,239,172,0.12)", border:"rgba(52,211,153,0.3)", color:"rgba(134,239,172,0.9)" },
-  "Osobní":   { bg:"rgba(134,239,172,0.12)", border:"rgba(52,211,153,0.3)", color:"rgba(134,239,172,0.9)" },
+  "Personal":   { bg:"rgba(134,239,172,0.12)", border:"rgba(52,211,153,0.3)", color:"rgba(134,239,172,0.9)" },
+  "Osobní":     { bg:"rgba(134,239,172,0.12)", border:"rgba(52,211,153,0.3)", color:"rgba(134,239,172,0.9)" },
+  "PERSONAL":   { bg:"rgba(134,239,172,0.12)", border:"rgba(52,211,153,0.3)", color:"rgba(134,239,172,0.9)" },
+  "GOVERNANCE": { bg:"rgba(100,160,255,0.1)",  border:"rgba(100,160,255,0.28)", color:"rgba(147,197,253,0.9)" },
+  "RISK":       { bg:"rgba(251,113,133,0.1)",  border:"rgba(251,113,133,0.28)", color:"rgba(251,113,133,0.9)" },
+  "SECURITY":   { bg:"rgba(251,113,133,0.1)",  border:"rgba(251,113,133,0.28)", color:"rgba(251,113,133,0.9)" },
+  "FRAMEWORKS": { bg:"rgba(167,139,250,0.1)",  border:"rgba(167,139,250,0.28)", color:"rgba(196,181,253,0.9)" },
+  "SELF-STUDY": { bg:"rgba(167,139,250,0.1)",  border:"rgba(167,139,250,0.28)", color:"rgba(196,181,253,0.9)" },
+  "INCIDENTS":  { bg:"rgba(251,113,133,0.1)",  border:"rgba(251,113,133,0.28)", color:"rgba(251,113,133,0.9)" },
+  "PROCESS":    { bg:"rgba(100,160,255,0.1)",  border:"rgba(100,160,255,0.28)", color:"rgba(147,197,253,0.9)" },
+  "VIBE CODING":{ bg:"rgba(134,239,172,0.12)", border:"rgba(52,211,153,0.3)", color:"rgba(134,239,172,0.9)" },
 };
 
 const defaultTag = { bg:"rgba(200,145,58,0.09)", border:"rgba(200,145,58,0.25)", color:"var(--amber)" };
@@ -55,7 +64,7 @@ export function Projects({ lang }: { lang: Lang }) {
               animate={inView ? { opacity:1, y:0, scale:1 } : {}}
               transition={{ duration:0.45, delay:0.1 + i*0.07, ease:[0.22,1,0.36,1] }}
               className="rounded-2xl flex flex-col overflow-hidden group hover:brightness-110 transition-all duration-200"
-              style={G.card}>
+              style={{ ...G.card, height:"100%" }}>
 
               {/* Banner image — thin strip, center-cropped */}
               {item.banner && (
@@ -76,7 +85,7 @@ export function Projects({ lang }: { lang: Lang }) {
               )}
 
               {/* Card body */}
-              <div className="flex flex-col p-3.5">
+              <div className="flex flex-col p-3.5 flex-1">
 
                 {/* Tags + link row */}
                 <div className="flex items-start justify-between gap-1 mb-1.5">

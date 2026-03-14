@@ -327,68 +327,68 @@ export const i18n = {
       {
         title: "JIRA Service Workflow Design",
         banner: "/projects/jira.jpg",
-        tags: ["JIRA", "Support", "Operations"],
+        tags: ["JIRA", "SUPPORT", "OPERATIONS", "GOVERNANCE"],
         description: {
-          en: "Complete design and setup of a JIRA project for operational support — ticket types, SLA rules, severity model, automations, roles and user groups, including a clear request interface.",
-          cs: "Kompletní návrh a nastavení JIRA projektu pro provozní podporu. Součástí bylo vytvoření typů ticketů, SLA pravidel, severity modelu, automatizací, rolí a uživatelských skupin, včetně návrhu přehledného rozhraní pro zadávání požadavků."
+          en: "Complete design and setup of a JIRA project for operational support — severity model, SLA parameters, workflow automation, role and user group configuration, including a clear request interface for end users.",
+          cs: "Kompletní návrh a nastavení JIRA projektu pro provozní podporu – severity model, SLA parametry, automatizace workflow, konfigurace rolí a uživatelských skupin, včetně přehledného rozhraní pro zadávání požadavků koncovými uživateli."
         },
-        highlight: { en: "Complete service workflow from submission to resolution.", cs: "Kompletní návrh servisního workflow od zadání po vyřešení." },
+        highlight: { en: "Measurable operations management from submission to resolution.", cs: "Měřitelné řízení provozu od zadání po vyřešení." },
         url: null
       },
       {
         title: "SLA & Incident Management Model",
         banner: "/projects/sla.jpg",
-        tags: ["Support", "Risk", "Operations"],
+        tags: ["SUPPORT", "RISK", "OPERATIONS", "GOVERNANCE"],
         description: {
-          en: "Internal design of an operational support model including responsibility division across support levels, SLA parameters, severity levels and escalation rules.",
-          cs: "Interní návrh provozního modelu podpory včetně rozdělení odpovědností mezi jednotlivé úrovně podpory. Definice SLA parametrů, severity úrovní a eskalačních pravidel."
+          en: "Internal design of an operational support model including L1/L2/L3 responsibility division, escalation paths, SLA parameters and severity levels — as the basis for operational governance and service availability risk management.",
+          cs: "Interní návrh provozního modelu podpory včetně rozdělení odpovědností L1/L2/L3, eskalačních cest, SLA parametrů a severity úrovní – jako základ pro provozní governance a řízení rizik dostupnosti služeb."
         },
-        highlight: { en: "Clear escalations, defined responsibilities.", cs: "Přehledné eskalace, jasné odpovědnosti." },
+        highlight: { en: "Clear escalations, defined responsibilities, measurable governance.", cs: "Jasné eskalace, definované odpovědnosti, měřitelná governance." },
         url: null
       },
       {
-        title: "OX Infrastructure Migration",
-        banner: "/projects/oxpoint.webp",
-        tags: ["Operations", "Support", "Infrastructure"],
+        title: "Risk Frameworks – ISO 27001 & ISO 27005",
+        banner: "/projects/network.jpg",
+        tags: ["RISK", "SECURITY", "FRAMEWORKS", "SELF-STUDY"],
         description: {
-          en: "Migration of part of the delivery box infrastructure including device reinstallation and data migration. Field technician coordination, operational issue resolution and minimising impact on live operations.",
-          cs: "Migrace části infrastruktury doručovacích boxů včetně reinstalace zařízení a migrace dat. Koordinace techniků v terénu, řešení provozních problémů a minimalizace dopadu na běžný provoz."
+          en: "Independent study of ISO 27001 and ISO 27005 as reference frameworks for IT risk management and information security. I actively applied findings when identifying operational risks and designing control mechanisms in production environments.",
+          cs: "Samostatné studium ISO 27001 a ISO 27005 jako referenčních rámců pro řízení IT rizik a informační bezpečnosti. Poznatky jsem aktivně aplikoval při identifikaci provozních rizik a návrhu kontrolních mechanismů v produkčním prostředí."
         },
-        highlight: { en: "Stable operations even during infrastructure change.", cs: "Stabilní provoz i během infrastrukturní změny." },
-        url: "https://www.oxpoint.cz/obecni-boxy"
+        highlight: { en: "Practical knowledge of ISO 27001 & ISO 27005 — certification planned.", cs: "Praktická znalost ISO 27001 a ISO 27005 – certifikace v plánu." },
+        url: null
+      },
+      {
+        title: "Incident Post-Mortem Framework",
+        banner: "/projects/sla.jpg",
+        tags: ["RISK", "OPERATIONS", "INCIDENTS", "PROCESS"],
+        description: {
+          en: "Design of a structure for post-incident analysis — root causes, escalation flow, impacts, lessons learned and preventive measures. Based on experience coordinating Major/P1 incidents and principles of continuous IT operations improvement.",
+          cs: "Návrh struktury pro analýzu incidentů po jejich vyřešení – příčiny, průběh eskalace, dopady, poučení a preventivní opatření. Vychází z praxe koordinace Major/P1 incidentů a principů kontinuálního zlepšování IT provozu."
+        },
+        highlight: { en: "Systematic approach to learning from incidents and preventing recurrence.", cs: "Systematický přístup k učení se z incidentů a prevenci opakování." },
+        url: null
       },
       {
         title: "Grail Series Tournament Circuit",
         banner: "/projects/grail.jpg",
-        tags: ["Leadership", "Community", "Events", "Personal"],
+        tags: ["LEADERSHIP", "COMMUNITY", "EVENTS", "PERSONAL"],
         description: {
-          en: "Organisation of a Magic: The Gathering tournament series including community building and event coordination — tournament planning, player communication and developing the competitive scene.",
-          cs: "Organizace série turnajů Magic: The Gathering včetně budování komunity a koordinace akcí. Projekt zahrnuje plánování turnajů, komunikaci s hráči a rozvoj herní scény."
+          en: "Personal initiative — complete organisation of a Magic: The Gathering tournament series from concept to execution. Includes event planning and production, media communication and promo, partner and sponsor negotiations, community building and long-term development of the competitive scene.",
+          cs: "Osobní iniciativa – kompletní organizace série turnajů Magic: The Gathering od první myšlenky po realizaci. Zahrnuje plánování a produkci akcí, mediální komunikaci a promo, vyjednávání s partnery a sponzory, budování komunity a dlouhodobý rozvoj herní scény."
         },
-        highlight: { en: "Community of 130+ unique players, 6 tournaments.", cs: "Komunita více než 130 unikátních hráčů, 6 turnajů." },
+        highlight: { en: "Community of 130+ unique players, 6 tournaments — all managed independently.", cs: "Komunita 130+ unikátních hráčů, 6 turnajů – vše řízeno samostatně." },
         url: "https://grailseries.cz/"
       },
       {
         title: "MtG DC ELO Ranking System",
         banner: "/projects/elo.png",
-        tags: ["Data", "Community", "Project", "Personal"],
+        tags: ["DATA", "VIBE CODING", "PROJECT", "PERSONAL"],
         description: {
-          en: "Data ranking system for the Czech Duel Commander Magic: The Gathering community. Uses ELO rating to track long-term performance of 430+ active players.",
-          cs: "Datový ranking systém pro českou komunitu hráčů formátu Duel Commander v Magic: The Gathering. Systém využívá ELO rating k dlouhodobému sledování výkonu více jak 430 aktivních hráčů."
+          en: "Personal project — complete design and development of a web application for the Czech Duel Commander community. Includes vibe coding the entire frontend, data architecture design, data layer integration and ELO algorithm implementation for long-term performance tracking of 430+ active players.",
+          cs: "Osobní projekt – kompletní návrh a vývoj webové aplikace pro českou komunitu Duel Commander hráčů. Zahrnuje vibe coding celého frontendu, návrh datové architektury, napojení na datovou vrstvu a implementaci ELO algoritmu pro dlouhodobé sledování výkonu 430+ aktivních hráčů."
         },
-        highlight: { en: "Transparent ranking for the Czech DC community.", cs: "Transparentní ranking pro českou DC komunitu." },
+        highlight: { en: "Transparent ranking for the Czech DC community — from design to production.", cs: "Transparentní ranking pro českou DC komunitu – od návrhu po produkci." },
         url: "https://elo.grailseries.cz/cz/"
-      },
-      {
-        title: "Structured Network Infrastructure Deployment",
-        banner: "/projects/network.jpg",
-        tags: ["Infrastructure", "Network", "Operations"],
-        description: {
-          en: "Design and implementation of network infrastructure across an entire floor of a large office building — planning, structured cabling, racks, patch panels and physical installation.",
-          cs: "Návrh a realizace síťové infrastruktury v rámci celého patra velké kancelářské budovy. Plánování rozmístění síťových prvků, návrh rozvodů strukturované kabeláže a fyzická realizace instalace včetně racků a patch panelů."
-        },
-        highlight: { en: "Installation of over 10 km of structured cabling.", cs: "Instalace a realizace více než 10 km strukturované kabeláže." },
-        url: null
       }
     ]
   },
