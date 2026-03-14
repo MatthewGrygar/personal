@@ -399,48 +399,48 @@ export const i18n = {
       cs: "Dovednosti, díky kterým systémy a týmy fungují i pod tlakem"
     },
     subheadline: {
-      en: "My experience is grounded in operating systems in real environments — resolving incidents, stabilising production, and identifying weaknesses before they cause problems. I combine technical background with a process-driven approach to operations and risk management.",
-      cs: "Moje zkušenosti stojí hlavně na provozu systémů v reálném prostředí – řešení incidentů, stabilizace produkce a hledání slabých míst dříve, než způsobí problém. Kombinuji technické zázemí s procesním přístupem k řízení provozu a rizik."
+      en: "My experience is grounded in operating systems in real environments — incident management, identifying operational risks and building processes that protect organisations from outages. I combine technical background with risk thinking and operational governance.",
+      cs: "Moje zkušenosti stojí na provozu systémů v reálném prostředí – řízení incidentů, identifikace provozních rizik a budování procesů, které organizaci chrání před výpadky. Kombinuji technické zázemí s risk myšlením a provozní governance."
     },
     groups: [
       {
-        title: { en: "Risk & Management", cs: "Risk & Management" },
-        items: ["Major Incident Coordination", "SLA & Service Governance", "Change Management", "ITIL principy", "Stakeholder Communication"]
+        title: { en: "Risk & Governance", cs: "Risk & Governance" },
+        items: ["Operational Risk Awareness", "Major Incident Coordination", "SLA & Service Governance", "Change Management", "Operational Resilience", "ITIL", "Stakeholder Communication"]
+      },
+      {
+        title: { en: "Risk Frameworks", cs: "Risk Frameworks" },
+        items: ["ISO 27001", "ISO 27005", "RBAC / Access Governance"]
       },
       {
         title: { en: "Engineering & Operations", cs: "Inženýrství & Provoz" },
-        items: ["Identity & Access Management (IBM ITIM / ISVG)", "Application Support (L1–L3)", "Incident Management", "SQL", "PowerShell", "Log Analysis", "Monitoring (Grafana)", "Linux (Red Hat)", "Windows Server"]
+        items: ["Identity & Access Management (IBM ITIM / ISVG)", "Incident Management", "Log Analysis", "Monitoring (Grafana)", "SQL", "PowerShell", "Linux (Red Hat)", "Windows Server"]
       },
       {
         title: { en: "Tools & Platforms", cs: "Nástroje & Platformy" },
-        items: ["JIRA (workflow, SLA, automatizace)", "IBM DB2", "LDAP", "WebSphere (WAS)", "Ubiquiti", "Fortinet", "Confluence", "ServiceNow"]
-      },
-      {
-        title: { en: "Risk Frameworks (orientation)", cs: "Risk Framework (orientace)" },
-        items: ["ISO 27001", "ISO 27005", "RBAC / Access Governance", "24/7 On-call Operations"]
+        items: ["JIRA (workflow, SLA, automatizace, administrace)", "IBM DB2", "LDAP", "WebSphere (WAS)", "Confluence", "ServiceNow"]
       }
     ],
     strengthsTitle: { en: "Core strengths", cs: "Silné stránky" },
     strengths: [
-      { en: "Structured approach to incident resolution", cs: "Strukturovaný přístup k řešení incidentů" },
-      { en: "Ability to identify operational risks", cs: "Schopnost identifikovat provozní rizika" },
-      { en: "Clear communication in technical and non-technical teams", cs: "Jasná komunikace v technických i netechnických týmech" },
-      { en: "Emphasis on documentation and knowledge sharing", cs: "Důraz na dokumentaci a sdílení znalostí" },
-      { en: "Calm approach to problem-solving under pressure", cs: "Klidný přístup při řešení problémů pod tlakem" },
-      { en: "Coordinating resolution across teams", cs: "Koordinace řešení napříč týmy" }
+      { en: "I identify operational risks before they cause a problem", cs: "Identifikuji provozní rizika dříve, než způsobí problém" },
+      { en: "I manage incidents and escalations under pressure in a structured way", cs: "Strukturovaně řídím incidenty a eskalace pod tlakem" },
+      { en: "I can translate technical problems into a business context", cs: "Technické problémy dokážu přeložit do business kontextu" },
+      { en: "I emphasise process discipline and clearly defined responsibilities", cs: "Dbám na procesní disciplínu a jasně definované odpovědnosti" },
+      { en: "In critical situations I remain calm and decisive", cs: "V kritických situacích zůstávám klidný a rozhodný" },
+      { en: "I coordinate resolution across teams and organisations", cs: "Koordinuji řešení napříč týmy a organizacemi" }
     ],
     goals: [
       { en: "IT Risk Manager", cs: "IT Risk Manager" },
       { en: "Operational Resilience / Incident Governance", cs: "Operational Resilience / Incident Governance" },
-      { en: "Turnaround / Crisis Operations", cs: "Turnaround / Crisis Operations" }
+      { en: "IT Security & Compliance", cs: "IT Security & Compliance" }
     ]
   },
 
   contact: {
-    headline: { en: "Let's build resilient systems together", cs: "Pojďme budovat resilientní systémy společně" },
+    headline: { en: "Let's manage risks before they become incidents.", cs: "Pojďme řídit rizika dřív, než se stanou incidenty." },
     body: {
-      en: "If you're looking for someone with experience in system operations, incident management and identity management who wants to grow further in IT Risk Management and operational resilience — I'd be happy to connect.",
-      cs: "Pokud hledáte člověka se zkušeností z provozu systémů, incident managementu a identity managementu, který se chce dále rozvíjet v oblasti IT Risk Managementu a provozní odolnosti systémů, rád se s vámi spojím."
+      en: "If you're looking for someone with operational experience in incident management and IT risk — whether for an IT Risk Manager role or as an experienced member of an operations team — get in touch.",
+      cs: "Pokud hledáte člověka s provozní praxí v řízení incidentů a IT rizicích – ať už do role IT Risk Managera, nebo zkušeného člena provozního týmu – napište mi."
     },
     form: {
       name:    { en: "Name",         cs: "Jméno"  },

@@ -168,10 +168,10 @@ export function Contact({ lang }: { lang: Lang }) {
                 </div>
 
                 {/* Message */}
-                <div className="flex flex-col">
+                <div className="flex flex-col flex-1">
                   <label style={labelCss}>{t(contact.form.message, lang)}</label>
                   <textarea name="message" required
-                    style={{ ...inputCss, resize:"none", flex:1, minHeight:"80px" }}
+                    style={{ ...inputCss, resize:"none", flex:1, minHeight:"140px" }}
                     onFocus={onFocus} onBlur={onBlur} />
                 </div>
 

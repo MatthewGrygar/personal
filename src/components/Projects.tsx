@@ -56,7 +56,7 @@ export function Projects({ lang }: { lang: Lang }) {
         </motion.h2>
 
         {/* 3×2 grid */}
-        <div className="grid gap-3 m-3col m-projects-grid"
+        <div className="grid gap-2 m-3col m-projects-grid"
           style={{ gridTemplateColumns:"repeat(3,1fr)", alignContent:"start", gridAutoRows:"auto" }}>
           {proj.items.map((item: any, i: number) => (
             <motion.div key={i}
@@ -68,7 +68,7 @@ export function Projects({ lang }: { lang: Lang }) {
 
               {/* Banner image — thin strip, center-cropped */}
               {item.banner && (
-                <div style={{ height:"52px", overflow:"hidden", flexShrink:0, position:"relative" }}>
+                <div style={{ height:"44px", overflow:"hidden", flexShrink:0, position:"relative" }}>
                   <img src={item.banner} alt=""
                     style={{
                       width:"100%", height:"100%",
@@ -85,7 +85,7 @@ export function Projects({ lang }: { lang: Lang }) {
               )}
 
               {/* Card body */}
-              <div className="flex flex-col p-3.5 flex-1">
+              <div className="flex flex-col p-3 flex-1">
 
                 {/* Tags + link row */}
                 <div className="flex items-start justify-between gap-1 mb-1.5">
@@ -114,14 +114,14 @@ export function Projects({ lang }: { lang: Lang }) {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-display mb-1.5"
-                  style={{ fontSize:"clamp(0.88rem,1.1vw,1rem)", fontWeight:500, color:"var(--ink)", lineHeight:1.25 }}>
+                <h3 className="font-display mb-1"
+                  style={{ fontSize:"clamp(0.94rem,1.25vw,1.1rem)", fontWeight:600, color:"var(--ink)", lineHeight:1.2 }}>
                   {item.title}
                 </h3>
 
                 {/* Description */}
                 <p className="leading-relaxed mb-2"
-                  style={{ color:"var(--ink)", fontWeight:300, opacity:0.88, fontSize:"0.8rem" }}>
+                  style={{ color:"var(--ink)", fontWeight:300, opacity:0.88, fontSize:"clamp(0.72rem,0.9vw,0.8rem)" }}>
                   {t(item.description, lang)}
                 </p>
 

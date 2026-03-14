@@ -140,17 +140,21 @@ export function Skills({ lang }: { lang: Lang }) {
 
             {/* Goals */}
             <motion.div {...fi(0.38)} className="rounded-2xl" style={{ ...G.goals, padding:pad }}>
-              <p className="uppercase tracking-widest"
+              <motion.p className="uppercase tracking-widest"
+                animate={{ opacity:[0.7, 1, 0.7] }}
+                transition={{ duration:3, repeat:Infinity, ease:"easeInOut" }}
                 style={{ color:"var(--amber)", fontFamily:"DM Mono, monospace",
-                  fontSize:FS.label, marginBottom:"clamp(0.3rem,0.8vh,0.625rem)" }}>
+                  fontSize:"clamp(0.72rem,1vh,0.88rem)", fontWeight:700,
+                  letterSpacing:"0.12em",
+                  marginBottom:"clamp(0.3rem,0.8vh,0.625rem)" }}>
                 {lang==="en" ? "Aiming For" : "Mířím na"}
-              </p>
+              </motion.p>
               <div style={{ display:"flex", flexDirection:"column", gap }}>
                 {skills.goals.map((role: any, i: number) => (
                   <div key={i} style={{ display:"flex", alignItems:"center", gap:"0.625rem" }}>
                     <span style={{ color:"var(--amber)", fontSize:"1rem", flexShrink:0, lineHeight:1 }}>→</span>
                     <p className="font-display italic"
-                      style={{ fontSize:FS.arrow, color:"var(--ink)", lineHeight:1.2 }}>
+                      style={{ fontSize:"clamp(0.9rem,1.35vh,1.1rem)", color:"var(--ink)", lineHeight:1.25, fontWeight:400 }}>
                       {t(role, lang)}
                     </p>
                   </div>
