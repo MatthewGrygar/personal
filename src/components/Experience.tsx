@@ -159,7 +159,7 @@ export function Experience({ lang }: { lang: Lang }) {
                       <div className="p-3 flex-shrink-0" style={G.impacts}>
                         <p className="mb-1.5 text-xs uppercase tracking-widest"
                           style={{ color:"var(--amber)", fontFamily:"DM Mono, monospace" }}>
-                          {lang==="en" ? "Key Impacts" : "Klíčové dopady"}
+                          {lang==="en" ? "Key Impacts" : lang==="de" ? "Wesentliche Auswirkungen" : "Klíčové dopady"}
                         </p>
                         <div className="flex flex-col gap-1">
                           {t(active.impacts, lang).map((imp: string, i: number) => (
@@ -308,7 +308,7 @@ export function Experience({ lang }: { lang: Lang }) {
             <div style={{ ...G.impacts, padding:"0.75rem", marginBottom:"0.75rem" }}>
               <p style={{ fontSize:"0.6rem", textTransform:"uppercase", letterSpacing:"0.12em",
                 color:"var(--amber)", fontFamily:"DM Mono,monospace", marginBottom:"0.5rem" }}>
-                {lang==="en" ? "Key Impacts" : "Klíčové dopady"}
+                {lang==="en" ? "Key Impacts" : lang==="de" ? "Wesentliche Auswirkungen" : "Klíčové dopady"}
               </p>
               {t(active.impacts, lang).map((imp: string, i: number) => (
                 <div key={i} style={{ display:"flex", gap:"0.5rem", marginBottom:"0.3rem" }}>

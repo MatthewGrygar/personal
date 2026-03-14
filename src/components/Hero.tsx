@@ -334,6 +334,7 @@ export function Hero({ lang }: { lang: Lang }) {
                 width:"100%", height:"100%",
                 objectFit:"cover", objectPosition:"center 15%",
                 display:"block",
+                mixBlendMode:"screen",
               }} />
             {/* Gradient vlevo — foto bledne do bg */}
             <div style={{ position:"absolute", top:0, left:0, bottom:0, width:"35%",

@@ -148,7 +148,9 @@ export default function Page() {
   const [lang, setLang] = useState<Lang>(() => {
     if (typeof navigator !== "undefined") {
       const bl = (navigator.language || (navigator.languages && navigator.languages[0]) || "en").toLowerCase();
-      return bl.startsWith("cs") || bl.startsWith("sk") ? "cs" : "en";
+      if (bl.startsWith("cs") || bl.startsWith("sk")) return "cs";
+      if (bl.startsWith("de") || bl.startsWith("at") || bl.startsWith("ch")) return "de";
+      return "en";
     }
     return "en";
   });

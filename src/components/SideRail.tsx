@@ -130,7 +130,7 @@ export function SideRail({
         />
 
         {/* Lang toggle */}
-        {(["en", "cs"] as Lang[]).map((l, i) => (
+        {(["en", "cs", "de"] as Lang[]).map((l, i) => (
           <motion.button
             key={l}
             initial={{ opacity: 0 }}

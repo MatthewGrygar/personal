@@ -69,7 +69,7 @@ export function Skills({ lang }: { lang: Lang }) {
         </motion.p>
 
         {/* 2-column layout — alignContent:start aby se karty NEROZTAHOVALY */}
-        <div className="min-h-0 flex-1 grid m-2col m-skills-cols"
+        <div className="min-h-0 flex-1 grid m-skills-cols"
           style={{ gridTemplateColumns:"1fr 1fr", gap:colGap, alignContent:"start" }}>
 
           {/* ── LEFT ── */}
@@ -147,7 +147,7 @@ export function Skills({ lang }: { lang: Lang }) {
                   fontSize:"clamp(0.72rem,1vh,0.88rem)", fontWeight:700,
                   letterSpacing:"0.12em",
                   marginBottom:"clamp(0.3rem,0.8vh,0.625rem)" }}>
-                {lang==="en" ? "Aiming For" : "Mířím na"}
+                {lang==="en" ? "Aiming For" : lang==="de" ? "Ich strebe an" : "Mířím na"}
               </motion.p>
               <div style={{ display:"flex", flexDirection:"column", gap }}>
                 {skills.goals.map((role: any, i: number) => (

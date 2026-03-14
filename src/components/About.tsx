@@ -145,7 +145,7 @@ export function About({ lang }: { lang: Lang }) {
                 fontSize:"clamp(0.6rem,0.85vh,0.75rem)", textTransform:"uppercase",
                 letterSpacing:"0.1em", color:"var(--amber)", fontFamily:"DM Mono,monospace",
                 position:"relative", zIndex:1 }}>
-                {lang==="en" ? "Long-term direction" : "Moje směřování"}
+                {lang==="en" ? "Long-term direction" : lang==="de" ? "Langfristige Ausrichtung" : "Moje směřování"}
               </p>
               <p style={{ fontSize:"clamp(0.72rem,1.1vh,0.93rem)", color:"var(--ink)",
                 fontWeight:300, lineHeight:1.5, position:"relative", zIndex:1,

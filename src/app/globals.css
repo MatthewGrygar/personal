@@ -277,7 +277,7 @@ body::before {
 
   /* Contact */
   .m-contact-name-email { grid-template-columns: 1fr !important; }
-  .m-section form { height: auto !important; }
+  .m-section form { height: auto !important; flex: none !important; }
   .m-section .flex.h-full { height: auto !important; }
 
   /* Headings */
@@ -291,6 +291,72 @@ body::before {
 
   /* About/Pillars outer */
   section[data-slide] > div.relative { overflow: visible !important; }
+
+  /* ── About: panely pod sebe, žádné překrývání ── */
+  .m-2col {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    overflow: visible !important;
+  }
+  .m-2col > * {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex: none !important;
+    overflow: visible !important;
+  }
+  /* Všechny zanořené flex-1/min-h-0 v m-2col */
+  .m-2col .flex-1, .m-2col .min-h-0 {
+    flex: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* ── Skills: panely pod sebe ── */
+  .m-skills-cols {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.65rem !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+  .m-skills-cols > div {
+    width: 100% !important;
+    height: auto !important;
+    flex: none !important;
+    overflow: visible !important;
+  }
+
+  /* ── Contact: 2-col grid → 1 col ── */
+  .m-contact-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    overflow: visible !important;
+  }
+  .m-contact-grid > * {
+    width: 100% !important;
+    height: auto !important;
+    flex: none !important;
+    overflow: visible !important;
+  }
+  /* form flex-col uvnitř panelu */
+  .m-contact-grid form {
+    height: auto !important;
+  }
+  /* textarea — nech ji mít rozumnou výšku na mobilu */
+  .m-contact-grid textarea {
+    min-height: 100px !important;
+    flex: none !important;
+  }
+  /* Pravý sloupec kontaktu: flex-col items */
+  .m-contact-right {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.65rem !important;
+  }
 }
 
 @media (max-width: 380px) {

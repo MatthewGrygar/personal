@@ -166,7 +166,7 @@ export function MobileNav({
 
               {/* Lang toggle */}
               <div style={{ display: "flex", gap: "0.4rem", paddingLeft: "0.5rem" }}>
-                {(["en", "cs"] as Lang[]).map(l => (
+                {(["en", "cs", "de"] as Lang[]).map(l => (
                   <button
                     key={l}
                     onClick={() => setLang(l)}

@@ -121,7 +121,7 @@ export function Contact({ lang }: { lang: Lang }) {
         </motion.p>
 
         {/* 2-col: form LEFT | info RIGHT */}
-        <div className="grid gap-5 m-2col" style={{ gridTemplateColumns:"1.1fr 0.9fr" }}>
+        <div className="grid gap-5 m-contact-grid" style={{ gridTemplateColumns:"1.1fr 0.9fr" }}>
 
           {/* ── LEFT: Form ── */}
           <motion.div {...fi(0.18,"x",-16)}
@@ -138,10 +138,10 @@ export function Contact({ lang }: { lang: Lang }) {
                 <motion.span initial={{ scale:0 }} animate={{ scale:1 }} transition={{ type:"spring", stiffness:200 }}
                   style={{ fontSize:"2.5rem" }}>✦</motion.span>
                 <p className="font-display text-xl" style={{ color:"var(--ink)" }}>
-                  {lang==="en" ? "Message sent." : "Zpráva odeslána."}
+                  {lang==="en" ? "Message sent." : lang==="de" ? "Nachricht gesendet." : "Zpráva odeslána."}
                 </p>
                 <p className="text-sm" style={{ color:"var(--ink-soft)" }}>
-                  {lang==="en" ? "Thank you, I'll be in touch." : "Děkuji, ozvu se."}
+                  {lang==="en" ? "Thank you, I'll be in touch." : lang==="de" ? "Danke, ich melde mich." : "Děkuji, ozvu se."}
                 </p>
               </div>
             ) : (
@@ -181,7 +181,7 @@ export function Contact({ lang }: { lang: Lang }) {
                   className="flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 disabled:opacity-60"
                   style={{ background:"var(--amber)", color:"var(--bg)", boxShadow:"0 4px 20px rgba(200,145,58,0.3)" }}>
                   <Send size={13} />
-                  {sending ? (lang==="en" ? "Sending…" : "Odesílám…") : t(contact.form.send, lang)}
+                  {sending ? (lang==="en" ? "Sending…" : lang==="de" ? "Sende…" : "Odesílám…") : t(contact.form.send, lang)}
                 </button>
 
                 <p className="text-center text-xs" style={{ color:"rgba(168,189,208,0.6)" }}>
@@ -192,7 +192,7 @@ export function Contact({ lang }: { lang: Lang }) {
           </motion.div>
 
           {/* ── RIGHT: Info + CV + Signature ── */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 m-contact-right">
 
             {/* Email link */}
             <motion.a {...fi(0.22,"x",16)}
