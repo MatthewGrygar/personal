@@ -1,66 +1,75 @@
 const EXP = [
   {
-    company: "Trask",
-    period:  "Jan 2025 – present",
-    current: true,
-    role:    "System Engineer — Identity & Access Management",
-    desc:    "Operation and management of IAM solutions for enterprise clients in regulated sectors. Installation and configuration of IBM IAM stack (ITIM, ISVG, DB2, LDAP, WebSphere) on Windows Server. Upgrades of existing IAM environments, access governance configuration, technical analysis in ISVG.",
-    tags:    ["IAM","IBM ITIM","ISVG","LDAP","DB2","WebSphere","Windows Server"],
+    period: "Jan 2025 — Present", chip: "CURRENT", chipGreen: false,
+    co: "Trask", logo: "/logo-trask.png",
+    role: "System Engineer — Identity & Access Management",
+    desc: "IAM operations on regulated banking infrastructure. IBM ITIM / ISVG provisioning, RBAC reviews, escalation handling for P1 / P2 access incidents, and continuous improvement of the request and approval workflows the bank actually runs on.",
+    tags: ["IBM ITIM","ISVG","LDAP","DB2","RBAC","Incident Mgmt"],
   },
   {
-    company: "OX Point",
-    period:  "Feb 2024 – Sep 2025",
-    current: false,
-    role:    "Operations & Support",
-    desc:    "Operational support and service management, handling SLA compliance and escalation paths across multiple tiers of support in a fast-paced environment with 300+ devices in production.",
-    tags:    ["SLA","Operations","Support","Escalation"],
+    period: "Feb 2024 — Sep 2025", chip: null, chipGreen: false,
+    co: "OX Point", logo: "/logo-oxpoint.png",
+    role: "Operations & Support",
+    desc: "Frontline of a live system — monitoring, triage, ticket discipline. The classroom where I learned that response time is a design decision, not a side-effect.",
+    tags: ["L1 / L2","SLA","JIRA","Grafana"],
   },
   {
-    company: "NAKIT",
-    period:  "May 2023 – Mar 2024",
-    current: false,
-    role:    "Systems & Infrastructure",
-    desc:    "Government eGovernment infrastructure — high-availability systems where precision and audit trail integrity were non-negotiable. Incident coordination and operational risk awareness in a public sector environment serving millions of users.",
-    tags:    ["eGovernment","High Availability","Incident Mgmt"],
+    period: "May 2023 — Mar 2024", chip: null, chipGreen: false,
+    co: "NAKIT", logo: "/logo-nakit.png",
+    role: "Systems & Infrastructure",
+    desc: "State infrastructure ops — security baselines, change management discipline, audit-ready documentation. First exposure to working at the speed of compliance, not just code.",
+    tags: ["Linux","Windows Server","ITIL","Change Mgmt"],
   },
   {
-    company: "MyCom Solutions",
-    period:  "2021 – 2023",
-    current: false,
-    role:    "Operations Engineer",
-    desc:    "Production operations across infrastructure of hundreds of devices. Building escalation processes, monitoring setups and response workflows from the ground up.",
-    tags:    ["Monitoring","Grafana","Linux","JIRA"],
+    period: "2022 — 2023", chip: null, chipGreen: false,
+    co: "ÚVN", logo: "/logo-uvn.png",
+    role: "IT Support — Military University Hospital",
+    desc: "Healthcare IT support in a high-stakes environment. End-user systems, hardware lifecycle, and the quiet discipline of keeping clinical infrastructure available.",
+    tags: ["Support","Healthcare IT","Hardware"],
+  },
+  {
+    period: "2021 — 2023", chip: null, chipGreen: false,
+    co: "MyCom Solutions", logo: "/logo-mycom.webp",
+    role: "Operations Engineer",
+    desc: "Where it started — tickets, late-night pages, post-mortems. Built the habit of writing things down so the next person doesn't repeat them.",
+    tags: ["Support","Documentation","Process"],
   },
 ];
 
 export function Experience() {
   return (
-    <section id="experience" style={{ padding:"8rem 4rem", borderTop:"1px solid rgba(255,255,255,0.07)" }}>
-      <div className="reveal" style={{ display:"flex", alignItems:"baseline", gap:"2rem", marginBottom:"5rem" }}>
-        <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.7rem", letterSpacing:"0.2em", color:"#C9A84C", textTransform:"uppercase" }}>02 / Experience</span>
-        <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(2.5rem,4vw,4rem)", fontWeight:300, color:"#E2DDD5", lineHeight:1.1 }}>Live operations —<br />where failure<br />is not an option</h2>
+    <section className="section" id="experience">
+      <div className="section-head">
+        <div className="section-idx reveal">
+          <span>02 / Experience</span>
+          <span>— {EXP.length} entries</span>
+        </div>
+        <h2 className="section-title reveal">
+          Live operations — <em>where failure</em> is not an option.
+        </h2>
       </div>
 
-      <div>
-        {EXP.map((e, i) => (
-          <div key={i} className="reveal" style={{ display:"grid", gridTemplateColumns:"280px 1fr", gap:"3rem", padding:"3rem 0", borderTop:"1px solid rgba(255,255,255,0.07)", borderBottom: i === EXP.length - 1 ? "1px solid rgba(255,255,255,0.07)" : undefined }}>
-            <div>
-              <div style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"1.4rem", fontWeight:400, color:"#E2DDD5", marginBottom:"0.4rem" }}>{e.company}</div>
-              <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.1em", color:"#7A8090", marginBottom:"1rem" }}>{e.period}</div>
-              {e.current && (
-                <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.6rem", letterSpacing:"0.15em", textTransform:"uppercase", color:"#C9A84C", border:"1px solid #7A5E24", padding:"0.2rem 0.6rem", display:"inline-block" }}>Current</span>
-              )}
+      <div className="exp-list">
+        {EXP.map((it, i) => (
+          <article className="exp-item reveal" key={i} data-hover>
+            <div className="exp-period">
+              <span>{it.period}</span>
+              {it.chip && <span className={`chip${it.chipGreen ? " green" : ""}`}>{it.chip}</span>}
             </div>
-            <div>
-              <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.72rem", letterSpacing:"0.08em", color:"#7A8090", textTransform:"uppercase", marginBottom:"1rem" }}>{e.role}</div>
-              <p style={{ fontSize:"0.92rem", color:"#7A8090", lineHeight:1.8, marginBottom:"1.2rem" }}>{e.desc}</p>
-              <div style={{ display:"flex", flexWrap:"wrap", gap:"0.4rem" }}>
-                {e.tags.map(tag => (
-                  <span key={tag} style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.6rem", letterSpacing:"0.1em", textTransform:"uppercase", color:"#C9A84C", background:"rgba(201,168,76,0.08)", border:"1px solid rgba(201,168,76,0.2)", padding:"0.25rem 0.6rem" }}>{tag}</span>
-                ))}
+            <div className="exp-logo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={it.logo} alt={`${it.co} logo`} loading="lazy" />
+            </div>
+            <div className="exp-main">
+              <h3 className="exp-co">{it.co}</h3>
+              <div className="exp-role">{it.role}</div>
+              <p className="exp-desc">{it.desc}</p>
+              <div className="exp-tags">
+                {it.tags.map((t) => <span key={t} className="tag">{t}</span>)}
               </div>
             </div>
-          </div>
+            <div className="exp-arrow">↗</div>
+          </article>
         ))}
       </div>
     </section>

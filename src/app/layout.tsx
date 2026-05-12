@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "IT Risk Manager, Crisis Specialist and Systems Engineer based in Prague. Calm structure for complex problems.",
   openGraph: {
     title: "Matthew Grygar",
-    description: "IT Risk Manager · Systems Engineer · Crisis Specialist",
+    description: "IT Risk Manager · Systems Engineer · IAM Specialist",
     images: ["/og.png"],
   },
 };

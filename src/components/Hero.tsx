@@ -1,74 +1,79 @@
-const GRID = `
-  repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(255,255,255,0.025) 79px,rgba(255,255,255,0.025) 80px),
-  repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,0.025) 79px,rgba(255,255,255,0.025) 80px)
-`.trim();
-
-const fu = (d: number) => ({ animation: `fadeUp 0.8s ease ${d}s backwards` });
+"use client";
+import { useEffect, useRef } from "react";
 
 export function Hero() {
+  const photoRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
+    const onMove = (e: MouseEvent) => {
+      if (!photoRef.current) return;
+      const rect = photoRef.current.getBoundingClientRect();
+      const dx = (e.clientX - (rect.left + rect.width / 2)) / window.innerWidth;
+      const dy = (e.clientY - (rect.top + rect.height / 2)) / window.innerHeight;
+      photoRef.current.style.transform = `translate3d(${dx * 12}px,${dy * 8}px,0)`;
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
+  }, []);
+
   return (
-    <>
-      <style>{`
-        @keyframes fadeUp {
-          from { opacity:0; transform:translateY(24px); }
-          to   { opacity:1; transform:translateY(0); }
-        }
-      `}</style>
+    <section className="hero" id="top">
+      <div className="hero-top">
+        <div className="meta hero-enter">
+          <span className="accent">●</span>&nbsp; PORTFOLIO / 2026
+        </div>
+        <div className="meta center hero-enter d1">
+          50.0755° N &nbsp;·&nbsp; 14.4378° E
+        </div>
+        <div className="meta right hero-enter d2">
+          <b>PRAGUE</b> · CZ &nbsp;<span className="accent">[ HYBRID · OPEN ]</span>
+        </div>
+      </div>
 
-      <section id="top" style={{ minHeight:"100vh", display:"grid", gridTemplateColumns:"1fr 1fr", paddingTop:"5rem", position:"relative", overflow:"hidden", background:"#080C12" }}>
-        <div style={{ position:"absolute", inset:0, background:GRID, pointerEvents:"none" }} />
+      <div className="hero-sub hero-enter d3">
+        <span>IT RISK MANAGER</span>
+        <span className="dotsep">/</span>
+        <span>SYSTEMS ENGINEER</span>
+        <span className="dotsep">/</span>
+        <span>IAM SPECIALIST</span>
+      </div>
 
-        {/* Left */}
-        <div style={{ display:"flex", flexDirection:"column", justifyContent:"center", padding:"6rem 4rem", position:"relative" }}>
+      <div className="hero-stage">
+        <div className="hero-ghost serif-it" aria-hidden="true">Grygar</div>
+        <h1 className="hero-name">
+          <span className="first hero-enter d4">Matthew</span>
+          <span className="second hero-enter d5">Grygar.</span>
+        </h1>
+        <div className="hero-photo-wrap hero-enter d4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="hero-photo" ref={photoRef} src="/profile.png" alt="Matthew Grygar" />
+        </div>
+      </div>
 
-          <div style={{ ...fu(0.1), fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.7rem", letterSpacing:"0.3em", textTransform:"uppercase", color:"#C9A84C", marginBottom:"2rem", display:"flex", alignItems:"center", gap:"1rem" }}>
-            <span style={{ width:"2rem", height:"1px", background:"#C9A84C", display:"block", flexShrink:0 }} />
-            IT Risk Manager &amp; Systems Engineer
+      <div className="hero-bottom">
+        <p className="hero-tagline hero-enter d5">
+          <strong>Calm structure</strong> for complex problems. Stabilising critical systems when incidents escalate — and building processes so they don&apos;t happen again.
+        </p>
+        <div className="hero-actions hero-enter d6">
+          <a href="#contact" className="cta filled">Get in touch →</a>
+          <a href="/cv-matthew-grygar.pdf" className="cta" target="_blank" rel="noreferrer">Download CV ↓</a>
+        </div>
+        <div className="hero-stats hero-enter d7">
+          <div className="stat">
+            <div className="stat-n">05</div>
+            <div className="stat-l">Years in live operations</div>
           </div>
-
-          <h1 style={{ ...fu(0.25), fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(4rem,7vw,7rem)", fontWeight:300, lineHeight:0.9, letterSpacing:"-0.02em", color:"#E2DDD5", marginBottom:"1.5rem" }}>
-            Matthew<br /><em style={{ fontStyle:"italic", color:"#C9A84C" }}>Grygar</em>
-          </h1>
-
-          <div style={{ ...fu(0.4), fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.8rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"#7A8090", marginBottom:"2.5rem" }}>
-            Prague · Identity &amp; Access Management · Crisis Specialist
+          <div className="stat">
+            <div className="stat-n green">P1</div>
+            <div className="stat-l">Critical-incident response</div>
           </div>
-
-          <p style={{ ...fu(0.5), fontSize:"1.05rem", color:"#7A8090", maxWidth:"28rem", lineHeight:1.8, marginBottom:"3rem", borderLeft:"2px solid #7A5E24", paddingLeft:"1.5rem" }}>
-            Calm structure for complex problems. Stabilising critical systems when incidents escalate — and building processes so they don&apos;t happen again.
-          </p>
-
-          <div style={{ ...fu(0.6), display:"flex", gap:"1rem", alignItems:"center" }}>
-            <a href="#contact" style={{ background:"#C9A84C", color:"#080C12", fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.7rem", letterSpacing:"0.15em", textTransform:"uppercase", textDecoration:"none", padding:"0.85rem 2rem", fontWeight:500 }}>Get in touch</a>
-            <a href="/cv-matthew-grygar.pdf" target="_blank" rel="noreferrer" style={{ color:"#7A8090", fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.7rem", letterSpacing:"0.15em", textTransform:"uppercase", textDecoration:"none", padding:"0.85rem 2rem", border:"1px solid #2A3245" }}>Download CV</a>
-          </div>
-
-          <div style={{ ...fu(0.75), display:"flex", gap:"3rem", marginTop:"4rem", paddingTop:"3rem", borderTop:"1px solid rgba(255,255,255,0.07)" }}>
-            {[["5+","Years experience"],["3","Enterprise orgs"],["IAM","Current focus"]].map(([n,l]) => (
-              <div key={l}>
-                <div style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"2.8rem", fontWeight:300, color:"#E2DDD5", lineHeight:1 }}>{n}</div>
-                <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.15em", textTransform:"uppercase", color:"#7A8090", marginTop:"0.4rem" }}>{l}</div>
-              </div>
-            ))}
+          <div className="stat">
+            <div className="stat-n italic">→</div>
+            <div className="stat-l">Toward IT Risk lead</div>
           </div>
         </div>
-
-        {/* Right — photo */}
-        <div style={{ ...fu(0.3), position:"relative", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden" }}>
-          <div style={{ position:"relative", width:380, height:480 }}>
-            <div style={{ position:"absolute", top:"-1.5rem", left:"-1.5rem", right:"1.5rem", bottom:"1.5rem", border:"1px solid #7A5E24", zIndex:0 }} />
-            <img src="/profile.png" alt="Matthew Grygar" style={{ width:"100%", height:"100%", objectFit:"cover", position:"relative", zIndex:1, filter:"grayscale(20%) contrast(1.05)" }} />
-            <div style={{ position:"absolute", bottom:"2rem", left:"-3rem", zIndex:2, background:"#141B28", border:"1px solid #2A3245", padding:"1rem 1.5rem", fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.1em" }}>
-              <div style={{ color:"#C9A84C", textTransform:"uppercase", marginBottom:"0.3rem" }}>Current role</div>
-              <div style={{ color:"#E2DDD5", fontSize:"1.2rem", fontFamily:"'Cormorant Garamond',serif" }}>System Engineer — IAM</div>
-              <div style={{ fontSize:"0.6rem", color:"#7A8090", marginTop:"0.3rem" }}>Trask · 2025–present</div>
-            </div>
-          </div>
-          <div style={{ position:"absolute", bottom:"1.5rem", right:"4rem", fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.6rem", letterSpacing:"0.25em", color:"#7A8090" }}>
-            PRAGUE · HYBRID · OPEN
-          </div>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
