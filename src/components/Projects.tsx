@@ -1,143 +1,84 @@
-"use client";
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { ExternalLink } from "lucide-react";
-import { i18n, t } from "@/data/site";
-import type { Lang } from "@/data/site";
+const PROJECTS = [
+  {
+    tags:   ["JIRA","Governance"],
+    title:  "JIRA Service Workflow Design",
+    desc:   "Complete design and setup of a JIRA project — severity model, SLA parameters, workflow automation, role and user group configuration.",
+    impact: "Measurable operations management from submission to resolution.",
+    href:   null,
+  },
+  {
+    tags:   ["Risk","SLA"],
+    title:  "SLA & Incident Management Model",
+    desc:   "Internal design of operational support model — L1/L2/L3 responsibilities, escalation paths, SLA parameters and severity levels.",
+    impact: "Clear escalations, defined responsibilities, measurable governance.",
+    href:   null,
+  },
+  {
+    tags:   ["ISO 27001","ISO 27005"],
+    title:  "Risk Frameworks Study",
+    desc:   "Independent deep-dive into ISO 27001 and ISO 27005 applied to production environments — identifying risks and designing control mechanisms.",
+    impact: "Practical knowledge — ISO certification planned.",
+    href:   null,
+  },
+  {
+    tags:   ["Incident","Process"],
+    title:  "Incident Post-Mortem Framework",
+    desc:   "Structure for post-incident analysis — root causes, escalation flow, impacts, lessons learned, and preventive measures based on real P1 experience.",
+    impact: "Systematic approach to learning from incidents.",
+    href:   null,
+  },
+  {
+    tags:   ["Community","Leadership"],
+    title:  "Grail Series Tournament Circuit",
+    desc:   "End-to-end organisation of an MtG tournament series — event planning, media, partner negotiations, community building from scratch.",
+    impact: "130+ unique players, 6 tournaments — independently managed.",
+    href:   "https://grailseries.cz/",
+    link:   "grailseries.cz →",
+  },
+  {
+    tags:   ["Dev","ELO"],
+    title:  "MtG DC ELO Ranking System",
+    desc:   "Full-stack web app for the Czech Duel Commander community — frontend, data architecture, ELO algorithm for long-term performance tracking.",
+    impact: "Transparent ranking for 430+ active players.",
+    href:   "https://elo.grailseries.cz/cz/",
+    link:   "elo.grailseries.cz →",
+  },
+];
 
-const G = {
-  card: {
-    background: "rgba(16,38,62,0.97)",
-    backdropFilter: "blur(22px)",
-    WebkitBackdropFilter: "blur(22px)",
-    border: "1px solid rgba(200,145,58,0.35)",
-    boxShadow: "inset 0 1px 0 rgba(200,145,58,0.1), 0 8px 32px rgba(0,0,0,0.4)",
-  } as React.CSSProperties,
-};
-
-// Tag color overrides
-const TAG_COLORS: Record<string, { bg: string; border: string; color: string }> = {
-  "Personal":   { bg:"rgba(134,239,172,0.12)", border:"rgba(52,211,153,0.3)", color:"rgba(134,239,172,0.9)" },
-  "Osobní":     { bg:"rgba(134,239,172,0.12)", border:"rgba(52,211,153,0.3)", color:"rgba(134,239,172,0.9)" },
-  "PERSONAL":   { bg:"rgba(134,239,172,0.12)", border:"rgba(52,211,153,0.3)", color:"rgba(134,239,172,0.9)" },
-  "GOVERNANCE": { bg:"rgba(100,160,255,0.1)",  border:"rgba(100,160,255,0.28)", color:"rgba(147,197,253,0.9)" },
-  "RISK":       { bg:"rgba(251,113,133,0.1)",  border:"rgba(251,113,133,0.28)", color:"rgba(251,113,133,0.9)" },
-  "SECURITY":   { bg:"rgba(251,113,133,0.1)",  border:"rgba(251,113,133,0.28)", color:"rgba(251,113,133,0.9)" },
-  "FRAMEWORKS": { bg:"rgba(167,139,250,0.1)",  border:"rgba(167,139,250,0.28)", color:"rgba(196,181,253,0.9)" },
-  "SELF-STUDY": { bg:"rgba(167,139,250,0.1)",  border:"rgba(167,139,250,0.28)", color:"rgba(196,181,253,0.9)" },
-  "INCIDENTS":  { bg:"rgba(251,113,133,0.1)",  border:"rgba(251,113,133,0.28)", color:"rgba(251,113,133,0.9)" },
-  "PROCESS":    { bg:"rgba(100,160,255,0.1)",  border:"rgba(100,160,255,0.28)", color:"rgba(147,197,253,0.9)" },
-  "VIBE CODING":{ bg:"rgba(134,239,172,0.12)", border:"rgba(52,211,153,0.3)", color:"rgba(134,239,172,0.9)" },
-};
-
-const defaultTag = { bg:"rgba(200,145,58,0.09)", border:"rgba(200,145,58,0.25)", color:"var(--amber)" };
-
-export function Projects({ lang }: { lang: Lang }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  const proj = i18n.projects as any;
-
+export function Projects() {
   return (
-    <div ref={ref} className="relative flex h-dvh w-full overflow-hidden"
-      style={{ background: "transparent" }}>
-
-      <div className="relative z-10 flex h-full flex-col pl-20 pr-6 md:pr-12 m-section" style={{ width:"100%", paddingTop:"clamp(0.6rem,1.5vh,1.2rem)", paddingBottom:"clamp(0.4rem,1vh,0.8rem)", overflowY:"auto" }}>
-
-        <motion.p initial={{ opacity:0 }} animate={inView?{opacity:1}:{}}
-          className="mb-0.5 text-xs uppercase tracking-widest"
-          style={{ color:"var(--amber)", fontFamily:"DM Mono, monospace" }}>
-          {t(i18n.nav.projects, lang)}
-        </motion.p>
-
-        <motion.h2 initial={{ opacity:0, y:14 }} animate={inView?{opacity:1,y:0}:{}} transition={{ delay:0.08 }}
-          className="font-display mb-2 m-h2"
-          style={{ fontSize:"clamp(1.5rem,2.4vw,2.6rem)", fontWeight:300, color:"var(--ink)", lineHeight:1.1 }}>
-          {t(proj.headline, lang)}
-        </motion.h2>
-
-        {/* 3×2 grid */}
-        <div className="grid gap-2 m-3col m-projects-grid"
-          style={{ gridTemplateColumns:"repeat(3,1fr)", alignContent:"start", gridAutoRows:"auto" }}>
-          {proj.items.map((item: any, i: number) => (
-            <motion.div key={i}
-              initial={{ opacity:0, y:16, scale:0.98 }}
-              animate={inView ? { opacity:1, y:0, scale:1 } : {}}
-              transition={{ duration:0.45, delay:0.1 + i*0.07, ease:[0.22,1,0.36,1] }}
-              className="rounded-2xl flex flex-col overflow-hidden group hover:brightness-110 transition-all duration-200"
-              style={{ ...G.card, height:"100%" }}>
-
-              {/* Banner image — thin strip, center-cropped */}
-              {item.banner && (
-                <div style={{ height:"44px", overflow:"hidden", flexShrink:0, position:"relative" }}>
-                  <img src={item.banner} alt=""
-                    style={{
-                      width:"100%", height:"100%",
-                      objectFit:"cover", objectPosition:"center 40%",
-                      display:"block",
-                      filter:"brightness(0.55) saturate(0.8)",
-                    }} />
-                  {/* Amber gradient overlay at bottom */}
-                  <div style={{
-                    position:"absolute", inset:0,
-                    background:"linear-gradient(to bottom, transparent 30%, rgba(16,38,62,0.85) 100%)",
-                  }} />
-                </div>
-              )}
-
-              {/* Card body */}
-              <div className="flex flex-col p-3 flex-1">
-
-                {/* Tags + link row */}
-                <div className="flex items-start justify-between gap-1 mb-1.5">
-                  <div className="flex flex-wrap gap-1">
-                    {item.tags.map((tag: string) => {
-                      const tc = TAG_COLORS[tag] ?? defaultTag;
-                      return (
-                        <span key={tag} style={{
-                          fontSize:"0.57rem", fontFamily:"DM Mono,monospace",
-                          letterSpacing:"0.1em", textTransform:"uppercase",
-                          padding:"0.12rem 0.45rem", borderRadius:"99px",
-                          background: tc.bg, border:`1px solid ${tc.border}`,
-                          color: tc.color,
-                        }}>{tag}</span>
-                      );
-                    })}
-                  </div>
-                  {item.url && (
-                    <a href={item.url} target="_blank" rel="noopener noreferrer"
-                      className="flex-shrink-0 transition-colors hover:text-amber-400"
-                      style={{ color:"rgba(200,145,58,0.55)" }}
-                      onClick={e => e.stopPropagation()}>
-                      <ExternalLink size={12} />
-                    </a>
-                  )}
-                </div>
-
-                {/* Title */}
-                <h3 className="font-display mb-1"
-                  style={{ fontSize:"clamp(0.94rem,1.25vw,1.1rem)", fontWeight:600, color:"var(--ink)", lineHeight:1.2 }}>
-                  {item.title}
-                </h3>
-
-                {/* Description */}
-                <p className="leading-relaxed mb-2"
-                  style={{ color:"var(--ink)", fontWeight:300, opacity:0.88, fontSize:"clamp(0.72rem,0.9vw,0.8rem)" }}>
-                  {t(item.description, lang)}
-                </p>
-
-                {/* Highlight */}
-                <div className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 mt-auto"
-                  style={{ background:"rgba(200,145,58,0.07)", border:"1px solid rgba(200,145,58,0.18)" }}>
-                  <span style={{ color:"var(--amber)", fontSize:"0.48rem", flexShrink:0 }}>✦</span>
-                  <p className="text-sm italic" style={{ color:"var(--amber)", fontWeight:400 }}>
-                    {t(item.highlight, lang)}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+    <section id="projects" style={{ padding:"8rem 4rem", borderTop:"1px solid rgba(255,255,255,0.07)" }}>
+      <div className="reveal" style={{ display:"flex", alignItems:"baseline", gap:"2rem", marginBottom:"5rem" }}>
+        <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.7rem", letterSpacing:"0.2em", color:"#C9A84C", textTransform:"uppercase" }}>03 / Projects</span>
+        <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(2.5rem,4vw,4rem)", fontWeight:300, color:"#E2DDD5", lineHeight:1.1 }}>Selected work<br />&amp; initiatives</h2>
       </div>
-    </div>
+
+      <div className="reveal" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"1.5rem" }}>
+        {PROJECTS.map(p => {
+          const El = p.href ? "a" : "div";
+          const extra = p.href ? { href: p.href, target:"_blank", rel:"noreferrer" } : {};
+          return (
+            <El key={p.title} {...(extra as any)} style={{ background:"#0E1420", border:"1px solid #2A3245", padding:"2rem", display:"flex", flexDirection:"column", gap:"1rem", textDecoration:"none", color:"inherit", transition:"border-color 0.2s, transform 0.2s", cursor: p.href ? "pointer" : "default" }}
+              onMouseOver={e => { (e.currentTarget as HTMLElement).style.borderColor="#7A5E24"; (e.currentTarget as HTMLElement).style.transform="translateY(-4px)"; }}
+              onMouseOut={e  => { (e.currentTarget as HTMLElement).style.borderColor="#2A3245"; (e.currentTarget as HTMLElement).style.transform="translateY(0)"; }}
+            >
+              <div style={{ display:"flex", flexWrap:"wrap", gap:"0.4rem" }}>
+                {p.tags.map(t => (
+                  <span key={t} style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.58rem", letterSpacing:"0.12em", textTransform:"uppercase", color:"#C9A84C", background:"rgba(201,168,76,0.07)", padding:"0.2rem 0.5rem" }}>{t}</span>
+                ))}
+              </div>
+              <div style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"1.3rem", fontWeight:400, color:"#E2DDD5", lineHeight:1.2 }}>{p.title}</div>
+              <p style={{ fontSize:"0.82rem", color:"#7A8090", lineHeight:1.7, flex:1 }}>{p.desc}</p>
+              <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.05em", color:"#7A8090", borderTop:"1px solid #2A3245", paddingTop:"1rem" }}>
+                <span style={{ color:"#C9A84C" }}>◦ </span>{p.impact}
+              </div>
+              {p.link && (
+                <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.1em", textTransform:"uppercase", color:"#C9A84C" }}>{p.link}</div>
+              )}
+            </El>
+          );
+        })}
+      </div>
+    </section>
   );
 }

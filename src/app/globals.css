@@ -1,368 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* ── Deep Navy · Steel · Amber ──────────────────────────
-     IT Risk / Resilience palette:
-     Navy = stabilita, důvěra, hloubka
-     Ocel = profesionalita, struktura
-     Jantar = akcent — preciznost, alert, rozhodnost
-     Platina = čistý, elegantní text
-  ──────────────────────────────────────────────────────── */
-
-  --bg:          #0D1B2A;   /* hluboká námořní černomodrá */
-  --bg-2:        #112236;   /* sekundární — o chlup světlejší navy */
-  --bg-card:     #162D44;   /* karty a panely */
-  --bg-card-2:   #1A3350;   /* hover stav karet */
-
-  --steel:       #1E3A5F;   /* ocelová modrá — bordery, dekorace */
-  --steel-light: #2A5080;   /* světlejší ocel */
-
-  --amber:       #C8913A;   /* jantar — primární akcent */
-  --amber-light: #DBA94E;   /* světlejší pro hover */
-  --amber-pale:  rgba(200,145,58,0.15); /* velmi jemný tint */
-  --amber-glow:  rgba(200,145,58,0.08);
-
-  /* Text — platina + béžová */
-  --ink:         #E8EEF4;   /* platinová bílá — hlavní text, výrazný a čistý */
-  --ink-soft:    #A8BDD0;   /* tlumená ocelová — sekundární text */
-  --ink-muted:   #5C7A96;   /* velmi tlumená — labely, metadata */
-  --ink-warm:    #D4C5B0;   /* béžová — citáty, dekorativní text */
-
-  /* Aliases — zachová kompatibilitu se všemi komponentami */
-  --surface:     var(--bg);
-  --surface-2:   var(--bg-2);
-  --blue:        var(--amber);
-  --blue-light:  var(--amber-light);
-  --blue-pale:   var(--amber-pale);
-  --gold:        var(--amber);
-  --gold-light:  var(--amber-light);
-
-  --border:      rgba(200,145,58,0.2);
-  --border-cool: rgba(30,58,95,0.6);
-  --glow:        rgba(200,145,58,0.1);
+  --bg:         #080C12;
+  --bg2:        #0E1420;
+  --bg3:        #141B28;
+  --text:       #E2DDD5;
+  --muted:      #7A8090;
+  --subtle:     #2A3245;
+  --gold:       #C9A84C;
+  --gold-dim:   #7A5E24;
+  --gold-bright:#E8C068;
+  --line:       rgba(255,255,255,0.07);
 }
 
-* { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  height: 100%;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--bg);
-  color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 300;
   line-height: 1.7;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  height: 100%;
 }
 
-section[data-slide] {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  height: 100dvh;
-  overflow: hidden;
-  position: relative;
-  isolation: isolate;
-}
-
-.font-display { font-family: 'Cormorant Garamond', serif; }
-.font-mono-custom { font-family: 'DM Mono', monospace; }
-
-/* Subtle grain */
+/* Grain */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.03;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   background-size: 200px 200px;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg-2); }
-::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 99px; }
-::selection { background: var(--amber); color: var(--bg); }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 99px; }
+::selection { background: var(--gold); color: var(--bg); }
 
-/* Glass panels — dark navy version */
-.glass-card {
-  background: rgba(16,38,62,0.97);
-  backdrop-filter: blur(30px) saturate(1.4);
-  -webkit-backdrop-filter: blur(30px) saturate(1.4);
-  border: 1px solid rgba(200,145,58,0.28);
-  box-shadow:
-    inset 0 1px 0 rgba(200,145,58,0.18),
-    inset 0 -1px 0 rgba(0,0,0,0.2),
-    0 16px 56px rgba(0,0,0,0.5),
-    0 2px 8px rgba(0,0,0,0.3);
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
-.glass-blue {
-  background: rgba(200,145,58,0.07);
-  backdrop-filter: blur(22px) saturate(1.2);
-  -webkit-backdrop-filter: blur(22px) saturate(1.2);
-  border: 1px solid rgba(200,145,58,0.26);
-  box-shadow:
-    inset 0 1px 0 rgba(200,145,58,0.16),
-    0 10px 36px rgba(0,0,0,0.35);
+.reveal.visible {
+  opacity: 1;
+  transform: none;
 }
-
-.tag-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.22rem 0.7rem;
-  border-radius: 99px;
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  background: rgba(200,145,58,0.1);
-  color: var(--amber);
-  border: 1px solid rgba(200,145,58,0.22);
-}
-
-.card-hover {
-  transition: transform 0.28s cubic-bezier(0.4,0,0.2,1), box-shadow 0.28s ease;
-}
-.card-hover:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 50px rgba(200,145,58,0.08);
-}
-
-@keyframes lineGrow {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-.line-draw {
-  display: block;
-  height: 1px;
-  background: linear-gradient(to right, var(--amber), transparent);
-  transform-origin: left center;
-  animation: lineGrow 0.7s cubic-bezier(0.4,0,0.2,1) both;
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, var(--amber) 0%, var(--amber-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.nav-dot-wrap:hover .nav-dot { transform: scale(1.5); }
-
-@keyframes popIn {
-  from { opacity: 0; transform: scale(0.88) translateY(6px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   MOBILE ≤ 768px
-═══════════════════════════════════════════════════════════════ */
-
-/* Desktop defaults */
-.mobile-nav-trigger { display: none !important; }
-.m-hero-mobile      { display: none !important; }
-.m-exp-mobile       { display: none !important; }
-.m-hero-desktop     { display: flex; }
-.m-exp-desktop      { display: flex; width: 100%; }
-
-@media (max-width: 768px) {
-
-  /* Nav */
-  .mobile-nav-trigger { display: flex !important; }
-  .side-rail-wrap     { display: none !important; }
-  .scroll-photo-wrap  { display: none !important; }
-
-  /* Layout swap */
-  .m-hero-desktop  { display: none !important; }
-  .m-exp-desktop   { display: none !important; }
-  .m-hero-vignette { display: none !important; }
-  .hero-root       { background: transparent !important; }
-
-  .m-hero-mobile {
-    display: flex !important;
-    flex-direction: column;
-    position: absolute;
-    inset: 0;
-    z-index: 20;
-    padding: 3.0rem 1.4rem 1.6rem;
-    box-sizing: border-box;
-    overflow: hidden;
-    justify-content: flex-start;
-  }
-
-  .m-exp-mobile {
-    display: block !important;
-  }
-
-  /* Stránky: každá sekce = 100dvh */
-  html { scroll-snap-type: y mandatory; }
-
-  section[data-slide] {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    height: 100dvh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  section[data-slide]::-webkit-scrollbar { display: none; }
-
-  /* Vnitřní content div */
-  .m-section {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 100% !important;
-    padding: 3.5rem 1.25rem 3rem !important;
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
-    box-sizing: border-box !important;
-    overflow: visible !important;
-  }
-
-  /* About + Pillars: width 56% → 100% */
-  .m-full-width {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 100% !important;
-    padding: 3.5rem 1.25rem 3rem !important;
-    box-sizing: border-box !important;
-    overflow: visible !important;
-  }
-
-  /* Uvolni fixed výšky */
-  .m-section .flex-1, .m-section .min-h-0,
-  .m-full-width .flex-1, .m-full-width .min-h-0 {
-    height: auto !important;
-    min-height: 0 !important;
-    flex: unset !important;
-    overflow: visible !important;
-  }
-
-  /* Gridy */
-  .m-2col {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: unset !important;
-    height: auto !important;
-    min-height: 0 !important;
-    overflow: visible !important;
-    align-content: start !important;
-  }
-
-  /* Sloupce a panely uvnitř gridu — přirozená výška, bez flex-1 */
-  .m-2col > div {
-    height: auto !important;
-    min-height: 0 !important;
-    flex: none !important;
-    overflow: visible !important;
-  }
-  .m-2col .rounded-2xl {
-    height: auto !important;
-    min-height: 0 !important;
-    flex: none !important;
-    overflow: visible !important;
-  }
-  .m-3col { grid-template-columns: 1fr 1fr !important; grid-template-rows: unset !important; }
-
-  /* Contact */
-  .m-contact-name-email { grid-template-columns: 1fr !important; }
-  .m-section form { height: auto !important; flex: none !important; }
-  .m-section .flex.h-full { height: auto !important; }
-
-  /* Headings */
-  h2.m-h2 { font-size: clamp(1.35rem, 5vw, 1.8rem) !important; margin-bottom: 0.6rem !important; }
-
-  /* Pillars */
-  .m-pillars-cards { overflow: visible !important; height: auto !important; }
-
-  /* Projects */
-  .m-projects-grid > div { height: auto !important; }
-
-  /* About/Pillars outer */
-  section[data-slide] > div.relative { overflow: visible !important; }
-
-  /* ── About: panely pod sebe, žádné překrývání ── */
-  .m-2col {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0.75rem !important;
-    overflow: visible !important;
-  }
-  .m-2col > * {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    flex: none !important;
-    overflow: visible !important;
-  }
-  /* Všechny zanořené flex-1/min-h-0 v m-2col */
-  .m-2col .flex-1, .m-2col .min-h-0 {
-    flex: none !important;
-    height: auto !important;
-    min-height: 0 !important;
-    overflow: visible !important;
-  }
-
-  /* ── Skills: panely pod sebe ── */
-  .m-skills-cols {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0.65rem !important;
-    overflow: visible !important;
-    height: auto !important;
-  }
-  .m-skills-cols > div {
-    width: 100% !important;
-    height: auto !important;
-    flex: none !important;
-    overflow: visible !important;
-  }
-
-  /* ── Contact: 2-col grid → 1 col ── */
-  .m-contact-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0.75rem !important;
-    overflow: visible !important;
-  }
-  .m-contact-grid > * {
-    width: 100% !important;
-    height: auto !important;
-    flex: none !important;
-    overflow: visible !important;
-  }
-  /* form flex-col uvnitř panelu */
-  .m-contact-grid form {
-    height: auto !important;
-  }
-  /* textarea — nech ji mít rozumnou výšku na mobilu */
-  .m-contact-grid textarea {
-    min-height: 100px !important;
-    flex: none !important;
-  }
-  /* Pravý sloupec kontaktu: flex-col items */
-  .m-contact-right {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0.65rem !important;
-  }
-}
-
-@media (max-width: 380px) {
-  .m-3col { grid-template-columns: 1fr !important; }
-}
-
-/* Desktop: scrollable inner areas on small viewport heights */
-.flex-1.min-h-0 { scrollbar-width: none; }
-.flex-1.min-h-0::-webkit-scrollbar { display: none; }

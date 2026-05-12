@@ -1,24 +1,12 @@
-"use client";
-
-import React from "react";
-import { profile } from "@/data/site";
-import type { Lang } from "@/data/site";
-
-export function Footer({ lang }: { lang: Lang }) {
+export function Footer() {
   return (
-    <footer
-      className="pl-20 py-8 px-12 flex flex-wrap items-center justify-between gap-4"
-      style={{
-        background: "rgba(13,27,42,0.85)",
-        borderTop: "1px solid rgba(20,46,72,0.96)",
-      }}
-    >
-      <p className="font-mono-custom text-xs uppercase tracking-widest" style={{ color: "var(--ink)" }}>
-        © {new Date().getFullYear()} {profile.name}
-      </p>
-      <p className="font-mono-custom text-xs" style={{ color: "var(--gold)", letterSpacing: "0.08em" }}>
-        IT Risk · Systems · Crisis
-      </p>
+    <footer style={{ padding:"2.5rem 4rem", borderTop:"1px solid rgba(255,255,255,0.07)", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+      <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.12em", color:"#7A8090" }}>
+        © 2026 Matthew Grygar · IT Risk · Systems · Crisis
+      </span>
+      <span style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"1rem", fontStyle:"italic", color:"#7A5E24" }}>
+        Prague, Czech Republic
+      </span>
     </footer>
   );
 }

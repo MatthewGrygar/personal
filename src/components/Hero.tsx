@@ -1,406 +1,74 @@
-"use client";
+const GRID = `
+  repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(255,255,255,0.025) 79px,rgba(255,255,255,0.025) 80px),
+  repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,0.025) 79px,rgba(255,255,255,0.025) 80px)
+`.trim();
 
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowDown, Download, Mail } from "lucide-react";
-import { profile, i18n, t } from "@/data/site";
-import type { Lang } from "@/data/site";
+const fu = (d: number) => ({ animation: `fadeUp 0.8s ease ${d}s backwards` });
 
-const ROLES = [
-  "System Engineer",
-  "Operations Coordinator",
-  "Incident Coordinator",
-  "Senior Application Specialist",
-];
-
-const STATS = [
-  { num:"5", unit_en:"YRS",  unit_cs:"LET",  label_en:"Years of\nexperience", label_cs:"Let\npraxe"       },
-  { num:"3", unit_en:"YRS",  unit_cs:"ROKY", label_en:"Senior\nlevel",        label_cs:"Senior\nlevel"    },
-  { num:"→", unit_en:"RISK", unit_cs:"RISK", label_en:"Next\nchapter",        label_cs:"Příští\nkapitola", isArrow:true },
-];
-
-const QUOTE = {
-  en: { text: '"The best way to predict the future is to create it."', author: "— Peter Drucker" },
-  cs: { text: '"Nejlepší způsob, jak předpovědět budoucnost, je vytvořit ji."',  author: "— Peter Drucker" },
-};
-
-// ── Animated network / node graph canvas ──────────────────────
-function NetworkCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
-    let raf: number;
-    let w = 0, h = 0;
-
-    const NODE_COUNT = 38;
-    const MAX_DIST   = 160;
-    const NODE_COLOR = "rgba(200,145,58,";   // amber nodes
-    const LINE_COLOR = "rgba(168,189,208,";  // steel-blue lines
-
-    type Node = { x:number; y:number; vx:number; vy:number };
-    let nodes: Node[] = [];
-
-    const resize = () => {
-      w = canvas.width  = canvas.offsetWidth;
-      h = canvas.height = canvas.offsetHeight;
-    };
-
-    const init = () => {
-      resize();
-      nodes = Array.from({ length: NODE_COUNT }, () => ({
-        x:  Math.random() * w,
-        y:  Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-      }));
-    };
-
-    const draw = () => {
-      ctx.clearRect(0, 0, w, h);
-
-      // Update positions with gentle bounce
-      for (const n of nodes) {
-        n.x += n.vx;
-        n.y += n.vy;
-        if (n.x < 0 || n.x > w) n.vx *= -1;
-        if (n.y < 0 || n.y > h) n.vy *= -1;
-      }
-
-      // Draw connections
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const d  = Math.sqrt(dx*dx + dy*dy);
-          if (d < MAX_DIST) {
-            const alpha = (1 - d / MAX_DIST) * 0.22;
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = LINE_COLOR + alpha + ")";
-            ctx.lineWidth   = 0.8;
-            ctx.stroke();
-          }
+export function Hero() {
+  return (
+    <>
+      <style>{`
+        @keyframes fadeUp {
+          from { opacity:0; transform:translateY(24px); }
+          to   { opacity:1; transform:translateY(0); }
         }
-      }
+      `}</style>
 
-      // Draw nodes
-      for (const n of nodes) {
-        // Outer glow ring
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, 3.5, 0, Math.PI * 2);
-        ctx.fillStyle = NODE_COLOR + "0.12)";
-        ctx.fill();
-        // Core dot
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = NODE_COLOR + "0.45)";
-        ctx.fill();
-      }
+      <section id="top" style={{ minHeight:"100vh", display:"grid", gridTemplateColumns:"1fr 1fr", paddingTop:"5rem", position:"relative", overflow:"hidden", background:"#080C12" }}>
+        <div style={{ position:"absolute", inset:0, background:GRID, pointerEvents:"none" }} />
 
-      raf = requestAnimationFrame(draw);
-    };
+        {/* Left */}
+        <div style={{ display:"flex", flexDirection:"column", justifyContent:"center", padding:"6rem 4rem", position:"relative" }}>
 
-    init();
-    draw();
-
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
-
-    return () => {
-      cancelAnimationFrame(raf);
-      ro.disconnect();
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position:"absolute", inset:0,
-        width:"100%", height:"100%",
-        zIndex:2, pointerEvents:"none",
-        opacity:0.85,
-      }}
-    />
-  );
-}
-
-export function Hero({ lang }: { lang: Lang }) {
-  const [roleIdx, setRoleIdx] = useState(0);
-  const [roleOut, setRoleOut] = useState(false);
-  const hero = i18n.hero;
-
-  useEffect(() => {
-    const iv = setInterval(() => {
-      setRoleOut(true);
-      setTimeout(() => { setRoleIdx(i => (i+1) % ROLES.length); setRoleOut(false); }, 320);
-    }, 2800);
-    return () => clearInterval(iv);
-  }, []);
-
-  const fu = (delay: number) => ({
-    initial: { opacity:0, y:14 }, animate: { opacity:1, y:0 },
-    transition: { duration:0.65, delay, ease:[0.22,1,0.36,1] as any },
-  });
-  const fo = (delay: number) => ({
-    initial: { opacity:0 }, animate: { opacity:1 },
-    transition: { duration:0.55, delay },
-  });
-
-  const q = lang === "cs" ? QUOTE.cs : QUOTE.en;
-
-  return (
-    <div className="relative flex h-dvh w-full overflow-hidden hero-root" style={{ background:"var(--bg)" }}>
-
-      <NetworkCanvas />
-
-      <div className="pointer-events-none absolute inset-0 m-hero-vignette" style={{ zIndex:3,
-        background:"radial-gradient(ellipse 60% 80% at 25% 50%, transparent 30%, rgba(13,27,42,0.55) 100%)" }} />
-
-      {/* Vertical edge label — desktop only */}
-      <motion.div {...fo(3.0)}
-        className="pointer-events-none absolute right-5 top-1/2 hidden lg:flex flex-col items-center gap-4"
-        style={{ zIndex:10, writingMode:"vertical-rl", transform:"translateY(-50%) rotate(180deg)",
-          fontFamily:"DM Mono,monospace", fontSize:"0.56rem", letterSpacing:"0.22em",
-          color:"rgba(168,189,208,0.35)", textTransform:"uppercase" }}>
-        <span>Prague · CZ</span>
-        <span style={{ width:1, height:36, background:"rgba(168,189,208,0.2)", display:"block" }} />
-        <span>Portfolio</span>
-      </motion.div>
-
-      {/* ── DESKTOP layout ── */}
-      <div className="m-hero-desktop relative flex h-full flex-col justify-center"
-        style={{ width:"56%", zIndex:20, paddingLeft:"clamp(5rem,8vw,9rem)", paddingRight:"2.5rem" }}>
-
-        <motion.p {...fu(2.2)}
-          style={{ color:"var(--amber)", fontFamily:"DM Mono,monospace", fontSize:"0.65rem",
-            letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:"1.6rem", fontWeight:400 }}>
-          {t(hero.kicker, lang)}
-        </motion.p>
-
-        <motion.div style={{ marginBottom:"2.2rem" }}>
-          <div style={{ display:"flex", alignItems:"flex-end", gap:"0.6rem" }}>
-            <h1 className="font-display"
-              style={{ fontSize:"clamp(4.5rem,8vw,10rem)", fontWeight:600, color:"var(--ink)",
-                letterSpacing:"-0.025em", lineHeight:0.88, flexShrink:0 }}>
-              <motion.span initial={{ opacity:0, y:36 }} animate={{ opacity:1, y:0 }}
-                transition={{ duration:0.85, delay:0.9, ease:[0.22,1,0.36,1] as any }}
-                style={{ display:"block" }}>Matthew</motion.span>
-              <motion.span initial={{ opacity:0, y:36 }} animate={{ opacity:1, y:0 }}
-                transition={{ duration:0.85, delay:1.05, ease:[0.22,1,0.36,1] as any }}
-                style={{ display:"block" }}>Grygar</motion.span>
-            </h1>
-            <motion.div
-              style={{ paddingBottom:"0.4rem", flexShrink:0, overflow:"hidden" }}
-              initial={{ width:0, opacity:0 }}
-              animate={{ width:"clamp(130px,12vw,190px)", opacity:1 }}
-              transition={{ duration:0.65, delay:1.55, ease:[0.4,0,0.2,1] as any }}>
-              <img src="/signature.png" alt="Podpis"
-                style={{ width:"clamp(130px,12vw,190px)", minWidth:"clamp(130px,12vw,190px)",
-                  opacity:0.45, display:"block", transform:"rotate(-2deg)", transformOrigin:"left bottom" }} />
-            </motion.div>
+          <div style={{ ...fu(0.1), fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.7rem", letterSpacing:"0.3em", textTransform:"uppercase", color:"#C9A84C", marginBottom:"2rem", display:"flex", alignItems:"center", gap:"1rem" }}>
+            <span style={{ width:"2rem", height:"1px", background:"#C9A84C", display:"block", flexShrink:0 }} />
+            IT Risk Manager &amp; Systems Engineer
           </div>
-        </motion.div>
 
-        <motion.div initial={{ scaleX:0 }} animate={{ scaleX:1 }}
-          transition={{ duration:0.6, delay:2.05, ease:[0.22,1,0.36,1] as any }}
-          style={{ height:"1px", background:"linear-gradient(to right,var(--amber),transparent)",
-            transformOrigin:"left center", marginBottom:"1.2rem", width:"clamp(160px,24vw,280px)" }} />
-
-        <motion.div {...fo(2.25)} className="mb-4">
-          <span className="font-display italic"
-            style={{ fontSize:"clamp(1.2rem,2vw,1.75rem)", color:"var(--amber-light)", fontWeight:400,
-              whiteSpace:"nowrap", transition:"opacity 0.28s ease,transform 0.28s ease",
-              opacity: roleOut ? 0 : 1, transform: roleOut ? "translateY(-7px)" : "translateY(0)",
-              display:"inline-block" }}>
-            {ROLES[roleIdx]}
-          </span>
-        </motion.div>
-
-        <motion.div {...fu(2.4)} style={{ marginBottom:"2rem", maxWidth:"480px" }}>
-          <p className="font-display italic"
-            style={{ fontSize:"clamp(0.9rem,1.3vw,1.05rem)", color:"var(--ink-warm)",
-              fontWeight:300, lineHeight:1.5, marginBottom:"0.35rem", whiteSpace:"nowrap" }}>
-            {q.text}
-          </p>
-          <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.58rem",
-            letterSpacing:"0.14em", textTransform:"uppercase", color:"var(--amber)", opacity:0.75 }}>
-            {q.author}
-          </p>
-        </motion.div>
-
-        <motion.div {...fu(2.6)} className="flex flex-wrap items-center gap-3 mb-10">
-          <a href="#contact"
-            onClick={e => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }); }}
-            className="flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium transition-all hover:brightness-110"
-            style={{ background:"var(--amber)", color:"#0D1B2A", fontWeight:600,
-              boxShadow:"0 4px 20px rgba(200,145,58,0.35)", letterSpacing:"0.03em", minWidth:"148px" }}>
-            <Mail size={13} />{t(hero.primaryCta, lang)}
-          </a>
-          <a href={profile.cvUrl} download
-            className="flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium transition-all"
-            style={{ border:"1px solid rgba(200,145,58,0.35)", color:"var(--ink)",
-              background:"rgba(30,62,95,0.6)", backdropFilter:"blur(10px)",
-              minWidth:"148px", letterSpacing:"0.03em" }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor="var(--amber)"; e.currentTarget.style.color="var(--amber)"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor="rgba(200,145,58,0.35)"; e.currentTarget.style.color="var(--ink)"; }}>
-            <Download size={13} />{t(hero.secondaryCta, lang)}
-          </a>
-        </motion.div>
-
-        <motion.div {...fo(2.75)}>
-          <div style={{ display:"flex", alignItems:"center", gap:0 }}>
-            {STATS.map((s, i) => {
-              const unit = lang === "en" ? s.unit_en : s.unit_cs;
-              return (
-                <React.Fragment key={i}>
-                  {i > 0 && <div style={{ width:1, height:44, background:"rgba(200,145,58,0.2)", margin:"0 1.6rem", alignSelf:"center", flexShrink:0 }} />}
-                  <div style={{ width:"88px", flexShrink:0, display:"flex", alignItems:"center", gap:"0.22rem" }}>
-                    <span className="font-display" style={{ fontSize:"clamp(2.4rem,3.6vw,4rem)", fontWeight:400, color:"var(--ink)", letterSpacing:"-0.03em", lineHeight:1 }}>{s.num}</span>
-                    <span style={{ fontFamily:"DM Mono,monospace", fontSize: s.isArrow ? "clamp(1rem,1.4vw,1.25rem)" : "clamp(0.65rem,0.88vw,0.8rem)", color:"var(--amber)", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.1em", lineHeight:1 }}>{unit}</span>
-                  </div>
-                </React.Fragment>
-              );
-            })}
-          </div>
-          <div style={{ display:"flex", marginTop:"0.5rem" }}>
-            {STATS.map((s, i) => {
-              const label = lang === "en" ? s.label_en : s.label_cs;
-              return (
-                <React.Fragment key={i}>
-                  {i > 0 && <div style={{ width:1, margin:"0 1.6rem", flexShrink:0 }} />}
-                  <p style={{ width:"88px", flexShrink:0, fontFamily:"DM Mono,monospace", fontSize:"0.58rem", letterSpacing:"0.13em", textTransform:"uppercase", color:"var(--ink-soft)", lineHeight:1.6, whiteSpace:"pre-line" }}>{label}</p>
-                </React.Fragment>
-              );
-            })}
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Scroll hint — desktop only */}
-      <motion.button {...fo(3.1)}
-        onClick={() => document.getElementById("about")?.scrollIntoView({ behavior:"smooth" })}
-        className="m-hero-desktop absolute bottom-6 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-1.5"
-        style={{ color:"var(--ink-muted)" }}>
-        <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.54rem", letterSpacing:"0.2em", textTransform:"uppercase" }}>scroll</span>
-        <motion.div animate={{ y:[0,4,0] }} transition={{ repeat:Infinity, duration:2, ease:"easeInOut" }}>
-          <ArrowDown size={11} />
-        </motion.div>
-      </motion.button>
-
-      {/* ── MOBILE ONLY ── */}
-      <div className="m-hero-mobile" style={{ zIndex: 20 }}>
-
-        {/* Horní část: kicker + jméno + role */}
-        <div style={{ position:"relative", zIndex:3 }}>
-
-          {/* Kicker */}
-          <p style={{ fontFamily:"DM Mono,monospace", fontSize:"0.56rem", letterSpacing:"0.2em",
-            textTransform:"uppercase", color:"var(--amber)", opacity:0.85, marginBottom:"0.5rem" }}>
-            Prague · Hybrid · Open to conversations
-          </p>
-
-          {/* Jméno — větší */}
-          <h1 className="font-display" style={{
-            fontSize:"clamp(3.8rem,14vw,5.5rem)", fontWeight:600, color:"var(--ink)",
-            letterSpacing:"-0.025em", lineHeight:0.88, marginBottom:"0.5rem",
-          }}>
-            <span style={{ display:"block" }}>Matthew</span>
-            <span style={{ display:"block" }}>Grygar</span>
+          <h1 style={{ ...fu(0.25), fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(4rem,7vw,7rem)", fontWeight:300, lineHeight:0.9, letterSpacing:"-0.02em", color:"#E2DDD5", marginBottom:"1.5rem" }}>
+            Matthew<br /><em style={{ fontStyle:"italic", color:"#C9A84C" }}>Grygar</em>
           </h1>
 
-          {/* Role */}
-          <p className="font-display" style={{ fontSize:"1.1rem", fontStyle:"italic",
-            color:"var(--amber-light)", fontWeight:400,
-            transition:"opacity 0.28s ease", opacity: roleOut ? 0 : 1,
-          }}>
-            {ROLES[roleIdx]}
-          </p>
-        </div>
+          <div style={{ ...fu(0.4), fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.8rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"#7A8090", marginBottom:"2.5rem" }}>
+            Prague · Identity &amp; Access Management · Crisis Specialist
+          </div>
 
-        {/* Foto — menší, vpravo */}
-        <div style={{
-          display:"flex", justifyContent:"flex-end",
-          margin:"0.7rem -1.4rem 0 0",
-          position:"relative",
-        }}>
-          <div style={{ position:"relative", width:"65%", height:"38dvh", overflow:"hidden" }}>
-            <img src="/profile.png" alt="Matthew Grygar"
-              style={{
-                width:"100%", height:"100%",
-                objectFit:"cover", objectPosition:"center 15%",
-                display:"block",
-                mixBlendMode:"screen",
-              }} />
-            {/* Gradient vlevo — foto bledne do bg */}
-            <div style={{ position:"absolute", top:0, left:0, bottom:0, width:"35%",
-              background:"linear-gradient(to right, var(--bg), transparent)" }} />
-            {/* Gradient nahoře */}
-            <div style={{ position:"absolute", top:0, left:0, right:0, height:"25%",
-              background:"linear-gradient(to bottom, var(--bg), transparent)" }} />
-            {/* Gradient dole */}
-            <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"45%",
-              background:"linear-gradient(to top, var(--bg) 20%, transparent)" }} />
+          <p style={{ ...fu(0.5), fontSize:"1.05rem", color:"#7A8090", maxWidth:"28rem", lineHeight:1.8, marginBottom:"3rem", borderLeft:"2px solid #7A5E24", paddingLeft:"1.5rem" }}>
+            Calm structure for complex problems. Stabilising critical systems when incidents escalate — and building processes so they don&apos;t happen again.
+          </p>
+
+          <div style={{ ...fu(0.6), display:"flex", gap:"1rem", alignItems:"center" }}>
+            <a href="#contact" style={{ background:"#C9A84C", color:"#080C12", fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.7rem", letterSpacing:"0.15em", textTransform:"uppercase", textDecoration:"none", padding:"0.85rem 2rem", fontWeight:500 }}>Get in touch</a>
+            <a href="/cv-matthew-grygar.pdf" target="_blank" rel="noreferrer" style={{ color:"#7A8090", fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.7rem", letterSpacing:"0.15em", textTransform:"uppercase", textDecoration:"none", padding:"0.85rem 2rem", border:"1px solid #2A3245" }}>Download CV</a>
+          </div>
+
+          <div style={{ ...fu(0.75), display:"flex", gap:"3rem", marginTop:"4rem", paddingTop:"3rem", borderTop:"1px solid rgba(255,255,255,0.07)" }}>
+            {[["5+","Years experience"],["3","Enterprise orgs"],["IAM","Current focus"]].map(([n,l]) => (
+              <div key={l}>
+                <div style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"2.8rem", fontWeight:300, color:"#E2DDD5", lineHeight:1 }}>{n}</div>
+                <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.15em", textTransform:"uppercase", color:"#7A8090", marginTop:"0.4rem" }}>{l}</div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Čára oddělující foto od stats */}
-        <div style={{ height:1, background:"linear-gradient(to right, transparent, rgba(200,145,58,0.4), transparent)",
-          margin:"auto 0 0.9rem" }} />
-
-        {/* Stats — 3 vedle sebe */}
-        <div style={{ display:"flex", gap:0, marginBottom:"1rem" }}>
-          {STATS.map((s, i) => {
-            const unit  = lang === "en" ? s.unit_en  : s.unit_cs;
-            const label = lang === "en" ? s.label_en : s.label_cs;
-            return (
-              <React.Fragment key={i}>
-                {i > 0 && <div style={{ width:1, background:"rgba(200,145,58,0.2)", margin:"0 0.75rem", flexShrink:0 }} />}
-                <div style={{ flex:1, display:"flex", flexDirection:"column", gap:"0.15rem" }}>
-                  <div style={{ display:"flex", alignItems:"baseline", gap:"0.2rem" }}>
-                    <span className="font-display" style={{ fontSize:"1.9rem", fontWeight:400,
-                      color:"var(--ink)", letterSpacing:"-0.03em", lineHeight:1 }}>{s.num}</span>
-                    <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.6rem",
-                      color:"var(--amber)", fontWeight:700, textTransform:"uppercase",
-                      letterSpacing:"0.08em" }}>{unit}</span>
-                  </div>
-                  <span style={{ fontFamily:"DM Mono,monospace", fontSize:"0.5rem",
-                    color:"var(--ink-soft)", textTransform:"uppercase", letterSpacing:"0.1em",
-                    lineHeight:1.3, whiteSpace:"pre-line" }}>
-                    {label}
-                  </span>
-                </div>
-              </React.Fragment>
-            );
-          })}
+        {/* Right — photo */}
+        <div style={{ ...fu(0.3), position:"relative", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden" }}>
+          <div style={{ position:"relative", width:380, height:480 }}>
+            <div style={{ position:"absolute", top:"-1.5rem", left:"-1.5rem", right:"1.5rem", bottom:"1.5rem", border:"1px solid #7A5E24", zIndex:0 }} />
+            <img src="/profile.png" alt="Matthew Grygar" style={{ width:"100%", height:"100%", objectFit:"cover", position:"relative", zIndex:1, filter:"grayscale(20%) contrast(1.05)" }} />
+            <div style={{ position:"absolute", bottom:"2rem", left:"-3rem", zIndex:2, background:"#141B28", border:"1px solid #2A3245", padding:"1rem 1.5rem", fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.65rem", letterSpacing:"0.1em" }}>
+              <div style={{ color:"#C9A84C", textTransform:"uppercase", marginBottom:"0.3rem" }}>Current role</div>
+              <div style={{ color:"#E2DDD5", fontSize:"1.2rem", fontFamily:"'Cormorant Garamond',serif" }}>System Engineer — IAM</div>
+              <div style={{ fontSize:"0.6rem", color:"#7A8090", marginTop:"0.3rem" }}>Trask · 2025–present</div>
+            </div>
+          </div>
+          <div style={{ position:"absolute", bottom:"1.5rem", right:"4rem", fontFamily:"'IBM Plex Mono',monospace", fontSize:"0.6rem", letterSpacing:"0.25em", color:"#7A8090" }}>
+            PRAGUE · HYBRID · OPEN
+          </div>
         </div>
-
-        {/* CTA tlačítka */}
-        <div style={{ display:"flex", gap:"0.6rem" }}>
-          <a href="#contact"
-            onClick={e => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior:"smooth" }); }}
-            style={{ flex:1, display:"inline-flex", alignItems:"center", justifyContent:"center",
-              gap:"0.35rem", background:"var(--amber)", color:"#0D1B2A", fontWeight:600,
-              fontSize:"0.75rem", padding:"0.65rem 1rem", borderRadius:"99px",
-              letterSpacing:"0.03em", boxShadow:"0 4px 18px rgba(200,145,58,0.35)" }}>
-            <Mail size={13} />{t(hero.primaryCta, lang)}
-          </a>
-          <a href={profile.cvUrl} download
-            style={{ flex:1, display:"inline-flex", alignItems:"center", justifyContent:"center",
-              gap:"0.35rem", border:"1px solid rgba(200,145,58,0.38)", color:"var(--ink)",
-              background:"rgba(22,44,70,0.8)", fontSize:"0.75rem",
-              padding:"0.65rem 1rem", borderRadius:"99px", letterSpacing:"0.03em" }}>
-            <Download size={13} />{t(hero.secondaryCta, lang)}
-          </a>
-        </div>
-
-      </div>
-
-
-    </div>
+      </section>
+    </>
   );
 }

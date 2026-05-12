@@ -9,30 +9,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        amber: {
-          smoke: "#F2E0D0",
-          deep: "#E8C9B0",
-          warm: "#D4B08A",
+        bg: {
+          DEFAULT: "#080C12",
+          2: "#0E1420",
+          3: "#141B28",
         },
-        blue: {
-          mirage: "#6E88B0",
-          light: "#8BA3C7",
-          pale: "#C5D3E8",
+        gold: {
+          DEFAULT: "#C9A84C",
+          dim: "#7A5E24",
+          bright: "#E8C068",
         },
         ink: {
-          DEFAULT: "#1C1814",
-          soft: "#3A342C",
-          muted: "#6B6055",
-        },
-        surface: {
-          DEFAULT: "#FAF5F0",
-          2: "#F5EDE4",
+          DEFAULT: "#E2DDD5",
+          muted: "#7A8090",
+          subtle: "#2A3245",
         },
       },
       fontFamily: {
         display: ["Cormorant Garamond", "serif"],
-        sans: ["DM Sans", "sans-serif"],
-        mono: ["DM Mono", "monospace"],
+        sans: ["IBM Plex Sans", "sans-serif"],
+        mono: ["IBM Plex Mono", "monospace"],
       },
     },
   },
