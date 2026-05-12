@@ -52,13 +52,11 @@ export function Experience() {
       <div className="exp-list">
         {EXP.map((it, i) => (
           <article className="exp-item reveal" key={i} data-hover>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="exp-bg-logo" src={it.logo} alt="" aria-hidden="true" loading="lazy" />
             <div className="exp-period">
               <span>{it.period}</span>
               {it.chip && <span className={`chip${it.chipGreen ? " green" : ""}`}>{it.chip}</span>}
-            </div>
-            <div className="exp-logo">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={it.logo} alt={`${it.co} logo`} loading="lazy" />
             </div>
             <div className="exp-main">
               <h3 className="exp-co">{it.co}</h3>
