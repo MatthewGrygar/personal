@@ -1,3 +1,5 @@
+"use client";
+
 const PROJECTS = [
   {
     tags:   ["JIRA","Governance"],
