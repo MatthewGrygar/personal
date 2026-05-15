@@ -19,38 +19,35 @@ export function Hero() {
 
   return (
     <section className="hero" id="top">
-      <div className="hero-top">
-        <div className="meta hero-enter">
-          <span className="accent">●</span>&nbsp; PORTFOLIO / 2026
+
+      {/* Thin line + single info bar */}
+      <div className="hero-metabar hero-enter d1">
+        <div className="hero-metabar-roles">
+          <span>IT RISK MANAGER</span>
+          <span className="sep">/</span>
+          <span>SYSTEMS ENGINEER</span>
+          <span className="sep">/</span>
+          <span>IAM SPECIALIST</span>
         </div>
-        <div className="meta center hero-enter d1">
-          50.0755° N &nbsp;·&nbsp; 14.4378° E
-        </div>
-        <div className="meta right hero-enter d2">
-          <b>PRAGUE</b> · CZ &nbsp;<span className="accent">[ HYBRID · OPEN ]</span>
+        <div className="hero-metabar-loc">
+          PRAGUE · CZ &nbsp;<span className="accent">[ HYBRID · OPEN ]</span>
         </div>
       </div>
 
-      <div className="hero-sub hero-enter d3">
-        <span>IT RISK MANAGER</span>
-        <span className="dotsep">/</span>
-        <span>SYSTEMS ENGINEER</span>
-        <span className="dotsep">/</span>
-        <span>IAM SPECIALIST</span>
-      </div>
-
+      {/* Name + photo stage */}
       <div className="hero-stage">
-        <div className="hero-ghost serif-it" aria-hidden="true">Grygar</div>
+        <div className="hero-ghost serif-it hero-enter d2" aria-hidden="true">Grygar</div>
         <h1 className="hero-name">
-          <span className="first hero-enter d4">Matthew</span>
-          <span className="second hero-enter d5">Grygar.</span>
+          <span className="first hero-anim-left">Matthew</span>
+          <span className="second hero-anim-right">Grygar.</span>
         </h1>
-        <div className="hero-photo-wrap hero-enter d4">
+        <div className="hero-photo-wrap hero-anim-photo">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="hero-photo" ref={photoRef} src="/profile.png" alt="Matthew Grygar" />
         </div>
       </div>
 
+      {/* Tagline, CTAs, Stats */}
       <div className="hero-bottom">
         <p className="hero-tagline hero-enter d5">
           <strong>Calm structure</strong> for complex problems. Stabilising critical systems when incidents escalate — and building processes so they don&apos;t happen again.

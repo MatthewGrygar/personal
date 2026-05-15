@@ -5,12 +5,10 @@ export function ClientInit() {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Mark body ready → triggers hero entrance + reveal transitions
     document.body.classList.add("js-ready");
     const t1 = requestAnimationFrame(() => document.body.classList.add("entered"));
     const t2 = setTimeout(() => document.body.classList.add("entered"), 200);
 
-    // IntersectionObserver for scroll reveals
     const els = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
     const io = new IntersectionObserver(
       (entries) => {
@@ -22,7 +20,6 @@ export function ClientInit() {
     );
     els.forEach((el) => io.observe(el));
 
-    // Custom cursor
     const dot = cursorRef.current;
     if (!dot || window.matchMedia("(hover: none), (pointer: coarse)").matches) {
       return () => { cancelAnimationFrame(t1); clearTimeout(t2); io.disconnect(); };
@@ -44,7 +41,8 @@ export function ClientInit() {
 
     let raf: number;
     const loop = () => {
-      x += (tx - x) * 0.22; y += (ty - y) * 0.22;
+      // 0.30 lerp = faster tracking, still smooth
+      x += (tx - x) * 0.30; y += (ty - y) * 0.30;
       if (dot) dot.style.transform = `translate(${x}px,${y}px) translate(-50%,-50%)`;
       raf = requestAnimationFrame(loop);
     };
