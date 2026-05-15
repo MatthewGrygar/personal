@@ -12,15 +12,14 @@ export function ClientInit() {
     setTimeout(() => setIntroShown(false), 1200);
   }, []);
 
+  // ── Effect 1: always runs — intro classes + scroll reveals ──────────────
   useEffect(() => {
-    // Body classes
     document.body.classList.add("js-ready");
     requestAnimationFrame(() => document.body.classList.add("entered"));
 
-    // Add intro-on at 1250ms — triggers name chars, ring, ticks, photo reveal
+    // intro-on triggers: name letter reveal, ring, ticks, photo clip-path wipe
     const t1 = setTimeout(() => document.body.classList.add("intro-on"), 1250);
 
-    // IntersectionObserver for scroll reveals
     const els = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
     const io = new IntersectionObserver(
       (entries) => {
@@ -32,12 +31,17 @@ export function ClientInit() {
     );
     els.forEach((el) => io.observe(el));
 
-    // Dual cursor
+    return () => { clearTimeout(t1); io.disconnect(); };
+  }, []);
+
+  // ── Effect 2: desktop only — dual cursor ────────────────────────────────
+  useEffect(() => {
+    if (window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
+
     const dot  = dotRef.current;
     const ring = ringRef.current;
-    if (!dot || !ring || window.matchMedia("(hover: none), (pointer: coarse)").matches) {
-      return () => { clearTimeout(t1); io.disconnect(); };
-    }
+    if (!dot || !ring) return;
+
     document.body.classList.add("cursor-enabled");
 
     let dx = window.innerWidth / 2, dy = window.innerHeight / 2;
@@ -58,8 +62,8 @@ export function ClientInit() {
     document.addEventListener("mouseout", onOut);
 
     const loop = () => {
-      dx += (tx - dx) * 0.55; dy += (ty - dy) * 0.55; // fast dot
-      rx += (tx - rx) * 0.22; ry += (ty - ry) * 0.22; // soft ring
+      dx += (tx - dx) * 0.55; dy += (ty - dy) * 0.55;
+      rx += (tx - rx) * 0.22; ry += (ty - ry) * 0.22;
       if (dot)  dot.style.transform  = `translate3d(${dx}px,${dy}px,0) translate(-50%,-50%)`;
       if (ring) ring.style.transform = `translate3d(${rx}px,${ry}px,0) translate(-50%,-50%)`;
       if (alive) requestAnimationFrame(loop);
@@ -68,7 +72,6 @@ export function ClientInit() {
 
     return () => {
       alive = false;
-      clearTimeout(t1); io.disconnect();
       window.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseenter", onEnter);
