@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["Fraunces", "Times New Roman", "serif"],
+        display: ["Space Grotesk", "Helvetica Neue", "sans-serif"],
         mono: ["JetBrains Mono", "ui-monospace", "monospace"],
       },
     },
