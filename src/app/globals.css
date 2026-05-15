@@ -221,7 +221,7 @@ body.js-ready .reveal-right.in { opacity: 1; transform: none; }
 .hero-top .meta b { color: var(--text); font-weight: 500; }
 .hero-stage {
   position: relative; display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr;
-  width: 100%; height: clamp(380px, 58vh, 580px); overflow: hidden;
+  width: 100%; height: clamp(380px, 58vh, 580px); overflow: visible;
 }
 .hero-photo-wrap {
   position: relative; display: flex; justify-content: center; align-items: end;
