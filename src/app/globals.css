@@ -98,7 +98,7 @@ body.js-ready .reveal-up {
 }
 body.js-ready .reveal-up.in { opacity: 1; transform: none; }
 
-/* Section title — clip-path wipe with accent line (desktop only) */
+/* Section title — clip-path wipe (desktop only, no ::before to avoid layout space) */
 @media (min-width: 781px) {
   body.js-ready .section-title.reveal {
     clip-path: inset(0 100% 0 0);
@@ -108,17 +108,6 @@ body.js-ready .reveal-up.in { opacity: 1; transform: none; }
     transition-delay: calc(var(--idx, 0) * 70ms + 0.1s);
   }
   body.js-ready .section-title.reveal.in { clip-path: inset(0 0 0 0); }
-  body.js-ready .section-title.reveal::before {
-    content: "";
-    display: block;
-    width: 60px; height: 1px;
-    background: var(--accent);
-    margin-bottom: 24px;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .9s var(--ease-out-expo) .2s;
-  }
-  body.js-ready .section-title.reveal.in::before { transform: scaleX(1); }
 }
 
 /* ── Typography utilities ────────────────────────────────── */

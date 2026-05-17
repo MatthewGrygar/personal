@@ -134,7 +134,7 @@ const EXP = [
 ];
 
 export function Experience() {
-  const [openIdx, setOpenIdx] = useState(0);
+  const [openIdx, setOpenIdx] = useState(-1);
 
   return (
     <section className="section" id="experience">
