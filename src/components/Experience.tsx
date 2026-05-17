@@ -158,15 +158,19 @@ export function Experience() {
               data-open={open}
               data-hover
               onClick={(e) => {
+                const prevOpen = openIdx;
                 const next = open ? -1 : i;
                 setOpenIdx(next);
                 if (next !== -1) {
                   const el = e.currentTarget as HTMLElement;
+                  // If the previously-open item is above this one, its collapse
+                  // animation shifts this element upward — wait for it to finish.
+                  const delay = (prevOpen !== -1 && prevOpen < next) ? 460 : 50;
                   setTimeout(() => {
                     const navH = (document.querySelector(".nav") as HTMLElement)?.offsetHeight ?? 80;
                     const y = el.getBoundingClientRect().top + window.scrollY - navH - 8;
                     window.scrollTo({ top: y, behavior: "smooth" });
-                  }, 50);
+                  }, delay);
                 }
               }}
               aria-expanded={open}
