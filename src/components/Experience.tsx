@@ -161,11 +161,12 @@ export function Experience() {
                 const next = open ? -1 : i;
                 setOpenIdx(next);
                 if (next !== -1) {
-                  const el = e.currentTarget;
-                  requestAnimationFrame(() => {
-                    const top = el.getBoundingClientRect().top + window.scrollY - 96;
-                    window.scrollTo({ top, behavior: "smooth" });
-                  });
+                  const el = e.currentTarget as HTMLElement;
+                  setTimeout(() => {
+                    const navH = (document.querySelector(".nav") as HTMLElement)?.offsetHeight ?? 80;
+                    const y = el.getBoundingClientRect().top + window.scrollY - navH - 8;
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                  }, 50);
                 }
               }}
               aria-expanded={open}
