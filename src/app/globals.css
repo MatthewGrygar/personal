@@ -648,6 +648,97 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
 .pillar-title { font-family: var(--ff-display); font-size: 20px; font-weight: 500; line-height: 1.25; color: var(--text); letter-spacing: -0.01em; }
 .pillar-arrow { position: absolute; top: 20px; right: 20px; color: var(--muted); font-family: var(--ff-mono); font-size: 14px; transition: color .3s var(--ease), transform .3s var(--ease); }
 
+/* ── ABOUT extras ───────────────────────────────────────── */
+.about-direction {
+  border: 1px solid var(--line-2); padding: 20px 22px; margin-top: 8px;
+}
+.about-direction-label {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+}
+.about-direction p { color: var(--text-2); font-size: 14px; line-height: 1.65; }
+
+.about-wib {
+  display: flex; flex-direction: column; gap: 0;
+  margin-top: 48px; border-top: 1px solid var(--line);
+}
+.wib-item {
+  display: grid; grid-template-columns: 52px 1fr;
+  gap: 24px; padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+  transition: background .3s var(--ease);
+}
+.wib-item:hover { background: var(--bg-1); padding-left: 12px; padding-right: 12px; margin: 0 -12px; }
+.wib-num {
+  font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.14em;
+  color: var(--accent); padding-top: 3px;
+  width: 36px; height: 36px; border: 1px solid var(--accent-dim);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.wib-title {
+  font-family: var(--ff-display); font-weight: 600; font-size: 17px;
+  color: var(--text); letter-spacing: -0.01em; margin-bottom: 8px;
+}
+.wib-desc { color: var(--text-2); font-size: 14px; line-height: 1.65; max-width: 72ch; }
+
+/* ── PROJECTS extras ─────────────────────────────────────── */
+.proj-impact {
+  display: flex; align-items: baseline; gap: 8px; margin-top: auto;
+  padding-top: 14px; border-top: 1px dashed rgba(255,255,255,0.07);
+}
+.proj-impact-dot { color: var(--accent); font-family: var(--ff-mono); font-size: 13px; flex-shrink: 0; }
+.proj-impact em { font-style: italic; color: var(--accent); font-size: 13px; line-height: 1.5; }
+
+/* ── SKILLS redesign ─────────────────────────────────────── */
+.skills-intro {
+  color: var(--text-2); font-size: 16px; line-height: 1.65; max-width: 68ch;
+  margin-bottom: 32px;
+}
+.skill-groups {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-bottom: 24px;
+}
+.skill-group {
+  border: 1px solid var(--line); padding: 22px 24px;
+  background: var(--bg-1);
+}
+.skill-group-label {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+}
+.skill-group-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.skills-bottom {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px;
+}
+.skill-strengths, .skill-aiming {
+  border: 1px solid var(--line); padding: 22px 24px; background: var(--bg-1);
+}
+.skill-strengths-label, .skill-aiming-label {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+}
+.skill-strengths-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.skill-strengths-list li {
+  font-size: 14px; color: var(--text-2); line-height: 1.5;
+  padding-left: 18px; position: relative;
+}
+.skill-strengths-list li::before {
+  content: "+"; color: var(--accent); position: absolute; left: 0;
+  font-family: var(--ff-mono); font-size: 12px;
+}
+.skill-aiming-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.skill-aiming-list li {
+  font-family: var(--ff-display); font-size: 17px; font-weight: 500;
+  font-style: italic; color: var(--text-2);
+  padding-left: 22px; position: relative;
+}
+.skill-aiming-list li::before {
+  content: "→"; color: var(--accent); position: absolute; left: 0;
+  font-style: normal; font-family: var(--ff-mono); font-size: 14px;
+}
+
 /* ── EXPERIENCE ──────────────────────────────────────────── */
 .exp-list { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
 .exp-item {
@@ -938,9 +1029,12 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
   .exp-detail-content { padding: 18px 0 26px; gap: 22px; grid-template-columns: 1fr; }
 
   /* ── Projects / Skills ── */
-  .projects-grid, .skills-matrix { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
   .project { min-height: 220px; padding: 26px 22px; }
-  .skill-card { padding: 26px 22px; }
+  .skill-groups, .skills-bottom { grid-template-columns: 1fr; }
+  .about-wib { margin-top: 32px; }
+  .wib-item { grid-template-columns: 40px 1fr; gap: 16px; padding: 18px 0; }
+  .wib-item:hover { padding-left: 0; padding-right: 0; margin: 0; }
 
   /* ── Contact ── */
   .contact-grid { gap: 40px; }

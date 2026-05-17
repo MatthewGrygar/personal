@@ -1,52 +1,35 @@
-const CARDS = [
+const SKILL_GROUPS = [
   {
-    num: "01",
-    title: <>Risk & <span className="accent">Governance</span></>,
-    desc: "How an organisation stays alive when something breaks at 02:00.",
-    rows: [
-      ["Major incident coordination", 4, true],
-      ["SLA & service governance", 4, false],
-      ["Operational resilience", 4, false],
-      ["Change management", 3, false],
-      ["ITIL framework", 3, false],
-      ["ISO 27001 / 27005", 3, false],
-      ["Stakeholder communication", 4, false],
-      ["RBAC design", 3, false],
-    ] as [string, number, boolean?][],
-    footer: "Years applied · <b>5+</b>",
+    label: "Risk & Governance",
+    tags: ["Operational Risk Awareness", "Major Incident Coordination", "SLA & Service Governance", "Change Management", "Operational Resilience", "ITIL", "Stakeholder Communication"],
   },
   {
-    num: "02",
-    title: <>Engineering & <span className="accent">Operations</span></>,
-    desc: "The hands-on layer — the bits that fail and the bits that catch them.",
-    rows: [
-      ["Identity & Access Management", 4, true],
-      ["IBM ITIM / ISVG", 4, false],
-      ["Incident management", 4, false],
-      ["Log analysis & forensics", 3, false],
-      ["Monitoring (Grafana)", 3, false],
-      ["SQL", 3, false],
-      ["PowerShell", 3, false],
-      ["Linux (Red Hat) / Windows Server", 3, false],
-    ] as [string, number, boolean?][],
-    footer: "Stack depth · <b>Mid–Senior</b>",
+    label: "Engineering & Operations",
+    tags: ["Identity & Access Management (IBM ITIM / ISVG)", "Incident Management", "Log Analysis", "Monitoring (Grafana)", "SQL", "PowerShell", "Linux (Red Hat)", "Windows Server"],
   },
   {
-    num: "03",
-    title: <>Tools & <span className="accent">Platforms</span></>,
-    desc: "What lives in the toolbar. Comfortable in production.",
-    rows: [
-      ["JIRA / Confluence", 4, false],
-      ["ServiceNow", 3, false],
-      ["IBM DB2 / LDAP", 3, false],
-      ["WebSphere", 3, false],
-      ["Grafana", 3, false],
-      ["Git", 3, false],
-      ["VS Code", 4, false],
-      ["Markdown / Docs-as-code", 4, false],
-    ] as [string, number, boolean?][],
-    footer: "Day-to-day · <b>Production</b>",
+    label: "Risk Frameworks",
+    tags: ["ISO 27001", "ISO 27005", "RBAC / Access Governance"],
   },
+  {
+    label: "Tools & Platforms",
+    tags: ["JIRA (workflow, SLA, automation, administration)", "IBM DB2", "LDAP", "WebSphere (WAS)", "Confluence", "ServiceNow"],
+  },
+];
+
+const STRENGTHS = [
+  "I identify operational risks before they cause a problem",
+  "I manage incidents and escalations under pressure in a structured way",
+  "I can translate technical problems into a business context",
+  "I emphasise process discipline and clearly defined responsibilities",
+  "In critical situations I remain calm and decisive",
+  "I coordinate resolution across teams and organisations",
+];
+
+const AIMING = [
+  "IT Risk Manager",
+  "Operational Resilience / Incident Governance",
+  "IT Security & Compliance",
 ];
 
 export function Skills() {
@@ -55,49 +38,41 @@ export function Skills() {
       <div className="section-head">
         <div className="section-idx reveal">
           <span>04 / Skills</span>
-          <span>— 3 disciplines</span>
+          <span>— What I work with</span>
         </div>
         <h2 className="section-title reveal">
-          What I bring <em>to the table.</em>
+          Skills that keep systems and <em>teams running under pressure.</em>
         </h2>
       </div>
 
-      <div className="skills-matrix">
-        {CARDS.map((c) => (
-          <article className="skill-card reveal" key={c.num} data-hover>
-            <div className="skill-card-head">
-              <div className="skill-card-num"><span>— {c.num}</span></div>
-              <h4>{c.title}</h4>
-              <p className="desc">{c.desc}</p>
+      <p className="skills-intro reveal">
+        My experience is built on operating systems in real environments — incident management, identifying operational risks and building processes that protect organisations from outages. I combine technical background with risk thinking and operational governance.
+      </p>
+
+      <div className="skill-groups">
+        {SKILL_GROUPS.map((g) => (
+          <div className="skill-group reveal" key={g.label}>
+            <div className="skill-group-label">{g.label}</div>
+            <div className="skill-group-tags">
+              {g.tags.map((t) => <span key={t} className="tag" data-hover>{t}</span>)}
             </div>
-            <div className="skill-rows">
-              {c.rows.map(([name, lvl, isCore], i) => (
-                <div className="skill-row" key={i}>
-                  <span className="skill-row-name">{name}</span>
-                  <span className="skill-row-lvl" aria-label={`level ${lvl} of 4`}>
-                    {[1, 2, 3, 4].map((n) => (
-                      <span
-                        key={n}
-                        className={n <= (lvl as number) ? (isCore && n === (lvl as number) ? "on core" : "on") : ""}
-                      />
-                    ))}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className="skill-card-footer">
-              <span className="yrs" dangerouslySetInnerHTML={{ __html: c.footer }} />
-              <span>+ growing</span>
-            </div>
-          </article>
+          </div>
         ))}
       </div>
 
-      <div className="direction-strip reveal">
-        <span className="label">Heading toward</span>
-        <span className="item">IT Risk Manager</span>
-        <span className="item">Operational Resilience</span>
-        <span className="item">Security &amp; Compliance</span>
+      <div className="skills-bottom">
+        <div className="skill-strengths reveal-left">
+          <div className="skill-strengths-label">Core Strengths</div>
+          <ul className="skill-strengths-list">
+            {STRENGTHS.map((s) => <li key={s}>{s}</li>)}
+          </ul>
+        </div>
+        <div className="skill-aiming reveal-right">
+          <div className="skill-aiming-label">Aiming for</div>
+          <ul className="skill-aiming-list">
+            {AIMING.map((a) => <li key={a}>{a}</li>)}
+          </ul>
+        </div>
       </div>
     </section>
   );
