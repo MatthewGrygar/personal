@@ -678,6 +678,8 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
   font-family: var(--ff-display); font-size: 13px;
   color: var(--text-2); line-height: 1.65; margin: 0;
 }
+/* 5th card spans 2 cols so no empty ghost cell on desktop */
+.wib-grid .wib-card:nth-child(5) { grid-column: span 2; }
 
 /* ── ABOUT extras ───────────────────────────────────────── */
 .about-direction {
