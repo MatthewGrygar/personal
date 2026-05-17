@@ -1069,6 +1069,7 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
   .skill-card { padding: 26px 22px; }
   .skill-groups, .skills-bottom { grid-template-columns: 1fr; }
   .wib-grid { grid-template-columns: 1fr; }
+  .wib-grid .wib-card:nth-child(5) { grid-column: span 1; }
   .about-wib { margin-top: 32px; }
   .wib-item { grid-template-columns: 40px 1fr; gap: 16px; padding: 18px 0; }
   .wib-item:hover { padding-left: 0; padding-right: 0; margin: 0; }
