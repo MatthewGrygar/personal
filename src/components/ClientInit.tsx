@@ -18,7 +18,7 @@ export function ClientInit() {
     requestAnimationFrame(() => document.body.classList.add("entered"));
 
     // intro-on triggers: name letter reveal, ring, ticks, photo clip-path wipe
-    const t1 = setTimeout(() => document.body.classList.add("intro-on"), 1250);
+    const t1 = setTimeout(() => document.body.classList.add("intro-on"), 1150);
 
     const els = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
     const io = new IntersectionObserver(

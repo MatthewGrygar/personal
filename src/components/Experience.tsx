@@ -105,24 +105,29 @@ export function Experience() {
               className="exp-item reveal"
               data-open={open}
               data-hover
-              onClick={() => setOpenIdx(open ? -1 : i)}
+              onClick={(e) => {
+                const next = open ? -1 : i;
+                setOpenIdx(next);
+                if (next !== -1) {
+                  const el = e.currentTarget;
+                  requestAnimationFrame(() => {
+                    const top = el.getBoundingClientRect().top + window.scrollY - 96;
+                    window.scrollTo({ top, behavior: "smooth" });
+                  });
+                }
+              }}
               aria-expanded={open}
             >
-              {/* Logo watermark */}
-              <div className="exp-watermark" aria-hidden="true">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={it.logo} alt="" />
-              </div>
-
-              {/* Collapsed row */}
               <div className="exp-row">
+                {/* Watermark backdrop */}
+                <div className="exp-watermark" aria-hidden="true">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={it.logo} alt="" />
+                </div>
+
                 <div className="exp-period">
                   <span>{it.period}</span>
                   {it.chip && <span className="chip">{it.chip}</span>}
-                </div>
-                <div className="exp-logo">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={it.logo} alt={`${it.co} logo`} loading="lazy" />
                 </div>
                 <div className="exp-main">
                   <h3 className="exp-co">{it.co}</h3>
@@ -131,7 +136,6 @@ export function Experience() {
                 <div className="exp-arrow">＋</div>
               </div>
 
-              {/* Expanded detail */}
               <div className="exp-detail">
                 <div className="exp-detail-inner">
                   <div className="exp-detail-content">

@@ -66,13 +66,13 @@ export function Hero() {
             <SplitText text="Matthew" baseDelay={FIRST} step={0.05} />
           </span>
           <span className="line second">
-            <SplitText text="Grygar." baseDelay={SECOND} step={0.05} />
+            <SplitText text="Grygar" baseDelay={SECOND} step={0.05} />
           </span>
         </h1>
 
         <div className="hero-photo-wrap">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="hero-photo" ref={photoRef} src="/profile.png" alt="Matthew Grygar" />
+          <img className="hero-photo" ref={photoRef} src="/portrait.png" alt="Matthew Grygar" />
         </div>
       </div>
 
