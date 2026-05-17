@@ -631,6 +631,54 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
 .pillar-title { font-family: var(--ff-display); font-size: 20px; font-weight: 500; line-height: 1.25; color: var(--text); letter-spacing: -0.01em; }
 .pillar-arrow { position: absolute; top: 20px; right: 20px; color: var(--muted); font-family: var(--ff-mono); font-size: 14px; transition: color .3s var(--ease), transform .3s var(--ease); }
 
+/* ── WHAT I BRING grid (inside Skills) ──────────────────── */
+.wib-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.wib-card {
+  background: var(--bg-1);
+  padding: 28px 26px 26px;
+  display: flex; flex-direction: column; gap: 12px;
+  position: relative; overflow: hidden;
+  transition: background .3s var(--ease);
+}
+.wib-card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 2px; background: var(--accent);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform .4s var(--ease);
+}
+.wib-card:hover::before { transform: scaleY(1); }
+.wib-card:hover { background: var(--bg-2); }
+.wib-card-top {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.wib-card-num {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.18em;
+  color: var(--accent);
+  width: 30px; height: 30px; border: 1px solid var(--accent-dim);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.wib-card-tag {
+  font-family: var(--ff-mono); font-size: 9px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted);
+  border: 1px solid var(--line); padding: 3px 8px;
+}
+.wib-card-title {
+  font-family: var(--ff-display); font-weight: 600; font-size: 16px;
+  color: var(--text); letter-spacing: -0.01em; line-height: 1.25;
+}
+.wib-card-desc {
+  font-family: var(--ff-display); font-size: 13px;
+  color: var(--text-2); line-height: 1.65; margin: 0;
+}
+
 /* ── ABOUT extras ───────────────────────────────────────── */
 .about-direction {
   border: 1px solid var(--line-2); padding: 20px 22px; margin-top: 8px;
@@ -942,6 +990,7 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
   .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 60px; }
   .projects-grid { grid-template-columns: 1fr 1fr; }
   .skills-matrix { grid-template-columns: 1fr 1fr; }
+  .wib-grid { grid-template-columns: 1fr 1fr; }
   .exp-row { grid-template-columns: 140px 1fr 32px; gap: 22px; }
   .exp-watermark { width: 260px; height: 260px; right: -10%; }
   .exp-detail-inner { padding-left: calc(140px + 22px); padding-right: 60px; }
@@ -1017,6 +1066,7 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
   .skills-matrix { grid-template-columns: 1fr; }
   .skill-card { padding: 26px 22px; }
   .skill-groups, .skills-bottom { grid-template-columns: 1fr; }
+  .wib-grid { grid-template-columns: 1fr; }
   .about-wib { margin-top: 32px; }
   .wib-item { grid-template-columns: 40px 1fr; gap: 16px; padding: 18px 0; }
   .wib-item:hover { padding-left: 0; padding-right: 0; margin: 0; }

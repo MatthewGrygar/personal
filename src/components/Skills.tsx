@@ -1,3 +1,36 @@
+const WHAT_I_BRING = [
+  {
+    num: "01",
+    title: "Incident resolution under pressure",
+    tag: "P1 / Major",
+    desc: "I have led Major incidents with full production impact — coordinating teams of specialists across organisations, managing escalation towards management and maintaining oversight of recovery priorities.",
+  },
+  {
+    num: "02",
+    title: "Identifying and managing operational risks",
+    tag: "Risk",
+    desc: "From practice I know where weaknesses most often appear in IT operations — poorly configured access roles, unclear escalation paths, insufficient segmentation or missing capacity.",
+  },
+  {
+    num: "03",
+    title: "Decision-making in critical operations",
+    tag: "Operations",
+    desc: "I have worked on systems with high availability requirements — from a government eGovernment system to infrastructure of hundreds of devices. In such environments you need to decide quickly and systematically.",
+  },
+  {
+    num: "04",
+    title: "Communication across technology and business",
+    tag: "Stakeholders",
+    desc: "I have experience communicating with both technical teams and management. I can translate technical problems into a business context — clearly, factually and without unnecessary distortion.",
+  },
+  {
+    num: "05",
+    title: "Process as the foundation of stability",
+    tag: "Governance",
+    desc: "I don't believe in one-off heroic fixes. Long-term system stability rests on well-designed processes, clearly defined responsibilities and the ability to learn from every incident.",
+  },
+];
+
 const CARDS = [
   {
     num: "01",
@@ -96,6 +129,20 @@ export function Skills() {
               <span>+ growing</span>
             </div>
           </article>
+        ))}
+      </div>
+
+      {/* What I Bring */}
+      <div className="wib-grid">
+        {WHAT_I_BRING.map((item) => (
+          <div className="wib-card reveal" key={item.num} data-hover>
+            <div className="wib-card-top">
+              <span className="wib-card-num">{item.num}</span>
+              <span className="wib-card-tag">{item.tag}</span>
+            </div>
+            <div className="wib-card-title">{item.title}</div>
+            <p className="wib-card-desc">{item.desc}</p>
+          </div>
         ))}
       </div>
 

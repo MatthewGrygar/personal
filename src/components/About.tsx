@@ -4,33 +4,6 @@ const TOOLS = [
   "Monitoring & Log Analysis (Grafana)", "ITIL", "PowerShell",
 ];
 
-const WHAT_I_BRING = [
-  {
-    num: "01",
-    title: "Incident resolution under pressure",
-    desc: "I have led Major incidents with full production impact — coordinating teams of specialists across organisations, managing escalation towards management and maintaining oversight of recovery priorities. The goal was always to bring the system back to a stable state quickly and without unnecessary side effects.",
-  },
-  {
-    num: "02",
-    title: "Identifying and managing operational risks",
-    desc: "From practice I know where weaknesses most often appear in IT operations — poorly configured access roles, unclear escalation paths, insufficient segmentation or missing capacity. I try to name these risks before they cause a problem and set up processes so they don't recur.",
-  },
-  {
-    num: "03",
-    title: "Decision-making in critical operations",
-    desc: "I have worked on systems with high availability requirements — from a government eGovernment system to infrastructure of hundreds of devices in operation. In such environments you need to decide quickly, systematically and with awareness of the impact of every step on service stability.",
-  },
-  {
-    num: "04",
-    title: "Communication across technology and business",
-    desc: "I have experience communicating with both technical teams and management and customers. I can translate technical problems into a business context — clearly, factually and without unnecessary distortion.",
-  },
-  {
-    num: "05",
-    title: "Process as the foundation of stability",
-    desc: "I don't believe in one-off heroic fixes. Long-term system stability rests on well-designed processes, clearly defined responsibilities and the ability to learn from every incident — that is the foundation on which IT Risk Management works.",
-  },
-];
 
 export function About() {
   return (
@@ -78,18 +51,6 @@ export function About() {
         </div>
       </div>
 
-      {/* What I Bring */}
-      <div className="about-wib">
-        {WHAT_I_BRING.map((item) => (
-          <div className="wib-item reveal" key={item.num}>
-            <div className="wib-num">{item.num}</div>
-            <div className="wib-body">
-              <div className="wib-title">{item.title}</div>
-              <p className="wib-desc">{item.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
     </section>
   );
 }
