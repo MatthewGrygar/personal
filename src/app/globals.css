@@ -610,18 +610,16 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
 
 /* ── SECTION ─────────────────────────────────────────────── */
 .section {
-  padding: clamp(80px, 12vh, 160px) var(--gutter);
+  padding: clamp(56px, 8vh, 110px) var(--gutter);
   position: relative; border-bottom: 1px solid var(--line);
-  min-height: 100svh; display: flex; flex-direction: column;
 }
 .section-head {
-  flex: 0 0 auto;
-  display: grid; grid-template-columns: 200px 1fr; gap: 40px;
-  align-items: baseline; margin-bottom: 80px;
+  display: grid; grid-template-columns: 180px 1fr; gap: 32px;
+  align-items: baseline; margin-bottom: 44px;
 }
-.section-idx { font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); display: flex; flex-direction: column; gap: 8px; }
+.section-idx { font-family: var(--ff-mono); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); display: flex; flex-direction: column; gap: 8px; }
 .section-idx span:last-child { color: var(--muted); }
-.section-title { font-family: var(--ff-display); font-weight: 500; font-size: clamp(36px, 5.5vw, 76px); line-height: 1.05; letter-spacing: -0.04em; color: var(--text); }
+.section-title { font-family: var(--ff-display); font-weight: 500; font-size: clamp(44px, 6vw, 88px); line-height: 1.02; letter-spacing: -0.04em; color: var(--text); }
 .section-title em { font-style: normal; color: var(--accent); font-weight: 500; }
 
 /* ── ABOUT ───────────────────────────────────────────────── */
@@ -717,6 +715,7 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
 .exp-detail-content { padding: 0 0 36px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 28px; margin-top: 4px; }
 .exp-detail-left p { color: var(--text-2); font-size: 15px; line-height: 1.7; margin-bottom: 16px; max-width: 60ch; }
 .exp-detail-left p strong { color: var(--text); font-weight: 500; }
+.exp-desc { font-style: italic; color: var(--text) !important; font-weight: 500 !important; }
 .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
 .exp-bullets li { font-size: 14px; color: var(--text-2); line-height: 1.6; padding-left: 22px; position: relative; }
 .exp-bullets li::before { content: "→"; color: var(--accent); position: absolute; left: 0; top: 0; font-family: var(--ff-mono); font-size: 13px; }
@@ -735,6 +734,25 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
 .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .exp-tags .tag { font-size: 10px; padding: 5px 9px; }
 .exp-techlabel { font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.exp-impacts {
+  border: 1px solid var(--line-2);
+  padding: 18px 20px;
+}
+.exp-impacts-label {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 12px;
+}
+.exp-impacts-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.exp-impacts-list li {
+  font-size: 13px; color: var(--text-2); line-height: 1.55;
+  padding-left: 18px; position: relative;
+}
+.exp-impacts-list li::before {
+  content: "+"; color: var(--accent);
+  position: absolute; left: 0; top: 0;
+  font-family: var(--ff-mono); font-size: 12px;
+}
 
 /* ── PROJECTS ────────────────────────────────────────────── */
 .projects-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border-left: 1px solid var(--line); border-top: 1px solid var(--line); }
@@ -894,9 +912,10 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
   .hero-stats .stat-l { font-size: 9px; }
 
   /* ── Sections ── */
-  .section { padding: 64px var(--gutter); min-height: unset; }
-  .section-head { grid-template-columns: 1fr; gap: 12px; margin-bottom: 32px; }
-  .section-title { font-size: clamp(28px, 7.5vw, 44px); }
+  .section { padding: 48px var(--gutter); }
+  .section-head { grid-template-columns: 1fr; gap: 10px; margin-bottom: 28px; }
+  .section-idx { font-size: 12px; }
+  .section-title { font-size: clamp(34px, 9vw, 52px); }
 
   /* ── Experience ── */
   .exp-item { padding: 0 16px; }
@@ -971,8 +990,8 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
   .hero-name { font-size: clamp(48px, 14vw, 72px); }
   .hero-stats { gap: 14px; }
   .hero-stats .stat-n { font-size: 24px; }
-  .section { padding: 52px 16px; }
-  .section-title { font-size: clamp(26px, 8.5vw, 38px); }
+  .section { padding: 40px 16px; }
+  .section-title { font-size: clamp(30px, 9.5vw, 44px); }
   .nav-logo { font-size: 10px; }
   .form-card { padding: 18px 14px 20px; }
   .intro-frame { inset: 12px; }
