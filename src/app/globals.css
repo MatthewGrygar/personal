@@ -1014,6 +1014,8 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
   /* ── Projects / Skills ── */
   .projects-grid { grid-template-columns: 1fr; }
   .project { min-height: 220px; padding: 26px 22px; }
+  .skills-matrix { grid-template-columns: 1fr; }
+  .skill-card { padding: 26px 22px; }
   .skill-groups, .skills-bottom { grid-template-columns: 1fr; }
   .about-wib { margin-top: 32px; }
   .wib-item { grid-template-columns: 40px 1fr; gap: 16px; padding: 18px 0; }
@@ -1024,12 +1026,13 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
   .contact-row { grid-template-columns: 80px 1fr 24px; padding: 16px 8px 16px 4px; gap: 10px; }
   .contact-row .label { font-size: 10px; }
   .contact-row .val { font-size: 17px; }
-  .form-card { padding: 20px 16px; overflow: hidden; width: 100%; box-sizing: border-box; }
+  .contact-grid { overflow-x: clip; }
+  .contact-grid > * { min-width: 0; max-width: 100%; }
+  .form-card { padding: 20px 16px; overflow: visible; width: 100%; min-width: 0; box-sizing: border-box; }
   .form-card::before { display: none; }
   .form-card-head { flex-wrap: wrap; gap: 8px; padding-bottom: 14px; margin-bottom: 14px; }
   .form-card-head .title { font-size: 9px; }
   .form-card-head .status { font-size: 9px; }
-  .contact-grid { overflow: hidden; width: 100%; }
   .form-card-head { padding-bottom: 16px; margin-bottom: 16px; }
   .form { gap: 18px; }
   .form-row { grid-template-columns: 1fr; gap: 16px; }
