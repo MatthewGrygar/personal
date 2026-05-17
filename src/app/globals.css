@@ -607,8 +607,8 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
   position: relative; border-bottom: 1px solid var(--line);
 }
 .section-head {
-  display: flex; flex-direction: column; gap: 14px;
-  margin-bottom: 28px;
+  display: flex; flex-direction: column; gap: 10px;
+  margin-bottom: 18px;
 }
 .section-idx {
   font-family: var(--ff-mono); font-size: 12px; letter-spacing: 0.16em;
@@ -1001,8 +1001,8 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
 
   /* ── Sections ── */
   .section { padding: 36px var(--gutter); }
-  .section-head { gap: 8px; margin-bottom: 20px; }
-  .section-idx { flex-direction: column; gap: 3px; font-size: 11px; }
+  .section-head { gap: 6px; margin-bottom: 14px; }
+  .section-idx { flex-direction: column; gap: 2px; font-size: 11px; }
   .section-title { font-size: clamp(34px, 9vw, 52px); }
 
   /* ── Experience ── */
@@ -1034,8 +1034,9 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
   .contact-row { grid-template-columns: 80px 1fr 24px; padding: 16px 8px 16px 4px; gap: 10px; }
   .contact-row .label { font-size: 10px; }
   .contact-row .val { font-size: 17px; }
-  .form-card { padding: 22px 18px; overflow: visible; margin: 0 2px; border-radius: 2px; }
+  .form-card { padding: 20px 16px; overflow: hidden; width: 100%; max-width: 100%; }
   .form-card::before { display: none; }
+  .contact-grid { overflow: hidden; }
   .form-card-head { padding-bottom: 16px; margin-bottom: 16px; }
   .form { gap: 18px; }
   .form-row { grid-template-columns: 1fr; gap: 16px; }
