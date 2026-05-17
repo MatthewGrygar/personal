@@ -35,21 +35,6 @@ export function Hero() {
   return (
     <section className="hero" id="top">
 
-      {/* Meta bar */}
-      <div className="hero-meta-row hero-enter d1">
-        <div className="roles">
-          <span>IT Risk Manager</span>
-          <span className="sep">/</span>
-          <span>Systems Engineer</span>
-          <span className="sep">/</span>
-          <span>IAM Specialist</span>
-        </div>
-        <div className="loc">
-          <b>Prague · CZ</b>
-          <span className="pill">Hybrid · Open</span>
-        </div>
-      </div>
-
       {/* Stage */}
       <div className="hero-stage">
         <div className="hero-ring" aria-hidden="true" />
@@ -73,6 +58,21 @@ export function Hero() {
         <div className="hero-photo-wrap">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="hero-photo" ref={photoRef} src="/portrait.png" alt="Matthew Grygar" />
+        </div>
+      </div>
+
+      {/* Meta bar — below name */}
+      <div className="hero-meta-row hero-enter d2">
+        <div className="roles">
+          <span>IT Risk Manager</span>
+          <span className="sep">/</span>
+          <span>Systems Engineer</span>
+          <span className="sep">/</span>
+          <span>IAM Specialist</span>
+        </div>
+        <div className="loc">
+          <b>Prague · CZ</b>
+          <span className="pill">Hybrid · Open</span>
         </div>
       </div>
 
