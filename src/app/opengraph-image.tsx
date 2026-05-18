@@ -67,32 +67,52 @@ export default async function Image() {
           N 50.0755° · Prague, CZ
         </div>
 
-        {/* Name */}
+        {/* Main content — left column */}
         <div style={{
-          position: "absolute", top: 140, left: 48,
-          display: "flex", flexDirection: "column", gap: 0,
+          position: "absolute", top: 0, left: 0, bottom: 0,
+          width: 720,
+          display: "flex", flexDirection: "column",
+          justifyContent: "center",
+          paddingLeft: 64, paddingRight: 48, gap: 0,
         }}>
-          <div style={{ color: "#E8ECF2", fontSize: 150, fontWeight: 700, letterSpacing: -7, lineHeight: 1 }}>
-            Matthew
+          {/* Big headline */}
+          <div style={{
+            color: "#E8ECF2", fontSize: 72, fontWeight: 700,
+            letterSpacing: -3, lineHeight: 1.05,
+            marginBottom: 28,
+          }}>
+            External IT Support for{" "}
+            <span style={{ color: "#5B95F0" }}>Businesses</span>
+            {" "}&amp;{" "}
+            <span style={{ color: "#5B95F0" }}>Individuals</span>
           </div>
-          <div style={{ color: "#5B95F0", fontSize: 150, fontWeight: 600, letterSpacing: -7, lineHeight: 1 }}>
-            Grygar
+
+          {/* Sub */}
+          <div style={{
+            color: "#97A0B0", fontSize: 22, fontWeight: 400,
+            letterSpacing: 0.5,
+            marginBottom: 40,
+          }}>
+            Microsoft 365  •  Networking  •  Infrastructure  •  Training
+          </div>
+
+          {/* Branding */}
+          <div style={{
+            display: "flex", alignItems: "center", gap: 10,
+          }}>
+            <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#5B95F0" }} />
+            <div style={{ fontFamily: "monospace", fontSize: 13, letterSpacing: 3, color: "#5B95F0" }}>
+              MATTHEW GRYGAR
+            </div>
           </div>
         </div>
 
-        {/* Roles bar */}
+        {/* Bottom border line */}
         <div style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, height: 52,
-          borderTop: "1px solid rgba(255,255,255,0.07)",
-          background: "rgba(7,9,15,0.85)",
-          display: "flex", alignItems: "center", paddingLeft: 48, gap: 14,
-        }}>
-          <div style={{ fontFamily: "monospace", fontSize: 13, letterSpacing: 2, color: "#97A0B0" }}>IT CONSULTANT</div>
-          <div style={{ color: "#5B95F0", fontSize: 13, opacity: 0.5 }}>/</div>
-          <div style={{ fontFamily: "monospace", fontSize: 13, letterSpacing: 2, color: "#97A0B0" }}>LECTOR</div>
-          <div style={{ color: "#5B95F0", fontSize: 13, opacity: 0.5 }}>/</div>
-          <div style={{ fontFamily: "monospace", fontSize: 13, letterSpacing: 2, color: "#97A0B0" }}>TECHNOLOGY PARTNER</div>
-        </div>
+          position: "absolute", bottom: 0, left: 0, right: 0, height: 3,
+          background: "linear-gradient(to right, #5B95F0, transparent 60%)",
+          display: "flex",
+        }} />
       </div>
     ),
     { ...size }
