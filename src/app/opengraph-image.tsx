@@ -6,24 +6,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-
-  let portraitSrc: string | undefined;
-  try {
-    const res = await fetch(`${baseUrl}/portrait.png`);
-    if (res.ok) {
-      const buf = await res.arrayBuffer();
-      const bytes = new Uint8Array(buf);
-      let binary = "";
-      // Safe loop — no spread to avoid stack overflow on large files
-      for (let i = 0; i < bytes.byteLength; i++) binary += String.fromCharCode(bytes[i]);
-      portraitSrc = `data:image/png;base64,${btoa(binary)}`;
-    }
-  } catch {
-    // no portrait — fall back to text-only
-  }
+  const portraitSrc = "https://matthewgrygar.com/portrait.png";
 
   return new ImageResponse(
     (
@@ -45,21 +28,16 @@ export default async function Image() {
         }} />
 
         {/* Portrait — right side, faded out to left */}
-        {portraitSrc && (
-          <>
-            <img src={portraitSrc} style={{
-              position: "absolute", right: 0, bottom: 0,
-              height: "100%", width: "auto",
-              objectFit: "contain", objectPosition: "bottom right",
-              filter: "grayscale(25%) contrast(1.05)",
-            }} />
-            {/* Gradient mask over portrait */}
-            <div style={{
-              position: "absolute", inset: 0,
-              background: "linear-gradient(95deg, #07090F 38%, rgba(7,9,15,0.5) 65%, transparent 80%)",
-            }} />
-          </>
-        )}
+        <img src={portraitSrc} style={{
+          position: "absolute", right: 0, bottom: 0,
+          height: "100%", width: "auto",
+          objectFit: "contain", objectPosition: "bottom right",
+          filter: "grayscale(25%) contrast(1.05)",
+        }} />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(95deg, #07090F 38%, rgba(7,9,15,0.5) 65%, transparent 80%)",
+        }} />
 
         {/* Corner brackets */}
         {[

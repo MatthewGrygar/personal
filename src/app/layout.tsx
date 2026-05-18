@@ -7,10 +7,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
-  ),
+  metadataBase: new URL("https://matthewgrygar.com"),
   title: "Matthew Grygar — IT Consultant, Lector & Technology Partner",
   description:
     "Reliable IT support, infrastructure projects, Microsoft 365, networking, user training, and practical technology solutions for individuals and growing businesses.",
