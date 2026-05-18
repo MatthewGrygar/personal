@@ -32,15 +32,17 @@ export default async function Image() {
           display: "flex",
         }} />
 
-        {/* Portrait */}
+        {/* Portrait — explicit dimensions required by satori */}
         <img
           src={portraitSrc}
           style={{
             position: "absolute",
-            right: -20,
+            right: 0,
             bottom: 0,
-            height: 620,
-            width: "auto",
+            height: 630,
+            width: 420,
+            objectFit: "cover",
+            objectPosition: "top center",
           }}
         />
 
