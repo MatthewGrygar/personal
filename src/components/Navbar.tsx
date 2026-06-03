@@ -1,15 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
-
-const LINKS = [
-  ["00", "About",      "#about"],
-  ["01", "Experience", "#experience"],
-  ["02", "Projects",   "#projects"],
-  ["03", "Skills",     "#skills"],
-  ["04", "Contact",    "#contact"],
-] as const;
+import { useLang } from "@/context/LangContext";
+import { i18n, t } from "@/data/site";
 
 export function Navbar() {
+  const { lang, setLang } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen]         = useState(false);
 
@@ -20,6 +15,14 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", on);
   }, []);
 
+  const links = [
+    ["00", t(i18n.nav.about,      lang), "#about"],
+    ["01", t(i18n.nav.experience, lang), "#experience"],
+    ["02", t(i18n.nav.projects,   lang), "#projects"],
+    ["03", t(i18n.nav.skills,     lang), "#skills"],
+    ["04", t(i18n.nav.contact,    lang), "#contact"],
+  ];
+
   return (
     <>
       <nav className={`nav${scrolled ? " scrolled" : ""}`}>
@@ -28,20 +31,30 @@ export function Navbar() {
           MG / GRYGAR
         </a>
         <div className="nav-links">
-          {LINKS.map(([i, l, h]) => (
-            <a key={l} href={h}>
-              <span className="idx">{i}</span>{l}
+          {links.map(([idx, label, href]) => (
+            <a key={href} href={href}>
+              <span className="idx">{idx}</span>{label}
             </a>
           ))}
         </div>
         <div className="nav-right">
           <span className="status">
             <span className="pulse" />
-            Open to conversations
+            {lang === "cs" ? "K dispozici" : "Open to work"}
           </span>
-          <a href="/cv-matthew-grygar.pdf" className="cta" target="_blank" rel="noreferrer">
-            Download CV →
-          </a>
+          <div className="lang-switch" data-hover>
+            <button
+              className={lang === "en" ? "on" : ""}
+              onClick={() => setLang("en")}
+              aria-label="Switch to English"
+            >EN</button>
+            <span className="lang-div">/</span>
+            <button
+              className={lang === "cs" ? "on" : ""}
+              onClick={() => setLang("cs")}
+              aria-label="Přepnout do češtiny"
+            >CZ</button>
+          </div>
           <span
             className={`burger${open ? " open" : ""}`}
             onClick={() => setOpen(o => !o)}
@@ -53,12 +66,20 @@ export function Navbar() {
       </nav>
 
       <div className={`mobile-menu${open ? " open" : ""}`}>
-        {LINKS.map(([i, l, h]) => (
-          <a key={l} href={h} onClick={() => setOpen(false)}>
-            <span className="idx">{i}</span>{l}
+        {links.map(([idx, label, href]) => (
+          <a key={href} href={href} onClick={() => setOpen(false)}>
+            <span className="idx">{idx}</span>{label}
           </a>
         ))}
-        <span className="status"><span className="pulse" />Open to conversations</span>
+        <span className="status">
+          <span className="pulse" />
+          {lang === "cs" ? "K dispozici" : "Open to work"}
+        </span>
+        <div className="lang-switch mobile" data-hover>
+          <button className={lang === "en" ? "on" : ""} onClick={() => setLang("en")}>EN</button>
+          <span className="lang-div">/</span>
+          <button className={lang === "cs" ? "on" : ""} onClick={() => setLang("cs")}>CZ</button>
+        </div>
       </div>
     </>
   );

@@ -1,16 +1,25 @@
 "use client";
 import { useState } from "react";
+import { useLang } from "@/context/LangContext";
+import { i18n, t } from "@/data/site";
 
-const SUBJECTS = ["Hiring", "Risk review", "IAM project", "Other"] as const;
+const SUBJECTS = {
+  en: ["Hiring", "Risk review", "IAM project", "Other"],
+  cs: ["Nábor", "Revize rizik", "IAM projekt", "Jiné"],
+};
 
 export function Contact() {
-  const [sent,     setSent]     = useState(false);
-  const [sending,  setSending]  = useState(false);
-  const [subject,  setSubject]  = useState<string>("Hiring");
-  const [msg,      setMsg]      = useState("");
-  const [name,     setName]     = useState("");
-  const [email,    setEmail]    = useState("");
-  const [company,  setCompany]  = useState("");
+  const { lang } = useLang();
+  const [sent,    setSent]    = useState(false);
+  const [sending, setSending] = useState(false);
+  const [subject, setSubject] = useState(0);
+  const [msg,     setMsg]     = useState("");
+  const [name,    setName]    = useState("");
+  const [email,   setEmail]   = useState("");
+  const [company, setCompany] = useState("");
+
+  const subjects = SUBJECTS[lang as "en" | "cs"] ?? SUBJECTS.en;
+  const co = i18n.contact;
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -19,7 +28,13 @@ export function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone: company, subject, message: msg }),
+        body: JSON.stringify({
+          name,
+          email,
+          phone: company,
+          subject: SUBJECTS.en[subject],
+          message: msg,
+        }),
       });
       if (!res.ok) throw new Error();
       setSent(true);
@@ -35,22 +50,24 @@ export function Contact() {
     <section className="section" id="contact">
       <div className="section-head">
         <div className="section-idx reveal">
-          <span>05 / Contact</span>
-          <span>— Let&apos;s talk</span>
+          <span>05 / {t(i18n.nav.contact, lang)}</span>
+          <span>— {lang === "cs" ? "Pojďme si promluvit" : "Let's talk"}</span>
         </div>
         <h2 className="section-title reveal">
-          Let&apos;s manage risks <em>before they become incidents.</em>
+          {lang === "cs"
+            ? <>Pojďme řídit rizika <em>dřív, než se stanou incidenty.</em></>
+            : <>Let&apos;s manage risks <em>before they become incidents.</em></>}
         </h2>
       </div>
 
       <div className="contact-grid">
         {/* Left — info */}
         <div className="reveal-left">
-          <p className="contact-lead">
-            If your team is hiring for <em>IT Risk, IAM,</em> or operational resilience — or you simply want a second pair of eyes on an incident model — I&apos;m happy to talk.
-          </p>
+          <p className="contact-lead">{t(co.body, lang)}</p>
           <p className="contact-body">
-            Best reached by email or LinkedIn. I usually answer within a day; if it&apos;s urgent, say so in the subject line and I&apos;ll prioritise.
+            {lang === "cs"
+              ? "Nejlépe mě zastihnete e-mailem nebo přes LinkedIn. Zpravidla odpovídám do jednoho dne; pokud je to urgentní, napište to do předmětu a dám vám přednost."
+              : "Best reached by email or LinkedIn. I usually answer within a day; if it's urgent, say so in the subject line and I'll prioritise."}
           </p>
           <div className="contact-list">
             <a className="contact-row" href="mailto:matthew.grygar@seznam.cz" data-hover>
@@ -63,55 +80,73 @@ export function Contact() {
               <span className="val">Matthew Grygar</span>
               <span className="arr">↗</span>
             </a>
-            <a className="contact-row" href="/cv-matthew-grygar.pdf" target="_blank" rel="noreferrer" data-hover>
-              <span className="label">— CV</span>
-              <span className="val">Download PDF</span>
-              <span className="arr">↓</span>
-            </a>
           </div>
         </div>
 
-        {/* Right — form card */}
+        {/* Right — form */}
         <form className="form-card reveal-right" onSubmit={onSubmit}>
           <div className="form-card-head">
-            <span className="title">— Direct message</span>
+            <span className="title">{lang === "cs" ? "— Přímá zpráva" : "— Direct message"}</span>
             <span className="status">
-              <span className="dot" /> Reply within 24h
+              <span className="dot" />
+              {lang === "cs" ? "Odpověď do 24 h" : "Reply within 24h"}
             </span>
           </div>
 
           <div className="form">
             <div className="form-row">
               <div className="field">
-                <label>Name<span className="req">*</span></label>
+                <label>{lang === "cs" ? "Jméno" : "Name"}<span className="req">*</span></label>
                 <div className="field-wrap">
-                  <input type="text" placeholder="Your name" required value={name} onChange={e => setName(e.target.value)} />
+                  <input
+                    type="text"
+                    placeholder={lang === "cs" ? "Vaše jméno" : "Your name"}
+                    required
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                  />
                 </div>
               </div>
               <div className="field">
                 <label>Email<span className="req">*</span></label>
                 <div className="field-wrap">
-                  <input type="email" placeholder="you@company.com" required value={email} onChange={e => setEmail(e.target.value)} />
+                  <input
+                    type="email"
+                    placeholder="you@company.com"
+                    required
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                  />
                 </div>
               </div>
             </div>
 
             <div className="field">
-              <label>Company <span style={{ color: "var(--muted)" }}>(optional)</span></label>
+              <label>
+                {lang === "cs" ? "Firma" : "Company"}
+                {" "}<span style={{ color: "var(--muted)" }}>({lang === "cs" ? "volitelné" : "optional"})</span>
+              </label>
               <div className="field-wrap">
-                <input type="text" placeholder="Where you're writing from" value={company} onChange={e => setCompany(e.target.value)} />
+                <input
+                  type="text"
+                  placeholder={lang === "cs" ? "Odkud píšete" : "Where you're writing from"}
+                  value={company}
+                  onChange={e => setCompany(e.target.value)}
+                />
               </div>
             </div>
 
             <div className="field">
-              <label>Subject</label>
-              <div className="subject-chips" role="radiogroup" aria-label="Message subject">
-                {SUBJECTS.map((s) => (
+              <label>{lang === "cs" ? "Předmět" : "Subject"}</label>
+              <div className="subject-chips" role="radiogroup">
+                {subjects.map((s, i) => (
                   <button
-                    type="button" key={s} role="radio"
-                    aria-checked={subject === s}
-                    className={`chip-btn${subject === s ? " on" : ""}`}
-                    onClick={() => setSubject(s)}
+                    type="button"
+                    key={s}
+                    role="radio"
+                    aria-checked={subject === i}
+                    className={`chip-btn${subject === i ? " on" : ""}`}
+                    onClick={() => setSubject(i)}
                     data-hover
                   >{s}</button>
                 ))}
@@ -119,11 +154,13 @@ export function Contact() {
             </div>
 
             <div className="field">
-              <label>Message<span className="req">*</span></label>
+              <label>{lang === "cs" ? "Zpráva" : "Message"}<span className="req">*</span></label>
               <div className="field-wrap">
                 <textarea
                   rows={5}
-                  placeholder="What's on fire? Or what's not, but you'd like to keep that way."
+                  placeholder={lang === "cs"
+                    ? "Co hoří? Nebo co hoří ještě nechcete, aby hořelo."
+                    : "What's on fire? Or what's not, but you'd like to keep that way."}
                   required
                   value={msg}
                   onChange={e => setMsg(e.target.value.slice(0, 1000))}
@@ -134,7 +171,9 @@ export function Contact() {
 
             <div className="form-actions">
               <div className="meta">
-                Encrypted in transit · <b>No third-party tracking</b>
+                {lang === "cs"
+                  ? <>Šifrováno při přenosu · <b>Žádné sledování třetích stran</b></>
+                  : <>Encrypted in transit · <b>No third-party tracking</b></>}
               </div>
               <button
                 type="submit"
@@ -142,7 +181,11 @@ export function Contact() {
                 disabled={sending || sent}
                 data-hover
               >
-                {sent ? "✓ Sent — talk soon" : sending ? "Sending…" : "Send message →"}
+                {sent
+                  ? (lang === "cs" ? "✓ Odesláno — brzy se ozvu" : "✓ Sent — talk soon")
+                  : sending
+                    ? (lang === "cs" ? "Odesílám…" : "Sending…")
+                    : (lang === "cs" ? "Odeslat →" : "Send message →")}
               </button>
             </div>
           </div>

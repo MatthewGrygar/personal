@@ -423,7 +423,7 @@ body.intro-done .intro-overlay { visibility: hidden; }
 .cta.filled:hover { color: var(--bg); }
 .burger { display: none; }
 @media (max-width: 880px) {
-  .nav-links, .nav-right .status, .nav-right .cta { display: none; }
+  .nav-links, .nav-right .status, .nav-right .cta, .nav-right .lang-switch { display: none; }
   .burger {
     display: inline-flex; flex-direction: column; gap: 5px; padding: 8px; cursor: pointer;
   }
@@ -1145,3 +1145,21 @@ body.js-ready .hero-enter.d7 { transition-delay: 0.80s; }
   .intro-name { font-size: clamp(34px, 13vw, 56px); }
   .intro-meta.br { display: none; }
 }
+
+/* ── Language switcher ──────────────────────────────────────── */
+.lang-switch {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.lang-switch button {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); padding: 4px 5px; border-radius: 3px;
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; transition: color .15s;
+}
+.lang-switch button:hover { color: var(--text-2); }
+.lang-switch button.on { color: var(--accent); }
+.lang-switch .lang-div { color: rgba(255,255,255,0.18); font-size: 10px; }
+.lang-switch.mobile { margin-top: 16px; }
+.mobile-menu .lang-switch.mobile button { font-size: 13px; padding: 6px 8px; }

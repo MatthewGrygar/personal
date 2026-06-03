@@ -62,8 +62,8 @@ export function ClientInit() {
     document.addEventListener("mouseout", onOut);
 
     const loop = () => {
-      dx += (tx - dx) * 0.72; dy += (ty - dy) * 0.72;
-      rx += (tx - rx) * 0.38; ry += (ty - ry) * 0.38;
+      dx = tx; dy = ty;
+      rx += (tx - rx) * 0.82; ry += (ty - ry) * 0.82;
       if (dot)  dot.style.transform  = `translate3d(${dx}px,${dy}px,0) translate(-50%,-50%)`;
       if (ring) ring.style.transform = `translate3d(${rx}px,${ry}px,0) translate(-50%,-50%)`;
       if (alive) requestAnimationFrame(loop);

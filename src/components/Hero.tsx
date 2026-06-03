@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { useLang } from "@/context/LangContext";
 
 function SplitText({ text, baseDelay = 0, step = 0.05 }: { text: string; baseDelay?: number; step?: number }) {
   return (
@@ -13,7 +14,21 @@ function SplitText({ text, baseDelay = 0, step = 0.05 }: { text: string; baseDel
   );
 }
 
+const STATS = {
+  en: [
+    { n: "05", l: "Years in live operations", cls: "" },
+    { n: "P1", l: "Critical-incident response", cls: " green" },
+    { n: "→",  l: "Toward IT Risk lead",       cls: " italic" },
+  ],
+  cs: [
+    { n: "05", l: "Let v ostrém provozu",        cls: "" },
+    { n: "P1", l: "Řízení kritických incidentů", cls: " green" },
+    { n: "→",  l: "Směrem k IT Risk leadu",      cls: " italic" },
+  ],
+};
+
 export function Hero() {
+  const { lang } = useLang();
   const photoRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -61,43 +76,41 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Meta bar — below name */}
+      {/* Meta bar */}
       <div className="hero-meta-row hero-enter d2">
         <div className="roles">
           <span>IT Risk Manager</span>
           <span className="sep">/</span>
           <span>Systems Engineer</span>
           <span className="sep">/</span>
-          <span>IAM Specialist</span>
+          <span>{lang === "cs" ? "IAM Specialista" : "IAM Specialist"}</span>
         </div>
         <div className="loc">
           <b>Prague · CZ</b>
-          <span className="pill">Hybrid · Open</span>
+          <span className="pill">{lang === "cs" ? "Hybrid · K dispozici" : "Hybrid · Open"}</span>
         </div>
       </div>
 
       {/* Bottom */}
       <div className="hero-bottom">
         <p className="hero-tagline hero-enter d5">
-          <strong>Calm structure</strong> for complex problems. Stabilising critical systems when incidents escalate — and building processes so they don&apos;t happen again.
+          {lang === "cs"
+            ? <><strong>Klidná struktura</strong> pro složité problémy. Stabilizuji kritické systémy při eskalaci incidentů — a nastavuji procesy, aby se to neopakovalo.</>
+            : <><strong>Calm structure</strong> for complex problems. Stabilising critical systems when incidents escalate — and building processes so they don&apos;t happen again.</>
+          }
         </p>
         <div className="hero-actions hero-enter d6">
-          <a href="#contact" className="cta filled">Get in touch →</a>
-          <a href="/cv-matthew-grygar.pdf" className="cta" target="_blank" rel="noreferrer">Download CV ↓</a>
+          <a href="#contact" className="cta filled">
+            {lang === "cs" ? "Napište mi →" : "Get in touch →"}
+          </a>
         </div>
         <div className="hero-stats hero-enter d7">
-          <div className="stat">
-            <div className="stat-n">05</div>
-            <div className="stat-l">Years in live operations</div>
-          </div>
-          <div className="stat">
-            <div className="stat-n green">P1</div>
-            <div className="stat-l">Critical-incident response</div>
-          </div>
-          <div className="stat">
-            <div className="stat-n italic">→</div>
-            <div className="stat-l">Toward IT Risk lead</div>
-          </div>
+          {(STATS[lang as "en" | "cs"] ?? STATS.en).map((s) => (
+            <div className="stat" key={s.l}>
+              <div className={`stat-n${s.cls}`}>{s.n}</div>
+              <div className="stat-l">{s.l}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
