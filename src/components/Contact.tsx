@@ -1,195 +1,155 @@
 "use client";
-import { useState } from "react";
-import { useLang } from "@/context/LangContext";
-import { i18n, t } from "@/data/site";
+import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useLang } from "./Lang";
+import { L, NewTab } from "./L";
+import { EMAIL, LINKEDIN } from "./site";
+
+type Form = { name: string; email: string; company: string; subject: string; message: string };
+type Field = keyof Form;
+
+const EMPTY: Form = { name: "", email: "", company: "", subject: "job", message: "" };
+const MAX = 1000;
 
 const SUBJECTS = {
-  en: ["Hiring", "Risk review", "IAM project", "Other"],
-  cs: ["Nábor", "Revize rizik", "IAM projekt", "Jiné"],
-};
+  cs: [["job", "Pracovní příležitost"], ["project", "Spolupráce na projektu"], ["consult", "Konzultace"], ["other", "Jiné"]],
+  en: [["job", "Job opportunity"], ["project", "Project collaboration"], ["consult", "Consultation"], ["other", "Other"]],
+} as const;
 
 export function Contact() {
   const { lang } = useLang();
-  const [sent,    setSent]    = useState(false);
+  const [form, setForm] = useState<Form>(EMPTY);
+  const [errors, setErrors] = useState<Partial<Record<Field, boolean>>>({});
   const [sending, setSending] = useState(false);
-  const [subject, setSubject] = useState(0);
-  const [msg,     setMsg]     = useState("");
-  const [name,    setName]    = useState("");
-  const [email,   setEmail]   = useState("");
-  const [company, setCompany] = useState("");
+  const [sendError, setSendError] = useState(false);
+  const [sentTo, setSentTo] = useState<string | null>(null);
 
-  const subjects = SUBJECTS[lang as "en" | "cs"] ?? SUBJECTS.en;
-  const co = i18n.contact;
+  const set = (k: Field) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const v = k === "message" ? e.target.value.slice(0, MAX) : e.target.value;
+    setForm((f) => ({ ...f, [k]: v }));
+    setErrors((er) => ({ ...er, [k]: false }));
+  };
 
-  async function onSubmit(e: React.FormEvent) {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    const errs = {
+      name: !form.name.trim(),
+      email: !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()),
+      message: !form.message.trim(),
+    };
+    const first = (["name", "email", "message"] as const).find((k) => errs[k]);
+    if (first) {
+      setErrors(errs);
+      document.getElementById(`f-${first}`)?.focus();
+      return;
+    }
     setSending(true);
+    setSendError(false);
     try {
+      const subjectLabel = SUBJECTS.cs.find(([v]) => v === form.subject)?.[1] ?? form.subject;
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          phone: company,
-          subject: SUBJECTS.en[subject],
-          message: msg,
-        }),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ ...form, subject: subjectLabel, lang }),
       });
-      if (!res.ok) throw new Error();
-      setSent(true);
-      setTimeout(() => setSent(false), 3500);
+      if (!res.ok) throw new Error(String(res.status));
+      setSentTo(form.email.trim());
     } catch {
-      // silent fallback
+      setSendError(true);
     } finally {
       setSending(false);
     }
-  }
+  };
+
+  const reset = () => {
+    setSentTo(null);
+    setForm(EMPTY);
+  };
 
   return (
-    <section className="section" id="contact">
-      <div className="section-head">
-        <div className="section-idx reveal">
-          <span>05 / {t(i18n.nav.contact, lang)}</span>
-          <span>— {lang === "cs" ? "Pojďme si promluvit" : "Let's talk"}</span>
-        </div>
-        <h2 className="section-title reveal">
-          {lang === "cs"
-            ? <>Pojďme řídit rizika <em>dřív, než se stanou incidenty.</em></>
-            : <>Let&apos;s manage risks <em>before they become incidents.</em></>}
-        </h2>
-      </div>
-
-      <div className="contact-grid">
-        {/* Left — info */}
-        <div className="reveal-left">
-          <p className="contact-lead">{t(co.body, lang)}</p>
-          <p className="contact-body">
-            {lang === "cs"
-              ? "Nejlépe mě zastihnete e-mailem nebo přes LinkedIn. Zpravidla odpovídám do jednoho dne; pokud je to urgentní, napište to do předmětu a dám vám přednost."
-              : "Best reached by email or LinkedIn. I usually answer within a day; if it's urgent, say so in the subject line and I'll prioritise."}
-          </p>
-          <div className="contact-list">
-            <a className="contact-row" href="mailto:matthew.grygar@seznam.cz" data-hover>
-              <span className="label">— Email</span>
-              <span className="val">matthew.grygar@seznam.cz</span>
-              <span className="arr">↗</span>
-            </a>
-            <a className="contact-row" href="https://www.linkedin.com/in/matthew-grygar-214b94232/" target="_blank" rel="noopener noreferrer" data-hover>
-              <span className="label">— LinkedIn</span>
-              <span className="val">Matthew Grygar</span>
-              <span className="arr">↗</span>
-            </a>
-          </div>
-        </div>
-
-        {/* Right — form */}
-        <form className="form-card reveal-right" onSubmit={onSubmit}>
-          <div className="form-card-head">
-            <span className="title">{lang === "cs" ? "— Přímá zpráva" : "— Direct message"}</span>
-            <span className="status">
-              <span className="dot" />
-              {lang === "cs" ? "Odpověď do 24 h" : "Reply within 24h"}
-            </span>
+    <section id="kontakt" className="sec contact" aria-labelledby="h-kontakt">
+      <div className="contact-in">
+        <p className="kicker"><L cs="Kontakt" en="Contact" /></p>
+        <h2 id="h-kontakt" className="h2"><L cs="Máte projekt, který potřebuje rozhýbat?" en="Got a project that needs moving?" /></h2>
+        <div className="contact-cols">
+          <div className="contact-l">
+            <p>
+              <L
+                cs="Hledám příležitosti, kde můžu spojit technické porozumění, komunikaci a odpovědnost za výsledek — v projektovém nebo provozním řízení, klientské spolupráci i při rozvoji digitálních služeb. Pokud řešíte něco podobného, rád si poslechnu, co potřebujete."
+                en="I’m looking for roles where I can combine technical understanding, communication and ownership of results, whether in project or operations management, client work or developing digital services. If you’re working on something similar, I’d be glad to hear what you need."
+              />
+            </p>
+            <p className="contact-hint"><L cs="Nejrychleji mě zastihnete e-mailem" en="Email is the quickest way to reach me" /></p>
+            <a className="contact-mail" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+            <div className="contact-links">
+              <a href={`mailto:${EMAIL}?subject=Rozhovor%20%2F%20Interview`}><L cs="Domluvit rozhovor" en="Schedule a call" /></a>
+              <a href={LINKEDIN} target="_blank" rel="noopener">LinkedIn ↗<NewTab /></a>
+            </div>
           </div>
 
-          <div className="form">
-            <div className="form-row">
-              <div className="field">
-                <label>{lang === "cs" ? "Jméno" : "Name"}<span className="req">*</span></label>
-                <div className="field-wrap">
-                  <input
-                    type="text"
-                    placeholder={lang === "cs" ? "Vaše jméno" : "Your name"}
-                    required
-                    value={name}
-                    onChange={e => setName(e.target.value)}
+          <div className="contact-r">
+            {sentTo === null ? (
+              <form className="form" noValidate onSubmit={onSubmit} aria-labelledby="form-title">
+                <p id="form-title" className="form-intro">
+                  <L
+                    cs="Nebo mi napište tady. Zpráva mi přijde do e-mailu a odpovím na adresu, kterou uvedete."
+                    en="Or write to me here. The message goes straight to my inbox and I’ll reply to the address you enter."
                   />
+                </p>
+                <div className="form-row">
+                  <div className="field">
+                    <label htmlFor="f-name"><L cs="Jméno" en="Name" /> *</label>
+                    <input id="f-name" name="name" autoComplete="name" value={form.name} onChange={set("name")} aria-invalid={!!errors.name} aria-describedby={errors.name ? "e-name" : undefined} />
+                    {errors.name && <span id="e-name" role="alert" className="field-err"><L cs="Vyplňte prosím jméno." en="Please enter your name." /></span>}
+                  </div>
+                  <div className="field">
+                    <label htmlFor="f-email">E-mail *</label>
+                    <input id="f-email" name="email" type="email" autoComplete="email" value={form.email} onChange={set("email")} aria-invalid={!!errors.email} aria-describedby={errors.email ? "e-email" : undefined} />
+                    {errors.email && <span id="e-email" role="alert" className="field-err"><L cs="Zadejte platnou e-mailovou adresu." en="Please enter a valid email address." /></span>}
+                  </div>
                 </div>
-              </div>
-              <div className="field">
-                <label>Email<span className="req">*</span></label>
-                <div className="field-wrap">
-                  <input
-                    type="email"
-                    placeholder="you@company.com"
-                    required
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                  />
+                <div className="form-row">
+                  <div className="field">
+                    <label htmlFor="f-company"><L cs="Firma (nepovinné)" en="Company (optional)" /></label>
+                    <input id="f-company" name="company" autoComplete="organization" value={form.company} onChange={set("company")} />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="f-subject"><L cs="Téma" en="Subject" /></label>
+                    <select id="f-subject" name="subject" value={form.subject} onChange={set("subject")}>
+                      {SUBJECTS[lang].map(([v, label]) => <option key={v} value={v}>{label}</option>)}
+                    </select>
+                  </div>
                 </div>
+                <div className="field">
+                  <div className="field-top">
+                    <label htmlFor="f-message"><L cs="Zpráva" en="Message" /> *</label>
+                    <span className="field-count" aria-live="polite">{form.message.length} / {MAX}</span>
+                  </div>
+                  <textarea id="f-message" name="message" rows={5} maxLength={MAX} value={form.message} onChange={set("message")} aria-invalid={!!errors.message} aria-describedby={errors.message ? "e-message" : undefined} />
+                  {errors.message && <span id="e-message" role="alert" className="field-err"><L cs="Napište prosím pár slov o tom, co řešíte." en="Please add a few words about what you need." /></span>}
+                </div>
+                {sendError && (
+                  <p role="alert" className="form-err">
+                    <L
+                      cs={`Zprávu se nepodařilo odeslat. Zkuste to prosím znovu, nebo napište přímo na ${EMAIL}.`}
+                      en={`The message couldn’t be sent. Please try again or email ${EMAIL} directly.`}
+                    />
+                  </p>
+                )}
+                <div className="form-actions">
+                  <button type="submit" className="btn" disabled={sending}>
+                    {sending ? <L cs="Odesílám…" en="Sending…" /> : <L cs="Odeslat zprávu" en="Send message" />}
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <div role="status" className="form-done">
+                <p className="big"><L cs="Díky, zpráva odešla." en="Thanks, your message has been sent." /></p>
+                <p className="small"><L cs={`Odpovím vám na ${sentTo}.`} en={`I’ll reply to ${sentTo}.`} /></p>
+                <button type="button" className="linkbtn" onClick={reset}><L cs="Napsat další zprávu" en="Send another message" /></button>
               </div>
-            </div>
-
-            <div className="field">
-              <label>
-                {lang === "cs" ? "Firma" : "Company"}
-                {" "}<span style={{ color: "var(--muted)" }}>({lang === "cs" ? "volitelné" : "optional"})</span>
-              </label>
-              <div className="field-wrap">
-                <input
-                  type="text"
-                  placeholder={lang === "cs" ? "Odkud píšete" : "Where you're writing from"}
-                  value={company}
-                  onChange={e => setCompany(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="field">
-              <label>{lang === "cs" ? "Předmět" : "Subject"}</label>
-              <div className="subject-chips" role="radiogroup">
-                {subjects.map((s, i) => (
-                  <button
-                    type="button"
-                    key={s}
-                    role="radio"
-                    aria-checked={subject === i}
-                    className={`chip-btn${subject === i ? " on" : ""}`}
-                    onClick={() => setSubject(i)}
-                    data-hover
-                  >{s}</button>
-                ))}
-              </div>
-            </div>
-
-            <div className="field">
-              <label>{lang === "cs" ? "Zpráva" : "Message"}<span className="req">*</span></label>
-              <div className="field-wrap">
-                <textarea
-                  rows={5}
-                  placeholder={lang === "cs"
-                    ? "Co hoří? Nebo co hoří ještě nechcete, aby hořelo."
-                    : "What's on fire? Or what's not, but you'd like to keep that way."}
-                  required
-                  value={msg}
-                  onChange={e => setMsg(e.target.value.slice(0, 1000))}
-                />
-              </div>
-              <div className="char-count"><b>{msg.length}</b> / 1000</div>
-            </div>
-
-            <div className="form-actions">
-              <div className="meta">
-                {lang === "cs"
-                  ? <>Šifrováno při přenosu · <b>Žádné sledování třetích stran</b></>
-                  : <>Encrypted in transit · <b>No third-party tracking</b></>}
-              </div>
-              <button
-                type="submit"
-                className={`cta filled${sending ? " sending" : ""}${sent ? " sent" : ""}`}
-                disabled={sending || sent}
-                data-hover
-              >
-                {sent
-                  ? (lang === "cs" ? "✓ Odesláno — brzy se ozvu" : "✓ Sent — talk soon")
-                  : sending
-                    ? (lang === "cs" ? "Odesílám…" : "Sending…")
-                    : (lang === "cs" ? "Odeslat →" : "Send message →")}
-              </button>
-            </div>
+            )}
           </div>
-        </form>
+        </div>
       </div>
     </section>
   );

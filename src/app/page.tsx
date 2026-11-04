@@ -1,33 +1,28 @@
-import { LangProvider }  from "@/context/LangContext";
-import { ClientInit }    from "@/components/ClientInit";
-import { Navbar }        from "@/components/Navbar";
-import { Hero }          from "@/components/Hero";
-import { Ticker }        from "@/components/Ticker";
-import { About }         from "@/components/About";
-import { Experience }    from "@/components/Experience";
-import { Projects }      from "@/components/Projects";
-import { Skills }        from "@/components/Skills";
-import { Contact }       from "@/components/Contact";
-import { Footer }        from "@/components/Footer";
+import { Contact } from "@/components/Contact";
+import { Experience } from "@/components/Experience";
+import { Header } from "@/components/Header";
+import { L } from "@/components/L";
+import { LangProvider } from "@/components/Lang";
+import { Motion } from "@/components/Motion";
+import { About, Bring, Footer, Hero, How, Projects, Stage } from "@/components/Sections";
 
 export default function Page() {
   return (
     <LangProvider>
-      <div className="bggrid" />
-      <div className="vignette" />
-      <div className="grain" />
-      <ClientInit />
-      <Navbar />
-      <main>
+      <a href="#obsah" className="skip"><L cs="Přeskočit na obsah" en="Skip to content" /></a>
+      <Header />
+      <main id="obsah">
         <Hero />
-        <Ticker />
         <About />
-        <Experience />
+        <Bring />
         <Projects />
-        <Skills />
+        <Experience />
+        <Stage />
+        <How />
         <Contact />
       </main>
       <Footer />
+      <Motion />
     </LangProvider>
   );
 }
