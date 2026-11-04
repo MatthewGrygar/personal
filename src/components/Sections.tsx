@@ -54,14 +54,14 @@ export function Hero() {
         <div className="hero-pcol">
           <figure className="hero-fig" data-intro="fig" data-hero-fig>
             <BiImage
-              src="/images/matthew-grygar-portrait.png"
-              width={1229}
-              height={1536}
+              src="/images/matthew-grygar-portrait.jpg"
+              width={520}
+              height={650}
               priority
               sizes="(min-width: 980px) 42vw, (min-width: 560px) 520px, 100vw"
               alt={{
-                cs: "Černobílý portrét Matthewa Grygara v černém obleku, sedí bos na kovové židli, předkloněný se sepjatýma rukama",
-                en: "Black-and-white portrait of Matthew Grygar in a black suit, sitting barefoot on a tubular steel chair, leaning forward with hands clasped",
+                cs: "Černobílý portrét Matthewa Grygara v brýlích a černém obleku, sedí předkloněný na kovové židli se sepjatýma rukama",
+                en: "Black-and-white portrait of Matthew Grygar in glasses and a black suit, leaning forward on a tubular steel chair with hands clasped",
               }}
             />
           </figure>

@@ -8,8 +8,8 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const buf = readFileSync(join(process.cwd(), "public/images/matthew-grygar-portrait.png"));
-  const portrait = `data:image/png;base64,${buf.toString("base64")}`;
+  const buf = readFileSync(join(process.cwd(), "public/images/matthew-grygar-portrait.jpg"));
+  const portrait = `data:image/jpeg;base64,${buf.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -19,7 +19,7 @@ export default async function Image() {
             <div style={{ width: 56, height: 2, background: "#A84B37", display: "flex" }} />
             MATTHEW GRYGAR · PRAHA
           </div>
-          <div style={{ display: "flex", flexDirection: "column", fontSize: 60, lineHeight: 1.08, letterSpacing: -1 }}>
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 52, lineHeight: 1.1, letterSpacing: -1 }}>
             <span>Rozumím technologiím.</span>
             <span>Umím mluvit s lidmi.</span>
             <span style={{ fontStyle: "italic", color: "#A84B37" }}>A věci dotahuju.</span>
