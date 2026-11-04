@@ -55,7 +55,7 @@ export function Motion() {
       const sc = y > 24;
       if (hdr && sc !== scrolled) {
         scrolled = sc;
-        hdr.classList.toggle("is-scrolled", sc);
+        hdr.toggleAttribute("data-scrolled", sc);
       }
       const h = window.innerHeight;
       pending.forEach((el) => {

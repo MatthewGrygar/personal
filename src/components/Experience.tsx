@@ -287,7 +287,7 @@ export function Experience() {
                             <span className="exp-role"><L {...j.title} /></span>
                           </span>
                           <span className="exp-more">
-                            <span>{isOpen ? <L cs="Méně" en="Less" /> : <L cs="Detail" en="Details" />}</span>
+                            <span className="exp-more-lbl">{isOpen ? <L cs="Méně" en="Less" /> : <L cs="Detail" en="Details" />}</span>
                             <span className="exp-plus" aria-hidden="true">+</span>
                           </span>
                         </button>
