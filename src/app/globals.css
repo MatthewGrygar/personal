@@ -329,21 +329,38 @@ a:hover { color: var(--acc); }
 
 /* ── How I work ───────────────────────────────────────────── */
 .how-in { max-width: 1200px; margin: 0 auto; }
-.how-in > .h2 { max-width: 20ch; font-size: clamp(34px, 4.4vw, 66px); }
-.how-lead-row { margin-top: clamp(28px, 3vw, 40px); display: flex; justify-content: flex-end; }
-.how-lead-row p { margin: 0; max-width: 34em; font-size: clamp(18px, 1.5vw, 21px); text-wrap: pretty; }
+.how-head { display: flex; flex-wrap: wrap; gap: 24px clamp(40px, 6vw, 96px); align-items: flex-end; }
+.how-head .h2 { flex: 999 1 520px; max-width: 20ch; font-size: clamp(34px, 4.4vw, 66px); }
+.how-head p { flex: 1 1 260px; margin: 0; max-width: 22em; font-size: clamp(18px, 1.5vw, 21px); text-wrap: pretty; }
+/* Four steps: one row from tablet up (reads as one line), stacked on phones. */
 .how-steps {
-  margin: clamp(56px, 7vw, 96px) 0 0; font-family: var(--f-serif), serif;
-  font-size: clamp(30px, 4.6vw, 72px); line-height: 1.15; letter-spacing: -0.015em;
-  display: flex; flex-wrap: wrap; gap: 0 .35em;
+  list-style: none; margin: clamp(48px, 6vw, 80px) 0 0; padding: 0;
+  border-top: 3px double var(--ink);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 clamp(20px, 2.6vw, 40px);
 }
-.how-steps .arr { color: var(--gold); }
-.how-steps .last { font-style: italic; color: var(--acc); }
+.how-steps li { display: flex; flex-direction: column; gap: 10px; padding-top: 24px; }
+.how-n { font-size: 13px; font-weight: 500; letter-spacing: .12em; color: var(--muted); font-variant-numeric: tabular-nums; }
+.how-word {
+  font-family: var(--f-serif), serif; font-size: clamp(24px, 2.7vw, 40px); line-height: 1.1; letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+.how-word .arr { color: var(--gold); }
+.how-steps .last .how-word { font-style: italic; color: var(--acc); }
+.how-text { font-size: 16px; line-height: 1.55; color: var(--muted-2); text-wrap: pretty; }
+@media (max-width: 759px) {
+  .how-steps { grid-template-columns: 1fr; }
+  .how-steps li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 6px 12px; padding: 18px 0; }
+  .how-steps li + li { border-top: 1px solid rgba(25, 25, 25, .2); }
+  .how-n { padding-top: .55em; }
+  .how-word .arr { display: none; }
+  .how-text { grid-column: 2; }
+}
 .how-points {
   list-style: none; margin: clamp(56px, 7vw, 88px) 0 0; padding: 0;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 0 clamp(28px, 4vw, 64px);
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(28px, 4vw, 64px);
 }
 .how-points li { padding: 20px 0; border-top: 1px solid rgba(25, 25, 25, .25); text-wrap: pretty; }
+@media (max-width: 759px) { .how-points { grid-template-columns: 1fr; } }
 
 /* ── Contact ──────────────────────────────────────────────── */
 .contact { border-top: 3px double var(--ink); }

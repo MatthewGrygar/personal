@@ -307,26 +307,35 @@ const POINTS: Bi[] = [
   { cs: "Umím převzít odpovědnost za další krok, i když ještě není jasné celé řešení.", en: "I can own the next step even before the whole solution is clear." },
 ];
 
+// The four-step approach, with the original paragraph split under the step it describes.
+const STEPS: { word: Bi; text: Bi }[] = [
+  { word: { cs: "Analyzovat", en: "Analyse" }, text: { cs: "Nejdřív zjistím, co se skutečně děje a koho se to týká.", en: "First I find out what’s really going on and who it affects." } },
+  { word: { cs: "stabilizovat", en: "stabilise" }, text: { cs: "Pomůžu určit priority, aby se nejdřív řešilo to podstatné.", en: "I help set priorities so the important things come first." } },
+  { word: { cs: "komunikovat", en: "communicate" }, text: { cs: "Domluvím lidi na dalším kroku a dotáhnu řešení.", en: "I get people to agree on the next step and see the solution through." } },
+  { word: { cs: "vylepšit.", en: "improve." }, text: { cs: "Nakonec hledám, co změnit, aby příště šlo všechno lépe.", en: "Finally I look for what to change so it goes better next time." } },
+];
+
 export function How() {
   return (
     <section id="jak-pracuji" className="sec" aria-labelledby="h-jak">
       <div className="how-in">
         <p className="kicker"><L cs="Jak pracuji" en="How I work" /></p>
-        <h2 id="h-jak" className="h2"><L cs="Když je situace složitá, začnu tím, že ji zpřehledním." en="When things get complicated, I start by making them clear." /></h2>
-        <div className="how-lead-row">
-          <p>
-            <L
-              cs="Můj přirozený postup je jednoduchý: analyzovat, stabilizovat, komunikovat a vylepšit. Nejdřív zjistím, co se skutečně děje a koho se to týká. Pak pomůžu určit priority, domluvit lidi na dalším kroku a dotáhnout řešení. Nakonec hledám, co změnit, aby příště šlo všechno lépe."
-              en="My natural approach is simple: analyse, stabilise, communicate, improve. First I find out what’s really going on and who it affects. Then I help set priorities, get people to agree on the next step and see the solution through. Finally I look for what to change so it goes better next time."
-            />
-          </p>
+        <div className="how-head">
+          <h2 id="h-jak" className="h2"><L cs="Když je situace složitá, začnu tím, že ji zpřehledním." en="When things get complicated, I start by making them clear." /></h2>
+          <p><L cs="Můj přirozený postup je jednoduchý a má čtyři kroky." en="My natural approach is simple, and it has four steps." /></p>
         </div>
-        <p className="how-steps">
-          <span data-reveal="0"><L cs="Analyzovat" en="Analyse" /> <span className="arr" aria-hidden="true">→</span></span>
-          <span data-reveal="3"><L cs="stabilizovat" en="stabilise" /> <span className="arr" aria-hidden="true">→</span></span>
-          <span data-reveal="6"><L cs="komunikovat" en="communicate" /> <span className="arr" aria-hidden="true">→</span></span>
-          <span data-reveal="9" className="last"><L cs="vylepšit." en="improve." /></span>
-        </p>
+        <ol className="how-steps" aria-label="Analyzovat, stabilizovat, komunikovat, vylepšit / Analyse, stabilise, communicate, improve">
+          {STEPS.map((s, i) => (
+            <li key={i} data-reveal={String(i)} className={i === STEPS.length - 1 ? "last" : undefined}>
+              <span className="how-n" aria-hidden="true">0{i + 1}</span>
+              <span className="how-word">
+                <L {...s.word} />
+                {i < STEPS.length - 1 && <span className="arr" aria-hidden="true"> →</span>}
+              </span>
+              <span className="how-text"><L {...s.text} /></span>
+            </li>
+          ))}
+        </ol>
         <ul className="how-points">
           {POINTS.map((p, i) => <li key={i}><L {...p} /></li>)}
         </ul>
