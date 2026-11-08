@@ -5,13 +5,22 @@ const esc = (s: unknown) =>
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// The form sends the option value; the notification shows the Czech label.
+const SUBJECTS: Record<string, string> = {
+  job: "Pracovní příležitost",
+  project: "Spolupráce na projektu",
+  consult: "Konzultace",
+  other: "Jiné",
+};
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const name = String(body.name ?? "").trim().slice(0, 200);
     const email = String(body.email ?? "").trim().slice(0, 200);
     const company = String(body.company ?? "").trim().slice(0, 200);
-    const subject = String(body.subject ?? "").trim().slice(0, 100);
+    const subjectRaw = String(body.subject ?? "").trim().slice(0, 100);
+    const subject = SUBJECTS[subjectRaw] ?? subjectRaw;
     const message = String(body.message ?? "").trim().slice(0, 1000);
     const lang = body.lang === "en" ? "EN" : "CZ";
 

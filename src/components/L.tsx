@@ -13,5 +13,5 @@ export function L({ cs, en }: Bi) {
 }
 
 export function NewTab() {
-  return <L cs={<span className="sr-only">(otevře se v novém okně)</span>} en={<span className="sr-only">(opens in a new tab)</span>} />;
+  return <L cs={<span className="sr">(otevře se v novém okně)</span>} en={<span className="sr">(opens in a new tab)</span>} />;
 }

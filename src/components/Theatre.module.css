@@ -1,0 +1,19 @@
+/* 05 theatre — near full-bleed photograph, serif */
+.theatre { background: var(--paper-2); padding-block: 0; }
+.grid { align-items: center; }
+.fig {
+  grid-column: 1 / span 6; margin-left: calc(-1 * max(var(--gut), env(safe-area-inset-left, 0px)));
+  align-self: stretch; display: flex; flex-direction: column;
+}
+.frame { position: relative; overflow: hidden; flex: 1; min-height: 560px; max-width: 100%; }
+.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 30%; filter: saturate(.62) contrast(1.02); }
+.fig figcaption { padding: 12px 0 18px max(var(--gut), env(safe-area-inset-left, 0px)); font-family: var(--f-mono); font-size: var(--t-meta); color: var(--ink-2); }
+.text { grid-column: 8 / span 5; padding-block: clamp(72px, 9vw, 150px); }
+.text h2 { font-family: var(--f-serif); font-weight: 300; font-size: clamp(38px, 4.4vw, 72px); line-height: 1.02; letter-spacing: -.03em; }
+.text h2 em { font-style: italic; color: var(--ink-2); }
+.text p { margin-top: 32px; font-size: var(--t-lead); line-height: 1.55; max-width: 29em; }
+@media (max-width: 960px) {
+  .fig { grid-column: 1 / -1; margin-right: calc(-1 * max(var(--gut), env(safe-area-inset-right, 0px))); }
+  .frame { min-height: 0; aspect-ratio: 4 / 4.4; flex: none; }
+  .text { grid-column: 1 / -1; padding-block: 56px 88px; }
+}

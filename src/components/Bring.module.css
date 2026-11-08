@@ -1,0 +1,15 @@
+/* 02 what I bring — heading left, matrix right */
+.bring { border-top: 1px solid var(--rule); }
+.left { grid-column: 1 / span 5; display: grid; gap: 28px; align-content: start; }
+.leftLead { font-size: var(--t-lead); line-height: 1.55; max-width: 26em; color: var(--ink); }
+.matrix { grid-column: 7 / -1; border-top: 1px solid var(--rule-strong); }
+.matrix article { display: grid; grid-template-columns: 72px minmax(0, 1fr); column-gap: var(--col-gap); padding: 28px 0 34px; border-bottom: 1px solid var(--rule); }
+.rn { font-family: var(--f-serif); font-style: italic; font-weight: 300; font-size: 30px; line-height: 1; color: var(--ink-2); }
+.matrix h3 { font-size: var(--t-h3); letter-spacing: -.02em; line-height: 1.15; }
+.matrix p { margin-top: 14px; font-size: 17px; max-width: 36em; }
+.matrix p.tags { margin-top: 16px; font-size: var(--t-small); color: var(--ink-2); }
+@media (max-width: 960px) {
+  .left, .matrix { grid-column: 1 / -1; }
+  .matrix { margin-top: 56px; }
+  .matrix article { grid-template-columns: 48px minmax(0, 1fr); }
+}

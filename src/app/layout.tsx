@@ -1,36 +1,43 @@
 import type { Metadata, Viewport } from "next";
-import { Hanken_Grotesk, Newsreader } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
 import "./globals.css";
 
-const serif = Newsreader({
+const plexSans = IBM_Plex_Sans({
+  subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "500"],
+  variable: "--font-plex-sans",
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400"],
+  variable: "--font-plex-mono",
+  display: "swap",
+});
+
+// Variable font: the design uses weights 300 and 400 plus the optical-size axis.
+const newsreader = Newsreader({
   subsets: ["latin", "latin-ext"],
   style: ["normal", "italic"],
   axes: ["opsz"],
-  variable: "--f-serif",
+  variable: "--font-newsreader",
   display: "swap",
 });
 
-const sans = Hanken_Grotesk({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: "--f-sans",
-  display: "swap",
-});
-
-const title = "Matthew Grygar — projekty, provoz a technologie · Praha";
 const description =
   "Matthew Grygar, Praha. Propojuji lidi, technologie a nápady do funkčních výsledků — projektové a provozní řízení, klientská spolupráce, IT a digitální služby.";
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#F5F1E8",
+  viewportFit: "cover",
+  themeColor: "#F0EDE6",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://matthewgrygar.com"),
-  title,
+  title: "Matthew Grygar",
   description,
   alternates: { canonical: "/" },
   openGraph: {
@@ -38,24 +45,25 @@ export const metadata: Metadata = {
     siteName: "Matthew Grygar",
     locale: "cs_CZ",
     alternateLocale: ["en_US"],
-    title: "Matthew Grygar — Rozumím technologiím. Umím mluvit s lidmi. A věci dotahuju.",
-    description: "Portfolio · Praha · projektové a provozní řízení, account management, IT a digitální služby.",
+    title: "Matthew Grygar",
+    description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Matthew Grygar — Rozumím technologiím. Umím mluvit s lidmi. A věci dotahuju.",
-    description: "Portfolio · Praha · projektové a provozní řízení, account management, IT a digitální služby.",
+    title: "Matthew Grygar",
+    description,
   },
 };
 
-// Applies the saved language before first paint so English visitors never see a Czech flash.
-const langBoot = `try{if(localStorage.getItem('mg-lang')==='en'){var d=document.documentElement;d.classList.add('en');d.lang='en'}}catch(e){}`;
+// Runs before first paint: marks JS as available (the intro animations key off `.js`, as in the design)
+// and applies the saved language so English visitors never see a Czech flash.
+const boot = `(function(){var d=document.documentElement;d.classList.add('js');try{if(localStorage.getItem('mg-lang')==='en'){d.classList.add('en');d.lang='en'}}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="cs" className={`${serif.variable} ${sans.variable}`} suppressHydrationWarning>
+    <html lang="cs" className={`${plexSans.variable} ${plexMono.variable} ${newsreader.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: langBoot }} />
+        <script dangerouslySetInnerHTML={{ __html: boot }} />
       </head>
       <body>{children}</body>
     </html>

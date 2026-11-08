@@ -3,17 +3,9 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 
 export type Lang = "cs" | "en";
 
-const META = {
-  cs: {
-    title: "Matthew Grygar — projekty, provoz a technologie · Praha",
-    description:
-      "Matthew Grygar, Praha. Propojuji lidi, technologie a nápady do funkčních výsledků — projektové a provozní řízení, klientská spolupráce, IT a digitální služby.",
-  },
-  en: {
-    title: "Matthew Grygar — projects, operations & technology · Prague",
-    description:
-      "Matthew Grygar, Prague. I connect people, technology and ideas into results that work: project and operations management, client work, IT and digital services.",
-  },
+const DESCRIPTION: Record<Lang, string> = {
+  cs: "Matthew Grygar, Praha. Propojuji lidi, technologie a nápady do funkčních výsledků — projektové a provozní řízení, klientská spolupráce, IT a digitální služby.",
+  en: "Matthew Grygar, Prague. I connect people, technology and ideas into results that work: project and operations management, client work, IT and digital services.",
 };
 
 const LangContext = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({ lang: "cs", setLang: () => {} });
@@ -32,17 +24,14 @@ export function LangProvider({ children }: { children: ReactNode }) {
     const html = document.documentElement;
     html.classList.toggle("en", lang === "en");
     html.lang = lang;
-    const applyMeta = () => {
-      if (document.title !== META[lang].title) document.title = META[lang].title;
-      document.querySelector('meta[name="description"]')?.setAttribute("content", META[lang].description);
-    };
+    const applyMeta = () => document.querySelector('meta[name="description"]')?.setAttribute("content", DESCRIPTION[lang]);
     applyMeta();
     try {
       localStorage.setItem("mg-lang", lang);
     } catch {}
-    // Next.js streams metadata in after hydration and would reset the title to the Czech default.
+    // Next.js streams metadata in after hydration and would reset the description to the Czech default.
     const mo = new MutationObserver(applyMeta);
-    mo.observe(document.head, { childList: true, subtree: true, characterData: true });
+    mo.observe(document.head, { childList: true, subtree: true });
     return () => mo.disconnect();
   }, [lang]);
 
