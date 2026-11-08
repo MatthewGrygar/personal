@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { useLang } from "./Lang";
-import { L } from "./L";
+import { L, NewTab } from "./L";
 import { EMAIL, LINKEDIN } from "./site";
 import s from "./Contact.module.css";
 
@@ -27,6 +27,7 @@ export function Contact() {
   const [busy, setBusy] = useState(false);
   const [sendError, setSendError] = useState(false);
   const [sentTo, setSentTo] = useState<string | null>(null);
+  const [confirmed, setConfirmed] = useState(false);
   const [copied, setCopied] = useState(false);
   const mailRef = useRef<HTMLAnchorElement>(null);
 
@@ -74,6 +75,8 @@ export function Contact() {
         body: JSON.stringify({ ...f, lang }),
       });
       if (!r.ok) throw new Error(String(r.status));
+      const data = await r.json().catch(() => ({}));
+      setConfirmed(data.confirmation === true);
       setSentTo(f.email);
     } catch {
       setSendError(true);
@@ -90,7 +93,7 @@ export function Contact() {
   return (
     <section id="kontakt" className={`sec ${s.contact}`} aria-labelledby="h-kontakt">
       <div className="wrap grid">
-        <p className="no" aria-hidden="true">06</p>
+        <p className="no" aria-hidden="true">04</p>
         <h2 id="h-kontakt" className="h2"><L cs="Máte projekt, který potřebuje rozhýbat?" en="Got a project that needs moving?" /></h2>
         <div className={s.left}>
           <p>
@@ -107,13 +110,10 @@ export function Contact() {
             </button>
           </div>
           <div className="ctas">
-            <a className="btn" href={`mailto:${EMAIL}?subject=Rozhovor%20%2F%20Interview`}>
-              <L cs="Domluvit rozhovor" en="Schedule a call" />
-              <span className="ar" aria-hidden="true">→</span>
-            </a>
-            <a className="arrowlink" href={LINKEDIN} target="_blank" rel="noopener">
-              <span className="u">LinkedIn</span>
+            <a className="btn" href={LINKEDIN} target="_blank" rel="noopener">
+              <L cs="Můj profil na LinkedInu" en="My LinkedIn profile" />
               <span className="ar" aria-hidden="true">↗</span>
+              <NewTab />
             </a>
           </div>
         </div>
@@ -171,6 +171,9 @@ export function Contact() {
           <div className={s.sent} role="status" hidden={sentTo === null}>
             <p><L cs="Díky, zpráva odešla." en="Thanks, your message has been sent." /></p>
             <p><L cs={<>Odpovím vám na {sentTo}.</>} en={<>I’ll reply to {sentTo}.</>} /></p>
+            {confirmed && (
+              <p><L cs="Potvrzení s kopií zprávy vám právě přišlo do e-mailu." en="A confirmation with a copy of your message is on its way to your inbox." /></p>
+            )}
             <button type="button" className={s.again} onClick={again}><L cs="Napsat další zprávu" en="Send another message" /></button>
           </div>
         </div>

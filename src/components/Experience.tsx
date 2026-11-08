@@ -7,7 +7,6 @@ type Sub = {
   head?: { title: Bi; role?: Bi; dates: Bi };
   intro: Bi;
   bullets: Bi[];
-  transfer: Bi;
 };
 type Job = { key: string; year: string; dates: Bi; current?: boolean; company: Bi; role: Bi; summary: Bi; subs: Sub[] };
 
@@ -38,10 +37,6 @@ export const JOBS: Job[] = [
           { cs: "Srozumitelná komunikace průběhu a stavu řešení.", en: "Communicating progress and status clearly." },
           { cs: "Základní DMS zaškolení, práce s tickety a řešení provozních problémů.", en: "DMS onboarding, ticket handling and solving operational issues." },
         ],
-        transfer: {
-          cs: "Průběžná komunikace, sledování závazků a řešení potřeb klienta jsou základem account i service ownership práce.",
-          en: "Ongoing communication, tracking commitments and meeting client needs are the core of account and service ownership.",
-        },
       },
       {
         head: { title: same("IDM / ČSOB"), role: same("System Engineer, Identity and Access Management"), dates: { cs: "01/2025 – 2026", en: "Jan 2025 – 2026" } },
@@ -56,10 +51,6 @@ export const JOBS: Job[] = [
           { cs: "Tvorba LDAP výstupů a reportů, spolupráce na automatizaci a skriptech.", en: "Building LDAP exports and reports; contributing to automation and scripts." },
           { cs: "Spolupráce na funkčních a technických specifikacích a komunikace se zákazníkem i vývojovým týmem.", en: "Co-writing functional and technical specifications and working with both the customer and the development team." },
         ],
-        transfer: {
-          cs: "Překládání potřeb zákazníka do technických zadání, koordinace návazností a orientace v dopadech změn.",
-          en: "Translating customer needs into technical requirements, coordinating dependencies and understanding the impact of changes.",
-        },
       },
     ],
   },
@@ -84,10 +75,6 @@ export const JOBS: Job[] = [
           { cs: "Monitoring, analýza logů a SQL dat, rozpoznávání opakujících se provozních problémů a reporting.", en: "Monitoring, log and SQL analysis, spotting recurring operational issues and reporting." },
           { cs: "Komunikace se zákazníky včetně řešení praktických požadavků kolem provozu samoobslužných zařízení.", en: "Customer communication, including practical requests around running self-service devices." },
         ],
-        transfer: {
-          cs: "Klientská komunikace, řízení očekávání, převzetí problému do řešení a koordinace více týmů.",
-          en: "Customer communication, expectation management, owning a problem through to resolution and cross-team coordination.",
-        },
       },
     ],
   },
@@ -115,10 +102,6 @@ export const JOBS: Job[] = [
           { cs: "Příprava a komunikace plánovaných odstávek a dopadů pro zainteresované strany.", en: "Preparing and communicating planned maintenance and its impact to stakeholders." },
           { cs: "Spolupráce s databázovými a infrastrukturními týmy při analýze logů a nesrovnalostí.", en: "Working with database and infrastructure teams on log analysis and inconsistencies." },
         ],
-        transfer: {
-          cs: "Zkušenost s kritickou službou, komunikací pod tlakem a koordinací práce bez zbytečného šumu.",
-          en: "Experience with a critical service, communicating under pressure and coordinating work without unnecessary noise.",
-        },
       },
       {
         head: { title: { cs: "Specialista aplikačního provozu", en: "Application Operations Specialist" }, dates: { cs: "11/2022 – 05/2023", en: "Nov 2022 – May 2023" } },
@@ -132,10 +115,6 @@ export const JOBS: Job[] = [
           { cs: "Evidence, dokumentace, SLA reporting a komunikace s technickými týmy.", en: "Records, documentation, SLA reporting and communication with technical teams." },
           { cs: "Analýza požadavků mezi business a IT a podpora testovacích a vývojových prostředí.", en: "Analysing requirements between business and IT; supporting test and development environments." },
         ],
-        transfer: {
-          cs: "Systematická práce s požadavky, srozumitelné předávání informací a provozní disciplína.",
-          en: "Structured request handling, clear handovers and operational discipline.",
-        },
       },
     ],
   },
@@ -158,10 +137,6 @@ export const JOBS: Job[] = [
           { cs: "Správa RDP přístupů, ticketů a souvisejících zařízení.", en: "Managing RDP access, tickets and related devices." },
           { cs: "Realizace strukturované kabeláže v rozsahu více než 5 km a příprava testovacího prostředí.", en: "Installing more than 5 km of structured cabling and preparing a test environment." },
         ],
-        transfer: {
-          cs: "Praktická komunikace se zákazníkem, pochopení zadání a dotažení řešení až do jeho prostředí.",
-          en: "Practical customer communication, understanding the brief and delivering the solution all the way into the customer’s environment.",
-        },
       },
     ],
   },
@@ -185,10 +160,6 @@ export const JOBS: Job[] = [
           { cs: "Testování nových verzí aplikace před nasazením a spolupráce s externím vývojem.", en: "Testing new application releases before deployment and working with the external development team." },
           { cs: "Podpora provozu se stovkami pracovníků a vysokým denním počtem návštěvníků; spolupráce v režimu omezeného přístupu k citlivým údajům.", en: "Supporting an operation with hundreds of staff and a high daily number of visitors, with restricted access to sensitive data." },
         ],
-        transfer: {
-          cs: "Nejsilnější příklad koordinace lidí, techniky a provozu v krizové situaci.",
-          en: "My strongest example of coordinating people, technology and operations in a crisis.",
-        },
       },
     ],
   },
@@ -204,7 +175,7 @@ export function Experience() {
     <section id="zkusenosti" className="sec" aria-labelledby="h-zk" style={{ paddingTop: 0 }}>
       <div className="wrap">
         <div className={`grid ${s.top}`}>
-          <p className="no" aria-hidden="true">04</p>
+          <p className="no" aria-hidden="true">02</p>
           <h2 id="h-zk" className="h2"><L cs="Technické prostředí mě naučilo vidět dopad rozhodnutí v praxi." en="Technical environments taught me to see what decisions actually do." /></h2>
           <div className={s.tg}>
             <button type="button" className={s.toggleAll} onClick={toggleAll}>
@@ -251,15 +222,9 @@ export function Experience() {
                           </div>
                         )}
                         <p><L {...sub.intro} /></p>
-                        <div className={s.split}>
-                          <ul>
-                            {sub.bullets.map((b, k) => <li key={k}><span><L {...b} /></span></li>)}
-                          </ul>
-                          <aside>
-                            <p className="label"><L cs="Přenositelné zkušenosti" en="Transferable experience" /></p>
-                            <p><L {...sub.transfer} /></p>
-                          </aside>
-                        </div>
+                        <ul className={s.list}>
+                          {sub.bullets.map((b, k) => <li key={k}><span><L {...b} /></span></li>)}
+                        </ul>
                       </div>
                     ))}
                   </div>

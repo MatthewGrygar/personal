@@ -28,9 +28,17 @@
   margin-top: 36px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3.2fr); column-gap: var(--col-gap); row-gap: 6px;
   padding-top: 16px; border-top: 1px solid var(--rule); max-width: 44em;
 }
-.dir p { font-size: var(--t-small); line-height: 1.55; }
-.dir p + p { grid-column: 2; }
-.dir p:nth-child(3) { color: var(--ink-2); }
+.dir p, .dirList { font-size: var(--t-small); line-height: 1.55; }
+/* four directions as a 2 × 2 block on wider screens, one dotted line on phones */
+.dirList { grid-column: 2; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px var(--col-gap); }
+
+/* availability tag: the one fact a recruiter scans for, so it gets its own label */
+.status {
+  margin-top: 28px; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 12px;
+  padding: 8px 14px; border: 1px solid var(--rule-strong); font-size: var(--t-small); font-weight: 500; line-height: 1.4;
+}
+.status::before { content: ""; width: 7px; height: 7px; background: var(--oxide); }
+.statusPlace { font-weight: 400; color: var(--ink-2); padding-left: 12px; border-left: 1px solid var(--rule); }
 
 .photo {
   grid-column: 8 / span 5; grid-row: 1; margin-top: calc(-1 * clamp(28px, 4vw, 56px));
@@ -38,12 +46,6 @@
 }
 .frame { position: relative; overflow: hidden; aspect-ratio: 1229 / 1536; max-width: 100%; background: var(--paper-2); }
 .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 40%; }
-.photo figcaption {
-  display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; margin-top: 16px;
-  padding-right: max(var(--gut), env(safe-area-inset-right, 0px));
-}
-.photo figcaption :global(.meta) { padding-top: 6px; }
-.photo figcaption p { font-family: var(--f-serif); font-style: italic; font-weight: 300; font-size: clamp(19px, 1.5vw, 23px); line-height: 1.3; max-width: 19em; }
 @media (min-width: 1700px) {
   .photo { margin-right: calc((100vw - var(--max)) / -2 - max(var(--gut), env(safe-area-inset-right, 0px))); }
 }
@@ -78,9 +80,10 @@
   }
   .frame { aspect-ratio: 4 / 4.6; }
   .frame img { object-position: 50% 22%; }
-  .photo figcaption { padding-left: max(var(--gut), env(safe-area-inset-left, 0px)); }
 }
 @media (max-width: 520px) {
   .dir { grid-template-columns: 1fr; }
-  .dir p + p { grid-column: 1; }
+  .dirList { grid-column: 1; display: block; }
+  .dirList li { display: inline; }
+  .dirList li:not(:last-child)::after { content: " · "; }
 }

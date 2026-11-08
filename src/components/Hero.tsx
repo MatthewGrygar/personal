@@ -12,40 +12,41 @@ export function Hero() {
           <p className={`${s.meta} meta`}><span><L cs="Portfolio · Praha" en="Portfolio · Prague" /></span></p>
           <h1 className={s.headline}>
             <span data-l="cs">
-              <span className={s.ln}>Rozumím technologiím.</span>
-              <span className={s.ln}>Umím mluvit s lidmi.</span>
-              <span className={`${s.ln} ${s.it}`}>A věci dotahuju<Stop /></span>
+              <span className={s.ln}>Rozumím technologiím</span>
+              <span className={`${s.ln} ${s.it}`}>i lidem<Stop /></span>
             </span>
             <span data-l="en">
-              <span className={s.ln}>I understand technology.</span>
-              <span className={s.ln}>I connect with people.</span>
-              <span className={`${s.ln} ${s.it}`}>And I get things done<Stop /></span>
+              <span className={s.ln}>I understand technology</span>
+              <span className={`${s.ln} ${s.it}`}>and people<Stop /></span>
             </span>
           </h1>
           <div className={`${s.settle} ${s.desk}`}>
             <p className={s.lead}>
               <L
-                cs="Propojuji technické porozumění, kreativní myšlení a schopnost rozhýbat lidi i projekty. Pomáhám převést složité potřeby do jasného plánu, funkčního řešení a výsledku, kterému rozumí tým i zákazník."
-                en="I bring technical understanding, creative thinking and the ability to move people and projects forward, turning complex needs into clear plans, practical solutions and results that make sense to both teams and customers."
+                cs="Nejvíc přináším tam, kde je potřeba spojit technické porozumění se schopností vést lidi i projekty. Nápady převádím do jasných plánů a plány do funkčních řešení."
+                en="I add the most where technical understanding has to meet the ability to lead people and projects. I turn ideas into clear plans, and plans into working solutions."
               />
+            </p>
+            <p className={s.status}>
+              <L cs="Otevřený novým příležitostem" en="Open to new opportunities" />
+              <span className={s.statusPlace}><L cs="Praha · hybrid i remote" en="Prague · hybrid or remote" /></span>
             </p>
             <div className={s.dir}>
               <p className="meta"><L cs="Kam směřuji:" en="Where I’m heading:" /></p>
-              <p>
-                <L
-                  cs="Projektové a provozní řízení · Account management · Business / Service ownership · IT a digitální služby"
-                  en="Project and operations management · Account management · Business / Service ownership · IT and digital services"
-                />
-              </p>
-              <p><L cs="Praha, hybrid i remote. Otevřený novým příležitostem." en="Prague, hybrid or remote. Open to new opportunities." /></p>
+              <ul className={s.dirList}>
+                <li><L cs="Projektové a provozní řízení" en="Project and operations management" /></li>
+                <li>Account management</li>
+                <li>Business / Service ownership</li>
+                <li><L cs="IT a digitální služby" en="IT and digital services" /></li>
+              </ul>
             </div>
             <div className="ctas">
               <a className="btn" href="#kontakt">
-                <L cs="Pojďme něco posunout" en="Let’s move something forward" />
+                <L cs="Ozvěte se mi" en="Get in touch" />
                 <span className="ar" aria-hidden="true">→</span>
               </a>
-              <a className="arrowlink" href="#projekty">
-                <span className="u"><L cs="Prohlédnout projekty" en="Explore my work" /></span>
+              <a className="arrowlink" href="#zkusenosti">
+                <span className="u"><L cs="Moje zkušenosti" en="My experience" /></span>
                 <span className="ar" aria-hidden="true">↓</span>
               </a>
             </div>
@@ -64,10 +65,6 @@ export function Hero() {
               }}
             />
           </div>
-          <figcaption className={s.settle}>
-            <span className="meta" aria-hidden="true">—</span>
-            <p><L cs="Nápady jsou skvělé. Ještě lepší je dostat je do života." en="Ideas are great. Getting them out into the world is even better." /></p>
-          </figcaption>
         </figure>
       </div>
     </div>

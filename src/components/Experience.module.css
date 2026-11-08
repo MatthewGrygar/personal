@@ -44,18 +44,14 @@
 .subH h4 { font-size: 18px; font-weight: 500; letter-spacing: -.01em; }
 .subH .mono:last-child { margin-left: auto; }
 .sub > p { font-size: 17px; max-width: 44em; }
-.split { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 4fr); gap: 24px var(--col-gap); align-items: start; margin-top: 6px; }
-.split li { display: grid; grid-template-columns: 22px 1fr; font-size: 16px; line-height: 1.55; padding: 4px 0; }
-.split li::before { content: ""; width: 8px; height: 1px; background: var(--ink-2); margin-top: .8em; }
-.split aside { border-top: 1px solid var(--oxide); padding-top: 12px; display: grid; gap: 8px; }
-.split aside p:first-child { font-family: var(--f-mono); font-size: var(--t-meta); color: var(--ink-2); }
-.split aside p:last-child { font-family: var(--f-serif); font-size: 19px; line-height: 1.4; font-weight: 300; }
+.list { margin-top: 6px; max-width: 46em; }
+.list li { display: grid; grid-template-columns: 22px 1fr; font-size: 16px; line-height: 1.55; padding: 4px 0; }
+.list li::before { content: ""; width: 8px; height: 1px; background: var(--ink-2); margin-top: .8em; }
 @media (max-width: 960px) {
   .top :global(.no), .top h2 { grid-column: 1 / -1; }
   .tg { grid-column: 1 / -1; justify-self: start; }
   .when { grid-column: 1 / -1; grid-auto-flow: column; justify-content: start; align-items: baseline; gap: 14px; margin-bottom: 14px; }
   .main, .xdet > div { grid-column: 1 / -1; }
   .xbtnText { grid-template-columns: 1fr; row-gap: 6px; }
-  .split { grid-template-columns: 1fr; }
   .st .txt { display: none; }
 }

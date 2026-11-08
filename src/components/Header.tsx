@@ -6,9 +6,8 @@ import s from "./Header.module.css";
 
 const NAV = [
   { id: "o-mne", cs: "O mně", en: "About" },
-  { id: "co-prinasim", cs: "Co přináším", en: "What I bring" },
-  { id: "projekty", cs: "Projekty", en: "Work" },
   { id: "zkusenosti", cs: "Zkušenosti", en: "Experience" },
+  { id: "projekty", cs: "Projekty", en: "Side projects" },
   { id: "kontakt", cs: "Kontakt", en: "Contact" },
 ];
 
