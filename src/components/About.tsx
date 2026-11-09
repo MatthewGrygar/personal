@@ -6,7 +6,7 @@ const FIGS: { fig: Bi; text: Bi }[] = [
   { fig: { cs: "130+", en: "130+" }, text: { cs: "Grail Series: organizace a rozvoj turnajů.", en: "Grail Series: running and growing the tournaments." } },
   { fig: { cs: "300+", en: "300+" }, text: { cs: "Produkce: podpora, incidenty, koordinace.", en: "Production: support, incidents, coordination." } },
   {
-    fig: { cs: "550 000+", en: "550,000+" },
+    fig: { cs: "550 000+", en: "550,000+" },
     text: {
       cs: "Národní očkovací centrum: tolik lidí centrem prošlo. Pomáhal jsem zajišťovat jeho IT provoz.",
       en: "National Vaccination Centre: that’s how many people it served. I helped run its IT operations.",
