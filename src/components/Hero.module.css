@@ -45,8 +45,9 @@
 .btns :global(.btn) { padding: 0 22px; white-space: nowrap; }
 
 /* the portrait sits in the grid and stands on the blue band below */
-.photo { grid-column: 8 / -1; align-self: end; padding-top: clamp(28px, 3vw, 44px); }
-.frame { position: relative; overflow: hidden; aspect-ratio: 4 / 5; max-height: 640px; margin-left: auto; background: var(--fg); }
+/* the portrait runs from the top of the name down onto the blue band, capped with the same 8px rule as the project cards */
+.photo { grid-column: 8 / -1; align-self: stretch; display: flex; padding-top: calc(clamp(28px, 3vw, 44px) + clamp(4px, .7vw, 10px)); }
+.frame { position: relative; overflow: hidden; flex: 1; min-height: 480px; border-top: 8px solid var(--accent); background: var(--fg); }
 .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; filter: grayscale(1) contrast(1.12); }
 
 /* intro: one movement, ~750ms, page is usable from the first frame */
@@ -69,7 +70,7 @@
   .text { padding-bottom: 32px; gap: 28px; }
   .photo { margin-left: calc(-1 * max(var(--gut), env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(var(--gut), env(safe-area-inset-right, 0px))); }
   .photo { padding-top: 0; }
-  .frame { max-height: none; aspect-ratio: 4 / 4.6; }
+  .frame { flex: none; width: 100%; min-height: 0; aspect-ratio: 4 / 4.6; border-top: 0; }
   .frame img { object-position: 50% 22%; }
   .name { font-size: clamp(52px, 13.5vw, 112px); }
 }
