@@ -1,4 +1,4 @@
-.hero { position: relative; padding-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(64px, 8vw, 120px); }
+.hero { position: relative; padding-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(40px, 5vw, 72px); }
 .grid { align-items: start; }
 .rule {
   position: absolute; left: 0; right: 0; top: calc(clamp(28px, 4vw, 56px) + 9px); height: 1px; background: var(--oxide);
@@ -38,6 +38,8 @@
   padding: 8px 14px; border: 1px solid var(--rule-strong); font-size: var(--t-small); font-weight: 500; line-height: 1.4;
 }
 .status::before { content: ""; width: 7px; height: 7px; background: var(--oxide); }
+.ctas { gap: 12px; }
+.ctas :global(.arrowlink) { margin-left: 18px; }
 .statusPlace { font-weight: 400; color: var(--ink-2); padding-left: 12px; border-left: 1px solid var(--rule); }
 
 .photo {
@@ -87,4 +89,7 @@
   /* tag stacks: label next to the dot, place underneath without the divider */
   .status { display: grid; grid-template-columns: auto 1fr; align-items: center; column-gap: 12px; row-gap: 2px; }
   .statusPlace { grid-column: 2; padding-left: 0; border-left: 0; }
+  /* buttons stack full width, text link underneath */
+  .ctas :global(.btn) { width: 100%; justify-content: space-between; }
+  .ctas :global(.arrowlink) { margin: 6px 0 0; }
 }

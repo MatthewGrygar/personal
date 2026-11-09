@@ -1,5 +1,6 @@
 import { BiImage } from "./BiImage";
-import { L } from "./L";
+import { L, NewTab } from "./L";
+import { LINKEDIN } from "./site";
 import { Stop } from "./Stop";
 import s from "./Hero.module.css";
 
@@ -40,10 +41,18 @@ export function Hero() {
                 <li><L cs="IT a digitální služby" en="IT and digital services" /></li>
               </ul>
             </div>
-            <div className="ctas">
+            <div className={`ctas ${s.ctas}`}>
               <a className="btn" href="#kontakt">
                 <L cs="Ozvěte se mi" en="Get in touch" />
                 <span className="ar" aria-hidden="true">→</span>
+              </a>
+              <a className="btn ghost" href={LINKEDIN} target="_blank" rel="noopener">
+                <span>LinkedIn<NewTab /></span>
+                <span className="ar" aria-hidden="true">↗</span>
+              </a>
+              <a className="btn ghost" href="/cv-matthew-grygar.pdf" download="Matthew-Grygar-CV.pdf">
+                <L cs="Stáhnout životopis" en="Download CV" />
+                <span className="ar" aria-hidden="true">↓</span>
               </a>
               <a className="arrowlink" href="#zkusenosti">
                 <span className="u"><L cs="Moje zkušenosti" en="My experience" /></span>
