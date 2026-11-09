@@ -2,17 +2,17 @@
 .band { background: var(--accent); color: var(--on-accent); }
 .band ::selection { background: var(--on-accent); color: var(--accent); }
 .figs {
-  display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.55fr);
-  column-gap: var(--col-gap); row-gap: 32px; padding-block: 56px;
+  display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.45fr);
+  gap: 40px 48px; padding-block: 64px 72px;
 }
-.figs li { display: grid; gap: 4px; align-content: start; }
-.unit { font-size: clamp(18px, 1.6vw, 22px); font-weight: 800; font-stretch: 112%; line-height: 1.2; letter-spacing: -.01em; }
-.figs p { margin-top: 8px; }
+.figs li { display: flex; flex-direction: column; gap: 14px; }
+/* number heavy and extended; the unit sits after it in the body face */
 .fig {
-  white-space: nowrap; font-size: clamp(40px, 4.6vw, 64px); font-weight: 900; font-stretch: 125%; line-height: 1; letter-spacing: -.04em;
-  font-variant-numeric: tabular-nums;
+  font-family: var(--f-head); font-size: clamp(40px, 4vw, 52px); font-weight: 900; font-stretch: 125%; line-height: 1;
+  letter-spacing: -.04em; font-variant-numeric: tabular-nums;
 }
-.figs p { font-size: var(--t-small); max-width: 22em; }
+.unit { font-family: var(--f-sans); font-size: 18px; font-weight: 600; font-stretch: 100%; letter-spacing: 0; }
+.figs p { font-size: 15px; line-height: 1.5; max-width: 24em; color: color-mix(in srgb, var(--on-accent) 88%, var(--accent)); }
 
 .bring { row-gap: 48px; }
 .left { grid-column: 1 / span 5; }
@@ -28,11 +28,12 @@
 
 @media (max-width: 960px) {
   .left, .matrix { grid-column: 1 / -1; }
-  .figs { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding-block: 44px; }
+  .figs { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding-block: 48px 56px; }
 }
 @media (max-width: 600px) {
   .matrix article { grid-template-columns: 1fr; }
   .matrix h3, .matrix article > div { grid-column: 1; }
 }
+@media (max-width: 600px) { .figs { column-gap: 20px; row-gap: 36px; } }
 @media (max-width: 520px) { .figs li:last-child { grid-column: 1 / -1; } }
 @media (max-width: 420px) { .fig { font-size: 36px; } }

@@ -21,13 +21,13 @@ export default async function Image() {
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", fontSize: 40, fontWeight: 700, letterSpacing: -1 }}>
-              Rozumím technologiím i lidem<span style={{ color: "#1D3BFF" }}>.</span>
+              Rozumím technologiím i lidem<span style={{ color: "#3F38FC" }}>.</span>
             </div>
             <div style={{ display: "flex", marginTop: 22, paddingTop: 16, borderTop: "3px solid #000", fontSize: 20, marginBottom: 40 }}>
               Projektové a provozní řízení · Account management · IT a digitální služby
             </div>
           </div>
-          <div style={{ display: "flex", height: 18, background: "#1D3BFF", margin: "0 -56px" }} />
+          <div style={{ display: "flex", height: 18, background: "#3F38FC", margin: "0 -56px" }} />
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders plain <img> only */}
         <img alt="" src={portrait} width={434} height={630} style={{ width: 434, height: 630, objectFit: "cover", objectPosition: "50% 30%" }} />

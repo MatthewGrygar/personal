@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo } from "next/font/google";
+import { Archivo, Inter_Tight } from "next/font/google";
 import "./globals.css";
 
 // Variable font: weights 300–900 plus the width axis (the headings run extended, up to 125 %).
@@ -9,6 +9,8 @@ const archivo = Archivo({
   variable: "--font-archivo",
   display: "swap",
 });
+// Body text, as in the designs.
+const inter = Inter_Tight({ subsets: ["latin", "latin-ext"], variable: "--font-inter", display: "swap" });
 
 const description =
   "Matthew Grygar, Praha. Propojuji lidi, technologie a nápady do funkčních výsledků — projektové a provozní řízení, klientská spolupráce, IT a digitální služby.";
@@ -49,7 +51,7 @@ const boot = `(function(){var d=document.documentElement;d.classList.add('js');t
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="cs" className={archivo.variable} suppressHydrationWarning>
+    <html lang="cs" className={`${archivo.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: boot }} />
       </head>

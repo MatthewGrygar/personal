@@ -2,15 +2,15 @@ import { L, type Bi } from "./L";
 import s from "./About.module.css";
 
 const FIGS: { fig: Bi; unit: Bi; text: Bi }[] = [
-  { fig: { cs: "10", en: "10" }, unit: { cs: "let", en: "years" }, text: { cs: "Divadlo: komunikace, improvizace, vystupování.", en: "Theatre: communication, improvisation, presenting." } },
+  { fig: { cs: "10", en: "10" }, unit: { cs: "let", en: "years" }, text: { cs: "U divadla mě naučilo profesionální komunikaci, improvizaci a vystupování.", en: "in theatre taught me professional communication, improvisation and presenting." } },
   { fig: { cs: "130+", en: "130+" }, unit: { cs: "hráčů", en: "players" }, text: { cs: "Grail Series: organizace a rozvoj turnajů.", en: "Grail Series: running and growing the tournaments." } },
   { fig: { cs: "300+", en: "300+" }, unit: { cs: "zařízení", en: "devices" }, text: { cs: "Produkce: podpora, incidenty, koordinace.", en: "Production: support, incidents, coordination." } },
   {
     fig: { cs: "550 000+", en: "550,000+" },
     unit: { cs: "lidí", en: "people" },
     text: {
-      cs: "Národní očkovací centrum: tolik lidí centrem prošlo. Pomáhal jsem zajišťovat jeho IT provoz.",
-      en: "National Vaccination Centre: that’s how many people it served. I helped run its IT operations.",
+      cs: "prošlo Národním očkovacím centrem v době, kdy jsem pomáhal zajišťovat jeho IT provoz.",
+      en: "passed through the National Vaccination Centre while I was helping run its IT operations.",
     },
   },
 ];
@@ -24,8 +24,8 @@ const AREAS: { rn: string; title: Bi; body: Bi; tags: Bi }[] = [
       en: "Theatre taught me to hold attention, react to the unexpected and get an idea across so people understand it. It has made me a better communicator, presenter and collaborator.",
     },
     tags: {
-      cs: "Komunikace napříč odděleními i směrem ke klientům, prezentace, profesionalita.",
-      en: "Communication across departments and with clients, presenting, professionalism.",
+      cs: "Komunikace napříč odděleními i směrem ke klientům, profesionalita.",
+      en: "Communication across departments and with clients, professionalism.",
     },
   },
   {
@@ -41,8 +41,8 @@ const AREAS: { rn: string; title: Bi; body: Bi; tags: Bi }[] = [
     rn: "III.",
     title: { cs: "Technologie a byznys", en: "Technology and business" },
     body: {
-      cs: "Technické zkušenosti mi pomáhají rozumět dopadům rozhodnutí a klást dobré otázky. Pracoval jsem s IAM, produkčními systémy, podporou aplikací i digitálními projekty. Díky tomu dokážu propojovat technické týmy s lidmi, kteří potřebují službu používat nebo rozvíjet.",
-      en: "My technical background helps me understand the impact of decisions and ask the right questions. I’ve worked with IAM, production systems, application support and digital projects, which lets me connect technical teams with the people who need to use or develop a service.",
+      cs: "Technické zkušenosti mi pomáhají chápat dopady rozhodnutí a klást správné otázky. Díky praxi s IAM, provozem a podporou aplikací dokážu propojovat technické týmy s lidmi, kteří služby používají a rozvíjejí.",
+      en: "My technical background helps me understand the impact of decisions and ask the right questions. Hands-on work with IAM, operations and application support lets me connect technical teams with the people who use and develop the services.",
     },
     tags: { cs: "IT provoz, IAM / IdM, digitální služby, analýza potřeb, rizika a spolehlivost.", en: "IT operations, IAM / IdM, digital services, needs analysis, risk and reliability." },
   },
@@ -55,8 +55,9 @@ export function About() {
         <ul className={`wrap ${s.figs}`}>
           {FIGS.map((f, i) => (
             <li key={i}>
-              <span className={s.fig}>{f.fig.cs === f.fig.en ? f.fig.cs : <L {...f.fig} />}</span>
-              <span className={s.unit}><L {...f.unit} /></span>
+              <span className={s.fig}>
+                {f.fig.cs === f.fig.en ? f.fig.cs : <L {...f.fig} />} <span className={s.unit}><L {...f.unit} /></span>
+              </span>
               <p><L {...f.text} /></p>
             </li>
           ))}

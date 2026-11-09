@@ -1,20 +1,20 @@
 .hero { position: relative; }
 .rule { position: absolute; left: 0; top: 0; width: 1px; height: 1px; pointer-events: none; }
 
-/* two columns: everything to read on the left, the portrait filling the right edge to edge */
-.grid { align-items: stretch; }
-.text { grid-column: 1 / span 7; padding-block: clamp(28px, 3vw, 44px); display: flex; flex-direction: column; justify-content: space-between; gap: 40px; }
+/* text left, portrait right; the two sit apart rather than on a shared grid */
+.main { display: flex; flex-wrap: wrap; gap: 48px 64px; align-items: stretch; justify-content: space-between; }
+.text { flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; padding: 46px 0 48px; }
 
-/* the name: heavy and extended, sized so it always fits its column */
 .name {
-  font-size: clamp(52px, 8.2vw, 120px); font-weight: 900; font-stretch: 125%; line-height: .86; letter-spacing: -.045em;
+  font-size: clamp(56px, 7.8vw, 112px); font-weight: 900; font-stretch: 125%; line-height: .86; letter-spacing: -.045em;
   text-wrap: nowrap; margin-left: -.04em;
 }
 .ln { display: block; }
 
-.settle { display: flex; flex-direction: column; gap: 22px; }
-.tagline { font-size: clamp(28px, 2.8vw, 40px); font-weight: 700; line-height: 1.08; letter-spacing: -.02em; }
-.lead { max-width: 520px; }
+.settle { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: space-between; gap: 36px; margin-top: 44px; max-width: 560px; }
+.intro { display: flex; flex-direction: column; gap: 18px; }
+.tagline { font-size: clamp(28px, 2.6vw, 34px); font-weight: 600; line-height: 1.12; letter-spacing: -.03em; }
+.lead { line-height: 1.6; color: var(--fg-2); }
 
 /* the full stop after the tagline can be pulled away — it always comes back */
 .stop { display: inline-block; position: relative; color: var(--accent-text); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
@@ -28,27 +28,26 @@
 .stop.drag .tether { opacity: 1; }
 @media (hover: hover) { .stop:hover .dot { transform: scale(1.25); } }
 
-/* availability: one line, blue square, place after it */
-.status { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: var(--t-small); }
-.status strong { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; }
-.status strong::before { content: ""; width: 12px; height: 12px; background: var(--accent); }
-.place { color: var(--fg-2); }
 
-/* where I'm heading: a ruled 2 × 2 block */
-.dir { border-top: var(--line); padding-top: 14px; font-size: var(--t-small); max-width: 560px; }
-.dirLabel { font-weight: 700; margin-bottom: 6px; }
-.dirList { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 24px; }
+/* availability, then where I'm heading */
+.facts { display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.5; }
+.status { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
+.status strong { display: inline-flex; align-items: center; gap: 12px; font-weight: 600; }
+.status strong::before { content: ""; width: 10px; height: 10px; background: var(--accent); }
+.place { color: var(--muted); }
+.dirList { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); gap: 4px 40px; margin-top: 6px; color: var(--fg-2); }
 
-/* the three buttons on one line, the text link after them */
-.ctas { gap: 14px 28px; margin-top: 4px; }
-.btns { display: flex; gap: 12px; }
-.btns :global(.btn) { padding: 0 22px; white-space: nowrap; }
+/* two buttons, the CV and LinkedIn as quiet links underneath */
+.ctas { display: flex; flex-direction: column; gap: 14px; }
+.btns { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.small { display: flex; flex-wrap: wrap; align-items: center; gap: 0 28px; font-size: 15px; font-weight: 500; }
+.small a { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; color: var(--fg-2); transition: color var(--d-fast); }
+.small a:hover { color: var(--accent-text); }
 
-/* the portrait sits in the grid and stands on the blue band below */
-/* the portrait runs from the top of the name down onto the blue band, capped with the same 8px rule as the project cards */
-.photo { grid-column: 8 / -1; align-self: stretch; display: flex; padding-top: calc(clamp(28px, 3vw, 44px) + clamp(4px, .7vw, 10px)); }
-.frame { position: relative; overflow: hidden; flex: 1; min-height: 480px; border-top: 8px solid var(--accent); background: var(--fg); }
-.frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; filter: grayscale(1) contrast(1.12); }
+/* the portrait: a blue bar on top, cropped from the head down */
+.photo { flex: 0 1 466px; min-width: 0; margin-top: 50px; }
+.frame { position: relative; overflow: hidden; height: 640px; border-top: 8px solid var(--accent); background: var(--fg); }
+.frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; filter: grayscale(1) contrast(1.08); }
 
 /* intro: one movement, ~750ms, page is usable from the first frame */
 @media (prefers-reduced-motion: no-preference) {
@@ -63,20 +62,14 @@
 @keyframes settle { from { transform: scale(1.06); } to { transform: none; } }
 @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-/* narrower desktops: buttons may wrap rather than squeeze */
-@media (max-width: 1180px) { .btns { flex-wrap: wrap; } }
+@media (max-width: 1100px) { .photo { flex-basis: 380px; } .frame { height: 560px; } }
 @media (max-width: 860px) {
-  .text, .photo { grid-column: 1 / -1; }
-  .text { padding-bottom: 32px; gap: 28px; }
-  .photo { margin-left: calc(-1 * max(var(--gut), env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(var(--gut), env(safe-area-inset-right, 0px))); }
-  .photo { padding-top: 0; }
-  .frame { flex: none; width: 100%; min-height: 0; aspect-ratio: 4 / 4.6; border-top: 0; }
-  .frame img { object-position: 50% 22%; }
+  .text { flex-basis: 100%; padding-bottom: 0; }
+  .photo { flex-basis: 100%; margin-top: 0; }
+  .frame { height: auto; aspect-ratio: 4 / 5; }
   .name { font-size: clamp(52px, 13.5vw, 112px); }
 }
 @media (max-width: 520px) {
-  .dirList { gap: 6px 16px; }
-  /* buttons stack full width, text link underneath */
-  .btns { flex-direction: column; width: 100%; }
-  .btns :global(.btn) { width: 100%; justify-content: space-between; }
+  .dirList { grid-template-columns: 1fr; }
+  .btns :global(.btn) { flex: 1 1 auto; justify-content: center; }
 }

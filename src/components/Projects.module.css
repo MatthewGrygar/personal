@@ -1,19 +1,23 @@
-/* projects — two cards under a heavy top rule; the first one blue */
-.title { margin-bottom: 56px; }
-.list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--col-gap); row-gap: 48px; }
-.row { display: flex; flex-direction: column; gap: 14px; border-top: 8px solid var(--fg); padding-top: 24px; }
-.row:first-child { border-top-color: var(--accent); }
-.row h3 { font-size: clamp(28px, 2.4vw, 34px); font-weight: 900; font-stretch: 115%; line-height: 1.1; letter-spacing: -.02em; }
-.kind { font-weight: 600; }
-.row p { max-width: 36em; }
-.out { font-weight: 700; }
-.go {
-  align-self: flex-start; font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px;
-  transition: color var(--d-fast);
-}
-.go:hover { color: var(--accent-text); }
+/* projects — two cards under a heavy top rule; the first one blue, each closing on its number */
+.title { margin-bottom: 72px; }
+.list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 64px 48px; }
+.card { display: flex; flex-direction: column; border-top: 8px solid var(--fg); padding-top: 36px; }
+.card:first-child { border-top-color: var(--accent); }
+.card h3 { font-size: clamp(24px, 2.3vw, 32px); font-weight: 900; font-stretch: 115%; line-height: 1.1; letter-spacing: -.025em; }
+.card h3 a { display: inline-flex; align-items: center; gap: 10px; }
+.card h3 svg { flex: none; color: var(--muted); transition: color var(--d-fast), transform var(--d-fast); }
+.card h3 a:hover svg { color: var(--accent-text); transform: translate(2px, -2px); }
+.tags { margin-top: 14px; font-size: 16px; font-weight: 600; }
+.desc { margin-top: 20px; max-width: 560px; font-size: 17px; line-height: 1.65; color: var(--fg-2); }
+.stat { margin-top: auto; padding-top: 28px; border-top: 1px solid var(--rule-soft); display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+/* the rule above the number keeps its distance from the text, wherever the card ends */
+.desc { margin-bottom: 36px; }
+.num { font-family: var(--f-head); font-size: 56px; font-weight: 900; font-stretch: 125%; line-height: 1; letter-spacing: -.04em; }
+.card:first-child .num { color: var(--accent-text); }
+.lbl { font-size: 16px; font-weight: 600; }
+.out { margin-top: 10px; font-size: 16px; line-height: 1.5; color: var(--muted); }
 @media (prefers-reduced-motion: no-preference) {
-  :global(.js) .row.pre { opacity: 0; transform: translateY(16px); }
-  :global(.js) .row { transition: opacity .5s var(--ease), transform .5s var(--ease); }
+  :global(.js) .card.pre { opacity: 0; transform: translateY(16px); }
+  :global(.js) .card { transition: opacity .5s var(--ease), transform .5s var(--ease); }
 }
-@media (max-width: 860px) { .list { grid-template-columns: 1fr; } }
+@media (max-width: 420px) { .num { font-size: 46px; } }

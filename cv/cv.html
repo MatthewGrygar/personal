@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>Matthew Grygar – životopis</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 12mm 0 11mm; }
+:root { --ink: #0A0A0A; --ink-2: #3D3D3D; --muted: #5C5C5C; --soft: #DADADA; --blue: #3F38FC; --blue-soft: #E4E3FF; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: 'Inter Tight', system-ui, sans-serif; color: var(--ink); font-size: 9.4pt; line-height: 1.45; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+h1, h2, h3, h4, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+.head-f { font-family: Archivo, sans-serif; }
+
+.page { width: 210mm; padding: 1mm 14mm 0; }
+
+/* header: name left, contact and portrait right */
+.top { display: grid; grid-template-columns: 1fr 44mm; gap: 8mm; padding-bottom: 6mm; border-bottom: 2px solid var(--ink); }
+.name { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 42pt; line-height: .86; letter-spacing: -.045em; }
+.name span { display: block; }
+.tag { margin-top: 6mm; font-size: 15pt; font-weight: 600; letter-spacing: -.03em; line-height: 1.12; }
+.tag b { color: var(--blue); }
+.lead { margin-top: 2.5mm; max-width: 112mm; color: var(--ink-2); font-size: 9.8pt; line-height: 1.55; }
+.status { margin-top: 4mm; display: flex; flex-wrap: wrap; align-items: center; gap: 1mm 3mm; font-size: 9pt; }
+.status strong { display: inline-flex; align-items: center; gap: 2.5mm; font-weight: 600; }
+.status strong::before { content: ""; width: 2.6mm; height: 2.6mm; background: var(--blue); }
+.status span { color: var(--muted); }
+.dir { margin-top: 1.5mm; display: grid; grid-template-columns: max-content max-content; gap: .6mm 9mm; color: var(--ink-2); font-size: 9pt; }
+.photo { border-top: 2mm solid var(--blue); height: 52mm; overflow: hidden; background: var(--ink); }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; filter: grayscale(1) contrast(1.08); display: block; }
+.contact { margin-top: 3.5mm; display: grid; gap: 1mm; font-size: 8.8pt; }
+.contact .k { display: block; font-size: 7.4pt; color: var(--muted); }
+.contact a, .contact p { font-weight: 600; overflow-wrap: anywhere; }
+.contact .mail { color: var(--blue); }
+
+/* the numbers on a blue band */
+.band { margin: 6mm -14mm 0; padding: 5.5mm 14mm 6mm; background: var(--blue); color: #fff; display: grid; grid-template-columns: .8fr 1fr 1fr 1.5fr; gap: 6mm; }
+.fig { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 21pt; line-height: 1; letter-spacing: -.04em; white-space: nowrap; }
+.fig small { font-family: 'Inter Tight', sans-serif; font-size: 9pt; font-weight: 600; letter-spacing: 0; }
+.band p { margin-top: 2mm; font-size: 8pt; line-height: 1.4; color: var(--blue-soft); }
+
+/* sections */
+.sec { margin-top: 5.5mm; }
+.h2 { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 110%; font-size: 17pt; line-height: 1; letter-spacing: -.035em; padding-bottom: 3mm; border-bottom: 1px solid var(--ink); }
+
+.job { display: grid; grid-template-columns: 30mm 1fr; gap: 0 6mm; padding: 3.2mm 0 3.4mm; border-bottom: 1px solid var(--soft); break-inside: avoid; }
+.yr { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 20pt; line-height: .9; letter-spacing: -.04em; }
+.now .yr { color: var(--blue); }
+.per { display: block; margin-top: 1.6mm; font-size: 8pt; color: var(--muted); }
+.co { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 110%; font-size: 12.5pt; line-height: 1.1; letter-spacing: -.02em; }
+.role { margin-top: .8mm; font-size: 8.8pt; color: var(--ink-2); }
+.live { display: inline-flex; align-items: center; gap: 1.6mm; margin-left: 2.5mm; font-size: 8pt; font-weight: 600; color: var(--blue); }
+.live::before { content: ""; width: 1.8mm; height: 1.8mm; background: var(--blue); }
+.sub { margin-top: 2mm; }
+.sub h4 { font-size: 9.4pt; font-weight: 700; }
+.sub h4 span { font-weight: 400; color: var(--muted); }
+.job ul { margin-top: 1mm; display: grid; gap: .2mm; }
+.job li { position: relative; padding-left: 4.5mm; color: var(--ink-2); }
+.job li::before { content: ""; position: absolute; left: 0; top: .66em; width: 2.2mm; height: 1.5px; background: var(--blue); }
+
+/* projects: two cards */
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 4mm; }
+.card { display: flex; flex-direction: column; border-top: 2mm solid var(--ink); padding-top: 3.5mm; break-inside: avoid; }
+.card.blue { border-top-color: var(--blue); }
+.card h3 { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 115%; font-size: 12.5pt; letter-spacing: -.025em; line-height: 1.1; }
+.card .t { margin-top: 1mm; font-size: 8.4pt; font-weight: 600; }
+.card .d { margin-top: 2mm; color: var(--ink-2); }
+.card .s { margin-top: auto; padding-top: 2.5mm; border-top: 1px solid var(--soft); } .card .d { margin-bottom: 3mm; } .card .s { padding-top: 2.5mm; border-top: 1px solid var(--soft); display: flex; align-items: baseline; gap: 3mm; }
+.card .n { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 19pt; line-height: 1; letter-spacing: -.04em; }
+.card.blue .n { color: var(--blue); }
+.card .l { font-size: 8.6pt; font-weight: 600; }
+
+/* education, skills, languages */
+.three { display: grid; grid-template-columns: 1.15fr 1.25fr .7fr; gap: 8mm; margin-top: 6mm; break-inside: avoid; }
+.three h2 { font-size: 13pt; }
+.item { margin-top: 3mm; }
+.item b { display: block; font-weight: 700; }
+.item span { display: block; color: var(--ink-2); }
+.item em { display: block; font-style: normal; font-size: 8pt; color: var(--muted); }
+.skills { margin-top: 3mm; display: grid; gap: 2mm; }
+.skills b { display: block; font-size: 8pt; font-weight: 600; color: var(--muted); }
+.lang li { margin-top: 3mm; display: flex; justify-content: space-between; border-bottom: 1px solid var(--soft); padding-bottom: 1.2mm; }
+.lang li span { font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="top">
+    <div>
+      <h1 class="name"><span>Matthew</span><span>Grygar</span></h1>
+      <p class="tag">Rozumím technologiím i lidem<b>.</b></p>
+      <p class="lead">Nejvíc přináším tam, kde je potřeba spojit technické porozumění se schopností vést lidi i projekty. Nápady převádím do jasných plánů a plány do funkčních řešení.</p>
+      <p class="status"><strong>Otevřený novým příležitostem</strong><span>Praha · Hybrid i remote</span></p>
+      <ul class="dir">
+        <li>Projektové a provozní řízení</li><li>Account management</li>
+        <li>Business / Service ownership</li><li>IT a digitální služby</li>
+      </ul>
+    </div>
+    <div>
+      <div class="photo"><img src="../public/images/portrait.jpg" alt=""></div>
+      <div class="contact">
+        <div><span class="k">E-mail</span><a class="mail" href="mailto:matthew.grygar@seznam.cz">matthew.grygar@seznam.cz</a></div>
+        <div><span class="k">Telefon</span><a href="tel:+420607434959">+420 607 434 959</a></div>
+        <div><span class="k">LinkedIn · web</span><a href="https://www.linkedin.com/in/matthew-grygar-214b94232/">LinkedIn profil</a> · <a href="https://matthewgrygar.com">matthewgrygar.com</a></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="band" aria-label="V číslech">
+    <div><div class="fig">10 <small>let</small></div><p>U divadla mě naučilo profesionální komunikaci, improvizaci a vystupování.</p></div>
+    <div><div class="fig">130+ <small>hráčů</small></div><p>Grail Series: organizace a rozvoj turnajů.</p></div>
+    <div><div class="fig">300+ <small>zařízení</small></div><p>Produkce: podpora, incidenty, koordinace.</p></div>
+    <div><div class="fig">550&nbsp;000+ <small>lidí</small></div><p>prošlo Národním očkovacím centrem v době, kdy jsem pomáhal zajišťovat jeho IT provoz.</p></div>
+  </section>
+
+  <section class="sec">
+    <h2 class="h2">Pracovní zkušenosti</h2>
+
+    <article class="job now">
+      <div><div class="yr">2025</div><span class="per">01/2025 – teď</span></div>
+      <div>
+        <h3 class="co">Trask <span class="live">aktuálně</span></h3>
+        <p class="role">System Engineer · projekty na řešeních IBM</p>
+        <div class="sub">
+          <h4>DMS / Moneta <span>· změnové a incidentní řízení · 2026 – teď</span></h4>
+          <ul>
+            <li>Práce s provozními požadavky a řešením incidentů v prostředí DMS.</li>
+            <li>Koordinace změn a návazných kroků s dotčenými týmy; srozumitelná komunikace průběhu a stavu řešení.</li>
+          </ul>
+        </div>
+        <div class="sub">
+          <h4>IDM / ČSOB <span>· Identity and Access Management · 01/2025 – 2026</span></h4>
+          <ul>
+            <li>Instalace, konfigurace a upgrady IBM IAM prostředí: ITIM, ISVG, DB2, LDAP a WebSphere (WAS).</li>
+            <li>Nastavování rolí, přístupových oprávnění, notifikací a integračních vazeb.</li>
+            <li>Technická analýza chyb, simulace scénářů, testování přístupů a podpora incidentů.</li>
+            <li>Spolupráce na funkčních a technických specifikacích, komunikace se zákazníkem i vývojovým týmem.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="job">
+      <div><div class="yr">2024</div><span class="per">02/2024 – 09/2025</span></div>
+      <div>
+        <h3 class="co">OX Point</h3>
+        <p class="role">Senior Application Support Specialist · produkční platforma 300+ zařízení</p>
+        <ul>
+          <li>L2/L3 podpora, pohotovostní režim, analýza a obnova služby při P1 / Major incidentech.</li>
+          <li>Koordinace specialistů z vývoje, DevOps a technického provozu během výpadků.</li>
+          <li>Návrh JIRA workflow od začátku: závažnosti, SLA parametry, automatizace, notifikace a role.</li>
+          <li>Návrh rozdělení odpovědností L1–L3, eskalačních cest a provozních postupů.</li>
+          <li>Monitoring, analýza logů a SQL dat, rozpoznávání opakujících se problémů a reporting.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job">
+      <div><div class="yr">2022</div><span class="per">11/2022 – 03/2024</span></div>
+      <div>
+        <h3 class="co">NAKIT</h3>
+        <p class="role">Provoz veřejných digitálních služeb včetně systému Identita občana</p>
+        <div class="sub">
+          <h4>Senior IT Platform Specialist <span>· 05/2023 – 03/2024</span></h4>
+          <ul>
+            <li>Koordinace P1 / Major incidentů, krizových hovorů a obnovy služby.</li>
+            <li>Propojování technických specialistů napříč organizacemi a sledování SLA.</li>
+            <li>Příprava a komunikace plánovaných odstávek a dopadů pro zainteresované strany.</li>
+          </ul>
+        </div>
+        <div class="sub">
+          <h4>Specialista aplikačního provozu <span>· 11/2022 – 05/2023</span></h4>
+          <ul>
+            <li>L2 aplikační podpora, monitoring a diagnostika chyb; incidenty, požadavky a servisní okna.</li>
+            <li>Evidence, dokumentace, SLA reporting a analýza požadavků mezi business a IT.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="job">
+      <div><div class="yr">2021</div><span class="per">12/2021 – 11/2022</span></div>
+      <div>
+        <h3 class="co">MyCom Solutions</h3>
+        <p class="role">IT Infrastructure Technician</p>
+        <ul>
+          <li>IT podpora firemních zákazníků na místě, hardware, software a koncová zařízení.</li>
+          <li>Návrh a konfigurace sítí, VLAN, Wi-Fi, switchů a firewallů Ubiquiti / Fortinet.</li>
+          <li>Realizace strukturované kabeláže v rozsahu více než 5 km.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job">
+      <div><div class="yr">2021</div><span class="per">02 – 12/2021</span></div>
+      <div>
+        <h3 class="co">Národní očkovací centrum ÚVN–O2</h3>
+        <p class="role">IT technik / odborný konzultant · 131 dnů krizového provozu, 550 000+ lidí</p>
+        <ul>
+          <li>Příprava a provoz desítek zařízení a pracovních stanic; řešení incidentů v reálném čase.</li>
+          <li>Správa databáze MS SQL a řešení datových nesrovnalostí při vysoké zátěži.</li>
+          <li>Koordinace směn malého IT týmu a externích specialistů; testování nových verzí aplikace.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section class="sec">
+    <h2 class="h2">Projekty mimo práci</h2>
+    <div class="cards">
+      <div class="card blue">
+        <h3>Grail Series</h3>
+        <p class="t">Komunita · organizace · partnerství</p>
+        <p class="d">Vybudoval jsem turnajovou sérii pro českou komunitu Duel Commanderu — od konceptu a identity přes komunikaci s partnery až po produkci jednotlivých akcí.</p>
+        <div class="s"><span class="n">130+</span><span class="l">unikátních hráčů</span></div>
+      </div>
+      <div class="card">
+        <h3>MtG DC ELO Ranking System</h3>
+        <p class="t">Digitální produkt · data · komunita</p>
+        <p class="d">Pro stejnou komunitu jsem navrhl a vytvořil webovou aplikaci: návrh produktu, data, frontend a systém hodnocení ELO.</p>
+        <div class="s"><span class="n">430+</span><span class="l">hráčů v žebříčku</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="three">
+    <section>
+      <h2 class="h2">Vzdělání</h2>
+      <div class="item"><b>VŠB – Fakulta bezpečnostního inženýrství</b><span>Technická bezpečnost osob a majetku</span><em>2023 – 2025</em></div>
+      <div class="item"><b>Gymnázium Čelákovice</b><span>Osmileté všeobecné gymnázium</span><em>2010 – 2018</em></div>
+    </section>
+    <section>
+      <h2 class="h2">Dovednosti</h2>
+      <div class="skills">
+        <p><b>Provoz a procesy</b>Incident a change management, P1 / Major incidenty, SLA, JIRA</p>
+        <p><b>Systémy</b>IBM IAM (ITIM, ISVG), LDAP, DB2, WebSphere, Windows Server, Linux</p>
+        <p><b>Data a skripty</b>SQL / MS SQL, Python, Bash, PowerShell, HTML / CSS / JavaScript</p>
+      </div>
+    </section>
+    <section class="lang">
+      <h2 class="h2">Jazyky</h2>
+      <ul>
+        <li>Angličtina <span>B2</span></li>
+        <li>Němčina <span>A2</span></li>
+        <li>Španělština <span>A1</span></li>
+      </ul>
+    </section>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import { L, type Bi } from "./L";
 import s from "./Experience.module.css";
 
@@ -165,58 +165,68 @@ export const JOBS: Job[] = [
   },
 ];
 
+const Plus = () => (
+  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square"><path d="M8 2v12M2 8h12" /></svg>
+);
+
 export function Experience() {
   const [open, setOpen] = useState<Record<string, boolean>>({});
   const all = JOBS.every((j) => open[j.key]);
   const toggle = (k: string) => setOpen((o) => ({ ...o, [k]: !o[k] }));
   const toggleAll = () => setOpen(Object.fromEntries(JOBS.map((j) => [j.key, !all])));
+  // the whole row opens the detail, unless the visitor is selecting text in it
+  const rowClick = (k: string) => (e: MouseEvent) => {
+    if ((e.target as HTMLElement).closest("button")) return;
+    if (String(getSelection() ?? "").length) return;
+    toggle(k);
+  };
 
   return (
     <section id="zkusenosti" className={`sec ${s.exp}`} aria-labelledby="h-zk">
       <div className="wrap">
         <div className={s.top}>
-          <h2 id="h-zk" className="h2"><L cs="Technické prostředí mě naučilo vidět dopad rozhodnutí v praxi." en="Technical environments taught me to see what decisions actually do." /></h2>
+          <h2 id="h-zk" className="h2"><L cs="Moje pracovní zkušenosti" en="My work experience" /></h2>
           <button type="button" className={s.toggleAll} onClick={toggleAll}>
             {all ? <L cs="Sbalit vše" en="Collapse all" /> : <L cs="Rozbalit vše" en="Expand all" />}
           </button>
         </div>
-        <ol className={s.log}>
-          {JOBS.map((j, idx) => {
+        <ol className={s.list}>
+          {JOBS.map((j) => {
             const isOpen = !!open[j.key];
             return (
-              <li key={j.key}>
-                <div className={s.lrow}>
-                  <span className={`${s.yr}${idx === 0 ? ` ${s.yrNow}` : ""}`}>{j.year}</span>
-                  <h3 className={s.head}>
-                    <button type="button" className={s.xbtn} aria-expanded={isOpen} aria-controls={`exp-${j.key}`} onClick={() => toggle(j.key)}>
-                      <span className={s.co}><L {...j.company} /></span>
-                      <span className={s.st}>
-                        <span className={s.plus} aria-hidden="true">+</span>
-                        <span className={s.txt}>{isOpen ? <L cs="Méně" en="Less" /> : <L cs="Detail" en="Details" />}</span>
-                      </span>
-                    </button>
-                  </h3>
-                  <p className={s.sum}><L {...j.summary} /></p>
-                  <p className={s.meta}>
-                    <span className={s.role}><L {...j.role} /></span>
-                    <span className={s.dates}><L {...j.dates} /></span>
-                    {j.current && <span className={s.live}><L cs="aktuálně" en="current" /></span>}
-                  </p>
-                </div>
-                <div className={s.xdet} id={`exp-${j.key}`} hidden={!isOpen}>
+              <li key={j.key} className={[s.job, j.current && s.current, isOpen && s.open].filter(Boolean).join(" ")}>
+                <div className={s.row} onClick={rowClick(j.key)}>
                   <div>
+                    <span className={s.year}>{j.year}</span>
+                    <span className={s.period}><L {...j.dates} /></span>
+                  </div>
+                  <div>
+                    <h3 className={s.co}><L {...j.company} /></h3>
+                    <span className={s.role}><L {...j.role} /></span>
+                    {j.current && <span className={s.now}><L cs="aktuálně" en="current" /></span>}
+                  </div>
+                  <p className={s.desc}><L {...j.summary} /></p>
+                  <button type="button" className={s.det} aria-expanded={isOpen} aria-controls={`exp-${j.key}`} onClick={() => toggle(j.key)}>
+                    {isOpen ? <L cs="Méně" en="Less" /> : <L cs="Detail" en="Details" />}
+                    <Plus />
+                  </button>
+                </div>
+                <div className={s.panel} id={`exp-${j.key}`} hidden={!isOpen}>
+                  <div className={s.body}>
                     {j.subs.map((sub, i) => (
                       <div key={i} className={s.sub}>
                         {sub.head && (
-                          <div className={s.subH}>
+                          <>
                             <h4><L {...sub.head.title} /></h4>
-                            {sub.head.role && <span className={s.small}><L {...sub.head.role} /></span>}
-                            <span className={s.small}><L {...sub.head.dates} /></span>
-                          </div>
+                            <span className={s.meta}>
+                              {sub.head.role && <><L {...sub.head.role} /> · </>}
+                              <L {...sub.head.dates} />
+                            </span>
+                          </>
                         )}
                         <p><L {...sub.intro} /></p>
-                        <ul className={s.list}>
-                          {sub.bullets.map((b, k) => <li key={k}><span><L {...b} /></span></li>)}
+                        <ul>
+                          {sub.bullets.map((b, k) => <li key={k}><L {...b} /></li>)}
                         </ul>
                       </div>
                     ))}
