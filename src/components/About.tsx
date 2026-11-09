@@ -1,12 +1,13 @@
 import { L, type Bi } from "./L";
 import s from "./About.module.css";
 
-const FIGS: { fig: Bi; text: Bi }[] = [
-  { fig: { cs: "10", en: "10" }, text: { cs: "Divadlo: komunikace, improvizace, vystupování.", en: "Theatre: communication, improvisation, presenting." } },
-  { fig: { cs: "130+", en: "130+" }, text: { cs: "Grail Series: organizace a rozvoj turnajů.", en: "Grail Series: running and growing the tournaments." } },
-  { fig: { cs: "300+", en: "300+" }, text: { cs: "Produkce: podpora, incidenty, koordinace.", en: "Production: support, incidents, coordination." } },
+const FIGS: { fig: Bi; unit: Bi; text: Bi }[] = [
+  { fig: { cs: "10", en: "10" }, unit: { cs: "let", en: "years" }, text: { cs: "Divadlo: komunikace, improvizace, vystupování.", en: "Theatre: communication, improvisation, presenting." } },
+  { fig: { cs: "130+", en: "130+" }, unit: { cs: "hráčů", en: "players" }, text: { cs: "Grail Series: organizace a rozvoj turnajů.", en: "Grail Series: running and growing the tournaments." } },
+  { fig: { cs: "300+", en: "300+" }, unit: { cs: "zařízení", en: "devices" }, text: { cs: "Produkce: podpora, incidenty, koordinace.", en: "Production: support, incidents, coordination." } },
   {
     fig: { cs: "550 000+", en: "550,000+" },
+    unit: { cs: "lidí", en: "people" },
     text: {
       cs: "Národní očkovací centrum: tolik lidí centrem prošlo. Pomáhal jsem zajišťovat jeho IT provoz.",
       en: "National Vaccination Centre: that’s how many people it served. I helped run its IT operations.",
@@ -55,6 +56,7 @@ export function About() {
           {FIGS.map((f, i) => (
             <li key={i}>
               <span className={s.fig}>{f.fig.cs === f.fig.en ? f.fig.cs : <L {...f.fig} />}</span>
+              <span className={s.unit}><L {...f.unit} /></span>
               <p><L {...f.text} /></p>
             </li>
           ))}

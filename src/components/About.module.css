@@ -5,9 +5,11 @@
   display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.55fr);
   column-gap: var(--col-gap); row-gap: 32px; padding-block: 56px;
 }
-.figs li { display: grid; gap: 10px; align-content: start; }
+.figs li { display: grid; gap: 4px; align-content: start; }
+.unit { font-size: clamp(18px, 1.6vw, 22px); font-weight: 800; font-stretch: 112%; line-height: 1.2; letter-spacing: -.01em; }
+.figs p { margin-top: 8px; }
 .fig {
-  white-space: nowrap; font-size: clamp(44px, 5.6vw, 76px); font-weight: 900; font-stretch: 125%; line-height: 1; letter-spacing: -.04em;
+  white-space: nowrap; font-size: clamp(40px, 4.6vw, 64px); font-weight: 900; font-stretch: 125%; line-height: 1; letter-spacing: -.04em;
   font-variant-numeric: tabular-nums;
 }
 .figs p { font-size: var(--t-small); max-width: 22em; }
@@ -33,4 +35,4 @@
   .matrix h3, .matrix article > div { grid-column: 1; }
 }
 @media (max-width: 520px) { .figs li:last-child { grid-column: 1 / -1; } }
-@media (max-width: 420px) { .fig { font-size: 38px; } }
+@media (max-width: 420px) { .fig { font-size: 36px; } }
