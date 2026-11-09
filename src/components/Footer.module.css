@@ -1,12 +1,6 @@
-/* footer — continues the ink plate */
-.footer { background: var(--ink); color: var(--paper); padding-bottom: max(24px, env(safe-area-inset-bottom, 0px)); overflow: hidden; }
-.top {
-  border-top: 1px solid rgba(240, 237, 230, .2); padding-top: 44px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--col-gap); row-gap: 24px; align-items: end;
-}
-.links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px 26px; font-size: 15px; }
-.bot {
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 28px; padding-top: 16px;
-  border-top: 1px solid rgba(240, 237, 230, .2); font-size: 14px; color: rgba(240, 237, 230, .6);
-}
-.bot a { color: rgba(240, 237, 230, .85); }
+/* footer — blue band */
+.footer { background: var(--accent); color: var(--on-accent); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.footer ::selection { background: var(--on-accent); color: var(--accent); }
+.inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; padding-block: 24px; font-size: 14px; font-weight: 600; }
+.links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.footer a:hover { color: var(--on-accent); opacity: .75; }

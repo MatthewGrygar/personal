@@ -13,19 +13,21 @@ export default async function Image() {
 
   return new ImageResponse(
     (
-      <div style={{ width: 1200, height: 630, display: "flex", background: "#F0EDE6", color: "#191B1A", fontFamily: "Georgia, serif" }}>
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 64px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 34, fontFamily: "sans-serif", fontSize: 18, letterSpacing: 3, color: "#4B4F4C" }}>
-            <div style={{ width: 56, height: 2, background: "#B84F40", display: "flex" }} />
-            MATTHEW GRYGAR · PRAHA
+      <div style={{ width: 1200, height: 630, display: "flex", background: "#FFFFFF", color: "#000000", fontFamily: "Helvetica, Arial, sans-serif" }}>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "56px 56px 0" }}>
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 116, fontWeight: 900, lineHeight: 0.86, letterSpacing: -5 }}>
+            <span>Matthew</span>
+            <span>Grygar</span>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", fontSize: 52, lineHeight: 1.1, letterSpacing: -1 }}>
-            <span>Rozumím technologiím</span>
-            <span style={{ fontStyle: "italic", color: "#B84F40" }}>i lidem.</span>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", fontSize: 40, fontWeight: 700, letterSpacing: -1 }}>
+              Rozumím technologiím i lidem<span style={{ color: "#1D3BFF" }}>.</span>
+            </div>
+            <div style={{ display: "flex", marginTop: 22, paddingTop: 16, borderTop: "3px solid #000", fontSize: 20, marginBottom: 40 }}>
+              Projektové a provozní řízení · Account management · IT a digitální služby
+            </div>
           </div>
-          <div style={{ display: "flex", marginTop: 36, paddingTop: 18, borderTop: "1px solid rgba(25,25,25,.25)", fontFamily: "sans-serif", fontSize: 20, color: "#4B4F4C" }}>
-            Projektové a provozní řízení · Account management · IT a digitální služby
-          </div>
+          <div style={{ display: "flex", height: 18, background: "#1D3BFF", margin: "0 -56px" }} />
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders plain <img> only */}
         <img alt="" src={portrait} width={434} height={630} style={{ width: 434, height: 630, objectFit: "cover", objectPosition: "50% 30%" }} />

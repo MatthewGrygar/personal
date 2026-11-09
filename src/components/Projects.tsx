@@ -36,29 +36,21 @@ export function Projects() {
   useRevealBelowFold(list, `.${s.row}`, s.pre);
 
   return (
-    <section id="projekty" className="sec" aria-labelledby="h-proj" style={{ paddingTop: 0 }}>
+    <section id="projekty" className="sec" aria-labelledby="h-proj">
       <div className="wrap">
-        <div className={`grid ${s.top}`}>
-          <p className="no" aria-hidden="true">03</p>
-          <h2 id="h-proj" className="h2"><L cs="Projekty mimo práci" en="Projects outside work" /></h2>
-        </div>
+        <h2 id="h-proj" className={`h2 ${s.title}`}><L cs="Projekty mimo práci" en="Projects outside work" /></h2>
         <ol ref={list} className={s.list}>
           {PROJECTS.map((p, i) => (
             <li key={i} className={s.row}>
-              <span className={s.n}>{i + 1}</span>
-              <div className={s.head}>
-                <h3>{p.title.cs === p.title.en ? p.title.cs : <L {...p.title} />}</h3>
-                <p className={`${s.kind} label`}><L {...p.kind} /></p>
-              </div>
-              <div className={s.body}>
-                <p><L {...p.body} /></p>
-                <p className={s.out}><L {...p.out} /></p>
-                {p.link && (
-                  <a className={s.go} href={p.link.href} target="_blank" rel="noopener">
-                    {p.link.label} ↗<NewTab />
-                  </a>
-                )}
-              </div>
+              <h3>{p.title.cs === p.title.en ? p.title.cs : <L {...p.title} />}</h3>
+              <p className={s.kind}><L {...p.kind} /></p>
+              <p><L {...p.body} /></p>
+              <p className={s.out}><L {...p.out} /></p>
+              {p.link && (
+                <a className={s.go} href={p.link.href} target="_blank" rel="noopener">
+                  {p.link.label} ↗<NewTab />
+                </a>
+              )}
             </li>
           ))}
         </ol>

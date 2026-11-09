@@ -7,33 +7,26 @@ import s from "./Hero.module.css";
 export function Hero() {
   return (
     <div className={s.hero} id="top">
+      {/* the header switches to its full-width rule once this sentinel scrolls away */}
       <div className={s.rule} data-hero-rule aria-hidden="true" />
-      <div className={`wrap grid ${s.grid}`}>
-        <div className={s.text}>
-          <p className={`${s.meta} meta`}><span><L cs="Portfolio · Praha" en="Portfolio · Prague" /></span></p>
-          <h1 className={s.headline}>
-            <span data-l="cs">
-              <span className={s.ln}>Rozumím technologiím</span>
-              <span className={`${s.ln} ${s.it}`}>i lidem<Stop /></span>
-            </span>
-            <span data-l="en">
-              <span className={s.ln}>I understand technology</span>
-              <span className={`${s.ln} ${s.it}`}>and people<Stop /></span>
-            </span>
-          </h1>
-          <div className={`${s.settle} ${s.desk}`}>
+      <div className="wrap">
+        <h1 className={s.name}>
+          <span className={s.ln}>Matthew</span>
+          <span className={s.ln}>Grygar</span>
+        </h1>
+        <div className={`grid ${s.grid}`}>
+          <div className={`${s.text} ${s.settle}`}>
+            <p className={s.tagline}>
+              <L cs={<>Rozumím technologiím i lidem<Stop /></>} en={<>I understand technology and people<Stop /></>} />
+            </p>
             <p className={s.lead}>
               <L
                 cs="Nejvíc přináším tam, kde je potřeba spojit technické porozumění se schopností vést lidi i projekty. Nápady převádím do jasných plánů a plány do funkčních řešení."
                 en="I add the most where technical understanding has to meet the ability to lead people and projects. I turn ideas into clear plans, and plans into working solutions."
               />
             </p>
-            <p className={s.status}>
-              <L cs="Otevřený novým příležitostem" en="Open to new opportunities" />
-              <span className={s.statusPlace}><L cs="Praha · hybrid i remote" en="Prague · hybrid or remote" /></span>
-            </p>
             <div className={s.dir}>
-              <p className="meta"><L cs="Kam směřuji:" en="Where I’m heading:" /></p>
+              <p className={s.dirLabel}><L cs="Kam směřuji:" en="Where I’m heading:" /></p>
               <ul className={s.dirList}>
                 <li><L cs="Projektové a provozní řízení" en="Project and operations management" /></li>
                 <li>Account management</li>
@@ -60,21 +53,26 @@ export function Hero() {
               </a>
             </div>
           </div>
-        </div>
-        <figure className={s.photo}>
-          <div className={s.frame}>
-            <BiImage
-              src="/images/portrait.jpg"
-              fill
-              priority
-              sizes="(max-width: 960px) 100vw, 44vw"
-              alt={{
-                cs: "Černobílý portrét Matthewa Grygara v brýlích a černém obleku, sedí na kovové židli, předkloněný se sepjatýma rukama a dívá se do objektivu",
-                en: "Black-and-white portrait of Matthew Grygar in glasses and a black suit, sitting on a tubular steel chair, leaning forward with hands clasped, looking into the camera",
-              }}
-            />
+          <div className={`${s.side} ${s.settle}`}>
+            <p className={s.place}><L cs="Praha" en="Prague" /></p>
+            <p><L cs="hybrid i remote" en="hybrid or remote" /></p>
+            <p className={s.status}><L cs="Otevřený novým příležitostem" en="Open to new opportunities" /></p>
           </div>
-        </figure>
+          <figure className={s.photo}>
+            <div className={s.frame}>
+              <BiImage
+                src="/images/portrait.jpg"
+                fill
+                priority
+                sizes="(max-width: 860px) 100vw, 42vw"
+                alt={{
+                  cs: "Černobílý portrét Matthewa Grygara v brýlích a černém obleku, sedí na kovové židli, předkloněný se sepjatýma rukama a dívá se do objektivu",
+                  en: "Black-and-white portrait of Matthew Grygar in glasses and a black suit, sitting on a tubular steel chair, leaning forward with hands clasped, looking into the camera",
+                }}
+              />
+            </div>
+          </figure>
+        </div>
       </div>
     </div>
   );

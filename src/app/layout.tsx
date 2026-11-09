@@ -1,27 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 
-const plexSans = IBM_Plex_Sans({
+// Variable font: weights 300–900 plus the width axis (the headings run extended, up to 125 %).
+const archivo = Archivo({
   subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500"],
-  variable: "--font-plex-sans",
-  display: "swap",
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400"],
-  variable: "--font-plex-mono",
-  display: "swap",
-});
-
-// Variable font: the design uses weights 300 and 400 plus the optical-size axis.
-const newsreader = Newsreader({
-  subsets: ["latin", "latin-ext"],
-  style: ["normal", "italic"],
-  axes: ["opsz"],
-  variable: "--font-newsreader",
+  axes: ["wdth"],
+  variable: "--font-archivo",
   display: "swap",
 });
 
@@ -32,7 +17,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#F0EDE6",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
 };
 
 export const metadata: Metadata = {
@@ -61,7 +49,7 @@ const boot = `(function(){var d=document.documentElement;d.classList.add('js');t
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="cs" className={`${plexSans.variable} ${plexMono.variable} ${newsreader.variable}`} suppressHydrationWarning>
+    <html lang="cs" className={archivo.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: boot }} />
       </head>

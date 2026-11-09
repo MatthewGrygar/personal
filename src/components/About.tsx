@@ -49,11 +49,9 @@ const AREAS: { rn: string; title: Bi; body: Bi; tags: Bi }[] = [
 
 export function About() {
   return (
-    <section id="o-mne" className={`sec ${s.about}`} aria-labelledby="h-o-mne">
-      <div className="wrap grid">
-        <p className="no" aria-hidden="true">01</p>
-        <p className={`meta kicker ${s.kick}`}><L cs="O mně" en="About" /></p>
-        <ul className={s.figs}>
+    <section id="o-mne" className={s.about} aria-labelledby="h-o-mne">
+      <div className={s.band}>
+        <ul className={`wrap ${s.figs}`}>
           {FIGS.map((f, i) => (
             <li key={i}>
               <span className={s.fig}>{f.fig.cs === f.fig.en ? f.fig.cs : <L {...f.fig} />}</span>
@@ -61,15 +59,14 @@ export function About() {
             </li>
           ))}
         </ul>
-        <div className={s.left}>
-          <h2 id="h-o-mne" className="h2"><L cs="Umím vidět celek — a zároveň pohnout konkrétní věcí." en="I see the whole picture, and I can still move the one thing that needs moving." /></h2>
-        </div>
+      </div>
+      <div className={`wrap grid sec ${s.bring}`}>
+        <h2 id="h-o-mne" className={`h2 ${s.left}`}><L cs="Umím vidět celek — a zároveň pohnout konkrétní věcí." en="I see the whole picture, and I can still move the one thing that needs moving." /></h2>
         <div className={s.matrix}>
           {AREAS.map((a) => (
             <article key={a.rn}>
-              <span className={s.rn} aria-hidden="true">{a.rn}</span>
+              <h3><L {...a.title} /></h3>
               <div>
-                <h3><L {...a.title} /></h3>
                 <p><L {...a.body} /></p>
                 <p className={s.tags}><L {...a.tags} /></p>
               </div>

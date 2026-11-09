@@ -92,8 +92,7 @@ export function Contact() {
 
   return (
     <section id="kontakt" className={`sec ${s.contact}`} aria-labelledby="h-kontakt">
-      <div className="wrap grid">
-        <p className="no" aria-hidden="true">04</p>
+      <div className={`wrap grid ${s.grid}`}>
         <h2 id="h-kontakt" className="h2"><L cs="Máte projekt, který potřebuje rozhýbat?" en="Got a project that needs moving?" /></h2>
         <div className={s.left}>
           <p>
@@ -110,7 +109,7 @@ export function Contact() {
             </button>
           </div>
           <div className="ctas">
-            <a className="btn" href={LINKEDIN} target="_blank" rel="noopener">
+            <a className="btn ghost" href={LINKEDIN} target="_blank" rel="noopener">
               <L cs="Můj profil na LinkedInu" en="My LinkedIn profile" />
               <span className="ar" aria-hidden="true">↗</span>
               <NewTab />
@@ -163,7 +162,7 @@ export function Contact() {
                 en={`The message couldn’t be sent. Please try again or email ${EMAIL} directly.`}
               />
             </p>
-            <button type="submit" className="btn" disabled={busy}>
+            <button type="submit" className={s.submit} disabled={busy}>
               {busy ? <L cs="Odesílám…" en="Sending…" /> : <L cs="Odeslat zprávu" en="Send message" />}
               <span className="ar" aria-hidden="true">→</span>
             </button>

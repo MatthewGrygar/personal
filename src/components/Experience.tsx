@@ -172,43 +172,36 @@ export function Experience() {
   const toggleAll = () => setOpen(Object.fromEntries(JOBS.map((j) => [j.key, !all])));
 
   return (
-    <section id="zkusenosti" className="sec" aria-labelledby="h-zk" style={{ paddingTop: 0 }}>
+    <section id="zkusenosti" className={`sec ${s.exp}`} aria-labelledby="h-zk">
       <div className="wrap">
-        <div className={`grid ${s.top}`}>
-          <p className="no" aria-hidden="true">02</p>
+        <div className={s.top}>
           <h2 id="h-zk" className="h2"><L cs="Technické prostředí mě naučilo vidět dopad rozhodnutí v praxi." en="Technical environments taught me to see what decisions actually do." /></h2>
-          <div className={s.tg}>
-            <button type="button" className={s.toggleAll} onClick={toggleAll}>
-              {all ? <L cs="Sbalit vše" en="Collapse all" /> : <L cs="Rozbalit vše" en="Expand all" />}
-            </button>
-          </div>
+          <button type="button" className={s.toggleAll} onClick={toggleAll}>
+            {all ? <L cs="Sbalit vše" en="Collapse all" /> : <L cs="Rozbalit vše" en="Expand all" />}
+          </button>
         </div>
         <ol className={s.log}>
-          {JOBS.map((j) => {
+          {JOBS.map((j, idx) => {
             const isOpen = !!open[j.key];
             return (
               <li key={j.key}>
                 <div className={s.lrow}>
-                  <div className={s.when}>
-                    <span className={s.yr}>{j.year}</span>
-                    <span className={s.mono}><L {...j.dates} /></span>
+                  <span className={`${s.yr}${idx === 0 ? ` ${s.yrNow}` : ""}`}>{j.year}</span>
+                  <h3 className={s.head}>
+                    <button type="button" className={s.xbtn} aria-expanded={isOpen} aria-controls={`exp-${j.key}`} onClick={() => toggle(j.key)}>
+                      <span className={s.co}><L {...j.company} /></span>
+                      <span className={s.st}>
+                        <span className={s.plus} aria-hidden="true">+</span>
+                        <span className={s.txt}>{isOpen ? <L cs="Méně" en="Less" /> : <L cs="Detail" en="Details" />}</span>
+                      </span>
+                    </button>
+                  </h3>
+                  <p className={s.sum}><L {...j.summary} /></p>
+                  <p className={s.meta}>
+                    <span className={s.role}><L {...j.role} /></span>
+                    <span className={s.dates}><L {...j.dates} /></span>
                     {j.current && <span className={s.live}><L cs="aktuálně" en="current" /></span>}
-                  </div>
-                  <div className={s.main}>
-                    <h3>
-                      <button type="button" className={s.xbtn} aria-expanded={isOpen} aria-controls={`exp-${j.key}`} onClick={() => toggle(j.key)}>
-                        <span className={s.xbtnText}>
-                          <span className={s.co}><L {...j.company} /></span>
-                          <span className={s.role}><L {...j.role} /></span>
-                        </span>
-                        <span className={s.st}>
-                          <span className={s.txt}>{isOpen ? <L cs="Méně" en="Less" /> : <L cs="Detail" en="Details" />}</span>
-                          <span className={s.plus} aria-hidden="true">+</span>
-                        </span>
-                      </button>
-                    </h3>
-                    <p className={s.sum}><L {...j.summary} /></p>
-                  </div>
+                  </p>
                 </div>
                 <div className={s.xdet} id={`exp-${j.key}`} hidden={!isOpen}>
                   <div>
@@ -217,8 +210,8 @@ export function Experience() {
                         {sub.head && (
                           <div className={s.subH}>
                             <h4><L {...sub.head.title} /></h4>
-                            {sub.head.role && <span className={s.mono}><L {...sub.head.role} /></span>}
-                            <span className={s.mono}><L {...sub.head.dates} /></span>
+                            {sub.head.role && <span className={s.small}><L {...sub.head.role} /></span>}
+                            <span className={s.small}><L {...sub.head.dates} /></span>
                           </div>
                         )}
                         <p><L {...sub.intro} /></p>
