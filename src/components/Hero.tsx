@@ -69,8 +69,8 @@ export function Hero() {
               priority
               sizes="(max-width: 960px) 100vw, 44vw"
               alt={{
-                cs: "Černobílý portrét Matthewa Grygara v černém obleku, sedí bos na kovové židli, předkloněný se sepjatýma rukama",
-                en: "Black-and-white portrait of Matthew Grygar in a black suit, sitting barefoot on a tubular steel chair, leaning forward with hands clasped",
+                cs: "Černobílý portrét Matthewa Grygara v brýlích a černém obleku, sedí na kovové židli, předkloněný se sepjatýma rukama a dívá se do objektivu",
+                en: "Black-and-white portrait of Matthew Grygar in glasses and a black suit, sitting on a tubular steel chair, leaning forward with hands clasped, looking into the camera",
               }}
             />
           </div>
