@@ -26,10 +26,11 @@
 
 @media (max-width: 960px) {
   .left, .matrix { grid-column: 1 / -1; }
-  .figs { grid-template-columns: 1fr 1fr; padding-block: 44px; }
+  .figs { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding-block: 44px; }
 }
 @media (max-width: 600px) {
   .matrix article { grid-template-columns: 1fr; }
   .matrix h3, .matrix article > div { grid-column: 1; }
 }
+@media (max-width: 520px) { .figs li:last-child { grid-column: 1 / -1; } }
 @media (max-width: 420px) { .fig { font-size: 38px; } }
