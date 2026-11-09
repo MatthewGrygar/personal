@@ -34,6 +34,12 @@
   .matrix article { grid-template-columns: 1fr; }
   .matrix h3, .matrix article > div { grid-column: 1; }
 }
-@media (max-width: 600px) { .figs { column-gap: 20px; row-gap: 36px; } }
-@media (max-width: 520px) { .figs li:last-child { grid-column: 1 / -1; } }
+.short { display: none; }
+/* phones: a tidy 2 × 2 grid, the big number shortened so it fits its cell */
+@media (max-width: 600px) {
+  .figs { column-gap: 20px; row-gap: 36px; }
+  .long { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .short { display: inline; }
+  .unit { display: block; margin-top: 8px; }
+}
 @media (max-width: 420px) { .fig { font-size: 36px; } }

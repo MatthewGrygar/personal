@@ -1,12 +1,13 @@
 import { L, type Bi } from "./L";
 import s from "./About.module.css";
 
-const FIGS: { fig: Bi; unit: Bi; text: Bi }[] = [
+const FIGS: { fig: Bi; short?: string; unit: Bi; text: Bi }[] = [
   { fig: { cs: "10", en: "10" }, unit: { cs: "let", en: "years" }, text: { cs: "U divadla mě naučilo profesionální komunikaci, improvizaci a vystupování.", en: "in theatre taught me professional communication, improvisation and presenting." } },
   { fig: { cs: "130+", en: "130+" }, unit: { cs: "hráčů", en: "players" }, text: { cs: "Grail Series: organizace a rozvoj turnajů.", en: "Grail Series: running and growing the tournaments." } },
   { fig: { cs: "300+", en: "300+" }, unit: { cs: "zařízení", en: "devices" }, text: { cs: "Produkce: podpora, incidenty, koordinace.", en: "Production: support, incidents, coordination." } },
   {
     fig: { cs: "550 000+", en: "550,000+" },
+    short: "550k+",
     unit: { cs: "lidí", en: "people" },
     text: {
       cs: "prošlo Národním očkovacím centrem v době, kdy jsem pomáhal zajišťovat jeho IT provoz.",
@@ -56,7 +57,12 @@ export function About() {
           {FIGS.map((f, i) => (
             <li key={i}>
               <span className={s.fig}>
-                {f.fig.cs === f.fig.en ? f.fig.cs : <L {...f.fig} />} <span className={s.unit}><L {...f.unit} /></span>
+                {f.short ? (
+                  <>
+                    <span className={s.long}><L {...f.fig} /></span>
+                    <span className={s.short} aria-hidden="true">{f.short}</span>
+                  </>
+                ) : f.fig.cs === f.fig.en ? f.fig.cs : <L {...f.fig} />} <span className={s.unit}><L {...f.unit} /></span>
               </span>
               <p><L {...f.text} /></p>
             </li>
