@@ -93,7 +93,7 @@ export function Contact() {
   const copyLabel = copied ? (lang === "en" ? "Copied" : "Zkopírováno") : lang === "en" ? "Copy email" : "Kopírovat e-mail";
 
   return (
-    <section id="kontakt" className="sec" aria-labelledby="h-kontakt">
+    <section id="kontakt" className="sec inv" aria-labelledby="h-kontakt">
       <div className="wrap">
         <h2 id="h-kontakt" className={`h2 ${s.title}`}><L cs="Máte projekt, který potřebuje rozhýbat?" en="Got a project that needs moving?" /></h2>
         <div className={s.cols}>
