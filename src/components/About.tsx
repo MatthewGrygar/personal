@@ -21,31 +21,37 @@ const AREAS: { rn: string; title: Bi; body: Bi; tags: Bi }[] = [
     rn: "I.",
     title: { cs: "Lidé a komunikace", en: "People and communication" },
     body: {
-      cs: "Divadlo mě naučilo pracovat s pozorností, reagovat na nečekané situace a předat myšlenku tak, aby jí lidé rozuměli. Díky tomu se považuji za lepšího komunikátora, prezentujícího i spolupracovníka.",
-      en: "Theatre taught me to hold attention, react to the unexpected and get an idea across so people understand it. It has made me a better communicator, presenter and collaborator.",
+      cs: "Dokážu propojovat technické týmy, byznys i klienty. Jsem zvyklý komunikovat napříč odděleními, hledat společnou řeč a předávat složité informace srozumitelně. Věřím, že dobrá komunikace není jen o předávání informací, ale především o vzájemném porozumění a spolupráci.",
+      en: "I connect technical teams, the business and clients. I’m used to communicating across departments, finding common ground and explaining complex things clearly. I believe good communication isn’t just about passing information on – above all it’s about mutual understanding and working together.",
     },
     tags: {
-      cs: "Komunikace napříč odděleními i směrem ke klientům, profesionalita.",
-      en: "Communication across departments and with clients, professionalism.",
+      cs: "Komunikace napříč týmy, spolupráce s klienty a partnery, propojování IT a byznysu.",
+      en: "Communication across teams, working with clients and partners, bridging IT and the business.",
     },
   },
   {
     rn: "II.",
     title: { cs: "Projekty a provoz", en: "Projects and operations" },
     body: {
-      cs: "Umím převzít nejasné zadání, rozdělit ho na zvládnutelné části, určit priority a koordinovat práci až k předání výsledku. Mám zkušenosti s incidenty, změnami, procesy, požadavky i organizací akcí od prvního nápadu po realizaci.",
-      en: "I can take on a vague brief, break it into manageable parts, set priorities and coordinate the work through to handover. I’ve worked with incidents, changes, processes and requests, and organised events from the first idea to the day itself.",
+      cs: "Umím převzít vedení řešení i ve chvílích, kdy jde o čas. Mám zkušenosti s řízením kritických provozních incidentů, koordinací týmů i projektů. Dokážu určit priority, propojit správné lidi a dovést řešení do konce. Zároveň se věnuji nastavování procesů a organizaci efektivního fungování podpory.",
+      en: "I can take the lead when time is critical. I’ve managed critical operational incidents and coordinated teams and projects. I set priorities, bring the right people together and see the fix through to the end. I also set up processes and organise support so that it runs efficiently.",
     },
-    tags: { cs: "Koordinace projektů, incidenty a změny, prioritizace, procesy, organizace.", en: "Project coordination, incidents and changes, prioritisation, processes, organisation." },
+    tags: {
+      cs: "Vedení řešení P1 incidentů, koordinace týmů a projektů, eskalace, procesy a IT provoz.",
+      en: "Leading P1 incident resolution, coordinating teams and projects, escalations, processes and IT operations.",
+    },
   },
   {
     rn: "III.",
     title: { cs: "Technologie a byznys", en: "Technology and business" },
     body: {
-      cs: "Technické zkušenosti mi pomáhají chápat dopady rozhodnutí a klást správné otázky. Díky praxi s IAM, provozem a podporou aplikací dokážu propojovat technické týmy s lidmi, kteří služby používají a rozvíjejí.",
-      en: "My technical background helps me understand the impact of decisions and ask the right questions. Hands-on work with IAM, operations and application support lets me connect technical teams with the people who use and develop the services.",
+      cs: "Technologiím rozumím z praxe, ale zajímá mě i jejich skutečný přínos. Mám zkušenosti s enterprise prostředím, IBM technologiemi i IT provozem menších firem. Dokážu se zorientovat v technických souvislostech, pochopit potřeby organizace a hledat řešení, která fungují nejen technicky, ale i v každodenním provozu.",
+      en: "I understand technology from hands-on work, but I care just as much about the value it actually brings. I’ve worked in enterprise environments, with IBM technologies and in IT operations for smaller companies. I can find my way around the technical context, understand what an organisation needs and look for solutions that work not only technically but also in everyday operations.",
     },
-    tags: { cs: "IT provoz, IAM / IdM, digitální služby, analýza potřeb, rizika a spolehlivost.", en: "IT operations, IAM / IdM, digital services, needs analysis, risk and reliability." },
+    tags: {
+      cs: "IT provoz, IAM / IdM, enterprise systémy, analýza potřeb a spolehlivost služeb.",
+      en: "IT operations, IAM / IdM, enterprise systems, needs analysis and service reliability.",
+    },
   },
 ];
 
