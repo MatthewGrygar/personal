@@ -8,6 +8,7 @@
  *   [data-dock-header]      <header>
  *   [data-dock-line]        linka pod lištou (uvnitř header inner)
  *   [data-dock-nav]         <nav> – od jeho levého okraje linka začíná
+ *   [data-dock-photo]       fotka v hero – na desktopu linka začíná stejně daleko od ní vlevo jako vpravo
  *   [data-dock-target="m"]  „Matthew“ v liště (cílové místo)
  *   [data-dock-target="g"]  „Grygar“ v liště
  *   [data-dock-hero="m"]    „Matthew“ v hero <h1>
@@ -54,6 +55,7 @@ export default function NameDock({ smoothing = 0.1, stagger = 0.12 }: Props) {
     const header = q('[data-dock-header]');
     const line = q('[data-dock-line]');
     const nav = q('[data-dock-nav]');
+    const photo = q('[data-dock-photo]');
     const layer = layerRef.current;
     const ovM = mRef.current;
     const ovG = gRef.current;
@@ -92,6 +94,16 @@ export default function NameDock({ smoothing = 0.1, stagger = 0.12 }: Props) {
         const lr = line.getBoundingClientRect();
         const nr = nav.getBoundingClientRect();
         lineFrom = clamp((lr.right - nr.left + 14) / line.offsetWidth);
+      }
+      // desktop: fotka stojí vedle textu → linka přesahuje fotku vlevo o tolik, o kolik vpravo
+      if (line && photo) {
+        const lr = line.getBoundingClientRect();
+        const pr = photo.getBoundingClientRect();
+        const lineLeft = lr.right - line.offsetWidth;
+        if (pr.left > lineLeft + line.offsetWidth / 3) {
+          const over = lr.right - pr.right;
+          lineFrom = clamp((pr.right - pr.left + 2 * over) / line.offsetWidth);
+        }
       }
 
       m = {

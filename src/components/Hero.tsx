@@ -63,7 +63,7 @@ export function Hero() {
           </div>
         </div>
         <figure className={s.photo}>
-          <div className={s.frame}>
+          <div className={s.frame} data-dock-photo>
             <BiImage
               src="/images/portrait.jpg"
               fill
