@@ -45,9 +45,26 @@
 @media (prefers-reduced-motion: no-preference) { .panel:not([hidden]) .body { animation: fade .26s var(--ease) both; } }
 @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .body p { font-size: 17px; line-height: 1.6; color: var(--ink-2); }
-.body ul { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
-.body li { position: relative; padding-left: 22px; font-size: 16px; line-height: 1.55; color: var(--ink-3); }
-.body li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 2px; background: var(--accent-soft); }
+.points { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.points li { position: relative; padding-left: 22px; font-size: 16px; line-height: 1.55; color: var(--ink-3); }
+.points li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 2px; background: var(--accent-soft); }
+.points strong { font-weight: 600; color: var(--ink-2); }
+
+/* what was special about the environment: the first thing in the detail, a small plate inverted against the section */
+.body p.badge {
+  align-self: flex-start; display: inline-flex; align-items: flex-start; gap: 8px; max-width: 100%;
+  padding: 7px 12px 7px 10px; background: var(--bg); color: var(--fg); font-size: 13px; font-weight: 600; line-height: 1.35;
+}
+.badge svg { flex: none; margin-top: 0; color: var(--accent-text); }
+
+/* technologies and skills: a quiet label, then tiles */
+.skills { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--hair-2); display: flex; flex-direction: column; gap: 12px; }
+.skillsH { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-4); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags li {
+  padding: 7px 12px; font-size: 14px; font-weight: 500; line-height: 1.2; color: var(--bg);
+  background: color-mix(in srgb, var(--bg) 9%, var(--fg)); border: 1px solid var(--hair-2);
+}
 .sub + .sub { padding-top: 28px; border-top: 1px solid var(--hair-2); }
 .sub h4 { font-size: 18px; font-weight: 700; }
 .meta { display: block; margin: 4px 0 12px; font-size: 15px; color: var(--ink-4); }
