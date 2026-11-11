@@ -24,7 +24,6 @@
 .matrix article:last-child { border-bottom: var(--line); }
 .matrix h3 { grid-column: 1 / span 2; font-size: var(--t-h3); font-weight: 800; line-height: 1.2; }
 .matrix article > div { grid-column: 3 / -1; }
-.matrix p.tags { margin-top: 12px; font-size: var(--t-small); color: var(--fg-2); }
 
 @media (max-width: 960px) {
   .left, .matrix { grid-column: 1 / -1; }

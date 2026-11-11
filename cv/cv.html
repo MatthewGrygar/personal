@@ -9,7 +9,7 @@
 :root { --ink: #0A0A0A; --ink-2: #3D3D3D; --muted: #5C5C5C; --soft: #DADADA; --blue: #3F38FC; --blue-soft: #E4E3FF; }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
-body { font-family: 'Inter Tight', system-ui, sans-serif; color: var(--ink); font-size: 9.4pt; line-height: 1.45; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: 'Inter Tight', system-ui, sans-serif; color: var(--ink); font-size: 8.3pt; line-height: 1.34; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 h1, h2, h3, h4, p, ul { margin: 0; }
 ul { padding: 0; list-style: none; }
 a { color: inherit; text-decoration: none; }
@@ -18,64 +18,71 @@ a { color: inherit; text-decoration: none; }
 .page { width: 210mm; padding: 1mm 14mm 0; }
 
 /* header: name left, contact and portrait right */
-.top { display: grid; grid-template-columns: 1fr 44mm; gap: 8mm; padding-bottom: 6mm; border-bottom: 2px solid var(--ink); }
-.name { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 42pt; line-height: .86; letter-spacing: -.045em; }
+.top { display: grid; grid-template-columns: 1fr 50mm; gap: 8mm; padding-bottom: 2mm; }
+.name { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 38pt; line-height: .86; letter-spacing: -.045em; }
 .name span { display: block; }
-.tag { margin-top: 6mm; font-size: 15pt; font-weight: 600; letter-spacing: -.03em; line-height: 1.12; }
+.tag { margin-top: 5mm; font-size: 15pt; font-weight: 600; letter-spacing: -.03em; line-height: 1.12; }
 .tag b { color: var(--blue); }
 .lead { margin-top: 2.5mm; max-width: 112mm; color: var(--ink-2); font-size: 9.8pt; line-height: 1.55; }
 .status { margin-top: 4mm; display: flex; flex-wrap: wrap; align-items: center; gap: 1mm 3mm; font-size: 9pt; }
 .status strong { display: inline-flex; align-items: center; gap: 2.5mm; font-weight: 600; }
 .status strong::before { content: ""; width: 2.6mm; height: 2.6mm; background: var(--blue); }
 .status span { color: var(--muted); }
-.dir { margin-top: 1.5mm; display: grid; grid-template-columns: max-content max-content; gap: .6mm 9mm; color: var(--ink-2); font-size: 9pt; }
-.photo { border-top: 2mm solid var(--blue); height: 52mm; overflow: hidden; background: var(--ink); }
+.dir { margin-top: 4mm; display: grid; grid-template-columns: max-content max-content; gap: .6mm 9mm; color: var(--ink-2); font-size: 9pt; }
+.photo { border-top: 2mm solid var(--blue); height: 48mm; overflow: hidden; background: var(--ink); }
 .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; filter: grayscale(1) contrast(1.08); display: block; }
-.contact { margin-top: 3.5mm; display: grid; gap: 1mm; font-size: 8.8pt; }
-.contact .k { display: block; font-size: 7.4pt; color: var(--muted); }
-.contact a, .contact p { font-weight: 600; overflow-wrap: anywhere; }
+.contact { margin-top: 3mm; display: grid; gap: 1.2mm; font-size: 8.4pt; }
+.contact .mail { white-space: nowrap; }
+.contact a, .contact p { display: flex; align-items: center; gap: 2mm; font-weight: 600; overflow-wrap: anywhere; }
+.contact p { padding-left: 5.4mm; color: var(--muted); font-weight: 500; }
+.contact svg { flex: none; width: 3.4mm; height: 3.4mm; fill: none; stroke: var(--blue); stroke-width: 1.5; }
 .contact .mail { color: var(--blue); }
 
 /* the numbers on a blue band */
-.band { margin: 6mm -14mm 0; padding: 5.5mm 14mm 6mm; background: var(--blue); color: #fff; display: grid; grid-template-columns: .8fr 1fr 1fr 1.5fr; gap: 6mm; }
+.band { margin: 5mm -14mm 0; padding: 4.5mm 14mm 5mm; background: var(--blue); color: #fff; display: grid; grid-template-columns: .8fr 1fr 1fr 1.5fr; gap: 6mm; }
 .fig { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 21pt; line-height: 1; letter-spacing: -.04em; white-space: nowrap; }
 .fig small { font-family: 'Inter Tight', sans-serif; font-size: 9pt; font-weight: 600; letter-spacing: 0; }
 .band p { margin-top: 2mm; font-size: 8pt; line-height: 1.4; color: var(--blue-soft); }
 
 /* sections */
-.sec { margin-top: 5.5mm; }
+.sec { margin-top: 5mm; }
 .h2 { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 110%; font-size: 17pt; line-height: 1; letter-spacing: -.035em; padding-bottom: 3mm; border-bottom: 1px solid var(--ink); }
 
-.job { display: grid; grid-template-columns: 30mm 1fr; gap: 0 6mm; padding: 3.2mm 0 3.4mm; border-bottom: 1px solid var(--soft); break-inside: avoid; }
-.yr { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 20pt; line-height: .9; letter-spacing: -.04em; }
+.job { display: grid; grid-template-columns: 24mm 1fr; gap: 0 5mm; padding: 2.3mm 0 2.5mm; border-bottom: 1px solid var(--soft); }
+.job:not(:has(.sub)), .sub { break-inside: avoid; }
+/* page 1 ends after OX Point (no rule hanging at the foot of the page), NAKIT opens page 2 */
+.job.pageend, .job:last-child { border-bottom: 0; }
+.job.newpage { break-before: page; padding-top: 0; }
+.yr { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 17pt; line-height: .9; letter-spacing: -.04em; }
 .now .yr { color: var(--blue); }
-.per { display: block; margin-top: 1.6mm; font-size: 8pt; color: var(--muted); }
+.per { display: block; margin-top: 1.4mm; font-size: 7pt; white-space: nowrap; color: var(--muted); }
 .co { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 110%; font-size: 12.5pt; line-height: 1.1; letter-spacing: -.02em; }
 .role { margin-top: .8mm; font-size: 8.8pt; font-weight: 600; }
 .sum { margin-top: .6mm; font-size: 8.6pt; color: var(--ink-2); }
 .live { display: inline-flex; align-items: center; gap: 1.6mm; margin-left: 2.5mm; font-size: 8pt; font-weight: 600; color: var(--blue); }
 .live::before { content: ""; width: 1.8mm; height: 1.8mm; background: var(--blue); }
-.sub { margin-top: 2mm; }
+.sub { margin-top: 1.4mm; }
 .sub h4 { font-size: 9.4pt; font-weight: 700; }
 .sub h4 span { font-weight: 400; color: var(--muted); }
 .job ul { margin-top: 1mm; display: grid; gap: .2mm; }
 .job li { position: relative; padding-left: 4.5mm; color: var(--ink-2); }
+.job li b { font-weight: 600; color: var(--ink); }
+.env { margin-top: 1.4mm; display: inline-flex; align-items: center; gap: 2mm; padding: .8mm 2.4mm .8mm 2mm; background: var(--ink); color: #fff; font-size: 7.8pt; font-weight: 600; line-height: 1.3; }
+.env::before { content: ""; flex: none; width: 1.8mm; height: 1.8mm; background: #8FA2FF; }
+.tags { margin-top: 1mm; font-size: 7.6pt; font-weight: 500; color: var(--muted); }
 .job li::before { content: ""; position: absolute; left: 0; top: .66em; width: 2.2mm; height: 1.5px; background: var(--blue); }
 
-/* projects: two cards */
-.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 4mm; }
-.card { display: flex; flex-direction: column; border-top: 2mm solid var(--ink); padding-top: 3.5mm; break-inside: avoid; }
-.card.blue { border-top-color: var(--blue); }
-.card h3 { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 115%; font-size: 12.5pt; letter-spacing: -.025em; line-height: 1.1; }
-.card .t { margin-top: 1mm; font-size: 8.4pt; font-weight: 600; }
-.card .d { margin-top: 2mm; color: var(--ink-2); }
-.card .s { margin-top: auto; padding-top: 2.5mm; border-top: 1px solid var(--soft); } .card .d { margin-bottom: 3mm; } .card .s { padding-top: 2.5mm; border-top: 1px solid var(--soft); display: flex; align-items: baseline; gap: 3mm; }
-.card .n { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 19pt; line-height: 1; letter-spacing: -.04em; }
-.card.blue .n { color: var(--blue); }
-.card .l { font-size: 8.6pt; font-weight: 600; }
+/* projects: short, on a blue band that closes off the experience */
+.proj { margin: 5mm -14mm 0; padding: 5mm 14mm 5.5mm; background: var(--blue); color: #fff; break-inside: avoid; }
+.proj h2 { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 110%; font-size: 13pt; line-height: 1; letter-spacing: -.035em; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: 4mm; }
+.card h3 { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 115%; font-size: 11.5pt; letter-spacing: -.025em; line-height: 1.1; }
+.card .d { margin-top: 1.5mm; font-size: 8.6pt; color: var(--blue-soft); }
+.card .s { margin-top: 2mm; font-size: 8.4pt; font-weight: 600; }
+.card .n { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 15pt; line-height: 1; letter-spacing: -.04em; margin-right: 1.5mm; }
 
 /* education, skills, languages */
-.three { display: grid; grid-template-columns: 1.15fr 1.25fr .7fr; gap: 8mm; margin-top: 6mm; break-inside: avoid; }
+.three { display: grid; grid-template-columns: 1.15fr 1.25fr .7fr; gap: 8mm; margin-top: 5mm; break-inside: avoid; }
 .three h2 { font-size: 13pt; }
 .item { margin-top: 3mm; }
 .item b { display: block; font-weight: 700; }
@@ -93,9 +100,9 @@ a { color: inherit; text-decoration: none; }
   <header class="top">
     <div>
       <h1 class="name"><span>Matthew</span><span>Grygar</span></h1>
-      <p class="tag">Rozumím technologiím i lidem<b>.</b></p>
+      <p class="tag">Rozumím lidem i technologiím<b>.</b></p>
       <p class="lead">Nejvíc přináším tam, kde je potřeba spojit technické porozumění se schopností vést lidi i projekty. Nápady převádím do jasných plánů a plány do funkčních řešení.</p>
-      <p class="status"><strong>Otevřený novým příležitostem</strong><span>Praha · Hybrid i remote</span></p>
+      <p class="status"><strong>Otevřený novým příležitostem</strong><span>Praha · Hybrid i remote · I spolupráce na IČO</span></p>
       <ul class="dir">
         <li>Projektové a provozní řízení</li><li>Account management</li>
         <li>Business / Service ownership</li><li>IT a digitální služby</li>
@@ -104,9 +111,10 @@ a { color: inherit; text-decoration: none; }
     <div>
       <div class="photo"><img src="../public/images/portrait.jpg" alt=""></div>
       <div class="contact">
-        <div><span class="k">E-mail</span><a class="mail" href="mailto:matthew.grygar@seznam.cz">matthew.grygar@seznam.cz</a></div>
-        <div><span class="k">Telefon</span><a href="tel:+420607434959">+420 607 434 959</a></div>
-        <div><span class="k">LinkedIn · web</span><a href="https://www.linkedin.com/in/matthew-grygar-214b94232/">LinkedIn profil</a> · <a href="https://matthewgrygar.com">matthewgrygar.com</a></div>
+        <a class="mail" href="mailto:matthew.grygar@seznam.cz"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="3" width="13" height="10"/><path d="M1.5 3.5 8 9l6.5-5.5"/></svg>matthew.grygar@seznam.cz</a>
+        <a href="tel:+420607434959"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5h3l1.2 3.4-1.9 1.3a8 8 0 0 0 4.5 4.5l1.3-1.9 3.4 1.2v3a1.5 1.5 0 0 1-1.5 1.5A12 12 0 0 1 1.5 3 1.5 1.5 0 0 1 3 1.5z"/></svg>+420 607 434 959</a>
+        <a href="https://matthewgrygar.com"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5"/></svg>matthewgrygar.com</a>
+        <p>IČO 21162956</p>
       </div>
     </div>
   </header>
@@ -122,66 +130,67 @@ a { color: inherit; text-decoration: none; }
     <h2 class="h2">Pracovní zkušenosti</h2>
 
     <article class="job now">
-      <div><div class="yr">2025</div><span class="per">01/2025 – teď</span></div>
+      <div><div class="yr">2025</div><span class="per">01/2025 – současnost</span></div>
       <div>
         <h3 class="co">Trask <span class="live">aktuálně</span></h3>
         <p class="role">System Engineer</p>
-        <p class="sum">Nejdřív IDM v ČSOB, od dubna 2026 přeřazení na DMS v Monetě. Oba projekty stojí na řešeních IBM.</p>
+        <p class="sum">Provoz a rozvoj podnikových IBM řešení v bankovním prostředí. Správa identit, dokumentových systémů, incidentů a provozních změn.</p>
+        <p class="env">Regulované bankovní prostředí se zvýšenými požadavky na bezpečnost, dostupnost služeb a řízení provozních změn.</p>
         <div class="sub">
-          <h4>DMS / Moneta <span>· 04/2026 – teď</span></h4>
+          <h4>DMS / MONETA <span>· 04/2026 – současnost</span></h4>
           <ul>
-            <li>Práce s provozními požadavky a řešením incidentů v prostředí DMS.</li>
-            <li>Koordinace změn a návazných kroků s dotčenými týmy; srozumitelná komunikace průběhu a stavu řešení.</li>
+            <li><b>IT Operations &amp; Incident Management</b> – řešení provozních incidentů a požadavků, analýza problémů a koordinace jejich řešení napříč technickými týmy.</li>
+            <li><b>Change Management</b> – koordinace provozních změn, aktualizací prostředí a souvisejících činností ve spolupráci s vývojem a dalšími specialisty.</li>
           </ul>
+          <p class="tags">IT Operations · Incident Management · Change Management · IBM Db2 · Red Hat Enterprise Linux · Stakeholder Communication</p>
         </div>
         <div class="sub">
           <h4>IDM / ČSOB <span>· 01/2025 – 03/2026</span></h4>
           <ul>
-            <li>Instalace, konfigurace a upgrady IBM IAM prostředí: ITIM, ISVG, DB2, LDAP a WebSphere (WAS).</li>
-            <li>Nastavování rolí, přístupových oprávnění, notifikací a integračních vazeb.</li>
-            <li>Technická analýza chyb, simulace scénářů, testování přístupů a podpora incidentů.</li>
-            <li>Spolupráce na funkčních a technických specifikacích, komunikace se zákazníkem i vývojovým týmem.</li>
+            <li><b>IBM IAM infrastruktura</b> – instalace, konfigurace a upgrady prostředí IBM ITIM, ISVG, Db2, LDAP a WebSphere Application Server.</li>
+            <li><b>Analýza požadavků a konzultace</b> – komunikace se zákazníky a vývojem, upřesňování potřeb a spolupráce na funkčních a technických specifikacích.</li>
           </ul>
+          <p class="tags">Identity &amp; Access Management · IBM Security Verify Governance · IBM ITIM · LDAP · IBM Db2 · WebSphere</p>
         </div>
       </div>
     </article>
 
-    <article class="job">
+    <article class="job pageend">
       <div><div class="yr">2024</div><span class="per">02/2024 – 09/2025</span></div>
       <div>
         <h3 class="co">OX Point</h3>
         <p class="role">Senior Application Support Specialist</p>
-        <p class="sum">Aplikační podpora a stabilní provoz sítě více než 300 výdejních boxů na zásilky.</p>
+        <p class="sum">Aplikační provoz a technická podpora sítě více než 300 výdejních boxů. Koordinace incidentů, technických týmů a rozvoj provozních procesů.</p>
         <ul>
-          <li>L2/L3 podpora, pohotovostní režim, analýza a obnova služby při P1 / Major incidentech.</li>
-          <li>Koordinace specialistů z vývoje, DevOps a technického provozu během výpadků.</li>
-          <li>Návrh JIRA workflow od začátku: závažnosti, SLA parametry, automatizace, notifikace a role.</li>
-          <li>Návrh rozdělení odpovědností L1–L3, eskalačních cest a provozních postupů.</li>
-          <li>Monitoring, analýza logů a SQL dat, rozpoznávání opakujících se problémů a reporting.</li>
+          <li><b>Incident a Service Management</b> – vedení řešení P1 / Major incidentů, koordinace krizových hovorů, eskalace a obnova služeb včetně pohotovostního režimu.</li>
+          <li><b>Návrh procesů podpory</b> – vytvoření modelu víceúrovňové podpory L0–L3 včetně odpovědností, kompetencí, SLA a eskalačních postupů, s částečným zavedením do praxe.</li>
         </ul>
+        <p class="tags">IT Operations · Major Incident Management · Linux · SQL · Jira · Process Design</p>
       </div>
     </article>
 
-    <article class="job">
+    <article class="job newpage">
       <div><div class="yr">2022</div><span class="per">11/2022 – 03/2024</span></div>
       <div>
         <h3 class="co">NAKIT</h3>
         <p class="role">Application Operations Specialist → Senior IT Platform Specialist</p>
-        <p class="sum">Provoz veřejných digitálních služeb včetně systému Identita občana.</p>
+        <p class="sum">Provoz Portálu občana a souvisejících přihlašovacích služeb. Od aplikační podpory k řízení závažných provozních incidentů.</p>
+        <p class="env">Provoz státních digitálních služeb se zvýšenými požadavky na bezpečnost, ochranu informací a vysokou dostupnost.</p>
         <div class="sub">
           <h4>Senior IT Platform Specialist <span>· 05/2023 – 03/2024</span></h4>
           <ul>
-            <li>Koordinace P1 / Major incidentů, krizových hovorů a obnovy služby.</li>
-            <li>Propojování technických specialistů napříč organizacemi a sledování SLA.</li>
-            <li>Příprava a komunikace plánovaných odstávek a dopadů pro zainteresované strany.</li>
+            <li><b>Major Incident Management</b> – vedení řešení P1 incidentů, koordinace krizových hovorů, určování priorit a eskalace problémů.</li>
+            <li><b>Koordinace týmů a partnerů</b> – řízení komunikace mezi technickými specialisty, dodavateli a managementem, sledování postupu řešení a urgování potřebných kroků.</li>
           </ul>
+          <p class="tags">Major Incident Management · IT Operations · SLA Management · Stakeholder Communication · Service Monitoring</p>
         </div>
         <div class="sub">
           <h4>Application Operations Specialist <span>· 11/2022 – 05/2023</span></h4>
           <ul>
-            <li>L2 aplikační podpora, monitoring a diagnostika chyb; incidenty, požadavky a servisní okna.</li>
-            <li>Evidence, dokumentace, SLA reporting a analýza požadavků mezi business a IT.</li>
+            <li><b>Aplikační podpora L2</b> – řešení požadavků koncových uživatelů a institucionálních zákazníků, diagnostika chyb Portálu občana a problémů s přihlašováním.</li>
+            <li><b>Serverová infrastruktura</b> – provozní správa prostředí Windows Server a Linux, práce s SQL databázemi a souvisejícími systémy.</li>
           </ul>
+          <p class="tags">L2 Application Support · Windows Server · Linux · SQL · IT Service Management</p>
         </div>
       </div>
     </article>
@@ -190,45 +199,44 @@ a { color: inherit; text-decoration: none; }
       <div><div class="yr">2021</div><span class="per">12/2021 – 11/2022</span></div>
       <div>
         <h3 class="co">MyCom Solutions</h3>
-        <p class="role">IT Infrastructure Technician</p>
-        <p class="sum">Každodenní IT podpora firemních zákazníků a menší infrastrukturní projekty.</p>
+        <p class="role">IT Infrastructure Specialist</p>
+        <p class="sum">IT outsourcing pro firemní zákazníky a realizace infrastrukturních projektů od návrhu po předání.</p>
         <ul>
-          <li>IT podpora firemních zákazníků na místě, hardware, software a koncová zařízení.</li>
-          <li>Návrh a konfigurace sítí, VLAN, Wi-Fi, switchů a firewallů Ubiquiti / Fortinet.</li>
-          <li>Realizace strukturované kabeláže v rozsahu více než 5 km.</li>
+          <li><b>Realizace síťových projektů</b> – vedení zakázek od zjištění potřeb zákazníka, technického návrhu a cenové nabídky až po realizaci a předání řešení.</li>
+          <li><b>Vedení technických realizací</b> – samostatné řízení projektu strukturované kabeláže v rozsahu přibližně 10 km, včetně organizace práce a koordinace zapojených techniků.</li>
         </ul>
+        <p class="tags">IT Infrastructure · Project Coordination · Team Leadership · Ubiquiti · Fortinet</p>
       </div>
     </article>
 
     <article class="job">
       <div><div class="yr">2021</div><span class="per">02/2021 – 12/2021</span></div>
       <div>
-        <h3 class="co">Národní očkovací centrum ÚVN–O2</h3>
-        <p class="role">IT Technician / IT Consultant</p>
+        <h3 class="co">Národní očkovací centrum ÚVN – O2 universum</h3>
+        <p class="role">IT Operations Consultant</p>
         <p class="sum">IT provoz pracovišť, zařízení a databáze očkovacího centra během 131 dnů krizového režimu.</p>
+        <p class="env">Provoz se zvýšenými nároky na bezpečnost</p>
         <ul>
-          <li>Příprava a provoz desítek zařízení a pracovních stanic; řešení incidentů v reálném čase.</li>
-          <li>Správa databáze MS SQL a řešení datových nesrovnalostí při vysoké zátěži.</li>
-          <li>Koordinace směn malého IT týmu a externích specialistů; testování nových verzí aplikace.</li>
+          <li><b>Vedení a koordinace IT týmu</b> – organizace směn, rozdělování úkolů a odpovědností v šestičlenném týmu, spolupráce s externími specialisty.</li>
+          <li><b>IT infrastruktura a podpora</b> – příprava a provoz desítek zařízení a pracovních stanic, operativní řešení technických incidentů.</li>
         </ul>
+        <p class="tags">IT Operations · Team Leadership · MS SQL · Incident Management · Application Testing</p>
       </div>
     </article>
   </section>
 
-  <section class="sec">
-    <h2 class="h2">Projekty mimo práci</h2>
+  <section class="proj">
+    <h2>Projekty mimo práci</h2>
     <div class="cards">
-      <div class="card blue">
+      <div class="card">
         <h3>Grail Series</h3>
-        <p class="t">Komunita · organizace · partnerství</p>
-        <p class="d">Vybudoval jsem turnajovou sérii pro českou komunitu Duel Commanderu – od konceptu a identity přes komunikaci s partnery až po produkci jednotlivých akcí.</p>
-        <div class="s"><span class="n">130+</span><span class="l">unikátních hráčů</span></div>
+        <p class="d">Turnajová série pro českou komunitu Duel Commanderu – koncept, partneři a produkce akcí.</p>
+        <p class="s"><span class="n">130+</span> unikátních hráčů</p>
       </div>
       <div class="card">
         <h3>MtG DC ELO Ranking System</h3>
-        <p class="t">Digitální produkt · data · komunita</p>
-        <p class="d">Pro stejnou komunitu jsem navrhl a vytvořil webovou aplikaci: návrh produktu, data, frontend a systém hodnocení ELO.</p>
-        <div class="s"><span class="n">430+</span><span class="l">hráčů v žebříčku</span></div>
+        <p class="d">Webová aplikace s žebříčkem ELO pro stejnou komunitu – produkt, data a frontend.</p>
+        <p class="s"><span class="n">430+</span> hráčů v žebříčku</p>
       </div>
     </div>
   </section>

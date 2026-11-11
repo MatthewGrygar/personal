@@ -3,7 +3,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 
 export const runtime = "nodejs";
-export const alt = "Matthew Grygar – Rozumím technologiím i lidem.";
+export const alt = "Matthew Grygar – Rozumím lidem i technologiím.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -21,7 +21,7 @@ export default async function Image() {
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", fontSize: 40, fontWeight: 700, letterSpacing: -1 }}>
-              Rozumím technologiím i lidem<span style={{ color: "#3F38FC" }}>.</span>
+              Rozumím lidem i technologiím<span style={{ color: "#3F38FC" }}>.</span>
             </div>
             <div style={{ display: "flex", marginTop: 22, paddingTop: 16, borderTop: "3px solid #000", fontSize: 20, marginBottom: 40 }}>
               Projektové a provozní řízení · Account management · IT a digitální služby

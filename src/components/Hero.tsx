@@ -24,7 +24,7 @@ export function Hero() {
           <div className={s.settle}>
             <div className={s.intro}>
               <p className={s.tagline}>
-                <L cs={<>Rozumím technologiím i lidem<Stop /></>} en={<>I understand technology and people<Stop /></>} />
+                <L cs={<>Rozumím lidem i technologiím<Stop /></>} en={<>I understand people and technology<Stop /></>} />
               </p>
               <p className={s.lead}>
                 <L
@@ -36,7 +36,7 @@ export function Hero() {
             <div className={s.facts}>
               <p className={s.status}>
                 <strong><L cs="Otevřený novým příležitostem" en="Open to new opportunities" /></strong>
-                <span className={s.place}><L cs="Praha · Hybrid i remote" en="Prague · Hybrid or remote" /></span>
+                <span className={s.place}><L cs="Praha · Hybrid i remote · I spolupráce na IČO" en="Prague · Hybrid or remote · Also as a contractor" /></span>
               </p>
               <p className="sr"><L cs="Kam směřuji:" en="Where I’m heading:" /></p>
               <ul className={s.dirList}>
@@ -48,8 +48,8 @@ export function Hero() {
             </div>
             <div className={s.ctas}>
               <div className={s.btns}>
-                <a className="btn" href="#kontakt"><L cs="Ozvěte se mi" en="Get in touch" /></a>
                 <a className="btn ghost" href="#zkusenosti"><L cs="Moje zkušenosti" en="My experience" /></a>
+                <a className="btn" href="#kontakt"><L cs="Ozvěte se mi" en="Get in touch" /></a>
               </div>
               <div className={s.small}>
                 <a href="/cv-matthew-grygar.pdf" download="Matthew-Grygar-CV.pdf">

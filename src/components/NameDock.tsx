@@ -37,13 +37,13 @@ const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 type Props = {
-  /** 0.04–0.4: nižší = měkčí, víc „klouže“ */
-  smoothing?: number;
+  /** délka přeletu v ms – jméno má jen dvě polohy (hero / lišta) a mezi nimi vždy doletí */
+  duration?: number;
   /** 0–0.3: o kolik se „Grygar“ zpozdí za „Matthew“ */
   stagger?: number;
 };
 
-export default function NameDock({ smoothing = 0.1, stagger = 0.12 }: Props) {
+export default function NameDock({ duration = 700, stagger = 0.12 }: Props) {
   const layerRef = useRef<HTMLDivElement>(null);
   const mRef = useRef<HTMLSpanElement>(null);
   const gRef = useRef<HTMLSpanElement>(null);
@@ -69,6 +69,7 @@ export default function NameDock({ smoothing = 0.1, stagger = 0.12 }: Props) {
     let cur = 0;
     let active = false;
     let raf = 0;
+    let last = 0;
 
     const measure = () => {
       const sy = window.scrollY;
@@ -128,13 +129,16 @@ export default function NameDock({ smoothing = 0.1, stagger = 0.12 }: Props) {
       node.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) scale(${s.toFixed(4)})`;
     };
 
-    const tick = () => {
+    const tick = (now: number) => {
       raf = requestAnimationFrame(tick);
+      const dt = last ? Math.min(now - last, 64) : 0;
+      last = now;
       if (!m) return;
       const sy = window.scrollY;
-      const target = clamp((sy - m.start) / (m.end - m.start));
-      cur += (target - cur) * (reduce ? 1 : smoothing);
-      if (Math.abs(target - cur) < 0.0004) cur = target;
+      // jen dvě koncové polohy: po odscrollování jméno doletí do lišty, úplně nahoře zpět – nikde mezi se nezastaví
+      const target = sy > m.start ? 1 : 0;
+      const step = reduce ? 1 : dt / duration;
+      cur = target > cur ? Math.min(target, cur + step) : Math.max(target, cur - step);
 
       // v klidu nahoře necháme vidět skutečný <h1> (i s jeho úvodní animací)
       const nowActive = cur > 0.0005;
@@ -168,7 +172,7 @@ export default function NameDock({ smoothing = 0.1, stagger = 0.12 }: Props) {
       window.removeEventListener('resize', measure);
       root.removeAttribute('data-dock-active');
     };
-  }, [smoothing, stagger]);
+  }, [duration, stagger]);
 
   return (
     <div ref={layerRef} className={styles.layer} aria-hidden="true">
