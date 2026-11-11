@@ -36,7 +36,9 @@
 }
 .det svg { transition: transform .25s var(--ease); }
 .open .det svg { transform: rotate(45deg); }
-.row:hover .det, .det:hover { color: var(--accent-soft); }
+/* hovering a row lights up what it opens: the company and the Detail button */
+.co { transition: color var(--d-fast); }
+.row:hover .co, .row:hover .det, .det:hover { color: var(--accent-soft); }
 .det:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 4px; }
 
 /* detail: the text column only, aligned under the company */
