@@ -1,0 +1,25 @@
+/* Létající kopie jména – leží nad lištou, klikat jde skrz ni */
+.layer {
+  position: fixed;
+  inset: 0 auto auto 0;
+  width: 0;
+  height: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.word {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  white-space: nowrap;
+  color: var(--fg);
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+:global(html[data-dock-active]) .layer {
+  opacity: 1;
+}

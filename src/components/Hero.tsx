@@ -15,12 +15,11 @@ export function Hero() {
   return (
     <div className={s.hero} id="top">
       {/* the header switches to its full-width rule once this sentinel scrolls away */}
-      <div className={s.rule} data-hero-rule aria-hidden="true" />
       <div className={`wrap ${s.main}`}>
         <div className={s.text}>
           <h1 className={s.name}>
-            <span className={s.ln}>Matthew</span>
-            <span className={s.ln}>Grygar</span>
+            <span className={s.ln} data-dock-hero="m">Matthew</span>
+            <span className={s.ln} data-dock-hero="g">Grygar</span>
           </h1>
           <div className={s.settle}>
             <div className={s.intro}>

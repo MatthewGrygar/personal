@@ -13,21 +13,14 @@ const NAV = [
 
 export function Header() {
   const { lang, setLang } = useLang();
-  const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string | null>(null);
 
-  // Header border + active section, both via IntersectionObserver (no scroll loop), as in the design.
+  // Active section via IntersectionObserver; the rule under the bar is drawn by NameDock.
   useEffect(() => {
     if (!("IntersectionObserver" in window)) return;
-    const rule = document.querySelector("[data-hero-rule]");
     const hero = document.getElementById("top");
     const observers: IntersectionObserver[] = [];
 
-    if (rule) {
-      const io = new IntersectionObserver((es) => setScrolled(!es[0].isIntersecting), { rootMargin: "-60px 0px 0px 0px", threshold: 0 });
-      io.observe(rule);
-      observers.push(io);
-    }
     const navIO = new IntersectionObserver(
       (es) => es.forEach((e) => e.isIntersecting && setActive(e.target.id)),
       { rootMargin: "-45% 0px -50% 0px" },
@@ -46,10 +39,13 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`${s.siteH}${scrolled ? ` ${s.scrolled}` : ""}`}>
+    <header className={s.siteH} data-dock-header>
       <div className={`wrap ${s.inner}`}>
-        <a className={s.name} href="#top">Matthew Grygar</a>
-        <nav className={s.nav} aria-label="Hlavní navigace">
+        <a className={s.name} href="#top" aria-label="Matthew Grygar">
+          <span data-dock-target="m">Matthew</span>{" "}
+          <span data-dock-target="g">Grygar</span>
+        </a>
+        <nav className={s.nav} aria-label="Hlavní navigace" data-dock-nav>
           {NAV.map((n) => (
             <a key={n.id} href={`#${n.id}`} className={active === n.id ? s.on : undefined}>
               <L cs={n.cs} en={n.en} />
@@ -61,6 +57,7 @@ export function Header() {
           <span aria-hidden="true">/</span>
           <button type="button" lang="en" aria-pressed={lang === "en"} onClick={() => setLang("en")}>en</button>
         </div>
+        <span data-dock-line aria-hidden="true" />
       </div>
     </header>
   );

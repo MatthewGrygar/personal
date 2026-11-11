@@ -1,9 +1,8 @@
 .siteH { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--bg); }
-.inner { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 32px; padding-block: 16px; border-bottom: var(--line); }
-/* once the page moves, the rule runs edge to edge */
-.siteH.scrolled { box-shadow: 0 2px 0 var(--fg); }
-.siteH.scrolled .inner { border-bottom-color: transparent; }
-.name { font-weight: 800; font-size: 17px; letter-spacing: -.01em; }
+.inner { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 32px; padding-block: 16px; position: relative; }
+/* the hero name lands here (NameDock) – same cut as the h1, just small */
+.name { font-family: var(--f-head); font-weight: 900; font-stretch: 125%; font-size: 20px; letter-spacing: -.045em; line-height: .86; white-space: nowrap; }
+.name span { display: inline-block; }
 
 .nav { margin-left: auto; display: flex; gap: 4px 24px; overflow-x: auto; scrollbar-width: none; font-size: 15px; font-weight: 500; }
 .nav::-webkit-scrollbar { display: none; }

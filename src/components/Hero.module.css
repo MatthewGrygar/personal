@@ -1,5 +1,4 @@
 .hero { position: relative; }
-.rule { position: absolute; left: 0; top: 0; width: 1px; height: 1px; pointer-events: none; }
 
 /* text left, portrait right; the two sit apart rather than on a shared grid */
 .main { display: flex; flex-wrap: wrap; gap: 48px 64px; align-items: stretch; justify-content: space-between; }

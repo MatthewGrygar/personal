@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { L } from "@/components/L";
+import NameDock from "@/components/NameDock";
 import { LangProvider } from "@/components/Lang";
 import { Projects } from "@/components/Projects";
 
@@ -21,6 +22,7 @@ export default function Page() {
         <Contact />
       </main>
       <Footer />
+      <NameDock />
     </LangProvider>
   );
 }
