@@ -16,17 +16,17 @@ export const JOBS: Job[] = [
   {
     key: "trask",
     year: "2025",
-    dates: { cs: <>01/2025 – <em>teď</em></>, en: <>01/2025 – <em>now</em></> },
+    dates: { cs: <>01/2025 – <em>teď</em></>, en: <>Jan 2025 – <em>now</em></> },
     current: true,
     company: same("Trask"),
-    role: { cs: "System Engineer · projekty na řešeních IBM", en: "System Engineer · projects built on IBM solutions" },
+    role: same("System Engineer"),
     summary: {
-      cs: "Nejdřív IDM v ČSOB, od roku 2026 přeřazení na DMS v Monetě. Oba projekty stojí na řešeních IBM.",
-      en: "First IDM at ČSOB, then reassigned to DMS at Moneta in 2026. Both projects are built on IBM solutions.",
+      cs: "Nejdřív IDM v ČSOB, od dubna 2026 přeřazení na DMS v Monetě. Oba projekty stojí na řešeních IBM.",
+      en: "First IDM at ČSOB, then reassigned to DMS at Moneta in April 2026. Both projects are built on IBM solutions.",
     },
     subs: [
       {
-        head: { title: same("DMS / Moneta"), role: { cs: "změnové a incidentní řízení", en: "change and incident management" }, dates: { cs: "2026 – teď", en: "2026 – now" } },
+        head: { title: same("DMS / Moneta"), dates: { cs: "04/2026 – teď", en: "Apr 2026 – now" } },
         intro: {
           cs: "V bankovním prostředí se věnuji změnám, incidentům a provozním požadavkům kolem DMS služeb. Pomáhám udržet přehled o řešeném požadavku, navazujících krocích a komunikaci mezi zapojenými stranami, aby bylo zřejmé, co se děje a co je potřeba udělat dál.",
           en: "I work with changes, incidents and operational requests around DMS services in a banking environment. I help keep track of the issue, next actions and communication between the people involved, so everyone can see what is happening and what needs to happen next.",
@@ -39,7 +39,7 @@ export const JOBS: Job[] = [
         ],
       },
       {
-        head: { title: same("IDM / ČSOB"), role: same("System Engineer, Identity and Access Management"), dates: { cs: "01/2025 – 2026", en: "Jan 2025 – 2026" } },
+        head: { title: same("IDM / ČSOB"), dates: { cs: "01/2025 – 03/2026", en: "Jan 2025 – Mar 2026" } },
         intro: {
           cs: "Podílel jsem se na podpoře, rozvoji a zavádění řešení správy identit a přístupů pro enterprise klienty v regulovaných odvětvích. Vedle technické práce jsem komunikoval se zákazníky a vývojáři, pomáhal upřesňovat požadavky a převáděl je do funkčních a technických specifikací.",
           en: "I supported and developed identity and access management solutions for enterprise clients in regulated industries. Alongside hands-on engineering, I worked with customers and developers to clarify requirements and turn them into functional and technical specifications.",
@@ -60,12 +60,12 @@ export const JOBS: Job[] = [
     dates: { cs: "02/2024 – 09/2025", en: "Feb 2024 – Sep 2025" },
     company: same("OX Point"),
     role: same("Senior Application Support Specialist"),
-    summary: { cs: "Aplikační podpora a stabilita produkční platformy s více než 300 zařízeními.", en: "Application support and stability for a production platform of more than 300 devices." },
+    summary: { cs: "Aplikační podpora a stabilní provoz sítě více než 300 výdejních boxů na zásilky.", en: "Application support and stable operation of a network of more than 300 parcel lockers." },
     subs: [
       {
         intro: {
-          cs: "Zajišťoval jsem aplikační podporu a stabilitu produkční platformy více než 300 zařízení. Při závažných incidentech jsem propojoval provoz, vývoj, DevOps a techniky, hlídal průběh řešení a připravoval informace pro provozní vedení i zákazníky.",
-          en: "I supported the production stability of a platform operating more than 300 devices. During major incidents, I connected operations, development, DevOps and field technicians, tracked resolution and prepared clear updates for operational leadership and customers.",
+          cs: "Zajišťoval jsem aplikační podporu a stabilitu produkční platformy, na které běží více než 300 výdejních boxů na zásilky. Při závažných incidentech jsem propojoval provoz, vývoj, DevOps a techniky, hlídal průběh řešení a připravoval informace pro provozní vedení i zákazníky.",
+          en: "I supported the production stability of the platform running more than 300 parcel lockers. During major incidents, I connected operations, development, DevOps and field technicians, tracked resolution and prepared clear updates for operational leadership and customers.",
         },
         bullets: [
           { cs: "L2/L3 podpora, pohotovostní režim, analýza a obnova služby při P1 / Major incidentech.", en: "L2/L3 support, on-call response and service recovery during P1 / major incidents." },
@@ -73,7 +73,7 @@ export const JOBS: Job[] = [
           { cs: "Návrh JIRA workflow od začátku: závažnosti, SLA parametry, automatizace, notifikace a role.", en: "Designing a JIRA workflow from scratch: severity levels, SLA parameters, automation, notifications and roles." },
           { cs: "Návrh rozdělení odpovědností L1–L3, eskalačních cest a provozních postupů.", en: "Defining L1–L3 responsibilities, escalation paths and operating procedures." },
           { cs: "Monitoring, analýza logů a SQL dat, rozpoznávání opakujících se provozních problémů a reporting.", en: "Monitoring, log and SQL analysis, spotting recurring operational issues and reporting." },
-          { cs: "Komunikace se zákazníky včetně řešení praktických požadavků kolem provozu samoobslužných zařízení.", en: "Customer communication, including practical requests around running self-service devices." },
+          { cs: "Komunikace se zákazníky včetně řešení praktických požadavků kolem provozu výdejních boxů.", en: "Customer communication, including practical requests around running the parcel lockers." },
         ],
       },
     ],
@@ -83,7 +83,7 @@ export const JOBS: Job[] = [
     year: "2022",
     dates: { cs: "11/2022 – 03/2024", en: "Nov 2022 – Mar 2024" },
     company: same("NAKIT"),
-    role: { cs: "aplikační provoz → Senior IT Platform Specialist", en: "application operations → Senior IT Platform Specialist" },
+    role: same("Application Operations Specialist → Senior IT Platform Specialist"),
     summary: {
       cs: "Provoz veřejných digitálních služeb včetně systému Identita občana. Dvě role, druhá s odpovědností za závažné incidenty.",
       en: "Operating public digital services, including the Identita občana system. Two roles, the second covering major incidents.",
@@ -104,7 +104,7 @@ export const JOBS: Job[] = [
         ],
       },
       {
-        head: { title: { cs: "Specialista aplikačního provozu", en: "Application Operations Specialist" }, dates: { cs: "11/2022 – 05/2023", en: "Nov 2022 – May 2023" } },
+        head: { title: same("Application Operations Specialist"), dates: { cs: "11/2022 – 05/2023", en: "Nov 2022 – May 2023" } },
         intro: {
           cs: "Zajišťoval jsem aplikační provoz a podporu v prostředí veřejných digitálních služeb. Zaměřoval jsem se na monitoring, diagnostiku, podporu uživatelů a předávání provozních problémů správným technickým týmům.",
           en: "I provided application operations and support for public digital services, focusing on monitoring, diagnostics, user support and routing operational issues to the right technical teams.",
@@ -143,10 +143,10 @@ export const JOBS: Job[] = [
   {
     key: "noc",
     year: "2021",
-    dates: { cs: "02 – 12/2021", en: "Feb – Dec 2021" },
+    dates: { cs: "02/2021 – 12/2021", en: "Feb 2021 – Dec 2021" },
     company: { cs: "Národní očkovací centrum ÚVN–O2", en: "National Vaccination Centre, ÚVN–O2" },
-    role: { cs: "IT technik / odborný konzultant činností v oblasti IT", en: "IT Technician / IT Consultant" },
-    summary: { cs: "131 dnů krizového provozu centra, které obsloužilo více než 550 000 lidí.", en: "131 days of crisis operations at a centre that served more than 550,000 people." },
+    role: same("IT Technician / IT Consultant"),
+    summary: { cs: "IT provoz pracovišť, zařízení a databáze očkovacího centra během 131 dnů krizového režimu.", en: "Running the vaccination centre’s workstations, devices and database through 131 days of crisis operations." },
     subs: [
       {
         intro: {
