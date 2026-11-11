@@ -100,7 +100,7 @@ export function Contact() {
           <div className={s.left}>
             <p className={s.lead}>
               <L
-                cs="Hledám příležitosti, kde můžu spojit technické porozumění, komunikaci a odpovědnost za výsledek — v projektovém nebo provozním řízení, klientské spolupráci i při rozvoji digitálních služeb. Pokud řešíte něco podobného, rád si poslechnu, co potřebujete."
+                cs="Hledám příležitosti, kde můžu spojit technické porozumění, komunikaci a odpovědnost za výsledek – v projektovém nebo provozním řízení, klientské spolupráci i při rozvoji digitálních služeb. Pokud řešíte něco podobného, rád si poslechnu, co potřebujete."
                 en="I’m looking for roles where I can combine technical understanding, communication and ownership of results, whether in project or operations management, client work or developing digital services. If you’re working on something similar, I’d be glad to hear what you need."
               />
             </p>

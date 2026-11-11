@@ -76,10 +76,10 @@ export async function POST(req: NextRequest) {
     const notification = shell(
       "Nová zpráva z webu",
       `<table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
-        ${row("Téma", esc(subject.cs) || "—")}
+        ${row("Téma", esc(subject.cs) || "–")}
         ${row("Jméno", esc(name))}
         ${row("E-mail", `<a href="mailto:${esc(email)}" style="color:#B84F40;">${esc(email)}</a>`)}
-        ${row("Firma", esc(company) || "—")}
+        ${row("Firma", esc(company) || "–")}
         ${row("Jazyk", lang.toUpperCase())}
       </table>${quote(message)}`,
       "Odpovědí na tento e-mail odpovíte přímo odesílateli · matthewgrygar.com",
@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
       from: from ?? "Portfolio Contact <onboarding@resend.dev>",
       to: [OWNER],
       reply_to: email,
-      subject: `[Portfolio] ${subject.cs || "Zpráva"} — ${name}`,
+      subject: `[Portfolio] ${subject.cs || "Zpráva"} – ${name}`,
       html: notification,
     });
     if (!delivered) return NextResponse.json({ error: "Failed to send" }, { status: 500 });
@@ -100,7 +100,7 @@ export async function POST(req: NextRequest) {
       const t =
         lang === "en"
           ? {
-              subject: "Thanks for your message — Matthew Grygar",
+              subject: "Thanks for your message – Matthew Grygar",
               tag: "Message received",
               hi: `Hi ${esc(name)},`,
               body: "thanks for getting in touch. Your message reached me and I’ll reply to this address as soon as I can. Here’s a copy of what you sent:",
@@ -108,7 +108,7 @@ export async function POST(req: NextRequest) {
               foot: "You can reply to this email directly · matthewgrygar.com",
             }
           : {
-              subject: "Děkuji za zprávu — Matthew Grygar",
+              subject: "Děkuji za zprávu – Matthew Grygar",
               tag: "Zpráva přijata",
               hi: `Dobrý den, ${esc(name)},`,
               body: "děkuji, že jste se ozval(a). Vaše zpráva mi dorazila a odpovím na tuto adresu, jakmile to bude možné. Pro jistotu posílám kopii toho, co jste napsal(a):",

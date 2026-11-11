@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 export type Lang = "cs" | "en";
 
 const DESCRIPTION: Record<Lang, string> = {
-  cs: "Matthew Grygar, Praha. Propojuji lidi, technologie a nápady do funkčních výsledků — projektové a provozní řízení, klientská spolupráce, IT a digitální služby.",
+  cs: "Matthew Grygar, Praha. Propojuji lidi, technologie a nápady do funkčních výsledků – projektové a provozní řízení, klientská spolupráce, IT a digitální služby.",
   en: "Matthew Grygar, Prague. I connect people, technology and ideas into results that work: project and operations management, client work, IT and digital services.",
 };
 

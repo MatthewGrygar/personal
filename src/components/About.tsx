@@ -2,9 +2,9 @@ import { L, type Bi } from "./L";
 import s from "./About.module.css";
 
 const FIGS: { fig: Bi; short?: string; unit: Bi; text: Bi }[] = [
-  { fig: { cs: "10", en: "10" }, unit: { cs: "let", en: "years" }, text: { cs: "U divadla mě naučilo profesionální komunikaci, improvizaci a vystupování.", en: "in theatre taught me professional communication, improvisation and presenting." } },
-  { fig: { cs: "130+", en: "130+" }, unit: { cs: "hráčů", en: "players" }, text: { cs: "Grail Series: organizace a rozvoj turnajů.", en: "Grail Series: running and growing the tournaments." } },
-  { fig: { cs: "300+", en: "300+" }, unit: { cs: "zařízení", en: "devices" }, text: { cs: "Produkce: podpora, incidenty, koordinace.", en: "Production: support, incidents, coordination." } },
+  { fig: { cs: "10", en: "10" }, unit: { cs: "let", en: "years" }, text: { cs: "u divadla mě naučilo profesionální komunikaci a vystupování.", en: "in theatre taught me professional communication and presenting." } },
+  { fig: { cs: "130+", en: "130+" }, unit: { cs: "hráčů", en: "players" }, text: { cs: "se aktivně účastnilo turnajů v Grail Series, které jsem organizoval.", en: "took part in the Grail Series tournaments I organised." } },
+  { fig: { cs: "300+", en: "300+" }, unit: { cs: "terminálů", en: "terminals" }, text: { cs: "výdejních boxů, u kterých jsem koordinoval provoz a řešil incidenty.", en: "of parcel lockers whose operation I coordinated and whose incidents I resolved." } },
   {
     fig: { cs: "550 000+", en: "550,000+" },
     short: "550k+",
@@ -70,7 +70,7 @@ export function About() {
         </ul>
       </div>
       <div className={`wrap grid sec ${s.bring}`}>
-        <h2 id="h-o-mne" className={`h2 ${s.left}`}><L cs="Umím vidět celek — a zároveň pohnout konkrétní věcí." en="I see the whole picture, and I can still move the one thing that needs moving." /></h2>
+        <h2 id="h-o-mne" className={`h2 ${s.left}`}><L cs="Umím vidět celek – a zároveň pohnout konkrétní věcí." en="I see the whole picture, and I can still move the one thing that needs moving." /></h2>
         <div className={s.matrix}>
           {AREAS.map((a) => (
             <article key={a.rn}>

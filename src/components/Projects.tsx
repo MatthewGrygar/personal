@@ -13,7 +13,7 @@ const PROJECTS: Project[] = [
     title: same("Grail Series"),
     tags: { cs: "Komunita · organizace · partnerství", en: "Community · organisation · partnerships" },
     body: {
-      cs: "Vybudoval jsem turnajovou sérii pro českou komunitu Duel Commanderu — od konceptu a identity přes komunikaci s partnery až po produkci jednotlivých akcí.",
+      cs: "Vybudoval jsem turnajovou sérii pro českou komunitu Duel Commanderu – od konceptu a identity přes komunikaci s partnery až po produkci jednotlivých akcí.",
       en: "I built a tournament series for the Czech Duel Commander community, from the concept and identity through partner relationships to producing each event.",
     },
     num: "130+",

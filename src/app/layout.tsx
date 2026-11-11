@@ -13,7 +13,7 @@ const archivo = Archivo({
 const inter = Inter_Tight({ subsets: ["latin", "latin-ext"], variable: "--font-inter", display: "swap" });
 
 const description =
-  "Matthew Grygar, Praha. Propojuji lidi, technologie a nápady do funkčních výsledků — projektové a provozní řízení, klientská spolupráce, IT a digitální služby.";
+  "Matthew Grygar, Praha. Propojuji lidi, technologie a nápady do funkčních výsledků – projektové a provozní řízení, klientská spolupráce, IT a digitální služby.";
 
 export const viewport: Viewport = {
   width: "device-width",
