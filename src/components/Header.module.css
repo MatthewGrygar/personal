@@ -1,5 +1,5 @@
 .siteH { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--bg); }
-.inner { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 32px; padding-block: 16px; position: relative; }
+.inner { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 32px; padding-block: 16px; }
 /* the hero name lands here (NameDock) – same cut as the h1, just small */
 .name { font-family: var(--f-head); font-weight: 900; font-stretch: 125%; font-size: 20px; letter-spacing: -.045em; line-height: .86; white-space: nowrap; }
 .name span { display: inline-block; }

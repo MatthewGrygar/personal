@@ -2,11 +2,11 @@
 
 /**
  * NameDock – jméno z hero sekce při scrollu plynule přeletí do menu lišty
- * a zároveň se linka pod lištou dotáhne od „O mně“ až k levému okraji.
+ * a zároveň se linka pod lištou roztáhne do stran přes celou šířku webu.
  *
  * Komponenta si prvky najde podle data-atributů:
  *   [data-dock-header]      <header>
- *   [data-dock-line]        linka pod lištou (uvnitř header inner)
+ *   [data-dock-line]        linka pod lištou – přes celou šířku lišty, na startu jen úsek nad obsahem
  *   [data-dock-nav]         <nav> – od jeho levého okraje linka začíná
  *   [data-dock-photo]       fotka v hero – na desktopu linka začíná stejně daleko od ní vlevo jako vpravo
  *   [data-dock-target="m"]  „Matthew“ v liště (cílové místo)
@@ -27,7 +27,9 @@ type Metrics = {
   scale: number;
   start: number;
   end: number;
-  lineFrom: number;
+  /** úsek linky na startu jako podíl šířky lišty (zleva, zprava) */
+  lineL: number;
+  lineR: number;
 };
 
 const clamp = (v: number) => Math.max(0, Math.min(1, v));
@@ -88,22 +90,21 @@ export default function NameDock({ smoothing = 0.1, stagger = 0.12 }: Props) {
       const heroFs = parseFloat(hs.fontSize);
       const tgtFs = parseFloat(getComputedStyle(tgtM).fontSize);
 
-      let lineFrom = 0.4;
-      if (line && nav && nav.offsetWidth > 0) {
-        // pravý okraj se scaleX (origin vpravo) nemění; šířku bereme bez transformace
-        const lr = line.getBoundingClientRect();
-        const nr = nav.getBoundingClientRect();
-        lineFrom = clamp((lr.right - nr.left + 14) / line.offsetWidth);
-      }
-      // desktop: fotka stojí vedle textu → linka přesahuje fotku vlevo o tolik, o kolik vpravo
-      if (line && photo) {
-        const lr = line.getBoundingClientRect();
-        const pr = photo.getBoundingClientRect();
-        const lineLeft = lr.right - line.offsetWidth;
-        if (pr.left > lineLeft + line.offsetWidth / 3) {
-          const over = lr.right - pr.right;
-          lineFrom = clamp((pr.right - pr.left + 2 * over) / line.offsetWidth);
+      // start: úsek nad obsahem (končí u pravého okraje obsahu), cíl: celá šířka lišty
+      let lineL = 0.6;
+      let lineR = 1;
+      if (line && line.parentElement && line.offsetWidth > 0) {
+        const W = line.offsetWidth;
+        const ir = line.parentElement.getBoundingClientRect();
+        let l = ir.left + ir.width * 0.6;
+        if (nav && nav.offsetWidth > 0) l = nav.getBoundingClientRect().left - 14;
+        // desktop: fotka stojí vedle textu → linka přesahuje fotku vlevo o tolik, o kolik vpravo
+        if (photo) {
+          const pr = photo.getBoundingClientRect();
+          if (pr.left > ir.left + ir.width / 3) l = pr.left - (ir.right - pr.right);
         }
+        lineL = clamp((l - hr.left) / W);
+        lineR = clamp((ir.right - hr.left) / W);
       }
 
       m = {
@@ -115,7 +116,8 @@ export default function NameDock({ smoothing = 0.1, stagger = 0.12 }: Props) {
         scale: tgtFs / heroFs,
         start: 24,
         end: rg.bottom + sy - hr.height + 30,
-        lineFrom,
+        lineL,
+        lineR,
       };
     };
 
@@ -144,7 +146,12 @@ export default function NameDock({ smoothing = 0.1, stagger = 0.12 }: Props) {
       const follow = Math.min(sy, m.end); // do konce přeletu jede jméno se stránkou
       place(ovM, m.hm, m.tm, ease(clamp(cur / (1 - stagger))), follow, m.scale);
       place(ovG, m.hg, m.tg, ease(clamp((cur - stagger) / (1 - stagger))), follow, m.scale);
-      if (line) line.style.transform = `scaleX(${lerp(m.lineFrom, 1, ease(cur)).toFixed(4)})`;
+      if (line) {
+        const e = ease(cur);
+        const l = lerp(m.lineL, 0, e);
+        const r = lerp(m.lineR, 1, e);
+        line.style.transform = `translateX(${(l * 100).toFixed(3)}%) scaleX(${(r - l).toFixed(4)})`;
+      }
     };
 
     measure();

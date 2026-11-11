@@ -118,7 +118,7 @@ html.js [data-dock-target] {
   color: transparent;
 }
 
-/* Linka pod lištou – na startu od „O mně“, JS ji dotáhne doleva */
+/* Linka pod lištou – přes celou šířku lišty; na startu jen úsek nad obsahem, JS ji roztáhne do stran */
 [data-dock-line] {
   position: absolute;
   left: 0;
@@ -126,10 +126,10 @@ html.js [data-dock-target] {
   bottom: 0;
   height: 2px;
   background: var(--fg);
-  transform-origin: 100% 50%;
+  transform-origin: 0 50%;
   will-change: transform;
   pointer-events: none;
 }
 html.js [data-dock-line] {
-  transform: scaleX(0.4);
+  transform: translateX(58%) scaleX(.38);
 }
