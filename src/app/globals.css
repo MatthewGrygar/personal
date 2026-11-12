@@ -66,6 +66,8 @@ p { text-wrap: pretty; }
 ::selection { background: var(--accent); color: var(--on-accent); }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 [id] { scroll-margin-top: 72px; }
+/* phones: the bar plus the menu that slides out under it */
+@media (max-width: 820px) { [id] { scroll-margin-top: 124px; } }
 :root:not(.en) [data-l="en"], :root.en [data-l="cs"] { display: none !important; }
 
 /* links: underlined, accent on hover */

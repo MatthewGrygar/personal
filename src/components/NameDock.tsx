@@ -68,6 +68,7 @@ export default function NameDock({ smoothing = 0.18, sheen = true }: Props) {
     let m: Metrics | null = null;
     let sst = window.scrollY; // vyhlazený scroll (scrub)
     let active = false;
+    let docked = false;
     let raf = 0;
 
     // odlesk je gradient v CSS (barva textu podle světlého/tmavého režimu); bez něj prostá barva textu
@@ -148,6 +149,12 @@ export default function NameDock({ smoothing = 0.18, sheen = true }: Props) {
         active = nowActive;
         root.toggleAttribute('data-dock-active', active);
       }
+      // jméno dosedlo – na mobilu se podle toho vysune menu (s hysterezí, ať na hraně nebliká)
+      const nowDocked = docked ? p > 0.9 : p > 0.98;
+      if (nowDocked !== docked) {
+        docked = nowDocked;
+        root.toggleAttribute('data-dock-docked', docked);
+      }
 
       // vrstva je fixed: y z dokumentu se díky dráze D posouvá přesně tak, aby jméno drželo krok s obsahem
       const s = lerp(1, m.sc, p);
@@ -190,6 +197,7 @@ export default function NameDock({ smoothing = 0.18, sheen = true }: Props) {
       window.clearTimeout(t2);
       window.removeEventListener('resize', measure);
       root.removeAttribute('data-dock-active');
+      root.removeAttribute('data-dock-docked');
     };
   }, [smoothing, sheen]);
 
