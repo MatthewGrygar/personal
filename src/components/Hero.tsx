@@ -36,7 +36,7 @@ export function Hero() {
             <div className={s.facts}>
               <p className={s.status}>
                 <strong><L cs="Otevřený novým příležitostem" en="Open to new opportunities" /></strong>
-                <span className={s.place}><L cs="Praha · Hybrid i remote · I spolupráce na IČO" en="Prague · Hybrid or remote · Also as a contractor" /></span>
+                <span className={s.place}><L cs="Praha · Hybrid i remote · Spolupráce na IČO" en="Prague · Hybrid or remote · Also as a contractor" /></span>
               </p>
               <p className="sr"><L cs="Kam směřuji:" en="Where I’m heading:" /></p>
               <ul className={s.dirList}>

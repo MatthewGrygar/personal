@@ -221,8 +221,8 @@ export const JOBS: Job[] = [
     subs: [
       {
         intro: {
-          cs: "Podílel jsem se na zajištění každodenního IT provozu Národního očkovacího centra v O2 universu, včetně koordinace šestičlenného IT týmu. V dynamickém prostředí s vysokými nároky na spolehlivost jsme podporovali provoz centra, ve kterém bylo během 131 dnů aplikováno přes 570 000 dávek vakcíny.",
-          en: "I helped run the National Vaccination Centre’s day-to-day IT operations at O2 universum, including coordinating a six-person IT team. In a fast-moving environment with high demands on reliability, we supported a centre that administered more than 570,000 vaccine doses in 131 days.",
+          cs: "Podílel jsem se na zajištění každodenního IT provozu Národního očkovacího centra v O2 universu, včetně koordinace šestičlenného IT týmu. V dynamickém prostředí s vysokými nároky na spolehlivost jsme podporovali provoz centra, kterým během 131 dnů prošlo přes 550 000 lidí.",
+          en: "I helped run the National Vaccination Centre’s day-to-day IT operations at O2 universum, including coordinating a six-person IT team. In a fast-moving environment with high demands on reliability, we supported a centre that more than 550,000 people passed through in 131 days.",
         },
         points: [
           pt("Vedení a koordinace IT týmu", "organizace směn, rozdělování úkolů a odpovědností v šestičlenném týmu, spolupráce s externími specialisty.",
