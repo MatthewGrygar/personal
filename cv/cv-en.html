@@ -29,12 +29,11 @@ a { color: inherit; text-decoration: none; }
 .status strong::before { content: ""; width: 2.6mm; height: 2.6mm; background: var(--blue); }
 .status span { color: var(--muted); }
 .dir { margin-top: 4mm; display: grid; grid-template-columns: max-content max-content; gap: .6mm 9mm; color: var(--ink-2); font-size: 9pt; }
-.photo { border-top: 2mm solid var(--blue); height: 48mm; overflow: hidden; background: var(--ink); }
+.photo { border-top: 2mm solid var(--blue); height: 57mm; overflow: hidden; background: var(--ink); }
 .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; filter: grayscale(1) contrast(1.08); display: block; }
 .contact { margin-top: 3mm; display: grid; gap: 1.2mm; font-size: 8.4pt; }
 .contact .mail { white-space: nowrap; }
 .contact a, .contact p { display: flex; align-items: center; gap: 2mm; font-weight: 600; overflow-wrap: anywhere; }
-.contact p { padding-left: 5.4mm; color: var(--muted); font-weight: 500; }
 .contact svg { flex: none; width: 3.4mm; height: 3.4mm; fill: none; stroke: var(--blue); stroke-width: 1.5; }
 .contact .mail { color: var(--blue); }
 
@@ -66,10 +65,10 @@ a { color: inherit; text-decoration: none; }
 .sub h4 span { font-weight: 400; color: var(--muted); }
 .job ul { margin-top: 1mm; display: grid; gap: .2mm; }
 .job li { position: relative; padding-left: 4.5mm; color: var(--ink-2); }
-.job li b { font-weight: 600; color: var(--ink); }
-.env { margin-top: 1.4mm; display: inline-flex; align-items: center; gap: 2mm; padding: .8mm 2.4mm .8mm 2mm; background: var(--ink); color: #fff; font-size: 7.8pt; font-weight: 600; line-height: 1.3; }
-.env::before { content: ""; flex: none; width: 1.8mm; height: 1.8mm; background: #8FA2FF; }
-.tags { margin-top: 1mm; font-size: 7.6pt; font-weight: 500; color: var(--muted); }
+.job li b { font-weight: inherit; }
+.job .chips { margin-top: 1.6mm; display: flex; flex-wrap: wrap; gap: 1.2mm; }
+.job .chips li { padding: .4mm 1.8mm .5mm; background: #F1F1F4; border: 1px solid #E1E1E6; font-size: 7.3pt; font-weight: 500; color: var(--ink); }
+.job .chips li::before { content: none; }
 .job li::before { content: ""; position: absolute; left: 0; top: .66em; width: 2.2mm; height: 1.5px; background: var(--blue); }
 
 /* projects: short, on a blue band that closes off the experience */
@@ -78,8 +77,6 @@ a { color: inherit; text-decoration: none; }
 .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: 4mm; }
 .card h3 { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 115%; font-size: 11.5pt; letter-spacing: -.025em; line-height: 1.1; }
 .card .d { margin-top: 1.5mm; font-size: 8.6pt; color: var(--blue-soft); }
-.card .s { margin-top: 2mm; font-size: 8.4pt; font-weight: 600; }
-.card .n { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 15pt; line-height: 1; letter-spacing: -.04em; margin-right: 1.5mm; }
 
 /* education, skills, languages */
 .three { display: grid; grid-template-columns: 1.15fr 1.25fr .7fr; gap: 8mm; margin-top: 5mm; break-inside: avoid; }
@@ -89,7 +86,7 @@ a { color: inherit; text-decoration: none; }
 .item span { display: block; color: var(--ink-2); }
 .item em { display: block; font-style: normal; font-size: 8pt; color: var(--muted); }
 .skills { margin-top: 3mm; display: grid; gap: 2mm; }
-.skills b { display: block; font-size: 8pt; font-weight: 600; color: var(--muted); }
+.skills b { display: block; font-weight: 700; color: var(--ink); }
 .lang li { margin-top: 3mm; display: flex; justify-content: space-between; border-bottom: 1px solid var(--soft); padding-bottom: 1.2mm; }
 .lang li span { font-weight: 700; }
 </style>
@@ -114,7 +111,7 @@ a { color: inherit; text-decoration: none; }
         <a class="mail" href="mailto:matthew.grygar@seznam.cz"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="3" width="13" height="10"/><path d="M1.5 3.5 8 9l6.5-5.5"/></svg>matthew.grygar@seznam.cz</a>
         <a href="tel:+420607434959"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5h3l1.2 3.4-1.9 1.3a8 8 0 0 0 4.5 4.5l1.3-1.9 3.4 1.2v3a1.5 1.5 0 0 1-1.5 1.5A12 12 0 0 1 1.5 3 1.5 1.5 0 0 1 3 1.5z"/></svg>+420 607 434 959</a>
         <a href="https://matthewgrygar.com"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5"/></svg>matthewgrygar.com</a>
-        <p>Company ID (IČO) 21162956</p>
+        <p><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="1.5" width="11" height="13"/><path d="M5.5 4.5h1M9.5 4.5h1M5.5 7.5h1M9.5 7.5h1M7 14.5v-3h2v3"/></svg>Company ID (IČO) 21162956</p>
       </div>
     </div>
   </header>
@@ -135,14 +132,13 @@ a { color: inherit; text-decoration: none; }
         <h3 class="co">Trask <span class="live">current</span></h3>
         <p class="role">System Engineer</p>
         <p class="sum">Running and developing enterprise IBM solutions in banking. Identity management, document systems, incidents and operational changes.</p>
-        <p class="env">Regulated banking environment with heightened requirements for security, service availability and change control.</p>
         <div class="sub">
           <h4>DMS / MONETA <span>· Apr 2026 – present</span></h4>
           <ul>
             <li><b>IT Operations &amp; Incident Management</b> – resolving operational incidents and requests, analysing problems and coordinating fixes across technical teams.</li>
             <li><b>Change Management</b> – coordinating operational changes, environment updates and related work with development and other specialists.</li>
           </ul>
-          <p class="tags">IT Operations · Incident Management · Change Management · IBM Db2 · Red Hat Enterprise Linux · Stakeholder Communication</p>
+          <ul class="chips"><li>IT Operations</li><li>Incident Management</li><li>Change Management</li><li>IBM Db2</li><li>Red Hat Enterprise Linux</li><li>Stakeholder Communication</li></ul>
         </div>
         <div class="sub">
           <h4>IDM / ČSOB <span>· Jan 2025 – Mar 2026</span></h4>
@@ -150,7 +146,7 @@ a { color: inherit; text-decoration: none; }
             <li><b>IBM IAM infrastructure</b> – installing, configuring and upgrading IBM ITIM, ISVG, Db2, LDAP and WebSphere Application Server.</li>
             <li><b>Requirements analysis and consulting</b> – working with customers and developers, clarifying needs and co-writing functional and technical specifications.</li>
           </ul>
-          <p class="tags">Identity &amp; Access Management · IBM Security Verify Governance · IBM ITIM · LDAP · IBM Db2 · WebSphere</p>
+          <ul class="chips"><li>Identity &amp; Access Management</li><li>IBM Security Verify Governance</li><li>IBM ITIM</li><li>LDAP</li><li>IBM Db2</li><li>WebSphere</li></ul>
         </div>
       </div>
     </article>
@@ -165,7 +161,7 @@ a { color: inherit; text-decoration: none; }
           <li><b>Incident and Service Management</b> – leading P1 / major incident resolution, running crisis calls, escalations and service recovery, including on-call duty.</li>
           <li><b>Designing support processes</b> – creating a multi-level L0–L3 support model with responsibilities, competencies, SLAs and escalation paths, partly put into practice.</li>
         </ul>
-        <p class="tags">IT Operations · Major Incident Management · Linux · SQL · Jira · Process Design</p>
+        <ul class="chips"><li>IT Operations</li><li>Major Incident Management</li><li>Linux</li><li>SQL</li><li>Jira</li><li>Process Design</li></ul>
       </div>
     </article>
 
@@ -175,14 +171,13 @@ a { color: inherit; text-decoration: none; }
         <h3 class="co">NAKIT</h3>
         <p class="role">Application Operations Specialist → Senior IT Platform Specialist</p>
         <p class="sum">Running the Citizen Portal and its related sign-in services. From application support to managing major operational incidents.</p>
-        <p class="env">Government digital services with heightened requirements for security, information protection and high availability.</p>
         <div class="sub">
           <h4>Senior IT Platform Specialist <span>· May 2023 – Mar 2024</span></h4>
           <ul>
             <li><b>Major Incident Management</b> – leading P1 incident resolution, running crisis calls, setting priorities and escalating issues.</li>
             <li><b>Coordinating teams and partners</b> – managing communication between technical specialists, suppliers and management, tracking progress and chasing the necessary steps.</li>
           </ul>
-          <p class="tags">Major Incident Management · IT Operations · SLA Management · Stakeholder Communication · Service Monitoring</p>
+          <ul class="chips"><li>Major Incident Management</li><li>IT Operations</li><li>SLA Management</li><li>Stakeholder Communication</li><li>Service Monitoring</li></ul>
         </div>
         <div class="sub">
           <h4>Application Operations Specialist <span>· Nov 2022 – May 2023</span></h4>
@@ -190,7 +185,7 @@ a { color: inherit; text-decoration: none; }
             <li><b>L2 application support</b> – resolving requests from end users and institutional customers, diagnosing Citizen Portal errors and sign-in problems.</li>
             <li><b>Server infrastructure</b> – operating Windows Server and Linux environments, working with SQL databases and related systems.</li>
           </ul>
-          <p class="tags">L2 Application Support · Windows Server · Linux · SQL · IT Service Management</p>
+          <ul class="chips"><li>L2 Application Support</li><li>Windows Server</li><li>Linux</li><li>SQL</li><li>IT Service Management</li></ul>
         </div>
       </div>
     </article>
@@ -205,7 +200,7 @@ a { color: inherit; text-decoration: none; }
           <li><b>Delivering network projects</b> – running contracts from understanding the customer’s needs, technical design and the quote through to delivery and handover.</li>
           <li><b>Leading technical delivery</b> – independently managing a structured cabling project of roughly 10 km, including organising the work and coordinating the technicians involved.</li>
         </ul>
-        <p class="tags">IT Infrastructure · Project Coordination · Team Leadership · Ubiquiti · Fortinet</p>
+        <ul class="chips"><li>IT Infrastructure</li><li>Project Coordination</li><li>Team Leadership</li><li>Ubiquiti</li><li>Fortinet</li></ul>
       </div>
     </article>
 
@@ -215,12 +210,11 @@ a { color: inherit; text-decoration: none; }
         <h3 class="co">National Vaccination Centre ÚVN – O2 universum</h3>
         <p class="role">IT Operations Consultant</p>
         <p class="sum">Running the vaccination centre’s workstations, devices and database through 131 days of crisis operations.</p>
-        <p class="env">Operations with heightened security requirements</p>
         <ul>
           <li><b>Leading and coordinating the IT team</b> – organising shifts and assigning tasks and responsibilities in a team of six, working with external specialists.</li>
           <li><b>IT infrastructure and support</b> – preparing and running dozens of devices and workstations, resolving technical incidents on the spot.</li>
         </ul>
-        <p class="tags">IT Operations · Team Leadership · MS SQL · Incident Management · Application Testing</p>
+        <ul class="chips"><li>IT Operations</li><li>Team Leadership</li><li>MS SQL</li><li>Incident Management</li><li>Application Testing</li></ul>
       </div>
     </article>
   </section>
@@ -230,13 +224,11 @@ a { color: inherit; text-decoration: none; }
     <div class="cards">
       <div class="card">
         <h3>Grail Series</h3>
-        <p class="d">A tournament series for the Czech Duel Commander community – concept, partners and running the events.</p>
-        <p class="s"><span class="n">130+</span> unique players</p>
+        <p class="d">A tournament series for the Czech Duel Commander community – concept, partners and running the events. Over 130 unique players have taken part.</p>
       </div>
       <div class="card">
         <h3>MtG DC ELO Ranking System</h3>
-        <p class="d">A web app with an ELO ranking for the same community – product, data and frontend.</p>
-        <p class="s"><span class="n">430+</span> players in the ranking</p>
+        <p class="d">A web app with an ELO ranking for the same community – product, data and frontend. Over 430 players are in the ranking.</p>
       </div>
     </div>
   </section>

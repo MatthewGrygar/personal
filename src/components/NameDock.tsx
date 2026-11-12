@@ -115,7 +115,8 @@ export default function NameDock({ duration = 700, stagger = 0.12 }: Props) {
         tm: { x: tm.left, y: tm.top - hr.top },
         tg: { x: tg.left, y: tg.top - hr.top },
         scale: tgtFs / heroFs,
-        start: 24,
+        // přelet startuje, až když celé jméno zajede pod lištu (spodek „Grygar“ mine spodní hranu lišty)
+        start: rg.bottom + sy - hr.bottom,
         end: rg.bottom + sy - hr.height + 30,
         lineL,
         lineR,
