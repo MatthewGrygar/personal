@@ -1,4 +1,5 @@
-/* Létající kopie jména – leží nad lištou, klikat jde skrz ni */
+/* Létající kopie jména – leží nad lištou, klikat jde skrz ni.
+   Globální pravidla (skrytí <h1>, rezervace v liště, linka) jsou v globals.css – CSS moduly je neumí. */
 .layer {
   position: fixed;
   inset: 0 auto auto 0;
@@ -18,6 +19,18 @@
   color: var(--fg);
   transform-origin: 0 0;
   will-change: transform;
+  /* místo pro „ocásky“ (y, g) a poslední písmeno – jinak by je odlesk ořízl */
+  padding: 0 0.12em 0.28em 0;
+}
+
+/* modrý odlesk: na začátku i na konci barva textu (černá / bílá podle režimu), uprostřed pohybu modrá */
+.sheen {
+  color: transparent;
+  background-image: linear-gradient(100deg, var(--fg) 0%, var(--fg) 30%, #8fa2ff 42%, #5b6bff 50%, #8fa2ff 58%, var(--fg) 70%, var(--fg) 100%);
+  background-size: 320% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
 }
 
 :global(html[data-dock-active]) .layer {

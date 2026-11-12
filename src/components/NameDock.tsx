@@ -1,15 +1,18 @@
 'use client';
 
 /**
- * NameDock – jméno z hero sekce při scrollu plynule přeletí do menu lišty
- * a zároveň se linka pod lištou roztáhne do stran přes celou šířku webu.
+ * NameDock – jméno z hero sekce se při scrollu zmenšuje a stoupá do menu lišty
+ * (scroll & scale), obsah pod ním ho „tlačí“ nahoru. Ke konci se „Grygar“
+ * obloukem přesune vedle „Matthew“, jméno plynule dobrzdí do lišty a teprve
+ * tehdy se linka pod lištou roztáhne přes celou šířku webu.
+ * Během pohybu přes jméno přejede modrý odlesk; na začátku i na konci má barvu textu.
  *
- * Komponenta si prvky najde podle data-atributů:
- *   [data-dock-header]      <header>
+ * Prvky se hledají podle data-atributů:
+ *   [data-dock-header]      <header> (sticky, top: 0)
  *   [data-dock-line]        linka pod lištou – přes celou šířku lišty, na startu jen úsek nad obsahem
- *   [data-dock-nav]         <nav> – od jeho levého okraje linka začíná
+ *   [data-dock-nav]         <nav> – od jeho levého okraje linka začíná (když není fotka vedle textu)
  *   [data-dock-photo]       fotka v hero – na desktopu linka začíná stejně daleko od ní vlevo jako vpravo
- *   [data-dock-target="m"]  „Matthew“ v liště (cílové místo)
+ *   [data-dock-target="m"]  „Matthew“ v liště (cílové místo, neviditelné)
  *   [data-dock-target="g"]  „Grygar“ v liště
  *   [data-dock-hero="m"]    „Matthew“ v hero <h1>
  *   [data-dock-hero="g"]    „Grygar“ v hero <h1>
@@ -20,13 +23,12 @@ import styles from './NameDock.module.css';
 
 type Pt = { x: number; y: number };
 type Metrics = {
-  hm: Pt;
-  hg: Pt;
-  tm: Pt;
-  tg: Pt;
-  scale: number;
-  start: number;
-  end: number;
+  hm: Pt; // levý horní roh „Matthew“ v hero (souřadnice dokumentu)
+  tm: Pt; // levý horní roh „Matthew“ v liště (souřadnice viewportu)
+  two: Pt; // „Grygar“ vůči „Matthew“ – dva řádky (v hero pixelech)
+  one: Pt; // „Grygar“ vůči „Matthew“ – jeden řádek (v hero pixelech)
+  sc: number;
+  D: number;
   /** úsek linky na startu jako podíl šířky lišty (zleva, zprava) */
   lineL: number;
   lineR: number;
@@ -37,14 +39,13 @@ const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 type Props = {
-  /** délka přeletu v ms – jméno má jen dvě polohy (hero / lišta) a mezi nimi vždy doletí */
-  duration?: number;
-  /** 0–0.3: o kolik se „Grygar“ zpozdí za „Matthew“ */
-  stagger?: number;
+  /** 0.06–1: jak moc pohyb dobíhá za scrollem (1 = přesně se scrollem) */
+  smoothing?: number;
+  /** modrý odlesk, který přes jméno přejede během pohybu */
+  sheen?: boolean;
 };
 
-export default function NameDock({ duration = 700, stagger = 0.12 }: Props) {
-  const layerRef = useRef<HTMLDivElement>(null);
+export default function NameDock({ smoothing = 0.18, sheen = true }: Props) {
   const mRef = useRef<HTMLSpanElement>(null);
   const gRef = useRef<HTMLSpanElement>(null);
 
@@ -58,23 +59,23 @@ export default function NameDock({ duration = 700, stagger = 0.12 }: Props) {
     const line = q('[data-dock-line]');
     const nav = q('[data-dock-nav]');
     const photo = q('[data-dock-photo]');
-    const layer = layerRef.current;
     const ovM = mRef.current;
     const ovG = gRef.current;
-    if (!heroM || !heroG || !tgtM || !tgtG || !header || !layer || !ovM || !ovG) return;
+    if (!heroM || !heroG || !tgtM || !tgtG || !header || !ovM || !ovG) return;
 
     const root = document.documentElement;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let m: Metrics | null = null;
-    let cur = 0;
+    let sst = window.scrollY; // vyhlazený scroll (scrub)
     let active = false;
     let raf = 0;
-    let last = 0;
+
+    // odlesk je gradient v CSS (barva textu podle světlého/tmavého režimu); bez něj prostá barva textu
+    for (const el of [ovM, ovG]) el.classList.toggle(styles.sheen, sheen);
 
     const measure = () => {
       const sy = window.scrollY;
       const hs = getComputedStyle(heroM);
-      // overlay převezme typografii hero nadpisu (i responzivní clamp velikosti); barva jde z CSS
       for (const el of [ovM, ovG]) {
         el.style.fontFamily = hs.fontFamily;
         el.style.fontWeight = hs.fontWeight;
@@ -88,10 +89,13 @@ export default function NameDock({ duration = 700, stagger = 0.12 }: Props) {
       const tm = tgtM.getBoundingClientRect();
       const tg = tgtG.getBoundingClientRect();
       const hr = header.getBoundingClientRect();
-      const heroFs = parseFloat(hs.fontSize);
-      const tgtFs = parseFloat(getComputedStyle(tgtM).fontSize);
+      const sc = parseFloat(getComputedStyle(tgtM).fontSize) / parseFloat(hs.fontSize);
 
-      // start: úsek nad obsahem (končí u pravého okraje obsahu), cíl: celá šířka lišty
+      const hmY = rm.top + sy; // dokument
+      const H = rg.bottom - rm.top; // výška dvouřádkového bloku
+      const tmY = tm.top - hr.top; // lišta je sticky na top: 0
+
+      // linka: start = úsek nad obsahem (končí u pravého okraje obsahu), cíl = celá šířka lišty
       let lineL = 0.6;
       let lineR = 1;
       if (line && line.parentElement && line.offsetWidth > 0) {
@@ -109,53 +113,67 @@ export default function NameDock({ duration = 700, stagger = 0.12 }: Props) {
       }
 
       m = {
-        hm: { x: rm.left, y: rm.top + sy },
-        hg: { x: rg.left, y: rg.top + sy },
-        // lišta je sticky nahoře → cíl měříme relativně k ní
-        tm: { x: tm.left, y: tm.top - hr.top },
-        tg: { x: tg.left, y: tg.top - hr.top },
-        scale: tgtFs / heroFs,
-        // přelet startuje, až když celé jméno zajede pod lištu (spodek „Grygar“ mine spodní hranu lišty)
-        start: rg.bottom + sy - hr.bottom,
-        end: rg.bottom + sy - hr.height + 30,
+        hm: { x: rm.left, y: hmY },
+        tm: { x: tm.left, y: tmY },
+        two: { x: rg.left - rm.left, y: rg.top - rm.top },
+        one: { x: (tg.left - tm.left) / sc, y: (tg.top - tm.top) / sc },
+        sc,
+        // dráha scrollu, na které spodek jména drží krok s obsahem pod ním
+        D: hmY - tmY + H * (1 - sc),
         lineL,
         lineR,
       };
     };
 
-    const place = (node: HTMLElement, from: Pt, to: Pt, t: number, follow: number, scale: number) => {
-      const x = lerp(from.x, to.x, t);
-      const y = lerp(from.y - follow, to.y, t);
-      const s = lerp(1, scale, t);
-      node.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) scale(${s.toFixed(4)})`;
-    };
-
-    const tick = (now: number) => {
+    const tick = () => {
       raf = requestAnimationFrame(tick);
-      const dt = last ? Math.min(now - last, 64) : 0;
-      last = now;
       if (!m) return;
-      const sy = window.scrollY;
-      // jen dvě koncové polohy: po odscrollování jméno doletí do lišty, úplně nahoře zpět – nikde mezi se nezastaví
-      const target = sy > m.start ? 1 : 0;
-      const step = reduce ? 1 : dt / duration;
-      cur = target > cur ? Math.min(target, cur + step) : Math.max(target, cur - step);
+      const st = window.scrollY;
+      sst += (st - sst) * (reduce ? 1 : smoothing);
+      if (Math.abs(st - sst) < 0.1) sst = st;
 
-      // v klidu nahoře necháme vidět skutečný <h1> (i s jeho úvodní animací)
-      const nowActive = cur > 0.0005;
+      // většinu dráhy lineárně (obsah jméno tlačí), posledních 15 % plynule dobrzdí
+      const r = sst / m.D;
+      const a = 0.85;
+      let p: number;
+      if (r <= a) p = Math.max(0, r);
+      else {
+        const u = clamp((r - a) / (2 * (1 - a)));
+        p = a + (1 - a) * u * (2 - u);
+      }
+
+      // v klidu nahoře je vidět skutečný <h1> (i s jeho úvodní animací)
+      const nowActive = p > 0.0005;
       if (nowActive !== active) {
         active = nowActive;
         root.toggleAttribute('data-dock-active', active);
       }
 
-      const follow = Math.min(sy, m.end); // do konce přeletu jede jméno se stránkou
-      place(ovM, m.hm, m.tm, ease(clamp(cur / (1 - stagger))), follow, m.scale);
-      place(ovG, m.hg, m.tg, ease(clamp((cur - stagger) / (1 - stagger))), follow, m.scale);
+      // vrstva je fixed: y z dokumentu se díky dráze D posouvá přesně tak, aby jméno drželo krok s obsahem
+      const s = lerp(1, m.sc, p);
+      const bx = lerp(m.hm.x, m.tm.x, p);
+      const by = lerp(m.hm.y, m.tm.y, p);
+      // „Grygar“ obloukem vedle „Matthew“: doprava a s mírným zpožděním nahoru
+      const qx = ease(clamp((p - 0.5) / 0.38));
+      const qy = ease(clamp((p - 0.66) / 0.34));
+      const gx = bx + lerp(m.two.x, m.one.x, qx) * s;
+      const gy = by + lerp(m.two.y, m.one.y, qy) * s;
+
+      const tf = (x: number, y: number) => `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) scale(${s.toFixed(4)})`;
+      ovM.style.transform = tf(bx, by);
+      ovG.style.transform = tf(gx, gy);
+
+      // odlesk přejede během pohybu, na začátku i na konci čistá barva textu
+      const bp = `${(100 - p * 100).toFixed(2)}% 0`;
+      ovM.style.backgroundPosition = bp;
+      ovG.style.backgroundPosition = bp;
+
+      // linka se roztahuje do stran až ve chvíli, kdy jméno dosedá do lišty
       if (line) {
-        const e = ease(cur);
+        const e = ease(clamp((p - 0.8) / 0.2));
         const l = lerp(m.lineL, 0, e);
-        const r = lerp(m.lineR, 1, e);
-        line.style.transform = `translateX(${(l * 100).toFixed(3)}%) scaleX(${(r - l).toFixed(4)})`;
+        const rr = lerp(m.lineR, 1, e);
+        line.style.transform = `translateX(${(l * 100).toFixed(3)}%) scaleX(${(rr - l).toFixed(4)})`;
       }
     };
 
@@ -173,10 +191,10 @@ export default function NameDock({ duration = 700, stagger = 0.12 }: Props) {
       window.removeEventListener('resize', measure);
       root.removeAttribute('data-dock-active');
     };
-  }, [duration, stagger]);
+  }, [smoothing, sheen]);
 
   return (
-    <div ref={layerRef} className={styles.layer} aria-hidden="true">
+    <div className={styles.layer} aria-hidden="true">
       <span ref={mRef} className={styles.word}>Matthew</span>
       <span ref={gRef} className={styles.word}>Grygar</span>
     </div>
