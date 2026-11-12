@@ -52,8 +52,12 @@ export function Hero() {
                 <a className="btn" href="#kontakt"><L cs="Ozvěte se mi" en="Get in touch" /></a>
               </div>
               <div className={s.small}>
-                <a href="/cv-matthew-grygar.pdf" download="Matthew-Grygar-CV.pdf">
-                  <L cs="Stáhnout životopis" en="Download CV" /> <Down />
+                {/* one link per language; the inactive one is hidden like any other <L> text */}
+                <a data-l="cs" href="/cv-matthew-grygar.pdf" download="Matthew-Grygar-zivotopis.pdf">
+                  Stáhnout životopis <Down />
+                </a>
+                <a data-l="en" href="/cv-matthew-grygar-en.pdf" download="Matthew-Grygar-CV.pdf">
+                  Download CV <Down />
                 </a>
                 <a href={LINKEDIN} target="_blank" rel="noopener">
                   LinkedIn <Out /><NewTab />

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Matthew Grygar – CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 12mm 0 11mm; }
+:root { --ink: #0A0A0A; --ink-2: #3D3D3D; --muted: #5C5C5C; --soft: #DADADA; --blue: #3F38FC; --blue-soft: #E4E3FF; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: 'Inter Tight', system-ui, sans-serif; color: var(--ink); font-size: 8.3pt; line-height: 1.34; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+h1, h2, h3, h4, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+.head-f { font-family: Archivo, sans-serif; }
+
+.page { width: 210mm; padding: 1mm 14mm 0; }
+
+/* header: name left, contact and portrait right */
+.top { display: grid; grid-template-columns: 1fr 50mm; gap: 8mm; padding-bottom: 2mm; }
+.name { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 38pt; line-height: .86; letter-spacing: -.045em; }
+.name span { display: block; }
+.tag { margin-top: 5mm; font-size: 15pt; font-weight: 600; letter-spacing: -.03em; line-height: 1.12; }
+.tag b { color: var(--blue); }
+.lead { margin-top: 2.5mm; max-width: 112mm; color: var(--ink-2); font-size: 9.8pt; line-height: 1.55; }
+.status { margin-top: 4mm; display: flex; flex-wrap: wrap; align-items: center; gap: 1mm 3mm; font-size: 9pt; }
+.status strong { display: inline-flex; align-items: center; gap: 2.5mm; font-weight: 600; }
+.status strong::before { content: ""; width: 2.6mm; height: 2.6mm; background: var(--blue); }
+.status span { color: var(--muted); }
+.dir { margin-top: 4mm; display: grid; grid-template-columns: max-content max-content; gap: .6mm 9mm; color: var(--ink-2); font-size: 9pt; }
+.photo { border-top: 2mm solid var(--blue); height: 48mm; overflow: hidden; background: var(--ink); }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; filter: grayscale(1) contrast(1.08); display: block; }
+.contact { margin-top: 3mm; display: grid; gap: 1.2mm; font-size: 8.4pt; }
+.contact .mail { white-space: nowrap; }
+.contact a, .contact p { display: flex; align-items: center; gap: 2mm; font-weight: 600; overflow-wrap: anywhere; }
+.contact p { padding-left: 5.4mm; color: var(--muted); font-weight: 500; }
+.contact svg { flex: none; width: 3.4mm; height: 3.4mm; fill: none; stroke: var(--blue); stroke-width: 1.5; }
+.contact .mail { color: var(--blue); }
+
+/* the numbers on a blue band */
+.band { margin: 5mm -14mm 0; padding: 4.5mm 14mm 5mm; background: var(--blue); color: #fff; display: grid; grid-template-columns: .8fr 1fr 1fr 1.5fr; gap: 6mm; }
+.fig { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 21pt; line-height: 1; letter-spacing: -.04em; white-space: nowrap; }
+.fig small { font-family: 'Inter Tight', sans-serif; font-size: 9pt; font-weight: 600; letter-spacing: 0; }
+.band p { margin-top: 2mm; font-size: 8pt; line-height: 1.4; color: var(--blue-soft); }
+
+/* sections */
+.sec { margin-top: 5mm; }
+.h2 { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 110%; font-size: 17pt; line-height: 1; letter-spacing: -.035em; padding-bottom: 3mm; border-bottom: 1px solid var(--ink); }
+
+.job { display: grid; grid-template-columns: 24mm 1fr; gap: 0 5mm; padding: 2.3mm 0 2.5mm; border-bottom: 1px solid var(--soft); }
+.job:not(:has(.sub)), .sub { break-inside: avoid; }
+/* page 1 ends after OX Point (no rule hanging at the foot of the page), NAKIT opens page 2 */
+.job.pageend, .job:last-child { border-bottom: 0; }
+.job.newpage { break-before: page; padding-top: 0; }
+.yr { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 17pt; line-height: .9; letter-spacing: -.04em; }
+.now .yr { color: var(--blue); }
+.per { display: block; margin-top: 1.4mm; font-size: 7pt; white-space: nowrap; color: var(--muted); }
+.co { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 110%; font-size: 12.5pt; line-height: 1.1; letter-spacing: -.02em; }
+.role { margin-top: .8mm; font-size: 8.8pt; font-weight: 600; }
+.sum { margin-top: .6mm; font-size: 8.6pt; color: var(--ink-2); }
+.live { display: inline-flex; align-items: center; gap: 1.6mm; margin-left: 2.5mm; font-size: 8pt; font-weight: 600; color: var(--blue); }
+.live::before { content: ""; width: 1.8mm; height: 1.8mm; background: var(--blue); }
+.sub { margin-top: 1.4mm; }
+.sub h4 { font-size: 9.4pt; font-weight: 700; }
+.sub h4 span { font-weight: 400; color: var(--muted); }
+.job ul { margin-top: 1mm; display: grid; gap: .2mm; }
+.job li { position: relative; padding-left: 4.5mm; color: var(--ink-2); }
+.job li b { font-weight: 600; color: var(--ink); }
+.env { margin-top: 1.4mm; display: inline-flex; align-items: center; gap: 2mm; padding: .8mm 2.4mm .8mm 2mm; background: var(--ink); color: #fff; font-size: 7.8pt; font-weight: 600; line-height: 1.3; }
+.env::before { content: ""; flex: none; width: 1.8mm; height: 1.8mm; background: #8FA2FF; }
+.tags { margin-top: 1mm; font-size: 7.6pt; font-weight: 500; color: var(--muted); }
+.job li::before { content: ""; position: absolute; left: 0; top: .66em; width: 2.2mm; height: 1.5px; background: var(--blue); }
+
+/* projects: short, on a blue band that closes off the experience */
+.proj { margin: 5mm -14mm 0; padding: 5mm 14mm 5.5mm; background: var(--blue); color: #fff; break-inside: avoid; }
+.proj h2 { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 110%; font-size: 13pt; line-height: 1; letter-spacing: -.035em; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: 4mm; }
+.card h3 { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 115%; font-size: 11.5pt; letter-spacing: -.025em; line-height: 1.1; }
+.card .d { margin-top: 1.5mm; font-size: 8.6pt; color: var(--blue-soft); }
+.card .s { margin-top: 2mm; font-size: 8.4pt; font-weight: 600; }
+.card .n { font-family: Archivo, sans-serif; font-weight: 900; font-stretch: 125%; font-size: 15pt; line-height: 1; letter-spacing: -.04em; margin-right: 1.5mm; }
+
+/* education, skills, languages */
+.three { display: grid; grid-template-columns: 1.15fr 1.25fr .7fr; gap: 8mm; margin-top: 5mm; break-inside: avoid; }
+.three h2 { font-size: 13pt; }
+.item { margin-top: 3mm; }
+.item b { display: block; font-weight: 700; }
+.item span { display: block; color: var(--ink-2); }
+.item em { display: block; font-style: normal; font-size: 8pt; color: var(--muted); }
+.skills { margin-top: 3mm; display: grid; gap: 2mm; }
+.skills b { display: block; font-size: 8pt; font-weight: 600; color: var(--muted); }
+.lang li { margin-top: 3mm; display: flex; justify-content: space-between; border-bottom: 1px solid var(--soft); padding-bottom: 1.2mm; }
+.lang li span { font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="top">
+    <div>
+      <h1 class="name"><span>Matthew</span><span>Grygar</span></h1>
+      <p class="tag">I understand people and technology<b>.</b></p>
+      <p class="lead">I add the most where technical understanding has to meet the ability to lead people and projects. I turn ideas into clear plans, and plans into working solutions.</p>
+      <p class="status"><strong>Open to new opportunities</strong><span>Prague · Hybrid or remote · Also as a contractor</span></p>
+      <ul class="dir">
+        <li>Project and operations management</li><li>Account management</li>
+        <li>Business / Service ownership</li><li>IT and digital services</li>
+      </ul>
+    </div>
+    <div>
+      <div class="photo"><img src="../public/images/portrait.jpg" alt=""></div>
+      <div class="contact">
+        <a class="mail" href="mailto:matthew.grygar@seznam.cz"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="3" width="13" height="10"/><path d="M1.5 3.5 8 9l6.5-5.5"/></svg>matthew.grygar@seznam.cz</a>
+        <a href="tel:+420607434959"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5h3l1.2 3.4-1.9 1.3a8 8 0 0 0 4.5 4.5l1.3-1.9 3.4 1.2v3a1.5 1.5 0 0 1-1.5 1.5A12 12 0 0 1 1.5 3 1.5 1.5 0 0 1 3 1.5z"/></svg>+420 607 434 959</a>
+        <a href="https://matthewgrygar.com"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5"/></svg>matthewgrygar.com</a>
+        <p>Company ID (IČO) 21162956</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="band" aria-label="In numbers">
+    <div><div class="fig">10 <small>years</small></div><p>in theatre taught me professional communication and presenting.</p></div>
+    <div><div class="fig">130+ <small>players</small></div><p>took part in the Grail Series tournaments I organised.</p></div>
+    <div><div class="fig">300+ <small>terminals</small></div><p>of parcel lockers whose operation I coordinated.</p></div>
+    <div><div class="fig">550,000+ <small>people</small></div><p>passed through the National Vaccination Centre while I was helping run its IT operations.</p></div>
+  </section>
+
+  <section class="sec">
+    <h2 class="h2">Work experience</h2>
+
+    <article class="job now">
+      <div><div class="yr">2025</div><span class="per">Jan 2025 – present</span></div>
+      <div>
+        <h3 class="co">Trask <span class="live">current</span></h3>
+        <p class="role">System Engineer</p>
+        <p class="sum">Running and developing enterprise IBM solutions in banking. Identity management, document systems, incidents and operational changes.</p>
+        <p class="env">Regulated banking environment with heightened requirements for security, service availability and change control.</p>
+        <div class="sub">
+          <h4>DMS / MONETA <span>· Apr 2026 – present</span></h4>
+          <ul>
+            <li><b>IT Operations &amp; Incident Management</b> – resolving operational incidents and requests, analysing problems and coordinating fixes across technical teams.</li>
+            <li><b>Change Management</b> – coordinating operational changes, environment updates and related work with development and other specialists.</li>
+          </ul>
+          <p class="tags">IT Operations · Incident Management · Change Management · IBM Db2 · Red Hat Enterprise Linux · Stakeholder Communication</p>
+        </div>
+        <div class="sub">
+          <h4>IDM / ČSOB <span>· Jan 2025 – Mar 2026</span></h4>
+          <ul>
+            <li><b>IBM IAM infrastructure</b> – installing, configuring and upgrading IBM ITIM, ISVG, Db2, LDAP and WebSphere Application Server.</li>
+            <li><b>Requirements analysis and consulting</b> – working with customers and developers, clarifying needs and co-writing functional and technical specifications.</li>
+          </ul>
+          <p class="tags">Identity &amp; Access Management · IBM Security Verify Governance · IBM ITIM · LDAP · IBM Db2 · WebSphere</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="job pageend">
+      <div><div class="yr">2024</div><span class="per">Feb 2024 – Sep 2025</span></div>
+      <div>
+        <h3 class="co">OX Point</h3>
+        <p class="role">Senior Application Support Specialist</p>
+        <p class="sum">Application operations and technical support for a network of more than 300 parcel lockers. Coordinating incidents and technical teams, developing operational processes.</p>
+        <ul>
+          <li><b>Incident and Service Management</b> – leading P1 / major incident resolution, running crisis calls, escalations and service recovery, including on-call duty.</li>
+          <li><b>Designing support processes</b> – creating a multi-level L0–L3 support model with responsibilities, competencies, SLAs and escalation paths, partly put into practice.</li>
+        </ul>
+        <p class="tags">IT Operations · Major Incident Management · Linux · SQL · Jira · Process Design</p>
+      </div>
+    </article>
+
+    <article class="job newpage">
+      <div><div class="yr">2022</div><span class="per">Nov 2022 – Mar 2024</span></div>
+      <div>
+        <h3 class="co">NAKIT</h3>
+        <p class="role">Application Operations Specialist → Senior IT Platform Specialist</p>
+        <p class="sum">Running the Citizen Portal and its related sign-in services. From application support to managing major operational incidents.</p>
+        <p class="env">Government digital services with heightened requirements for security, information protection and high availability.</p>
+        <div class="sub">
+          <h4>Senior IT Platform Specialist <span>· May 2023 – Mar 2024</span></h4>
+          <ul>
+            <li><b>Major Incident Management</b> – leading P1 incident resolution, running crisis calls, setting priorities and escalating issues.</li>
+            <li><b>Coordinating teams and partners</b> – managing communication between technical specialists, suppliers and management, tracking progress and chasing the necessary steps.</li>
+          </ul>
+          <p class="tags">Major Incident Management · IT Operations · SLA Management · Stakeholder Communication · Service Monitoring</p>
+        </div>
+        <div class="sub">
+          <h4>Application Operations Specialist <span>· Nov 2022 – May 2023</span></h4>
+          <ul>
+            <li><b>L2 application support</b> – resolving requests from end users and institutional customers, diagnosing Citizen Portal errors and sign-in problems.</li>
+            <li><b>Server infrastructure</b> – operating Windows Server and Linux environments, working with SQL databases and related systems.</li>
+          </ul>
+          <p class="tags">L2 Application Support · Windows Server · Linux · SQL · IT Service Management</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="job">
+      <div><div class="yr">2021</div><span class="per">Dec 2021 – Nov 2022</span></div>
+      <div>
+        <h3 class="co">MyCom Solutions</h3>
+        <p class="role">IT Infrastructure Specialist</p>
+        <p class="sum">IT outsourcing for business customers and infrastructure projects from design to handover.</p>
+        <ul>
+          <li><b>Delivering network projects</b> – running contracts from understanding the customer’s needs, technical design and the quote through to delivery and handover.</li>
+          <li><b>Leading technical delivery</b> – independently managing a structured cabling project of roughly 10 km, including organising the work and coordinating the technicians involved.</li>
+        </ul>
+        <p class="tags">IT Infrastructure · Project Coordination · Team Leadership · Ubiquiti · Fortinet</p>
+      </div>
+    </article>
+
+    <article class="job">
+      <div><div class="yr">2021</div><span class="per">Feb 2021 – Dec 2021</span></div>
+      <div>
+        <h3 class="co">National Vaccination Centre ÚVN – O2 universum</h3>
+        <p class="role">IT Operations Consultant</p>
+        <p class="sum">Running the vaccination centre’s workstations, devices and database through 131 days of crisis operations.</p>
+        <p class="env">Operations with heightened security requirements</p>
+        <ul>
+          <li><b>Leading and coordinating the IT team</b> – organising shifts and assigning tasks and responsibilities in a team of six, working with external specialists.</li>
+          <li><b>IT infrastructure and support</b> – preparing and running dozens of devices and workstations, resolving technical incidents on the spot.</li>
+        </ul>
+        <p class="tags">IT Operations · Team Leadership · MS SQL · Incident Management · Application Testing</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="proj">
+    <h2>Side projects</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Grail Series</h3>
+        <p class="d">A tournament series for the Czech Duel Commander community – concept, partners and running the events.</p>
+        <p class="s"><span class="n">130+</span> unique players</p>
+      </div>
+      <div class="card">
+        <h3>MtG DC ELO Ranking System</h3>
+        <p class="d">A web app with an ELO ranking for the same community – product, data and frontend.</p>
+        <p class="s"><span class="n">430+</span> players in the ranking</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="three">
+    <section>
+      <h2 class="h2">Education</h2>
+      <div class="item"><b>VŠB – Technical University of Ostrava, Faculty of Safety Engineering</b><span>Technical protection of people and property</span><em>2023 – 2025</em></div>
+      <div class="item"><b>Gymnázium Čelákovice</b><span>Eight-year grammar school</span><em>2010 – 2018</em></div>
+    </section>
+    <section>
+      <h2 class="h2">Skills</h2>
+      <div class="skills">
+        <p><b>Operations and processes</b>Incident and change management, P1 / major incidents, SLAs, JIRA</p>
+        <p><b>Systems</b>IBM IAM (ITIM, ISVG), LDAP, DB2, WebSphere, Windows Server, Linux</p>
+        <p><b>Data and scripting</b>SQL / MS SQL, Python, Bash, PowerShell, HTML / CSS / JavaScript</p>
+      </div>
+    </section>
+    <section class="lang">
+      <h2 class="h2">Languages</h2>
+      <ul>
+        <li>English <span>B2</span></li>
+        <li>German <span>A2</span></li>
+        <li>Spanish <span>A1</span></li>
+      </ul>
+    </section>
+  </div>
+
+</div>
+</body>
+</html>
